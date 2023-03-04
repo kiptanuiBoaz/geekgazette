@@ -2,9 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="shortcut icon" type="image/svg+xml" href="/geek-gazette-logo.png" />
+    <style>
+      /* Set the size of the favicon */
+      /* You can adjust the size as needed */
+      .favicon {
+        width: 32px;
+        height: 32px;
+        display: block;
+        border-radius: 50%; /* Make the favicon round */
+        border: 2px solid #ccc; /* Add a border to the favicon */
+        overflow: hidden; /* Hide any content that overflows the round frame */
+      }
+      
+      /* Hide the default browser favicon */
+      /* You can remove this if you want to display both the default and custom favicon */
+      head link[rel="shortcut icon"] {
+        display: none;
+      }
+      </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>geek gazette</title>
   </head>
   <body>
     <div id="root"></div>

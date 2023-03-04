@@ -1,9 +1,9 @@
-
+import "./App.scss"
 function App() {
 
   return (
     <div className="App">
-      <p>blog site</p>
+      <p className="app">blog site</p>
     </div>
   )
 }
