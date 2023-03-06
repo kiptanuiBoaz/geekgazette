@@ -1,11 +1,17 @@
-import "./App.scss"
-function App() {
+import { Route, Routes } from "react-router-dom";
+import { Layout } from "./Layout";
+import { HomePage, Navbar } from "./pages/index"
+
+
+export const App = () => {
 
   return (
-    <div className="App">
-      <p className="app">blog site</p>
-    </div>
+    <Routes>
+      {/* parent element emitting children */}
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+      </Route>
+    </Routes>
   )
 }
 
-export default App

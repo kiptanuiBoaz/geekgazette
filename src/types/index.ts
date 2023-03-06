@@ -1,0 +1,1 @@
+export type {navListTypes} from "./navbar-types/navListTypes"
