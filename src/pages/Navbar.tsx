@@ -44,17 +44,21 @@ export const Navbar = () => {
   )
 
   return (
-    <nav className="navbar">
-      <div className="logo" >
-        <img  src={logoGreen} alt="logo" />
-      </div>
+    <>
+      <nav className="navbar">
+        <div className="logo" >
+          <img src={logoGreen} alt="logo" />
+        </div>
 
-      <ul className="nav-link-container">
-        {navListComponent}
-      </ul>
+        <ul className="nav-link-container">
+          {navListComponent}
+        </ul>
 
-      <button><NavLink to="sign-up" className="sign-up">Sign Up</NavLink></button>
-      <hr />
-    </nav>
+        <button><NavLink to="sign-up" className="sign-up">Sign Up</NavLink></button>
+
+      </nav>
+      <hr/>
+    </>
+
   )
 }

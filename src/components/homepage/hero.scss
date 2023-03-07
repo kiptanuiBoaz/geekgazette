@@ -1,3 +1,47 @@
-.hero{
-    background-color: var(--primary-backround);
+.hero {
+  background-color: var(--primary-backround);
+  margin: -15px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
+
+  .slogan {
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  .tagline{
+    font-size: 20px;
+  }
+
+  button {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 8px 15px;
+    border: none;
+    margin-right: 20px;
+    margin-top: 10px;
+
+    .sign-up {
+      display: inline-block;
+      width: 100%;
+      white-space: nowrap;
+      padding: 1%;
+      padding-right: 4px;
+      color: var(--primary-backround);
+      text-decoration: none;
+
+      a {
+        color: var(--primary-backround);
+      }
+    }
+  }
+
+  .hero-left {
+    width: 50%;
+  }
+
+  .hero-right {
+    width: 50%;
+  }
 }

@@ -45,6 +45,7 @@
         font-family: Arial, Helvetica, sans-serif;
         text-decoration: none;
         font-weight: 500;
+        font-size: 20px;
         padding: 4px 0px;
         display: inline-block;
         position: relative;
@@ -80,7 +81,9 @@
     border-radius: 20px;
     padding: 8px 15px;
     border: none;
-    margin-right: 20px;
+    margin-right: 9px;
+    margin-top: 10px;
+    margin-left: 4px;
 
     .sign-up {
       display: inline-block;
@@ -88,13 +91,15 @@
       white-space: nowrap;
       padding: 1%;
       padding-right: 4px;
+     
       color: var(--primary-backround);
       text-decoration: none;
+      font-size: 20px;
       
   
       a {
         color: var(--primary-backround);
-        
+        font-size: 20px;
       }
     }
   }

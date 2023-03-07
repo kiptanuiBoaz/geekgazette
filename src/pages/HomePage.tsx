@@ -1,8 +1,12 @@
 import React from 'react';
-import {Hero} from "../components/index";
+import { Hero, Read } from "../components/index";
 
 export const HomePage = () => {
   return (
-    <Hero/>
+    <main>
+      <Hero />
+      <Read />
+    </main>
+
   )
 }
