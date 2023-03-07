@@ -2,12 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color:var(--primary-backround);
+  background-color: var(--primary-backround);
   padding: 5px;
+  margin: -5px;
 
   .logo {
     width: 13%;
-    margin: 20px;
+    margin: 7px 20px;
   }
 
   .nav-link-container {
@@ -17,16 +18,57 @@
     list-style: none;
 
     .nav-link {
-      margin: 0 10px;
+      margin: 4px 10px;
       display: inline-block;
       width: 100%;
       white-space: nowrap;
-      //   width: 60px;
+      padding: 1%;
+      padding-right: 4px;
+
+      //sign up button
+      &:nth-child(4) {
+        a {
+          color: var(--primary-backround);
+          border-radius: 20px;
+          padding: 8px 18px;
+          background-color: var(--primary-color);
+        }
+      }
 
       a {
+        padding: 3px;
         color: var(--primary-color);
         font-family: Arial, Helvetica, sans-serif;
         text-decoration: none;
+        font-weight: 500;
+        padding: 4px 0px;
+        display: inline-block;
+        position: relative;
+
+        &:hover{
+          color:var( --accent-color);
+          font-weight:600 ;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          transform: scaleX(0);
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background-color: var( --accent-color);
+          transform-origin: bottom right;
+          transition: transform 0.25s ease-out;
+
+        
+        }
+
+        &:hover::after{
+          transform: scaleX(1);
+          transform-origin: bottom left;
+        }
       }
     }
   }

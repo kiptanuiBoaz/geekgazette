@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import {Hero} from "../components/index";
 
 export const HomePage = () => {
   return (
-    <div><p>HomePage lsllt  toioa fl toa l la o f al l to oa fljljlsjf t tyoeueo  hfoaf</p></div>
+    <Hero/>
   )
 }
