@@ -9,15 +9,27 @@ import { NavLink } from "react-router-dom"
 export const Navbar = () => {
 
   const navList: navListTypes[] = [
-    { text: "The Developer", route: "developer" },
+    { text: "About", route: "developer" },
     { text: "Write", route: "" },
     { text: "Sign In", route: "sign-in" },
-    { text: "Sign Up", route: "sign-up" },
+
   ]
 
-  const activeStyle={
-    color:"#4D7E3E",
-    fontWeight:"600" 
+  const activeStyle = {
+    color: "#4D7E3E",
+    fontWeight: "600",
+    textDecoration: "underline",
+    textUnderlineThickness: "3px",
+    // "&:after": {
+    //   content: "",
+    //   position: "absolute",
+    //   width: "100%",
+    //   height: "2px",
+    //   bottom: "0",
+    //   left: "0",
+    //   backgroundColor: "#4D7E3E",
+
+    // }
   }
 
   const navListComponent = navList.map(({ route, text }) =>
@@ -33,13 +45,15 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div >
-        <img className="logo" src={logoGreen} alt="logo" />
+      <div className="logo" >
+        <img  src={logoGreen} alt="logo" />
       </div>
 
       <ul className="nav-link-container">
         {navListComponent}
       </ul>
+
+      <button><NavLink to="sign-up" className="sign-up">Sign Up</NavLink></button>
       <hr />
     </nav>
   )

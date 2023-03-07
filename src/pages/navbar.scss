@@ -5,35 +5,39 @@
   background-color: var(--primary-backround);
   padding: 5px;
   margin: -5px;
+  justify-content: center;
 
   .logo {
-    width: 13%;
-    margin: 7px 20px;
+    // width: 10%;
+    img{
+      width: 120px;
+    }
+  
   }
 
   .nav-link-container {
     display: flex;
-    margin-right: 5%;
+    margin-right: 15px;
     padding: 0;
     list-style: none;
+    height: 2rem;
+    width: 80%;
+    justify-content: flex-end;
+    margin-top: auto;
+    margin-bottom: auto;
+   
+  
 
     .nav-link {
       margin: 4px 10px;
       display: inline-block;
-      width: 100%;
+      width: 40px;
       white-space: nowrap;
       padding: 1%;
       padding-right: 4px;
-
-      //sign up button
-      &:nth-child(4) {
-        a {
-          color: var(--primary-backround);
-          border-radius: 20px;
-          padding: 8px 18px;
-          background-color: var(--primary-color);
-        }
-      }
+      margin-top: auto;
+      margin-bottom: auto;
+     
 
       a {
         padding: 3px;
@@ -45,9 +49,9 @@
         display: inline-block;
         position: relative;
 
-        &:hover{
-          color:var( --accent-color);
-          font-weight:600 ;
+        &:hover {
+          color: var(--accent-color);
+          font-weight: 600;
         }
 
         &::after {
@@ -58,17 +62,39 @@
           height: 2px;
           bottom: 0;
           left: 0;
-          background-color: var( --accent-color);
+          background-color: var(--accent-color);
           transform-origin: bottom right;
           transition: transform 0.25s ease-out;
-
-        
         }
 
-        &:hover::after{
+        &:hover::after {
           transform: scaleX(1);
           transform-origin: bottom left;
         }
+      }
+    }
+  }
+
+  button {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 8px 15px;
+    border: none;
+    margin-right: 20px;
+
+    .sign-up {
+      display: inline-block;
+      width: 100%;
+      white-space: nowrap;
+      padding: 1%;
+      padding-right: 4px;
+      color: var(--primary-backround);
+      text-decoration: none;
+      
+  
+      a {
+        color: var(--primary-backround);
+        
       }
     }
   }
