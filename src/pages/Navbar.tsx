@@ -32,8 +32,8 @@ export const Navbar = () => {
     // }
   }
 
-  const navListComponent = navList.map(({ route, text }) =>
-    <li className="nav-link">
+  const navListComponent = navList.map(({ route, text }, i ) =>
+    <li key={i} className="nav-link">
       <NavLink
         to={route}
         style={({ isActive }) => isActive ? activeStyle : undefined}

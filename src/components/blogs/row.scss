@@ -1,0 +1,22 @@
+.row {
+  list-style: none;
+  display: flex;
+  // width: 70%;
+
+  .row-item {
+    margin-left: 5px;
+    list-style: none;
+    padding: 6px 10px;
+    background-color: var(--secondary-color);
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    min-width: 40px;
+    color: var(--primary-backround);
+  }
+
+  .dropdownItem {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
