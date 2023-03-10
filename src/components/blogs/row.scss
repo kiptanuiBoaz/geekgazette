@@ -3,6 +3,7 @@
   display: flex;
   // width: 70%;
 
+  
   .row-item {
     margin-left: 5px;
     list-style: none;
@@ -12,11 +13,14 @@
     border-radius: 10px;
     min-width: 40px;
     color: var(--primary-backround);
+    white-space: nowrap;
   }
 
-  .dropdownItem {
+  .dropdown-item {
+    position: absolute;
     display: flex;
     flex-direction: column;
+    background-color: red;
   }
 }
 

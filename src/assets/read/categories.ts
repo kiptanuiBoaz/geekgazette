@@ -1,4 +1,4 @@
-export const categories: Array<string> = [
+export const categoryList: Array<string> = [
     "All",
     "Culture",
     "Politics",

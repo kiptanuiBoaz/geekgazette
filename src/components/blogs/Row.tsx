@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useRef, ForwardedRef, forwardRef, useImperativeHandle } from 'react';
-import { categories } from '../../assets/read/categories';
-import "./row.scss"
+import React, { useState, useEffect, useRef } from 'react';
+import { categoryList } from '../../assets/read/categories';
+import './row.scss';
 
-
-// entire row
 export const Row = () => {
+    const categories = categoryList
     const [collapsedItems, setCollapsedItems] = useState<string[]>([]);
+    const [rowItems, setRowItems] = useState<string[]>([]);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const rowRef = useRef<HTMLDivElement>(null);
+    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
 
     // adding width event listener
     useEffect(() => {
@@ -18,50 +20,69 @@ export const Row = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // calculate the width of the items array
     // calculating the width of the items array
     useEffect(() => {
         let totalWidth = 0;
         let newCollapsedItems: string[] = [];
 
-        // loop through the categories
+
+        // loop through the categories in reverse order
         for (let i = categories.length - 1; i >= 0; i--) {
             // get the width of the elements with class "row-item"
-            const itemWidth = rowRef.current?.querySelectorAll<HTMLDivElement>('.row-item')[i]?.offsetWidth;
+            const itemWidth = itemRefs.current[i]?.offsetWidth;
             totalWidth += itemWidth ?? 0;
 
-            // when the width is greater add the last element to collapsedItems
+            // when the width is greater than the screen width, add the current element to collapsedItems
             if (totalWidth > screenWidth) {
                 newCollapsedItems.unshift(categories[i]);
+
+                setRowItems(
+                    prev => {
+
+                        if (prev.includes(categories[i])) {
+                            return prev
+                        } else {
+                            return ([...prev, categories[i]])
+                        }
+
+                    }
+                )
+
             } else {
-                break;
+               
             }
         }
-            console.log(screenWidth,totalWidth);
+
         setCollapsedItems(newCollapsedItems);
-    }, [screenWidth]);
+    }, [screenWidth, categories, itemRefs]);
 
-
-
-    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+    console.log({rowItems})
 
     return (
-        <div className="row" ref={rowRef}>
-            {categories.map((item, index) => {
-                // render collapsed items in dropdown
-                if (collapsedItems.includes(item)) {
-                    return (
-                        <div key={index} className="dropdownItem">
-                            {item}
-                        </div>
-                    );
-                } else {
-                    return (
-                        <div key={index} className="row-item" ref={(el) => (itemRefs.current[index] = el)}>
-                            {item}
-                        </div>
-                    );
-                }
-            })}
+        <div>
+            <div className="row" ref={rowRef}>
+                {rowItems.map((item, index) => {
+                    // render collapsed items in dropdown
+                    if (!collapsedItems.includes(item)) {
+
+                        return (
+                            <div key={index} className="row-item" ref={(el) => (itemRefs.current[index] = el)}>
+                                {item}
+                            </div>
+                        );
+                    }
+                })}
+            </div>
+            <div>
+                {collapsedItems.map((item, index) =>
+                    <div key={index} className="dropdown-item">
+                        {item}
+                    </div>
+                )}
+            </div>
+
         </div>
+
     );
-}
+};
