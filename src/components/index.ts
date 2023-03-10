@@ -1,2 +1,3 @@
 export {Hero}  from "./homepage/Hero";
-export {Read}  from "./blogs/Read";
+export {Blog} from "./blogs/Blog";
+export {Read} from "./blogs/Read";

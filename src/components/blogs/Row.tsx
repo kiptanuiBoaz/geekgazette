@@ -3,7 +3,7 @@ import { categoryList } from '../../assets/read/categories';
 import './row.scss';
 
 export const Row = () => {
-    const categories = categoryList
+    const categories = categoryList.reverse();
     const [collapsedItems, setCollapsedItems] = useState<string[]>([]);
     const [rowItems, setRowItems] = useState<string[]>([]);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -37,7 +37,7 @@ export const Row = () => {
             if (totalWidth > screenWidth) {
                 newCollapsedItems.unshift(categories[i]);
 
-                setRowItems(
+                 setRowItems(
                     prev => {
 
                         if (prev.includes(categories[i])) {
@@ -57,12 +57,12 @@ export const Row = () => {
         setCollapsedItems(newCollapsedItems);
     }, [screenWidth, categories, itemRefs]);
 
-    console.log({rowItems})
+    // console.log({rowItems})
 
     return (
         <div>
             <div className="row" ref={rowRef}>
-                {rowItems.map((item, index) => {
+                {categories.map((item, index) => {
                     // render collapsed items in dropdown
                     if (!collapsedItems.includes(item)) {
 
