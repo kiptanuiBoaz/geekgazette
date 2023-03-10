@@ -20,16 +20,18 @@ export const Navbar = () => {
     fontWeight: "600",
     textDecoration: "underline",
     textUnderlineThickness: "3px",
-    // "&:after": {
-    //   content: "",
-    //   position: "absolute",
-    //   width: "100%",
-    //   height: "2px",
-    //   bottom: "0",
-    //   left: "0",
-    //   backgroundColor: "#4D7E3E",
+    display: "inline-block",
+    position: "relative",
+    "&:after": {
+      content: "",
+      position: "absolute",
+      width: "100%",
+      height: "2px",
+      bottom: "0",
+      left: "0",
+      backgroundColor: "#4D7E3E",
 
-    // }
+    }
   }
 
   const navListComponent = navList.map(({ route, text }, i ) =>
@@ -57,7 +59,7 @@ export const Navbar = () => {
         <button><NavLink to="sign-up" className="sign-up">Sign Up</NavLink></button>
 
       </nav>
-      <hr/>
+      {/* <hr/> */}
     </>
 
   )

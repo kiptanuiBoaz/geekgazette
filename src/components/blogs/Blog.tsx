@@ -12,7 +12,7 @@ interface BlogProps {
 }
 
 export const Blog = ({ content, title, image, avatar, username, date, category }: BlogProps) => {
-    const shortContent = content.substring(0, 60) + "...";
+    const shortContent = content.substring(0, 100) + "...";
     return (
         <article className='blog'>
             <div className='blog-left'>

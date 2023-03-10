@@ -5,11 +5,8 @@ import blogImg from "../../assets/hero/blogIllustrator.png"
 
 export const Hero = () => {
   return (
-    <>
-      <div className='line'>
-        <hr />
-      </div>
-
+    <div className='hero-container'>
+      <hr />
       <section className='hero'>
 
         <div className='hero-left'>
@@ -19,9 +16,9 @@ export const Hero = () => {
         </div>
 
         <div className='hero-right'>
-         <img src={blogImg}/>
+          <img src={blogImg} />
         </div>
       </section>
-    </>
+    </div>
   )
 }

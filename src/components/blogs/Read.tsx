@@ -72,7 +72,7 @@ export const Read = () => {
         <div className='blogs'>
           {blogs.map(blog => <Blog {...blog} />)}
         </div>
-        <hr />
+        <hr className='line'/>
         <div className='trends'>
           <p>trends</p>
         </div>

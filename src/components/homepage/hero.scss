@@ -1,57 +1,58 @@
-.line {
-}
-.hero {
+.hero-container {
   background-color: var(--primary-backround);
   margin: -15px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 30px;
+  .hero {
 
-  .hero-left {
-    width: 50%;
     display: flex;
-    flex-direction: column;
-    justify-content: end;
-    .slogan {
-      font-size: 30px;
-      font-family: Georgia, "Times New Roman", Times, serif;
-    }
+    flex-wrap: wrap;
+    padding: 30px;
 
-    .tagline {
-      font-size: 20px;
-    }
+    .hero-left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      .slogan {
+        font-size: 30px;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
 
-    button {
-      background-color: var(--primary-color);
-      border-radius: 20px;
-      padding: 8px 15px;
-      border: none;
-      margin-right: 20px;
-      margin-top: 10px;
-      width: 200px;
+      .tagline {
+        font-size: 20px;
+      }
 
-      .sign-up {
-        display: inline-block;
-        width: 100%;
-        white-space: nowrap;
-        padding: 1%;
-        padding-right: 4px;
-        color: var(--primary-backround);
-        text-decoration: none;
+      button {
+        background-color: var(--primary-color);
+        border-radius: 20px;
+        padding: 8px 15px;
+        border: none;
+        margin-right: 20px;
+        margin-top: 10px;
+        width: 200px;
 
-        a {
+        .sign-up {
+          display: inline-block;
+          width: 100%;
+          white-space: nowrap;
+          padding: 1%;
+          padding-right: 4px;
           color: var(--primary-backround);
+          text-decoration: none;
+
+          a {
+            color: var(--primary-backround);
+          }
         }
       }
     }
-  }
 
-  .hero-right {
-    width: 50%;
-    align-content: center;
-    img {
-      width: 400px;
-      margin-left: 60px;
+    .hero-right {
+      width: 50%;
+      align-content: center;
+      img {
+        width: 400px;
+        margin-left: 60px;
+      }
     }
   }
 }

@@ -2,9 +2,13 @@
 .blogs-trends-container {
     display: flex;
     .blogs {
-      width: 60%;
+      width: 70%;
+    }
+    .line{
+      margin-left: 0;
     }
     .trends {
       background-color: var(--secondary-backround);
+      width: 30%;
     }
   }
