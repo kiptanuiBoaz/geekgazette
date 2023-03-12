@@ -3,7 +3,7 @@ import { categoryList } from '../../assets/read/categories';
 import './row.scss';
 
 export const Row = () => {
-    const categories = categoryList.reverse();
+    const categories = categoryList
     const [collapsedItems, setCollapsedItems] = useState<string[]>([]);
     const [rowItems, setRowItems] = useState<string[]>([]);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -28,18 +28,17 @@ export const Row = () => {
 
 
         // loop through the categories in reverse order
-        for (let i = categories.length - 1; i >= 0; i--) {
+        for (let i = 0; i <= categories.length - 1; i++) {
             // get the width of the elements with class "row-item"
             const itemWidth = itemRefs.current[i]?.offsetWidth;
             totalWidth += itemWidth ?? 0;
 
             // when the width is greater than the screen width, add the current element to collapsedItems
-            if (totalWidth > screenWidth) {
-                newCollapsedItems.unshift(categories[i]);
+            if (totalWidth > screenWidth - 200) {
+                !collapsedItems.includes(categories[i]) && newCollapsedItems.unshift(categories[i]);
 
-                 setRowItems(
+                setRowItems(
                     prev => {
-
                         if (prev.includes(categories[i])) {
                             return prev
                         } else {
@@ -50,14 +49,14 @@ export const Row = () => {
                 )
 
             } else {
-               
+                setCollapsedItems((prev) => prev.filter(item => item !== categories[i]));
             }
         }
 
         setCollapsedItems(newCollapsedItems);
-    }, [screenWidth, categories, itemRefs]);
+    }, [screenWidth, categories]);
 
-    // console.log({rowItems})
+    console.log({ rowItems, collapsedItems })
 
     return (
         <div>
@@ -73,13 +72,18 @@ export const Row = () => {
                         );
                     }
                 })}
-            </div>
-            <div>
-                {collapsedItems.map((item, index) =>
-                    <div key={index} className="dropdown-item">
-                        {item}
-                    </div>
-                )}
+
+                {collapsedItems.length > 0 &&
+                    <select className="dropdown" value="" onChange={e => console.log(e.target.value)}>
+                        <option value="" disabled hidden>
+                            more categories
+                        </option>
+                        {collapsedItems.map((item, index) => (
+                            <option key={index} value={item}>
+                                {item}
+                            </option>
+                        ))}
+                    </select>}
             </div>
 
         </div>
