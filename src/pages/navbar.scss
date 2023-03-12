@@ -4,15 +4,14 @@
   align-items: center;
   background-color: var(--primary-backround);
   padding: 5px;
-  margin: -5px  -5px -7px -5px;
+  margin: -5px -5px -7px -5px;
   justify-content: center;
 
   .logo {
     // width: 10%;
-    img{
+    img {
       width: 120px;
     }
-  
   }
 
   .nav-link-container {
@@ -25,8 +24,6 @@
     justify-content: flex-end;
     margin-top: auto;
     margin-bottom: auto;
-   
-  
 
     .nav-link {
       margin: 4px 10px;
@@ -37,7 +34,6 @@
       padding-right: 4px;
       margin-top: auto;
       margin-bottom: auto;
-     
 
       a {
         padding: 3px;
@@ -84,6 +80,10 @@
     margin-right: 9px;
     margin-top: 10px;
     margin-left: 4px;
+    
+    &:hover {
+      background-color: var(--hover-color);
+    }
 
     .sign-up {
       display: inline-block;
@@ -91,15 +91,14 @@
       white-space: nowrap;
       padding: 1%;
       padding-right: 4px;
-     
       color: var(--primary-backround);
       text-decoration: none;
       font-size: 17px;
-      
-  
+
       a {
         color: var(--primary-backround);
         font-size: 20px;
+
       }
     }
   }

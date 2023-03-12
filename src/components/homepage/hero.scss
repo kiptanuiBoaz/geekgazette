@@ -29,6 +29,11 @@
         margin-right: 20px;
         margin-top: 10px;
         width: 200px;
+        font-size: 17px;
+
+        &:hover {
+          background-color: var(--hover-color);
+        }
 
         .sign-up {
           display: inline-block;

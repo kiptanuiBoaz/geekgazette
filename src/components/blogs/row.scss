@@ -20,11 +20,21 @@
     }
   }
 
-  .dropdown-item {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    background-color: red;
+
+  .dropdown {
+    border: 3px solid  var(--secondary-color);
+    background-color:var(--primary-backround); 
+    margin-left: 5px;
+    border-radius: 10px;
+    &:hover{
+      background-color: var(--secondary-backround);
+    }
+    
+
+    option:first-child {
+      color: #ccc; // Set placeholder text color
+      background-color: red;
+    }
   }
 }
 
