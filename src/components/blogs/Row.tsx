@@ -8,7 +8,7 @@ export const Row = () => {
     const [rowItems, setRowItems] = useState<string[]>([]);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const rowRef = useRef<HTMLDivElement>(null);
-    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
 
 
     // adding width event listener
@@ -20,7 +20,6 @@ export const Row = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // calculate the width of the items array
     // calculating the width of the items array
     useEffect(() => {
         let totalWidth = 0;
@@ -34,7 +33,7 @@ export const Row = () => {
             totalWidth += itemWidth ?? 0;
 
             // when the width is greater than the screen width, add the current element to collapsedItems
-            if (totalWidth > screenWidth - 200) {
+            if (totalWidth > screenWidth - 300) {
                 !collapsedItems.includes(categories[i]) && newCollapsedItems.unshift(categories[i]);
 
                 setRowItems(
@@ -56,22 +55,26 @@ export const Row = () => {
         setCollapsedItems(newCollapsedItems);
     }, [screenWidth, categories]);
 
-    console.log({ rowItems, collapsedItems })
+    console.log({ rowItems })
 
     return (
         <div>
             <div className="row" ref={rowRef}>
-                {categories.map((item, index) => {
-                    // render collapsed items in dropdown
-                    if (!collapsedItems.includes(item)) {
+                <ul className='row-items-container'>
+                    <li className='row-item'>All</li>
+                    {rowItems.map((item, index) => {
+                        // render collapsed items in dropdown
+                        if (!collapsedItems.includes(item)) {
 
-                        return (
-                            <div key={index} className="row-item" ref={(el) => (itemRefs.current[index] = el)}>
-                                {item}
-                            </div>
-                        );
-                    }
-                })}
+                            return (
+                                <li key={index} className="row-item" ref={(el) => (itemRefs.current[index] = el)}>
+                                    {item}
+                                </li>
+                            );
+                        }
+                    })}
+                </ul>
+
 
                 {collapsedItems.length > 0 &&
                     <select className="dropdown" value="" onChange={e => console.log(e.target.value)}>
