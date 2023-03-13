@@ -1,0 +1,48 @@
+.trend {
+    margin-right: 40px;
+    margin-bottom: 30px;
+  .username {
+    font-size: 15px;
+    padding: 1px;
+    margin: -2px;
+    color: #454745;
+    img {
+      width: 15px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  }
+
+  .title {
+    margin: -6px;
+    font-size: 22px;
+    color: #454745;
+    &:hover{
+        text-decoration: underline;
+    }
+  }
+
+  div {
+    // color: var(--accent-color);
+    display: flex;
+    flex-direction: row;
+
+    .category {
+        margin-left: 5px;
+      padding: 2px 7px;
+      background-color:  var(--secondary-backround);
+      border-radius: 5px;
+      &:hover {
+        background-color: var(--secondary-backround);
+      }
+    }
+
+    .date {
+      padding: 2px;
+      color: var(--secondary-backround);
+    }
+  }
+}
+
+

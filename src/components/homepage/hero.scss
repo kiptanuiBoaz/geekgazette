@@ -2,16 +2,19 @@
   background-color: var(--primary-backround);
   margin: -15px;
   .hero {
-
     display: flex;
     flex-wrap: wrap;
-    padding: 30px;
+    padding: 80px;
 
     .hero-left {
       width: 50%;
       display: flex;
       flex-direction: column;
       justify-content: end;
+
+      @media only screen and (max-width: 600px) {
+        width: 90%;
+      }
       .slogan {
         font-size: 30px;
         font-family: Georgia, "Times New Roman", Times, serif;
@@ -54,9 +57,14 @@
     .hero-right {
       width: 50%;
       align-content: center;
+
       img {
         width: 400px;
         margin-left: 60px;
+
+        @media only screen and (max-width: 600px) {
+          display: none;
+        }
       }
     }
   }

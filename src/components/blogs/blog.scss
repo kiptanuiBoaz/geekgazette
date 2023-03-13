@@ -12,7 +12,6 @@
   .blog-left {
     padding-left: 20px;
     .username {
-        
       font-size: 15px;
       padding: 0px;
       img {
@@ -23,8 +22,11 @@
       }
     }
 
-    .title{
-        margin: -3px;
+    .title {
+      margin: -3px;
+      &:hover{
+        text-decoration: underline;
+    }
     }
 
     .short-content {
@@ -38,11 +40,12 @@
       flex-direction: row;
 
       .category {
-        padding: 2px  7px;
-        background-color:  #a6c7a6 ;
+        margin-left: 5px;
+        padding: 2px 7px;
+        background-color: #a6c7a6;
         border-radius: 5px;
-        &:hover{
-            background-color: #a6c7a6 ;
+        &:hover {
+          background-color: #a6c7a6;
         }
       }
 

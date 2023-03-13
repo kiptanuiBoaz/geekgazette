@@ -1,14 +1,33 @@
-
-.blogs-trends-container {
+.read {
+  .blogs-trends-container {
     display: flex;
+    flex-wrap: wrap-reverse;
+    
     .blogs {
       width: 70%;
     }
-    .line{
+
+    .line {
       margin-left: 0;
     }
-    .trends {
-      background-color: var(--secondary-backround);
-      width: 30%;
+
+    .trending-latest-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin: auto;
+
+      h3 {
+        color: var(--hover-color);
+
+        &::before {
+          content: "-- ";
+          color: var(--hover-color);
+        }
+      }
+
+      .trending {
+        // width: 300px;
+      }
     }
   }
+}

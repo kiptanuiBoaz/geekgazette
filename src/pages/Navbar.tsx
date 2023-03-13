@@ -16,7 +16,7 @@ export const Navbar = () => {
   ]
 
   const activeStyle = {
-    color: "#4D7E3E",
+    color: "#205d2e",
     fontWeight: "600",
     // textDecoration: "underline",
     // textUnderlineThickness: "3px",
