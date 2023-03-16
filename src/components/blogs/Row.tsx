@@ -3,90 +3,66 @@ import { categoryList } from '../../assets/read/categories';
 import './row.scss';
 
 export const Row = () => {
-    const categories = categoryList
-    const [collapsedItems, setCollapsedItems] = useState<string[]>([]);
-    const [rowItems, setRowItems] = useState<string[]>([]);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const rowRef = useRef<HTMLDivElement>(null);
-    const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+    const [scrollLeft, setScrollLeft] = useState<number>(0);
+    const carouselRef = useRef<HTMLUListElement>(null);
+    const [itemsPerRow, setItemsPerRow] = useState<number>();
 
+    const handleScroll = (direction: 'left' | 'right') => {
+        const carousel = carouselRef.current;
+        const carouselWidth = carousel?.offsetWidth ?? 0;
+        const scrollWidth = carousel?.scrollWidth ?? 0;
+        const maxScrollLeft = scrollWidth - carouselWidth;
 
-    // adding width event listener
-    useEffect(() => {
-        const handleResize = () => {
-            setScreenWidth(window.innerWidth);
-        };
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    // calculating the width of the items array
-    useEffect(() => {
-        let totalWidth = 0;
-        let newCollapsedItems: string[] = [];
-
-
-        // loop through the categories in reverse order
-        for (let i = 0; i <= categories.length - 1; i++) {
-            // get the width of the elements with class "row-item"
-            const itemWidth = itemRefs.current[i]?.offsetWidth;
-            totalWidth += itemWidth ?? 0;
-
-            // when the width is greater than the screen width, add the current element to collapsedItems
-            if (totalWidth > screenWidth - 300) {
-                !collapsedItems.includes(categories[i]) && newCollapsedItems.unshift(categories[i]);
-
-                setRowItems(
-                    prev => {
-                        if (prev.includes(categories[i])) {
-                            return prev
-                        } else {
-                            return ([...prev, categories[i]])
-                        }
-
-                    }
-                )
-
-            } else {
-                setCollapsedItems((prev) => prev.filter(item => item !== categories[i]));
-            }
+        if (direction === 'left' && scrollLeft > 0) {
+            setScrollLeft(scrollLeft - carouselWidth);
+        } else if (direction === 'right' && scrollLeft < maxScrollLeft) {
+            setScrollLeft(scrollLeft + carouselWidth);
         }
+    };
 
-        setCollapsedItems(newCollapsedItems);
-    }, [screenWidth, categories]);
+    useEffect(() => {
+        const carousel = carouselRef.current;
+        const carouselWidth = carousel?.offsetWidth ?? 0;
+        setItemsPerRow(Math.floor(carouselWidth / 200));// adjust based on your item size
 
-    console.log({ rowItems })
+        const handleResize = () => {
+            const updatedCarouselWidth = carousel?.offsetWidth ?? 0;
+            const updatedItemsPerRow = Math.floor(updatedCarouselWidth / 250); // adjust based on your item size
+            const maxScrollLeft = (carousel?.scrollWidth ?? 0) - updatedCarouselWidth;
+
+            if (updatedItemsPerRow !== itemsPerRow) {
+                const newScrollLeft = Math.min(scrollLeft, maxScrollLeft);
+                setScrollLeft(newScrollLeft);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, [scrollLeft, itemsPerRow]);
+
 
     return (
         <div>
-            <div className="row" ref={rowRef}>
-                <ul className='row-items-container'>
-                    <li className='row-item'>All</li>
-                    {rowItems.map((item, index) => {
-                        // render collapsed items in dropdown
-                        if (!collapsedItems.includes(item)) {
-
-                            return (
-                                <li key={index} className="row-item" ref={(el) => (itemRefs.current[index] = el)}>
-                                    {item}
-                                </li>
-                            );
-                        }
+            <div className="row">
+                <button className="carousel-control left" onClick={() => handleScroll('left')}>
+                    &lt;
+                </button>
+                <ul className='row-items-container' ref={carouselRef} style={{ transform: `translateX(-${scrollLeft}px)` }}>
+                    {/* <li className='row-item' >All</li> */}
+                    {categoryList.map((item, index) => {
+                        return (
+                            <li key={index} className="row-item" >
+                                {item}
+                            </li>
+                        );
                     })}
                 </ul>
 
 
-                {collapsedItems.length > 0 &&
-                    <select className="dropdown" value="" onChange={e => console.log(e.target.value)}>
-                        <option value="" disabled hidden>
-                            more categories
-                        </option>
-                        {collapsedItems.map((item, index) => (
-                            <option key={index} value={item}>
-                                {item}
-                            </option>
-                        ))}
-                    </select>}
+                <button className="carousel-control right" onClick={() => handleScroll('right')}>
+                    &gt;
+                </button>
             </div>
 
         </div>
