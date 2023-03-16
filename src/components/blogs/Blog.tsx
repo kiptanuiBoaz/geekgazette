@@ -26,7 +26,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category }
                     <p className='category'>{category}</p>
                 </div>
             </div>
-
+            {/* <Link to={`post/${post.id}`}>Title</Link> */}
 
             <div className='blog-right'>
                 <img src={image} alt={title} />
