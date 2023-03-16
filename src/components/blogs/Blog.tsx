@@ -16,12 +16,16 @@ export const Blog = ({ content, title, image, avatar, username, date, category }
     return (
         <article className='blog'>
             <div className='blog-left'>
-                <h5 className='username'><img src={avatar} alt={username} />{username}</h5>
+                <div className='blog-header'>
+                    <img className='avatar' src={avatar} alt={username} />
+                    <h5 className='username'>{username}</h5>
+                </div>
+
 
                 <h2 className='title'>{title}</h2>
                 <p className='short-content'>{shortContent}</p>
 
-                <div >
+                <div className='blog-footer' >
                     <p className='date'>{date}</p>
                     <p className='category'>{category}</p>
                 </div>
@@ -29,7 +33,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category }
             {/* <Link to={`post/${post.id}`}>Title</Link> */}
 
             <div className='blog-right'>
-                <img src={image} alt={title} />
+                <img className='blog-img' src={image} alt={title} />
             </div>
         </article>
     )

@@ -1,11 +1,13 @@
 .read {
   display: flex;
   flex-wrap: wrap-reverse;
+  margin: 0 20px;
 
   .blogs {
     width: 60%;
     overflow: auto;
     flex: 3;
+    height: 19cm;
   }
 
   .line {
@@ -17,11 +19,11 @@
     padding-top: 50px;
     display: flex;
     flex-wrap: wrap;
-    overflow: auto;
+    overflow: hidden;
     flex: 1;
 
     // margin: auto;
-    h3 {
+    .header-trending {
       color: var(--hover-color);
       width: 100%;
       padding: 15px 20px;
@@ -34,8 +36,7 @@
     }
 
     .trending {
-      padding-left: 20px;
-      padding-right: 20px;
+      padding: 0 20px;
     }
   }
 }

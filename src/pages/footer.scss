@@ -6,6 +6,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  position: relative;
+  z-index: 3;
 
   .company {
     width: 300px;
