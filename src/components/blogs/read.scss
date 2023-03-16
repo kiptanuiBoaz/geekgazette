@@ -3,7 +3,7 @@
   flex-wrap: wrap-reverse;
 
   .blogs {
-    min-width: 480px;
+    width: 60%;
     overflow: auto;
     flex: 3;
   }
@@ -21,7 +21,6 @@
     flex: 1;
 
     // margin: auto;
-
     h3 {
       color: var(--hover-color);
       width: 100%;

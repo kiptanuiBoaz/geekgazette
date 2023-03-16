@@ -6,8 +6,10 @@
   border-radius: 4px;
   width: 90%;
   background-color: var(--primary-backround);
+  // box-shadow: 2px 3px 10px #546158;
   &:hover {
     background-color: var(--secondary-backround);
+    // box-shadow: 2px 3px 10px #191a19;
   }
   .blog-left {
     padding-left: 20px;
