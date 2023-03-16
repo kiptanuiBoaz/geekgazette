@@ -93,31 +93,29 @@ export const Read = () => {
 
   return (
     <section className='read'>
-      <ul className='category-list'>
-        <Row />
-      </ul>
+
+      <div className='blogs'>
+
+        <ul className='category-list'>
+          <Row />
+        </ul>
+
+        {blogs.map(blog => <Blog {...blog} />)}
+
+      </div>
+
+      <hr className='line' />
 
       <div className='blogs-trends-container'>
 
-        <div className='blogs'>
-          {blogs.map(blog => <Blog {...blog} />)}
-        </div>
+          {[trend, trend].map((trend, i) =>
+            <div className='trending'>
+              <h3 className='header-trending'>{i === 0 ? "Trending" : "Latest"} </h3>
+              {trend.map(blog => <Trend {...blog} />)}
+            </div>
 
-        <hr className='line' />
-
-        <div className='trending-latest-container'>
-
-          <div className='trending'>
-            <h3 className='header-trending'>Trending </h3>
-            {trend.map(blog => <Trend {...blog} />)}
-          </div>
-
-
-          <div className='latest'>
-            <h3 className='header-trending'>Latest </h3>
-            {trend.map(blog => <Trend {...blog} />)}
-          </div>
-        </div>
+          )}
+        
       </div>
 
     </section>
