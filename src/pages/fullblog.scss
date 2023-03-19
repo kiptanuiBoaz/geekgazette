@@ -1,27 +1,31 @@
-.full-blog{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 30px 20px 30px 50px;
-    margin: auto;
+.full-blog {
+  display: flex;
+  flex-wrap: wrap-reverse;
 
-    .main{
-        width: 70%;
-        overflow: auto;
+  .main {
+    width: 70%;
+    overflow: auto;
+    .blog-article {
+      background-color: var(--primary-backround);
+      padding: 30px 0px 30px 50px;
+    //   margin: auto;
     }
+  }
 
-    .side{
-        width: 25%;
+  .side {
+    width: 25%;
+    margin-right: 10px;
+    .header-trending {
+      color: var(--hover-color);
+      width: 100%;
+      padding: 15px 20px;
+     
+      background-color: var(--primary-backround);
 
-        .header-trending {
-            color: var(--hover-color);
-            width: 100%;
-            padding: 15px 20px;
-            background-color: var(--primary-backround);
-      
-            &::before {
-              content: "-- ";
-              color: var(--hover-color);
-            }
-          }
+      &::before {
+        content: "-- ";
+        color: var(--hover-color);
+      }
     }
+  }
 }

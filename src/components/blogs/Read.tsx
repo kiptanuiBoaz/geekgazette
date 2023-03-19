@@ -2,7 +2,7 @@ import React from 'react';
 import "./read.scss";
 import { Row } from "./Row";
 import { Blog } from "../../components/index";
-import { Trend } from './Trend';
+import { Trend } from '../sidebar/Trend';
 
 export const Read = () => {
   const blogs = [

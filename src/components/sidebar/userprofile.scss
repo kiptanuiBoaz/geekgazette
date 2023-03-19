@@ -1,0 +1,22 @@
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 10px 10px;
+  align-items: center;
+  .user-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    padding: 3px;
+  }
+
+  .username {
+    color: var(--primary-color);
+    margin:6px -2px -2px -2px;
+  }
+
+  .bio {
+    text-align: center;
+  }
+}

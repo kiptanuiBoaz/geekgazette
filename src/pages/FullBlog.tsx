@@ -2,7 +2,7 @@ import React from 'react';
 // import TimeAgo from "../components/blogs/Timeago";
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Blog, AuthorBlog, CategoryBlog } from '../components';
+import { Blog, AuthorBlog, CategoryBlog, UserProfile } from '../components';
 import "./fullblog.scss";
 
 
@@ -96,7 +96,7 @@ export const FullBlog = () => {
     return (
         <section className='full-blog'>
             <div className='main'>
-                <article>
+                <article className='blog-article'>
                     {/* <div className='blog-header'>
                     <img className='avatar' src={avatar} alt={username} />
                     <h5 className='username'>{username}</h5>
@@ -119,7 +119,9 @@ export const FullBlog = () => {
 
             <hr />
             <div className='side'>
-
+                <div className='userProfile'>
+                    <UserProfile avatar= {avatar}  username={username} />
+                </div>
                 <div className='trending'>
                     <h3 className='header-trending'>{`More by ${username}`} </h3>
                     {authorBlogs.map(blog => <AuthorBlog {...blog} />)}
