@@ -9,14 +9,15 @@ interface BlogProps {
     date: string;
     content: string;
     title: string;
+    image: string;
 }
 
-export const FullBlog = ({ username, date, content, title }: BlogProps) => {
+export const FullBlog = ({ username, date, content, title, image }: BlogProps) => {
     const { blogId } = useParams()
-     const formattedDate = <TimeAgo timestamp= {date} />
+    const formattedDate = <TimeAgo timestamp={date} />
     return (
         <article className='blog-article'>
-
+            <img src={image} alt={title} className='blog-image' />
             <h2 className='title'>{title}</h2>
             <p className='header-info'>{`Published`}<span>{formattedDate}</span> {`by`} <span>{`${username}`}</span></p>
             <p className='body-content'>{content}</p>

@@ -4,7 +4,13 @@
 
   .main {
     width: 70%;
-    overflow: auto;
+    overflow:auto;
+    height: 30cm;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+    scrollbar-width: none; /* for Firefox */
     
   }
 

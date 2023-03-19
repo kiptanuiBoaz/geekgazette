@@ -9,6 +9,11 @@
     overflow: auto;
     flex: 3;
     height: 19cm;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+    scrollbar-width: none; /* for Firefox */
   }
 
   .line {
@@ -20,8 +25,9 @@
     padding-top: 50px;
     display: flex;
     flex-wrap: wrap;
-    overflow: hidden;
+    overflow: auto;
     flex: 1;
+   
 
     // margin: auto;
     .header-trending {
