@@ -1,5 +1,6 @@
 import React from 'react';
-import "./blog.scss"
+import "./blog.scss";
+import { useNavigate } from 'react-router-dom';
 
 interface BlogProps {
     content: string;
@@ -13,8 +14,9 @@ interface BlogProps {
 
 export const Blog = ({ content, title, image, avatar, username, date, category }: BlogProps) => {
     const shortContent = content.substring(0, 100) + "...";
+    const navigate = useNavigate()
     return (
-        <article className='blog'>
+        <article className='blog' onClick={()=>{ navigate("blog/MnwxMjA3fDB8MHxl")}}>
             <div className='blog-left'>
                 <div className='blog-header'>
                     <img className='avatar' src={avatar} alt={username} />

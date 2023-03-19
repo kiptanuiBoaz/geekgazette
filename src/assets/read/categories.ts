@@ -1,4 +1,5 @@
 export const categoryList: Array<string> = [
+    "All",
     "Culture",
     "Politics",
     "Technology",
