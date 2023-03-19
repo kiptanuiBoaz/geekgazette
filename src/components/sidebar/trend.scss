@@ -2,6 +2,9 @@
   width: 300px;
   div {
     padding-left: 20px;
+    &:hover{
+      color: black;
+    }
 
     .username {
       font-size: 12px;

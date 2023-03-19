@@ -3,6 +3,9 @@ import "./read.scss";
 import { Row } from "./Row";
 import { Blog } from "../../components/index";
 import { Trend } from '../sidebar/Trend';
+import { HiTrendingUp } from 'react-icons/hi';
+import {  FiClock} from 'react-icons/fi';
+
 
 export const Read = () => {
   const blogs = [
@@ -117,13 +120,15 @@ export const Read = () => {
 
       <div className='blogs-trends-container'>
 
-          {[trend, trend].map((trend, i) =>
             <div className='trending'>
-              <h3 className='header-trending'>{i === 0 ? "Trending" : "Latest"} </h3>
+              <h3 className='header-trending'>Trending <HiTrendingUp/></h3>
               {trend.map(blog => <Trend {...blog} />)}
             </div>
 
-          )}
+            <div className='trending'>
+              <h3 className='header-trending'>Latest<FiClock/></h3>
+              {trend.map(blog => <Trend {...blog} />)}
+            </div>
         
       </div>
 
