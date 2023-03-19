@@ -1,0 +1,27 @@
+.full-blog{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px 20px 30px 50px;
+    margin: auto;
+
+    .main{
+        width: 70%;
+        overflow: auto;
+    }
+
+    .side{
+        width: 25%;
+
+        .header-trending {
+            color: var(--hover-color);
+            width: 100%;
+            padding: 15px 20px;
+            background-color: var(--primary-backround);
+      
+            &::before {
+              content: "-- ";
+              color: var(--hover-color);
+            }
+          }
+    }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./blog.scss";
 import { useNavigate } from 'react-router-dom';
 
@@ -13,10 +13,11 @@ interface BlogProps {
 }
 
 export const Blog = ({ content, title, image, avatar, username, date, category }: BlogProps) => {
+    const [brightness, setBrightness] = useState<string>("brightness(100%)")
     const shortContent = content.substring(0, 100) + "...";
     const navigate = useNavigate()
     return (
-        <article className='blog' onClick={()=>{ navigate("blog/MnwxMjA3fDB8MHxl")}}>
+        <article onMouseEnter={()=>setBrightness("brightness(50%)")} onMouseLeave={()=>setBrightness("brightness(100%)")} className='blog' onClick={()=>{ navigate("blog/MnwxMjA3fDB8MHxl")}}>
             <div className='blog-left'>
                 <div className='blog-header'>
                     <img className='avatar' src={avatar} alt={username} />
@@ -35,7 +36,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category }
             {/* <Link to={`post/${post.id}`}>Title</Link> */}
 
             <div className='blog-right'>
-                <img className='blog-img' src={image} alt={title} />
+                <img style= {{ "filter": brightness}} className='blog-img' src={image} alt={title} />
             </div>
         </article>
     )
