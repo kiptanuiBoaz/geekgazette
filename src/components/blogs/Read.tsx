@@ -11,7 +11,7 @@ export const Read = () => {
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "image": "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
       "username": "fitlife",
-      "date": "2022-01-01",
+      "date": "2023-02-21T13:45:46.937Z",
       "avatar": "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       "category": "Technology"
     },
@@ -20,7 +20,7 @@ export const Read = () => {
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "image": "https://images.unsplash.com/photo-1678663474154-fe251019117e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80",
       "username": "restwell",
-      "date": "2022-02-15",
+      "date": "2023-02-21T13:45:46.937Z",
       "avatar": "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       "category": "Health"
     },
@@ -29,7 +29,7 @@ export const Read = () => {
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "image": "https://images.unsplash.com/photo-1678329887232-a48991da8286?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDIwfENEd3V3WEpBYkV3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
       "username": "traveler",
-      "date": "2022-03-20",
+      "date": "2023-02-21T13:45:46.937Z",
       "avatar": "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       "category": "Travel"
     },
@@ -39,7 +39,7 @@ export const Read = () => {
       image: "https://images.unsplash.com/photo-1678008583224-cd4f9582ef37?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI4fENEd3V3WEpBYkV3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
-      date: "Yestereday",
+      "date": "2023-02-21T13:45:46.937Z",
       category: "technology"
     },
     {
@@ -48,7 +48,7 @@ export const Read = () => {
       image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
-      date: "Yestereday",
+      "date": "2023-02-21T13:45:46.937Z",
       category: "technology"
     },
     {
@@ -57,7 +57,7 @@ export const Read = () => {
       image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
-      date: "Yestereday",
+      "date": "2023-02-21T13:45:46.937Z",
       category: "technology"
     },
     {
@@ -66,7 +66,7 @@ export const Read = () => {
       image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
-      date: "Yestereday",
+      "date": "2023-02-21T13:45:46.937Z",
       category: "technology"
     },
   ]
@@ -77,7 +77,7 @@ export const Read = () => {
       image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
-      date: "Yestereday",
+      "date": "2023-02-21T13:45:46.937Z",
       category: "technology"
     },
     {
@@ -86,7 +86,7 @@ export const Read = () => {
       image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
-      date: "Yestereday",
+      "date": "2023-02-21T13:45:46.937Z",
       category: "technology"
     },
     {
@@ -95,7 +95,7 @@ export const Read = () => {
       image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
-      date: "Yestereday",
+      "date": "2023-02-21T13:45:46.937Z",
       category: "technology"
     },
   ]

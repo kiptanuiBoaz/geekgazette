@@ -1,13 +1,12 @@
 import React from 'react';
-// import TimeAgo from "../components/blogs/Timeago";
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Blog, AuthorBlog, CategoryBlog, UserProfile } from '../components';
-import "./fullblog.scss";
+import { Blog, AuthorBlog, CategoryBlog, UserProfile, FullBlog } from '../components';
+import "./full-blog-page.scss";
 
 
 
-export const FullBlog = () => {
+export const FullBlogPage = () => {
     const { postId } = useParams()
 
     const blog = {
@@ -27,7 +26,7 @@ export const FullBlog = () => {
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             "image": "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
             "username": "fitlife",
-            "date": "2022-01-01",
+            "date": "2023-04-21T13:45:46.937Z",
             "avatar": "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
             "category": "Technology"
         },
@@ -36,7 +35,7 @@ export const FullBlog = () => {
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             "image": "https://images.unsplash.com/photo-1678663474154-fe251019117e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80",
             "username": "restwell",
-            "date": "2022-02-15",
+            "date": "2022-12-21T13:45:46.937Z",
             "avatar": "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
             "category": "Health"
         },
@@ -45,7 +44,7 @@ export const FullBlog = () => {
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             "image": "https://images.unsplash.com/photo-1678329887232-a48991da8286?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDIwfENEd3V3WEpBYkV3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
             "username": "traveler",
-            "date": "2022-03-20",
+            "date": "2022-08-21T13:45:46.937Z",
             "avatar": "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
             "category": "Travel"
         },
@@ -55,7 +54,7 @@ export const FullBlog = () => {
             image: "https://images.unsplash.com/photo-1678008583224-cd4f9582ef37?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI4fENEd3V3WEpBYkV3fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
             avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
             username: "John Doe",
-            date: "Yestereday",
+            "date": "2023-02-21T13:45:46.937Z",
             category: "technology"
         },
     ]
@@ -67,7 +66,7 @@ export const FullBlog = () => {
             image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
             avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
             username: "John Doe",
-            date: "Yestereday",
+            "date": "2022-01-21T13:45:46.937Z",
             category: "technology"
         },
         {
@@ -76,7 +75,7 @@ export const FullBlog = () => {
             image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
             avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
             username: "John Doe",
-            date: "Yestereday",
+            "date": "2023-02-21T13:45:46.937Z",
             category: "technology"
         },
         {
@@ -85,32 +84,19 @@ export const FullBlog = () => {
             image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
             avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
             username: "John Doe",
-            date: "Yestereday",
+            "date": "2023-02-21T13:45:46.937Z",
             category: "technology"
         },
     ]
 
 
     const { title, content, id, date, username, avatar, category } = blog;
-    // const formattedDate = <TimeAgo timestamp= {date} />
+   
     return (
         <section className='full-blog'>
             <div className='main'>
-                <article className='blog-article'>
-                    {/* <div className='blog-header'>
-                    <img className='avatar' src={avatar} alt={username} />
-                    <h5 className='username'>{username}</h5>
-                </div> */}
 
-                    <h2>{title}</h2>
-                    <p>{`Published ${date} by ${username}`}</p>
-                    <p>{content}</p>
-                    <p className="postCredit">
-                        <Link to={`/post/edit/${id}`}>Edit Post</Link>
-
-                    </p>
-                </article>
-
+                <FullBlog {...blog} />
                 <hr />
                 <h4 className="more title">More from Geek Gazette</h4>
 
@@ -120,7 +106,7 @@ export const FullBlog = () => {
             <hr />
             <div className='side'>
                 <div className='userProfile'>
-                    <UserProfile avatar= {avatar}  username={username} />
+                    <UserProfile avatar={avatar} username={username} />
                 </div>
                 <div className='trending'>
                     <h3 className='header-trending'>{`More by ${username}`} </h3>

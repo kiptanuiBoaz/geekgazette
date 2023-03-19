@@ -1,5 +1,6 @@
 import React from 'react';
-import "./trend.scss"
+import "./trend.scss";
+import TimeAgo from "../../utils/Timeago";
 
 interface TrendProps {
     title: string
@@ -9,7 +10,8 @@ interface TrendProps {
 }
 
 export const AuthorBlog = ({ title, date, category, content }: TrendProps) => {
-    const shortContent = content.substring(0, 30)
+    const shortContent = content.substring(0, 30);
+    const formattedDate = <TimeAgo timestamp= {date} />
     return (
         <article className='trend'>
             <div>
@@ -17,12 +19,12 @@ export const AuthorBlog = ({ title, date, category, content }: TrendProps) => {
                 <h2 className='title'>{title}</h2>
                 <p>{shortContent}...</p>
                 <div >
-                    <p className='date'>{date}</p>
+                    <p className='date'>{formattedDate}</p>
                     <p className='category'>{category}</p>
                 </div>
             </div>
 
-            <hr />
+            {/* <hr /> */}
         </article>
     )
 }

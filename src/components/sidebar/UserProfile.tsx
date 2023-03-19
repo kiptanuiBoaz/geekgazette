@@ -1,5 +1,5 @@
 import React from 'react';
-import "./userprofile.scss";
+import "./user-profile.scss";
 
 interface UserProps {
     avatar: string;

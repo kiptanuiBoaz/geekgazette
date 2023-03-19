@@ -1,6 +1,7 @@
 import React from 'react';
 import "./footer.scss";
 import { Link } from "react-router-dom";
+import { FiExternalLink } from 'react-icons/fi';
 import logo from "../assets/navbar/geek-gazette-high-resolution-logo-white-on-transparent-background.png"
 
 export const Footer = () => {
@@ -22,8 +23,8 @@ export const Footer = () => {
 
         <div className='privacy'>
           <h5>Privacy</h5>
-          <a href='#'>Terms</a>
-          <a href='#'>About</a>
+          <a href='#'>Terms {" "}<FiExternalLink/></a>
+          <a href='#'>About {" "}<FiExternalLink/></a>
         </div>
 
         <div className='categories'>

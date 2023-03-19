@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Layout } from "./Layout";
 import { HomePage, Navbar } from "./pages/index";
-import { FullBlog, EditBlog, NewBlogForm } from './pages/index';
+import { FullBlogPage, EditBlog, NewBlogForm } from './pages/index';
 
 
 export const App = () => {
@@ -17,7 +17,7 @@ export const App = () => {
         <Route path="blog">
           {/* root of /posts */}
           <Route index element={<NewBlogForm />} />
-          <Route path=":postId" element={<FullBlog />} />
+          <Route path=":postId" element={<FullBlogPage />} />
           <Route path="edit/:blogId" element={<EditBlog />} />
 
         </Route>

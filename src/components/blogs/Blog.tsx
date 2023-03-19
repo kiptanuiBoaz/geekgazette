@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./blog.scss";
 import { useNavigate } from 'react-router-dom';
+import TimeAgo from "../../utils/Timeago";
 
 interface BlogProps {
     content: string;
@@ -13,8 +14,9 @@ interface BlogProps {
 }
 
 export const Blog = ({ content, title, image, avatar, username, date, category }: BlogProps) => {
-    const [brightness, setBrightness] = useState<string>("brightness(100%)")
+    const [brightness, setBrightness] = useState<string>("brightness(100%)");
     const shortContent = content.substring(0, 100) + "...";
+    const formattedDate = <TimeAgo timestamp= {date} />
     const navigate = useNavigate()
     return (
         <article onMouseEnter={()=>setBrightness("brightness(50%)")} onMouseLeave={()=>setBrightness("brightness(100%)")} className='blog' onClick={()=>{ navigate("blog/MnwxMjA3fDB8MHxl")}}>
@@ -29,7 +31,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category }
                 <p className='short-content'>{shortContent}</p>
 
                 <div className='blog-footer' >
-                    <p className='date'>{date}</p>
+                    <p className='date'>{formattedDate}</p>
                     <p className='category'>{category}</p>
                 </div>
             </div>
