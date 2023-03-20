@@ -1,13 +1,14 @@
 .footer {
   background-color: var(--primary-color);
   color:var(--primary-backround);
-  width: 100vw;
+  width: 100%;
   margin: 0px;
+  padding-bottom: 5px;
   position: relative;
   z-index: 3;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   .top {
-    padding: 30px;
+    padding:  20px  20px 5px 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -39,6 +40,7 @@
         font-size: 17px;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         margin-bottom: 7px;
+        margin-top: 0;
       }
     }
 
@@ -55,5 +57,6 @@
   .bottom {
     // color: rgb(177, 181, 178);
     text-align: center;
+    width: 100%;
   }
 }

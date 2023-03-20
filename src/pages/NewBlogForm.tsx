@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./new-blog-form.scss";
-import {RiImageAddFill} from "react-icons/ri";
+import { RiImageAddFill } from "react-icons/ri";
 
 // interface BlogInputFormProps {
 //   onSubmit: (formData: FormData) => void;
@@ -28,9 +28,11 @@ export const NewBlogForm: React.FC = () => {
     const file = event.target.files && event.target.files[0];
     setImage(file);
   };
+
   const onSubmit = () => {
 
   }
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -62,11 +64,16 @@ export const NewBlogForm: React.FC = () => {
         placeholder='Title'
         required
       />
-
       <br />
 
-      <textarea className='content' placeholder='Content' value={content} onChange={handleContentChange} required />
-
+      <textarea
+        className='content'
+        placeholder='Content'
+        value={content}
+        onChange={handleContentChange}
+        rows={6} cols={50}
+        required
+      />
       <br />
 
       <select className='category-select' value={category} onChange={handleCategoryChange} required>
@@ -75,19 +82,19 @@ export const NewBlogForm: React.FC = () => {
         <option value="food">Food</option>
         <option value="travel">Travel</option>
       </select>
-
       <br />
-      <label  htmlFor="file-upload" className='custom-file-upload'>
-       <RiImageAddFill/> Add Image
+
+      <label htmlFor="file-upload" className='custom-file-upload'>
+        <RiImageAddFill /> Add Image
       </label>
-     
-        <input
-         id="file-upload"
-          className='image-input'
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
+
+      <input
+        id="file-upload"
+        className='image-input'
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+      />
       <br />
       <button className='submit-button' type="submit">Submit</button>
     </form>

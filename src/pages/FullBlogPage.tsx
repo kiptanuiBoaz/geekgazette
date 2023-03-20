@@ -98,7 +98,7 @@ export const FullBlogPage = () => {
 
                 <FullBlog {...blog} />
                 <hr />
-                <h4 className="more title">More from Geek Gazette</h4>
+                <h4 className="more-title">More from Geek Gazette</h4>
 
                 {blogs.map(blog => <Blog {...blog} />)}
             </div>

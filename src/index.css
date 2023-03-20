@@ -15,3 +15,8 @@
 p {
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+main{
+  overflow: hidden;
+  margin:0px;
+}

@@ -11,7 +11,7 @@ export const Navbar = () => {
   const navList: navListTypes[] = [
     { text: "About", route: "developer" },
     { text: "Write", route: "/blog/write" },
-    { text: "Sign In", route: "sign-in" },
+    { text: "Sign In", route: "/auth/login" },
 
   ]
 
@@ -56,7 +56,7 @@ export const Navbar = () => {
           {navListComponent}
         </ul>
 
-        <button><NavLink to="sign-up" className="sign-up">Sign Up</NavLink></button>
+        <button><NavLink to="/auth/sign-up" className="sign-up">Sign Up</NavLink></button>
 
       </nav>
       {/* <hr/> */}

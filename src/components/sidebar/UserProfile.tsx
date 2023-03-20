@@ -15,3 +15,4 @@ export const UserProfile = ({ avatar, username }: UserProps) => {
         </div>
     )
 }
+        

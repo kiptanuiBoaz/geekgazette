@@ -4,14 +4,31 @@
 
   .main {
     width: 70%;
-    overflow:auto;
+    overflow: auto;
     height: 30cm;
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
     }
     scrollbar-width: none; /* for Firefox */
-    
+
+    .more-title {
+      color: var(--hover-color);
+      width: 100%;
+      padding: 15px 20px;
+      background-color: var(--primary-backround);
+      font-size: 20px;
+margin-left: 50px;
+      @media only screen and (max-width: 800px) {
+        font-size: 16px;
+        padding: 11px 17px;
+      }
+
+      &::before {
+        content: "-- ";
+        color: var(--hover-color);
+      }
+    }
   }
 
   .side {
@@ -21,7 +38,7 @@
       color: var(--hover-color);
       width: 100%;
       padding: 15px 20px;
-     
+
       background-color: var(--primary-backround);
 
       &::before {
