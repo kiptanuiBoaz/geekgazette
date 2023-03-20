@@ -10,7 +10,7 @@ export const Navbar = () => {
 
   const navList: navListTypes[] = [
     { text: "About", route: "developer" },
-    { text: "Write", route: "" },
+    { text: "Write", route: "/blog/write" },
     { text: "Sign In", route: "sign-in" },
 
   ]

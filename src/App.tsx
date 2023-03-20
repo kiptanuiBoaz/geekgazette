@@ -16,7 +16,7 @@ export const App = () => {
         
         <Route path="blog">
           {/* root of /posts */}
-          <Route index element={<NewBlogForm />} />
+          <Route path="write" element={<NewBlogForm />} />
           <Route path=":postId" element={<FullBlogPage />} />
           <Route path="edit/:blogId" element={<EditBlog />} />
 
