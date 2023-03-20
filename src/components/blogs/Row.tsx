@@ -3,6 +3,7 @@ import { categoryList } from '../../assets/read/categories';
 import './row.scss';
 
 
+
 export const Row = () => {
     const items = categoryList.map((item, index) => {
         return (
@@ -12,19 +13,11 @@ export const Row = () => {
         );
     });
 
-    
     return (
         <div>
             <div className="row">
-
-                <ul className='row-items-container'>
-                   
-                        {items}
-             
-                </ul>
-
+                <ul className='row-items-container'>  {items}</ul>
             </div>
-
         </div>
 
     );

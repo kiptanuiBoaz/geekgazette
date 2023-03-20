@@ -108,9 +108,9 @@ export const Read = () => {
 
       <div className='blogs'>
 
-        <ul className='category-list'>
+        <div className='category-list'>
           <Row />
-        </ul>
+        </div>
 
         {blogs.map(blog => <Blog {...blog} />)}
 

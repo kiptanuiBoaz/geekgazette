@@ -5,9 +5,9 @@
   display: flex;
   align-items: center;
   text-align: center;
-overflow: hidden;
+  overflow: hidden;
 
-  .row-items-container{
+  .row-items-container {
     display: flex;
     flex-direction: row;
     .row-item {
@@ -20,22 +20,26 @@ overflow: hidden;
       min-width: 80px;
       color: var(--primary-backround);
       white-space: nowrap;
-      &:hover{
+
+      @media only screen and (max-width: 800px) {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+      }
+      &:hover {
         background-color: var(--hover-color);
       }
     }
   }
-  
+
   .dropdown {
-    border: 3px solid  var(--secondary-color);
-    background-color:var(--primary-backround); 
+    border: 3px solid var(--secondary-color);
+    background-color: var(--primary-backround);
     margin-left: 5px;
     border-radius: 10px;
     padding: 6px 10px;
-    &:hover{
+    &:hover {
       background-color: var(--secondary-backround);
     }
-    
 
     option:first-child {
       color: #ccc; // Set placeholder text color
@@ -43,4 +47,3 @@ overflow: hidden;
     }
   }
 }
-

@@ -3,12 +3,17 @@
   flex-wrap: wrap-reverse;
   margin: 0 20px;
 
-
   .blogs {
-    width: 60%;
+    width: 900px;
     overflow: auto;
-    flex: 3;
     height: 19cm;
+
+    @media only screen and (min-width: 1150px) {
+      width: 70%;
+    }
+    @media only screen and (max-width: 1000px) {
+      width: 1000px;
+    }
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
@@ -19,22 +24,32 @@
   .line {
     margin-left: 0;
     margin-top: 40px;
+    @media only screen and (max-width: 1150px) {
+      display: none;
+    }
   }
 
   .blogs-trends-container {
     padding-top: 50px;
     display: flex;
     flex-wrap: wrap;
-    overflow: auto;
     flex: 1;
-   
+    @media only screen and (max-width: 1150px) {
+      justify-content: space-around;
+    }
 
-    // margin: auto;
+    margin: auto;
     .header-trending {
       color: var(--hover-color);
       width: 100%;
       padding: 15px 20px;
       background-color: var(--primary-backround);
+
+      
+      @media only screen and (max-width: 800px) {
+        font-size: 16px;
+        padding: 11px 17px;
+      }
 
       &::before {
         content: "-- ";
