@@ -1,0 +1,39 @@
+.auth-home {
+  background-color: var(--primary-backround);
+  width: 100%;
+  height: 100vh;
+
+  .container-left {
+    margin-top: 300px;
+    position: fixed;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    height: 700px; /* adjust height as needed */
+    // background: linear-gradient(to bottom right, transparent 50%, var(--primary-color) 50%);
+    background: linear-gradient(
+      to bottom left,
+      transparent 50%,
+      var(--primary-color) 50%
+    );
+    transform-origin: bottom center;
+    transform: skewY(-3deg);
+  }
+
+  .container-right {
+    margin-top: 300px;
+    position: fixed;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    height: 700px; /* adjust height as needed */
+    background: linear-gradient(
+      to bottom right,
+      transparent 50%,
+      var(--primary-color) 50%
+    );
+    // background: linear-gradient(to bottom left, transparent 50%, var(--primary-color) 50%);
+    transform-origin: bottom center;
+    transform: skewY(-3deg);
+  }
+}
