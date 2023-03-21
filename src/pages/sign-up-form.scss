@@ -1,0 +1,26 @@
+@import "./login-form.scss";
+
+.sign-up-form-container{
+    @extend .form-container;
+    height: 550px;
+    width: 450px;
+
+    .sign-up-toggle-password-visibility{
+       // background-color: var(--primary-backround);
+       position: absolute;
+       top: 67%;
+       width: 2rem;
+       height: 2rem;
+       left: 90%;
+       font-size: 20px;
+
+       .hide {
+         color: var(--secondary-backround);
+         //  background-color: var(--primary-backround);
+       }
+
+       .show {
+         color: var(--primary-color);
+       }
+    }
+}

@@ -1,104 +1,106 @@
-.form-container {
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  margin: auto;
-  height: 450px;
-  width: 400px;
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
-  .logo {
-    width: 150px;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .login-form {
-    display: flex;
+  .form-container {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    margin: auto;
+    height: 550px;
+    width: 450px;
+    background-color: white;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    flex-direction: column;
-    width: 80%;
-    margin: auto;
 
-    .email {
-      height: 2rem;
-      border: 3px solid #ccc;
-      border-radius: 4px;
-      margin-bottom: 0.7rem;
-      padding: 0.5rem;
-      font-size: 1rem;
-      // width: 100%;
-      color: var(--accent-backround);
-
-      &:focus {
-        border-color: var(--primary-color);
-        outline: none; /* remove the default blue outline */
-      }
-    }
-
-    .password {
-      @extend .email;
-    }
-
-    .toggle-password-visibility {
-      // background-color: var(--primary-backround);
+    .logo {
+      width: 150px;
       position: absolute;
-      top: 55%;
-      width: 2rem;
-      height: 2rem;
-      left: 90%;
-      font-size: 20px;
-
-      .hide {
-        color: var(--secondary-backround);
-        //  background-color: var(--primary-backround);
-      }
-
-      .show {
-        color: var(--primary-color);
-      }
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
-    .login-button {
-      padding: 0.5rem;
-      background-color: var(--primary-color);
-      color: var(--primary-backround);
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
+    .login-form {
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      flex-direction: column;
+      width: 80%;
+      margin: auto;
 
-      &:hover {
-        background-color: var(--hover-color);
-        color: white;
+      .email {
+        height: 2rem;
+        border: 3px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 0.7rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        // width: 100%;
+        color: var(--accent-backround);
+
+        &:focus {
+          border-color: var(--primary-color);
+          outline: none; /* remove the default blue outline */
+        }
       }
-    }
-  }
-  .sign-up-link {
-    position: absolute;
-    top: 89%;
-    left: 0%;
-    background-color: var(--primary-backround);
-    width: 100%;
-    text-align: center;
-    .sign-up-text {
-      color: var(--accent-backround);
-      a {
-        color: var(--primary-color);
-        text-decoration: none;
+
+      .password {
+        @extend .email;
+      }
+
+      .toggle-password-visibility {
+        // background-color: var(--primary-backround);
+        position: absolute;
+        top: 51%;
+        width: 2rem;
+        height: 2rem;
+        left: 90%;
+        font-size: 20px;
+
+        .hide {
+          color: var(--secondary-backround);
+          //  background-color: var(--primary-backround);
+        }
+
+        .show {
+          color: var(--primary-color);
+        }
+      }
+
+      .login-button {
+        padding: .8rem;
+        background-color: var(--primary-color);
+        color: var(--primary-backround);
+        border: none;
+        border-radius: 4px;
+        font-size: 1.2rem;
+        cursor: pointer;
+
         &:hover {
-          color: var(--hover-color);
-          text-decoration: underline;
+          background-color: var(--hover-color);
+          color: white;
         }
       }
     }
-  }
+    .sign-up-link {
+      position: absolute;
+      top: 89%;
+      left: 0%;
+      background-color: var(--primary-backround);
+      width: 100%;
+      text-align: center;
+      .sign-up-text {
+        color: var(--accent-backround);
+        a {
+          color: var(--primary-color);
+          text-decoration: none;
+          &:hover {
+            color: var(--hover-color);
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  
 }

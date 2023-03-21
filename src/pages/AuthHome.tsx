@@ -1,4 +1,3 @@
-import React from 'react';
 import "./auth-home.scss";
 import { Outlet } from 'react-router-dom';
 

@@ -6,6 +6,7 @@ import { BiHide, BiShow } from "react-icons/bi"
 
 export const LoginForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
+    
     return (
         <section className="form-container">
 
@@ -42,7 +43,7 @@ export const LoginForm = () => {
 
             </form>
             <div className="sign-up-link">
-                <p className="sign-up-text">New here? Go to <Link to="/sign-up">Sign-up</Link></p>
+                <p className="sign-up-text">New here? Go to <Link to="/auth/sign-up">Sign-up</Link></p>
             </div>
 
         </section>
