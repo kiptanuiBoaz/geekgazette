@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import logo from "../assets/navbar/logo-no-bg-green.png";
 import "./login-form.scss";
 import { Link } from "react-router-dom";
@@ -6,11 +6,16 @@ import { BiHide, BiShow } from "react-icons/bi"
 
 export const LoginForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
-    
+    const emailRef = useRef<HTMLInputElement>(null);
+
+    //focus on the user when the component loads 
+    useEffect(() => {
+        emailRef.current?.focus();
+
+    }, [])//only runs ounce
+
     return (
         <section className="form-container">
-
-
 
             <img className="logo" src={logo} alt="logo" />
 
@@ -19,6 +24,8 @@ export const LoginForm = () => {
                     className="email"
                     type="text"
                     placeholder="Enter email address"
+                    ref={emailRef}
+                    required
                 />
 
                 <br />

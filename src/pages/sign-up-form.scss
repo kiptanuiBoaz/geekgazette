@@ -1,26 +1,76 @@
 @import "./login-form.scss";
 
-.sign-up-form-container{
-    @extend .form-container;
-    height: 550px;
-    width: 450px;
+.sign-up-form-container {
+  @extend .form-container;
+  height: 560px;
+  width: 450px;
 
-    .sign-up-toggle-password-visibility{
-       // background-color: var(--primary-backround);
-       position: absolute;
-       top: 67%;
-       width: 2rem;
-       height: 2rem;
-       left: 90%;
-       font-size: 20px;
+  .logo {
+    width: 150px;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .sign-up-email {
+    height: 2rem;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: -.4rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    // width: 100%;
+    color: var(--accent-backround);
 
-       .hide {
-         color: var(--secondary-backround);
-         //  background-color: var(--primary-backround);
-       }
-
-       .show {
-         color: var(--primary-color);
-       }
+    &:focus {
+      border-color: var(--primary-color);
+      outline: none; /* remove the default blue outline */
     }
+  }
+
+  .sign-up-password {
+    height: 2rem;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    // width: 100%;
+    color: var(--accent-backround);
+
+    &:focus {
+      border-color: var(--primary-color);
+      outline: none; /* remove the default blue outline */
+    }
+  }
+
+  .validation {
+    margin-top: 9px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #9e9d9d;
+    .identifier {
+      color: var(--secondary-color);
+    }
+    p {
+      margin: 0;
+      font-size: 15px;
+    }
+  }
+
+  .sign-up-toggle-password-visibility {
+    position: absolute;
+    top: 47%;
+    width: 2rem;
+    height: 2rem;
+    left: 90%;
+    font-size: 20px;
+
+    .hide {
+      color: var(--secondary-backround);
+    }
+
+    .show {
+      color: var(--primary-color);
+    }
+  }
 }
