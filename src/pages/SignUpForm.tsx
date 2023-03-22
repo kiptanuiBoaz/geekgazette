@@ -67,7 +67,7 @@ export const SignUpForm = () => {
 
       <img className="logo" src={logo} alt="logo" />
 
-      <form className="login-form" style={{ "paddingTop": "25px" }}>
+      <form className="sign-up-form" style={{ "paddingTop": "25px" }}>
         <input
           onChange={(e) => setEmail(e.target.value)}
           onFocus={() => setEmailFocus(true)}
