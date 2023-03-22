@@ -43,6 +43,11 @@
           border-color: var(--primary-color);
           outline: none; /* remove the default blue outline */
         }
+
+        &:hover{
+          border-color: var(--secondary-color);
+          outline: none;
+        }
       }
 
       .password {

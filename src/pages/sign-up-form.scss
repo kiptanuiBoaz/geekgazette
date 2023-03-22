@@ -25,6 +25,10 @@
       // width: 100%;
       color: var(--accent-backround);
 
+      &:hover{
+        border-color: var(--secondary-color);
+        outline: none;
+      }
       &:focus {
         border-color: var(--primary-color);
         outline: none; /* remove the default blue outline */
@@ -40,6 +44,11 @@
       font-size: 1rem;
       // width: 100%;
       color: var(--accent-backround);
+
+      &:hover{
+        border-color: var(--secondary-color);
+        outline: none;
+      }
 
       &:focus {
         border-color: var(--primary-color);
