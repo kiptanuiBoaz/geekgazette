@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import logo from "../assets/navbar/logo-no-bg-green.png";
 import "./login-form.scss";
 import { Link } from "react-router-dom";
+import { TogglePwdShow } from "../components";
 import { BiHide, BiShow } from "react-icons/bi"
 
 export const LoginForm = () => {
@@ -36,14 +37,8 @@ export const LoginForm = () => {
                     autoComplete="off"
                 />
 
-                <div
-                    className="toggle-password-visibility"
-                    onClick={() => setPasswordVisibility(!passwordVisibility)}
-                >
-                    {passwordVisibility
-                        ? <div className="show">  <BiShow /> </div>
-                        : <div className="hide">  <BiHide /> </div>
-                    }
+                <div className="toggle-password-visibility" onClick={() => setPasswordVisibility(!passwordVisibility)}  >
+                    <TogglePwdShow passwordVisibility={passwordVisibility} />
                 </div>
 
                 <button type="submit" className="login-button">Sign In</button>

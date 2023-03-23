@@ -5,3 +5,5 @@ export {AuthorBlog} from "./sidebar/AuthorBlog";
 export {CategoryBlog} from "./sidebar/CategoryBlog";
 export {UserProfile} from "./sidebar/UserProfile";
 export {FullBlog}  from "./blogs/FullBlog";
+export {ValidationMsgs} from "./auth/ValidationMsgs";
+export {TogglePwdShow} from "./auth/TogglePwdShow";
