@@ -71,9 +71,6 @@ export const SignUpForm = () => {
     setValidEmail((atSymbolValid && noSpecialCharacters && containsDomainExtension && startsWithLetter) ? true : false);
   }, [email])
 
-  //validate email
-  useEffect(() => {
-  }, [email])
 
   const emailValidArray = [
     { variable: atSymbolValid, p: `An "@" symbol` },
@@ -86,7 +83,7 @@ export const SignUpForm = () => {
     { variable: charactersNumValid, p: `8 to 24 characters` },
     { variable: upperAndLowerValid, p: `Uppercase and lowercase letters [A-Z,a-z]` },
     { variable: numberValid, p: `Aleast one number [0-9]` },
-    { variable: specialCharactersValid, p: `Atleast one special character [@,#.*,&,%...]` },
+    { variable: specialCharactersValid, p: `Atleast one special character [@,#.*,&,%...]`},
   ]
 
   const validMatchPasswordArray = [
