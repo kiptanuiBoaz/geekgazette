@@ -1,14 +1,17 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background-color: var(--primary-backround);
   padding: 5px;
-  margin: 0;
+  margin: -7px 0 0 -5px;
   justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
 
   .logo {
-    // width: 10%;
+    margin: 3px 0 0 5%;
     img {
       width: 120px;
     }
@@ -25,7 +28,7 @@
     margin-top: auto;
     margin-bottom: auto;
 
-    .nav-link {
+    .nav-link-grey {
       margin: 4px 10px;
       display: inline-block;
       width: 40px;
@@ -69,23 +72,35 @@
           transform-origin: bottom left;
         }
       }
+
+     
+    }
+
+    .nav-link-green{
+      @extend .nav-link-grey;
+      a{
+        color: var(--primary-backround);
+
+        &:hover{
+          color:var(--secondary-backround);
+        }
+      }
+
     }
   }
 
-  button {
+  .sign-up-btn-grey {
     background-color: var(--primary-color);
     border-radius: 20px;
     padding: 8px 15px;
     border: none;
-    margin-right: 9px;
-    margin-top: 10px;
-    margin-left: 4px;
-    
+    margin: 10px 5% 4px 0;
+
     &:hover {
       background-color: var(--hover-color);
     }
 
-    .sign-up {
+    .sign-up{
       display: inline-block;
       width: 100%;
       white-space: nowrap;
@@ -98,8 +113,26 @@
       a {
         color: var(--primary-backround);
         font-size: 20px;
-
       }
     }
+  }
+
+  .sign-up-btn-green {
+    @extend .sign-up-btn-grey;
+    background-color: var(--primary-backround);
+
+    &:hover {
+      background-color: var(--secondary-backround);
+    }
+
+    .sign-up-green {
+      @extend .sign-up;
+      color: var(--primary-color);
+      a {
+        color: var(--primary-color);
+      }
+    }
+
+   
   }
 }

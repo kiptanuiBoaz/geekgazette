@@ -9,7 +9,7 @@
     text-align: left;
     width: 90%;
     margin: auto;
-    font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
     .blog-image {
       width: 100%;
@@ -34,9 +34,11 @@
     .body-content {
       font-size: 18px;
       font-weight: 500;
-      color: rgba(41, 41, 41, 1);
-      line-height: 24px;
+      color: #333;
+      line-height: 26px;
       word-wrap: break-word;
+       font-family: Arial, Helvetica, sans-serif;
+       margin: 0 auto;
     }
     .post-edit {
     width: 100px;

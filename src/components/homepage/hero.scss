@@ -1,7 +1,8 @@
 .hero-container {
   background-color: var(--primary-backround);
-  margin: 0px;
+  margin: 0;
   width: 100%;
+  padding-top:30px;
   .hero {
     display: flex;
     flex-wrap: wrap;

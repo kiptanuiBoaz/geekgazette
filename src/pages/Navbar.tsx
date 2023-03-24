@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./navbar.scss";
 import logoGreen from "../assets/navbar/logo-no-bg-green.png";
 import logoWhite from "../assets/navbar/logo-no-bg-white.png";
@@ -8,10 +8,29 @@ import { navListTypes } from "../types";
 import { NavLink } from "react-router-dom"
 
 export const Navbar = () => {
+  const [deviceWidth, setDeviceWidth] = useState<number>(0);
+  const [scrollPos, setScrollPos] = useState<number>(0);
+
+  useEffect(() => {
+    const handleEvent = () => {
+      setDeviceWidth(window.innerWidth);
+      setScrollPos(window.pageYOffset);
+
+    }
+    window.addEventListener('resize', handleEvent);
+    window.addEventListener('scroll', handleEvent);
+
+    return () => {
+      window.removeEventListener('resize', handleEvent);
+      window.removeEventListener('scroll', handleEvent);
+    };
+  }, [deviceWidth, scrollPos]);
+
+  console.log(scrollPos, deviceWidth);
 
 
   const navListComponent = navList.map(({ route, text }: navListTypes, i: number) =>
-    <li key={i} className="nav-link">
+    <li key={i} className={scrollPos < 20 ? "nav-link-grey" : "nav-link-green"}>
       <NavLink
         to={route}
         style={({ isActive }) => isActive ? activeStyle : undefined}
@@ -23,17 +42,17 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbar" style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : "#4d7e3e" }} >
         <div className="logo" >
-          <NavLink to="/"> <img src={logoGreen} alt="logo" /></NavLink>
+          <NavLink to="/"> <img src={scrollPos > 20 ? logoWhite : logoGreen} alt="logo" /></NavLink>
         </div>
 
         <ul className="nav-link-container">
           {navListComponent}
         </ul>
 
-        <button>
-          <NavLink to="/auth/sign-up" className="sign-up">Sign Up</NavLink>
+        <button className={scrollPos < 20 ? "sign-up-btn-grey" : "sign-up-btn-green"}>
+          <NavLink style={{ color: scrollPos < 20 ? "#eeeee4" : "#4d7e3e" }} to="/auth/sign-up" className="sign-up">Sign Up</NavLink>
         </button>
 
       </nav>
