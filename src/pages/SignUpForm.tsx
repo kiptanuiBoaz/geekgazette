@@ -4,11 +4,13 @@ import "./sign-up-form.scss";
 import { Link } from "react-router-dom";
 import { ValidationMsgs, TogglePwdShow } from "../components";
 import { emailRegex, pwdRegex } from "../utils/REGEX";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 export const SignUpForm = () => {
+  const navigate= useNavigate();
   const {
     
     AN_AT_SYMBOL_REGEX,
@@ -137,7 +139,7 @@ export const SignUpForm = () => {
           <TogglePwdShow passwordVisibility={passwordVisibility} />
         </div>
 
-        <button type="submit" className="login-button">Sign Up</button>
+        <button onClick={()=>navigate("/user/new-profile")} type="submit" className="login-button">Sign Up</button>
 
         {/* password validation */}
         {passwordFocus && !passwordValid && password !== "" &&

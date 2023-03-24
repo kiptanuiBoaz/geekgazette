@@ -7,6 +7,7 @@ export {NewBlogForm} from "./NewBlogForm";
 export {AuthHome} from "./AuthHome";
 export {SignUpForm} from "./SignUpForm";
 export {LoginForm} from "./LoginForm";
+export {UserProfileForm} from "./UserProfileForm";
 
 
 

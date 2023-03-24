@@ -1,0 +1,94 @@
+@import "./new-blog-form.scss";
+
+.profile-form-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-backround);
+  padding: 0 10%;
+  .profile-form {
+    @extend .blog-form;
+    border-radius: 6px;
+    width: 420px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+
+    .custom-file-upload {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 397px;
+      flex-direction: column;
+      background-color: #cad8c5;
+      
+&:hover{
+    background-color:#cad8c5 ;
+}
+      .file-upload-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+
+      .prompt {
+        text-align: center;
+      }
+    }
+
+    .fname {
+      @extend .title-input;
+      width: 360px;
+    }
+    .lname {
+      @extend .fname;
+    }
+    .headline {
+      @extend .fname;
+      margin-top: -15px;
+    }
+    .dob-div {
+      width: 380px;
+      color: var(--accent-backround);
+
+      .dob-label {
+        width: 150px;
+        margin-right: 10px;
+        font-size: 18px;
+        padding-left: 10px;
+        margin-right: 25px;
+      }
+      .dob-input {
+        color: var(--accent-backround);
+        @extend .category-select;
+        width: 225px;
+        margin-left: 20;
+        
+      }
+    }
+
+    input[type="date"] {
+      visibility: none;
+    }
+    .gender-select {
+      @extend .category-select;
+      width: 380px;
+      margin-top: -15px;
+    }
+  }
+
+  .illustrator-img {
+    width: 500px;
+    @media only screen and (max-width: 950px) {
+      display: none;
+    }
+  }
+}

@@ -11,9 +11,10 @@ interface BlogProps {
     username: string;
     date: string;
     category: string;
+    blogId: string;
 }
 
-export const Blog = ({ content, title, image, avatar, username, date, category }: BlogProps) => {
+export const Blog = ({ content, title, image, avatar, username, date, category,blogId }: BlogProps) => {
     const [brightness, setBrightness] = useState<string>("brightness(100%)");
     const shortContent = content.substring(0, 100) + "...";
     const formattedDate = <TimeAgo timestamp={date} />
@@ -24,7 +25,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category }
             onMouseEnter={() => setBrightness("brightness(50%)")}
             onMouseLeave={() => setBrightness("brightness(100%)")}
             className='blog'
-            onClick={() => { navigate("blog/MnwxMjA3fDB8MHxl") }}
+            onClick={() => { navigate(`blog/${blogId}`) }}
         >
             <div className='blog-left'>
                 <div className='blog-header'>

@@ -16,7 +16,9 @@ export const Read = () => {
       "username": "fitlife",
       "date": "2023-02-21T13:45:46.937Z",
       "avatar": "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
-      "category": "Technology"
+      "category": "Technology",
+      "blogId":"lwe23jl23njjbl4"
+
     },
     {
       "title": "The Importance of Sleep",
@@ -25,7 +27,8 @@ export const Read = () => {
       "username": "restwell",
       "date": "2023-02-21T13:45:46.937Z",
       "avatar": "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
-      "category": "Health"
+      "category": "Health",
+      "blogId":"lwe23jl23hi7jbl4"
     },
     {
       "title": "Top 10 Tourist Attractions in Paris",
@@ -34,7 +37,8 @@ export const Read = () => {
       "username": "traveler",
       "date": "2023-02-21T13:45:46.937Z",
       "avatar": "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
-      "category": "Travel"
+      "category": "Travel",
+      "blogId":"lwe298ul23njjbl4"
     },
     {
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, lectus id ornare suscipit, velit velit viverra ante, nec dignissim justo metus id nibh. Praesent commodo nunc sit amet nisi interdum ultricies. Fusce commodo, libero eu pulvinar malesuada, tellus tortor suscipit metus, vel ornare purus justo quis elit. Suspendisse porttitor magna nec tortor mollis, eget commodo mauris interdum. In faucibus velit non dui malesuada aliquam. Praesent faucibus, tortor nec viverra commodo, lectus dolor euismod dolor, eu aliquam magna ipsum vitae nulla. Vivamus eu justo at quam vehicula placerat. Sed eget odio vitae velit auctor consequat. Suspendisse aliquam, justo non eleifend efficitur, nisl magna faucibus dolor, in tincidunt turpis arcu vel felis. Aliquam tincidunt justo euismod lacus consectetur, at cursus ante vehicula. Nunc rutrum dolor nec diam egestas, id lacinia odio tempor. Phasellus imperdiet lacinia lectus, vitae placerat eros lobortis sed. Sed vel tincidunt metus, a lacinia mauris.",
@@ -43,7 +47,8 @@ export const Read = () => {
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
       "date": "2023-02-21T13:45:46.937Z",
-      category: "technology"
+      category: "technology",
+      "blogId":"lwe20jiu23njjbl4"
     },
     {
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, lectus id ornare suscipit, velit velit viverra ante, nec dignissim justo metus id nibh. Praesent commodo nunc sit amet nisi interdum ultricies. Fusce commodo, libero eu pulvinar malesuada, tellus tortor suscipit metus, vel ornare purus justo quis elit. Suspendisse porttitor magna nec tortor mollis, eget commodo mauris interdum. In faucibus velit non dui malesuada aliquam. Praesent faucibus, tortor nec viverra commodo, lectus dolor euismod dolor, eu aliquam magna ipsum vitae nulla. Vivamus eu justo at quam vehicula placerat. Sed eget odio vitae velit auctor consequat. Suspendisse aliquam, justo non eleifend efficitur, nisl magna faucibus dolor, in tincidunt turpis arcu vel felis. Aliquam tincidunt justo euismod lacus consectetur, at cursus ante vehicula. Nunc rutrum dolor nec diam egestas, id lacinia odio tempor. Phasellus imperdiet lacinia lectus, vitae placerat eros lobortis sed. Sed vel tincidunt metus, a lacinia mauris.",
@@ -52,7 +57,8 @@ export const Read = () => {
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
       "date": "2023-02-21T13:45:46.937Z",
-      category: "technology"
+      category: "technology",
+      "blogId":"lwe23jl239ngbl4"
     },
     {
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, lectus id ornare suscipit, velit velit viverra ante, nec dignissim justo metus id nibh. Praesent commodo nunc sit amet nisi interdum ultricies. Fusce commodo, libero eu pulvinar malesuada, tellus tortor suscipit metus, vel ornare purus justo quis elit. Suspendisse porttitor magna nec tortor mollis, eget commodo mauris interdum. In faucibus velit non dui malesuada aliquam. Praesent faucibus, tortor nec viverra commodo, lectus dolor euismod dolor, eu aliquam magna ipsum vitae nulla. Vivamus eu justo at quam vehicula placerat. Sed eget odio vitae velit auctor consequat. Suspendisse aliquam, justo non eleifend efficitur, nisl magna faucibus dolor, in tincidunt turpis arcu vel felis. Aliquam tincidunt justo euismod lacus consectetur, at cursus ante vehicula. Nunc rutrum dolor nec diam egestas, id lacinia odio tempor. Phasellus imperdiet lacinia lectus, vitae placerat eros lobortis sed. Sed vel tincidunt metus, a lacinia mauris.",
@@ -61,16 +67,18 @@ export const Read = () => {
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
       username: "John Doe",
       "date": "2023-02-21T13:45:46.937Z",
-      category: "technology"
+      category: "technology",
+      "blogId":"lwe23jl23njj0hl"
     },
     {
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, lectus id ornare suscipit, velit velit viverra ante, nec dignissim justo metus id nibh. Praesent commodo nunc sit amet nisi interdum ultricies. Fusce commodo, libero eu pulvinar malesuada, tellus tortor suscipit metus, vel ornare purus justo quis elit. Suspendisse porttitor magna nec tortor mollis, eget commodo mauris interdum. In faucibus velit non dui malesuada aliquam. Praesent faucibus, tortor nec viverra commodo, lectus dolor euismod dolor, eu aliquam magna ipsum vitae nulla. Vivamus eu justo at quam vehicula placerat. Sed eget odio vitae velit auctor consequat. Suspendisse aliquam, justo non eleifend efficitur, nisl magna faucibus dolor, in tincidunt turpis arcu vel felis. Aliquam tincidunt justo euismod lacus consectetur, at cursus ante vehicula. Nunc rutrum dolor nec diam egestas, id lacinia odio tempor. Phasellus imperdiet lacinia lectus, vitae placerat eros lobortis sed. Sed vel tincidunt metus, a lacinia mauris.",
       title: "The current state of the system",
       image: "https://images.unsplash.com/photo-1678436749354-8dce394a3693?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
       avatar: "https://images.unsplash.com/photo-1678462172400-74d993672630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60",
-      username: "John Doe",
+      "username": "John Doe",
       "date": "2023-02-21T13:45:46.937Z",
-      category: "technology"
+      "category": "technology",
+      "blogId":"lwe23jl23n98guj4"
     },
   ]
   const trend = [
@@ -122,12 +130,12 @@ export const Read = () => {
 
             <div className='trending'>
               <h3 className='header-trending'>Trending <HiTrendingUp/></h3>
-              {trend.map(blog => <Trend {...blog} />)}
+              {blogs.map((blog,i) =>{ if( i<3) return<Trend {...blog} />})}
             </div>
 
             <div className='trending'>
               <h3 className='header-trending'>Latest<FiClock/></h3>
-              {trend.map(blog => <Trend {...blog} />)}
+              {blogs.map((blog,i) =>{ if( i<3) return<Trend {...blog} />})}
             </div>
         
       </div>

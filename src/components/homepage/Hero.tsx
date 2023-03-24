@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./hero.scss";
 import { NavLink } from "react-router-dom";
-import blogImg from "../../assets/hero/blogIllustrator.png"
+import blogImg from "../../assets/hero/illustrator.png"
 
 export const Hero = () => {
   const [displayHero, setDisplayHero] = useState<boolean>(true);

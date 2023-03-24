@@ -29,9 +29,9 @@ export const NewBlogForm: React.FC = () => {
     setImage(file);
   };
 
-  const onSubmit = () => {
+  // const onSubmit = () => {
 
-  }
+  // }
   
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -44,7 +44,7 @@ export const NewBlogForm: React.FC = () => {
       formData.append('image', image);
     }
 
-    onSubmit(formData);
+    // onSubmit(formData);
 
     // clear form after submit
     setTitle('');
@@ -96,7 +96,7 @@ export const NewBlogForm: React.FC = () => {
         onChange={handleImageChange}
       />
       <br />
-      <button className='submit-button' type="submit">Submit</button>
+      <button onClick={()=>console.log(content)} className='submit-button' type="submit">Submit</button>
     </form>
   );
 };
