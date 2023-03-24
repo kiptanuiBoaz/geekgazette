@@ -1,20 +1,28 @@
+@import "../components//blogs/read.scss";
+@import "../components/sidebar//trend.scss";
+
 .full-blog {
-  display: flex;
-  flex-wrap: wrap-reverse;
+  @extend .read;
+  flex-wrap: wrap;
+     
+
 
   .main {
-    width: 70%;
-    overflow: auto;
-    height: 30cm;
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
-    scrollbar-width: none; /* for Firefox */
+    @extend .blogs;
+  //  background-color: var(--primary-backround);
+  background-color: white;
+    // // width: 100%;
+    // overflow: auto;
+   
+    // &::-webkit-scrollbar {
+    //   width: 0;
+    //   height: 0;
+    // }
+    // scrollbar-width: none; /* for Firefox */
 
     .more-title {
       color: var(--hover-color);
-      width: 100%;
+      width: 85.5%;
       padding: 15px 20px;
       background-color: var(--primary-backround);
       font-size: 20px;
@@ -29,22 +37,36 @@
         color: var(--hover-color);
       }
     }
+
+    .more-blogs{
+      background-color: #fff;
+      height: 18cm;
+    }
   }
 
   .side {
-    width: 25%;
-    margin-right: 10px;
-    .header-trending {
-      color: var(--hover-color);
+    @extend .blogs-trends-container;
+
+    .user-profile {
+      // @extend .
       width: 100%;
-      padding: 15px 20px;
-
-      background-color: var(--primary-backround);
-
-      &::before {
-        content: "-- ";
-        color: var(--hover-color);
+      .bio {
+        width: 280px;
       }
     }
+    // width: 300;
+    //   margin-right: 10px;
+    //   .header-trending {
+    //     color: var(--hover-color);
+    //     width: 100%;
+    //     padding: 15px 20px;
+
+  
+
+    //     &::before {
+    //       content: "-- ";
+    //       color: var(--hover-color);
+    //     }
+    //   }
   }
 }

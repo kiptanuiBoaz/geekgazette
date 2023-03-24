@@ -91,21 +91,24 @@ export const FullBlogPage = () => {
 
 
     const { title, content, id, date, username, avatar, category } = blog;
-   
+
     return (
         <section className='full-blog'>
             <div className='main'>
 
                 <FullBlog {...blog} />
-                <hr />
-                <h4 className="more-title">More from Geek Gazette</h4>
 
-                {blogs.map(blog => <Blog {...blog} />)}
+                <div className='more-blogs'>
+                    <hr />
+                    <h4 className="more-title">More from Geek Gazette</h4>
+                    {blogs.map(blog => <Blog {...blog} />)}
+                </div>
+
             </div>
 
             <hr />
             <div className='side'>
-                <div className='userProfile'>
+                <div className='user-profile'>
                     <UserProfile avatar={avatar} username={username} />
                 </div>
                 <div className='trending'>

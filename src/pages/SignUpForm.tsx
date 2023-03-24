@@ -10,6 +10,7 @@ import { emailRegex, pwdRegex } from "../utils/REGEX";
 
 export const SignUpForm = () => {
   const {
+    
     AN_AT_SYMBOL_REGEX,
     NO_SPECIAL_CHARACTERS_EXCEPT_FOR_DOT_UNDERSCORE_REGEX,
     START_WITH_A_LETTER_OR_NUMBER_AND_DOT_AND_DASH_REGEX,
