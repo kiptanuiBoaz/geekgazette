@@ -18,7 +18,7 @@ export const Navbar = () => {
     }
     window.addEventListener('resize', handleEvent);
     window.addEventListener('scroll', handleEvent);
-
+    //clean up fns
     return () => {
       window.removeEventListener('resize', handleEvent);
       window.removeEventListener('scroll', handleEvent);

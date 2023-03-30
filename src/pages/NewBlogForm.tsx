@@ -94,6 +94,7 @@ export const NewBlogForm: React.FC = () => {
         type="file"
         accept="image/*"
         onChange={handleImageChange}
+        required
       />
       <br />
       <button onClick={()=>console.log(content)} className='submit-button' type="submit">Submit</button>

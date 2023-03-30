@@ -15,7 +15,7 @@
     color: var(--primary-backround);
 
     .company {
-      width: 300px;
+      width: 350px;
       color:  var(--primary-backround);
       
       a {
@@ -34,7 +34,7 @@
     .developer {
       display: flex;
       flex-direction: column;
-      width: 200px;
+      width: 240px;
       @extend .company;
       h5 {
         font-size: 17px;

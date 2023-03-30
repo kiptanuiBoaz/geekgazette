@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  width: 75%;
+  width: 80%;
   margin: 30px auto;
   min-height: 13cm;
+  padding: 50px 0 0 0;
 
   .title-input {
     border: 3px solid #ccc;
@@ -12,8 +13,12 @@
     margin-bottom: 1rem;
     padding: 0.5rem;
     font-size: 1rem;
-    width: 100%;
+    width: 95%;
     color: var(--accent-backround);
+    &:hover{
+      border-color: var(--primary-color);
+      outline: none; /* remove the default blue outline */
+    }
 
     &:focus {
       border-color: var(--primary-color);
@@ -33,6 +38,7 @@
   }
   .category-select {
     @extend .title-input;
+    width: 97%;
     option {
       background-color: white;
       &:hover {
