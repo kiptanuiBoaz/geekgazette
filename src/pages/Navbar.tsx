@@ -15,7 +15,6 @@ export const Navbar = () => {
     const handleEvent = () => {
       setDeviceWidth(window.innerWidth);
       setScrollPos(window.pageYOffset);
-
     }
     window.addEventListener('resize', handleEvent);
     window.addEventListener('scroll', handleEvent);

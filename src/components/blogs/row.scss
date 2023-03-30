@@ -1,14 +1,11 @@
+@import "../../pages/new-blog-form.scss";
 .row {
-  margin-top: 40px;
-  margin-right: 20px;
+  padding-left: 5%;
+  margin-top: 20px;
   list-style: none;
   display: flex;
   align-items: center;
   text-align: center;
-  overflow: hidden;
-  position: sticky;
-  // top:40px;
-  
 
   .row-items-container {
     display: flex;
@@ -33,20 +30,32 @@
       }
     }
   }
+  .category-select {
+    
+    @extend .category-select;
+   
+  }
 
   .dropdown {
     border: 3px solid var(--secondary-color);
-    background-color: var(--primary-backround);
+    // background-color: var(--primary-backround);
     margin-left: 5px;
     border-radius: 10px;
     padding: 6px 10px;
+    color: var(--primary-color);
+    outline: none;
     &:hover {
       background-color: var(--secondary-backround);
     }
 
-    option:first-child {
-      color: #ccc; // Set placeholder text color
-      background-color: red;
+    option {
+      @extend .row-item;
+      color: var(--primary-color);
+      font-size: 1rem;
+
+      &:first-child{
+        font-size: 1rem;
+      }
     }
   }
 }
