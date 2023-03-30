@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import "./footer.scss";
 import { Link } from "react-router-dom";
 import { FiExternalLink } from 'react-icons/fi';
@@ -9,12 +9,12 @@ import { HiTrendingUp } from "react-icons/hi";
 import logo from "../assets/navbar/geek-gazette-high-resolution-logo-white-on-transparent-background.png"
 
 export const Footer = () => {
-  const [hoverd,setHovered] = useState<number>(-1);
+  const [hoverd, setHovered] = useState<number>(-1);
   return (
     <footer className='footer'>
       <div className='top'>
         <div className='company'>
-          <Link to ="/" ><img src={logo} alt="logo" /></Link>
+          <Link to="/" ><img src={logo} alt="logo" /></Link>
           <p>Where geeks come to get their fix</p>
           <a href='#'>Source code <FaCode /></a>
         </div>
@@ -35,11 +35,9 @@ export const Footer = () => {
 
         <div className='categories'>
           <h5>Porpular categories</h5>
-          {["Technology", "Sports", "Religion"].map((cat,i) =>
-            <p onMouseEnter={() => setHovered(i)} onMouseLeave={()=> setHovered(-1)}>
-              <Link
-                to={cat}
-              >
+          {["Technology", "Sports", "Religion"].map((cat, i) =>
+            <p onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(-1)}>
+              <Link to={cat} >
                 {cat} {hoverd === i && <HiTrendingUp />}
               </Link>
             </p>)}

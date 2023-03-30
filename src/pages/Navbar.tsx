@@ -32,7 +32,11 @@ export const Navbar = () => {
     <li key={i} className={scrollPos < 20 ? "nav-link-grey" : "nav-link-green"}>
       <NavLink
         to={route}
-        style={({ isActive }) => isActive ? activeStyle : undefined}
+        className={({ isActive }) => isActive
+          ? scrollPos < 20
+            ? "active-style-grey"
+            : "active-style-green"
+          : undefined}
       >
         {text}
       </NavLink>

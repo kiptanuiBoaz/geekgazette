@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import "./user-profile-form.scss";
 import { FiEdit } from "react-icons/fi";
 import heroImage from "../assets/hero/illustrator.png";
 
 export const UserProfileForm = () => {
+
+    const fnameRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => { fnameRef.current?.focus(); }, [])
+
     return (
         <section className='profile-form-container'>
             <form className='profile-form'>
-
+            <p  className='instruction'>Please fill in your info before proceeding</p>
                 <label htmlFor="file-upload" className='custom-file-upload'>
+               
                     <img className='file-upload-image' src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" />
                     <span className='prompt'> <FiEdit /> {' '}{" "}Upload Image </span>
                 </label>
 
                 <input
+                    ref={fnameRef}
                     id="file-upload"
                     className='image-input'
                     type="file"
@@ -45,10 +52,10 @@ export const UserProfileForm = () => {
 
                 </div>
 
-                <button  className='submit-button' type="submit">Submit</button>
+                <button className='submit-button' type="submit">Submit</button>
             </form>
 
-            <img className='illustrator-img' src ={heroImage} alt="illustrator"/>
+            <img className='illustrator-img' src={heroImage} alt="illustrator" />
         </section>
     )
 }

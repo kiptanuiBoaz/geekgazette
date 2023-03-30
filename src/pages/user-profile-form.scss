@@ -7,6 +7,7 @@
   align-items: center;
   background-color: var(--primary-backround);
   padding: 0 10%;
+  margin-top: 60px;
   .profile-form {
     @extend .blog-form;
     border-radius: 6px;
@@ -15,20 +16,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 10px;
     padding-bottom: 20px;
-     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);
+
+    .instruction{
+      color: var(--primary-color);
+      font-size: 18px;
+      font-weight: bold;
+    }
 
     .custom-file-upload {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 397px;
+      // width: 397px;
       flex-direction: column;
-      background-color: #cad8c5;
-      
-&:hover{
-    background-color:#cad8c5 ;
-}
+      background-color: #fff;
+
+      &:hover {
+        background-color: #fff;
+        color:var(--primary-color)
+      }
       .file-upload-image {
         width: 150px;
         height: 150px;
@@ -71,7 +80,6 @@
         @extend .category-select;
         width: 225px;
         margin-left: 20;
-        
       }
     }
 

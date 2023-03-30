@@ -3,7 +3,7 @@ import logo from "../assets/navbar/logo-no-bg-green.png";
 import "./login-form.scss";
 import { Link } from "react-router-dom";
 import { TogglePwdShow } from "../components";
-import { BiHide, BiShow } from "react-icons/bi"
+
 
 export const LoginForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);

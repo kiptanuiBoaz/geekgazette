@@ -55,13 +55,13 @@
 
     .short-content {
       color: #292a29;
-      margin: -3px;
+      margin: 0px;
 
       @media only screen and (max-width: 800px) {
         font-size: 13px;
         // padding: 4px 8px;
       }
-      @media only screen and (max-width: 480px) {
+      @media only screen and (max-width: 680px) {
         display: none;
       }
     }
@@ -70,14 +70,16 @@
       color: var(--accent-color);
       display: flex;
       flex-direction: row;
+      padding: 0;
+      margin: -10px;
 
       @media only screen and (max-width: 800px) {
         font-size: 13px;
-        // padding: 4px 8px;
+      
       }
 
       .category {
-        margin-left: 5px;
+        margin-left: 10px;
         padding: 2px 7px;
         background-color: #a6c7a6;
         border-radius: 5px;
@@ -91,7 +93,7 @@
       }
 
       .date {
-        padding: 2px;
+        padding: 2px 2px  2px 0;
       }
     }
   }
