@@ -155,15 +155,15 @@
     }
   }
 
-  .profile {
+  .mini-profile {
     border: 1px solid var(--secondary-backround);
     border-radius: 20px;
-    padding: 0px 15px 0 8px;
+    padding: 0px 15px 0 0px;
     display: flex;
     flex-direction: row;
     min-width: 100px;
     margin: 0 20px 0 0;
-    height: 2.3rem;
+    height: 2.1rem;
     width: max-content;
     color: var(--accent-backround);
 

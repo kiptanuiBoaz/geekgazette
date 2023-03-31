@@ -1,3 +1,90 @@
-.profile{
-    // position: absolute;
+.profile {
+  position: absolute;
+  top: 105%;
+  right: 2%;
+  background-color: var(--primary-color);
+  padding: 15px;
+  width: 250px;
+  border-radius: 5px;
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.996);
+
+  .profile-header {
+    text-align: center;
+    // background-color: var(--secondary-backround);
+    .main-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      padding: 4px;
+      border: 2px solid var(--primary-backround);
+      margin: 10px auto auto auto;
+    }
+
+    .names {
+      margin: 3px 0 0 0;
+    }
+
+    .email {
+      margin: 3px 0 0 0;
+      font-size: 14px;
+    }
+
+    .head-tag {
+      margin: 3px 0 0 0;
+    }
+  }
+
+  .my-blogs {
+    max-height: 6cm;
+    overflow-y: scroll;
+
+    .my-blog {
+      background-color: rgb(34, 97, 34);
+      padding: 5px 5px;
+      margin: 5px 0;
+      border-radius: 5px;
+
+      .title {
+        margin: 0;
+      }
+      .time {
+        margin: 0;
+        font-style: italic;
+        font-size: 13px;
+        color:#a09d9d
+      }
+    }
+  }
+
+  .buttons-container {
+    text-align: center;
+    padding: 15px 0;
+    .edit-btn {
+      border-radius: 20px;
+      padding: 6px 4px;
+      width: 110px;
+      margin: 0 5px;
+      background-color: var(--primary-backround);
+      border-width: 2px;
+      font-size: 15px;
+
+      .edit-btn-span {
+        display: none;
+      }
+
+      &:hover {
+        .edit-btn-span {
+          display: inline;
+        }
+      }
+    }
+
+    .sign-out-btn {
+      @extend .edit-btn;
+
+      .sign-out-btn-span {
+        @extend .edit-btn-span;
+      }
+    }
+  }
 }
