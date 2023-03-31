@@ -3,13 +3,18 @@ import "./navbar.scss";
 import logoGreen from "../assets/navbar/logo-no-bg-green.png";
 import logoWhite from "../assets/navbar/logo-no-bg-white.png";
 import { navList } from "../utils/navItems";
-import { activeStyle } from "../utils/activeStyle";
 import { navListTypes } from "../types";
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
+import { MdExpandMore } from "react-icons/md";
+import { Profile } from "../components";
+
 
 export const Navbar = () => {
   const [deviceWidth, setDeviceWidth] = useState<number>(0);
   const [scrollPos, setScrollPos] = useState<number>(0);
+  const [username, setUsername] = useState<string>("Boaz");
+  const [avatar, setAvatar] = useState<string | null>(null);
+  const [showProfile, setShowProfile] = useState<boolean>(false);
 
   useEffect(() => {
     const handleEvent = () => {
@@ -54,12 +59,23 @@ export const Navbar = () => {
           {navListComponent}
         </ul>
 
-        <button className={scrollPos < 20 ? "sign-up-btn-grey" : "sign-up-btn-green"}>
+        {/* <button className={scrollPos < 20 ? "sign-up-btn-grey" : "sign-up-btn-green"}>
           <NavLink style={{ color: scrollPos < 20 ? "#eeeee4" : "#4d7e3e" }} to="/auth/sign-up" className="sign-up">Sign Up</NavLink>
-        </button>
+        </button> */}
+
+        <div style={{ color: scrollPos < 20 ? " #6b6b6b" : "#eeeee4" }} className="profile">
+          <p className="username">{` ${username}`} </p>
+          <div onClick={() => setShowProfile(!showProfile)} className="expand-icon"> <MdExpandMore /></div>
+          <img
+            className="avatar"
+            src={avatar ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}
+          />
+
+        </div>
+
+        {showProfile && <Profile/>}
 
       </nav>
-      {/* <hr/> */}
     </>
 
   )

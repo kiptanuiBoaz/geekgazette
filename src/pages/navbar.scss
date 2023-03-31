@@ -35,8 +35,7 @@
       white-space: nowrap;
       padding: 1%;
       padding-right: 4px;
-      padding-bottom:3px;
-      
+      padding-bottom: 3px;
 
       .active-style-grey {
         color: #205d2e;
@@ -153,6 +152,43 @@
       a {
         color: var(--primary-color);
       }
+    }
+  }
+
+  .profile {
+    border: 1px solid var(--secondary-backround);
+    border-radius: 20px;
+    padding: 0px 15px 0 8px;
+    display: flex;
+    flex-direction: row;
+    min-width: 100px;
+    margin: 0 20px 0 0;
+    height: 2.3rem;
+    width: max-content;
+    color: var(--accent-backround);
+
+    &:hover {
+      background-color: #ccc;
+    }
+
+    .username {
+      text-align: center;
+      margin: auto;
+      padding-left: 5px;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin: auto 0 auto auto;
+    }
+    .expand-icon {
+     margin:auto 0 auto auto;
+     &:first-child{
+      padding: auto;
+     }
+      
     }
   }
 }

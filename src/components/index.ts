@@ -7,3 +7,4 @@ export {UserProfile} from "./sidebar/UserProfile";
 export {FullBlog}  from "./blogs/FullBlog";
 export {ValidationMsgs} from "./auth/ValidationMsgs";
 export {TogglePwdShow} from "./auth/TogglePwdShow";
+export {Profile} from "./navbar/Profile";
