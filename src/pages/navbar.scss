@@ -29,13 +29,14 @@
     margin-bottom: auto;
 
     .nav-link-grey {
-      margin: 0px 10px 11px 0;
+      margin: -3px 10px 11px 0;
       display: inline-block;
       width: 40px;
       white-space: nowrap;
       padding: 1%;
       padding-right: 4px;
       padding-bottom:3px;
+      
 
       .active-style-grey {
         color: #205d2e;
@@ -43,6 +44,7 @@
         display: inline-block;
         position: relative;
         text-decoration: none;
+        margin-top: 0px;
 
         &::after {
           content: "";
