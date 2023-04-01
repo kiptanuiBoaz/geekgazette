@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useRef,useEffect } from 'react';
 import "./new-blog-form.scss";
 import { RiImageAddFill } from "react-icons/ri";
 
@@ -11,6 +11,8 @@ export const NewBlogForm: React.FC = () => {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [image, setImage] = useState<File | null>(null);
+
+  const titleRef= useRef<HTMLInputElement>(null);
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -29,9 +31,8 @@ export const NewBlogForm: React.FC = () => {
     setImage(file);
   };
 
-  // const onSubmit = () => {
-
-  // }
+  useEffect(() => { titleRef.current?.focus(); }, [])
+  
   
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,6 +58,7 @@ export const NewBlogForm: React.FC = () => {
     <form className='blog-form' onSubmit={handleSubmit}>
 
       <input
+      ref= {titleRef}
         className='title-input'
         type="text"
         value={title}
