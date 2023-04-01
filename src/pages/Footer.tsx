@@ -21,10 +21,10 @@ export const Footer = () => {
 
         <div className='developer'>
           <h5>About the developer</h5>
-          <a href='#'> <BsGithub /> GitHub</a>
-          <a href='#'><CgProfile /> Portfolio</a>
-          <a href='#'> <FaTwitter /> Twitter</a>
-          <a href='#'> <FaLinkedin /> LinkedIn</a>
+          <a href='#'> <BsGithub /> {" "} GitHub</a>
+          <a href='#'><CgProfile /> {" "} Portfolio</a>
+          <a href='#'> <FaTwitter /> {" "} Twitter</a>
+          <a href='#'> <FaLinkedin /> {" "} LinkedIn</a>
         </div>
 
         <div className='privacy'>

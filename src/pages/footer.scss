@@ -6,16 +6,19 @@
   padding-bottom: 5px;
   position: relative;
   z-index: 3;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
   .top {
     padding:  20px  20px 5px 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    // justify-content: center;
     color: var(--primary-backround);
+    display: flex;
+    justify-content: space-around;
 
     .company {
-      width: 350px;
+      width: 250px;
       color:  var(--primary-backround);
       
       a {
@@ -34,11 +37,11 @@
     .developer {
       display: flex;
       flex-direction: column;
-      width: 240px;
+      width: 170px;
       @extend .company;
       h5 {
         font-size: 17px;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        // font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         margin-bottom: 7px;
         margin-top: 0;
       }
