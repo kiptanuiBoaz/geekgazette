@@ -40,7 +40,6 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                     className="main-avatar"
                     style={{ borderColor: scrollPos > 20 ? "#d1d2d2" : "#4d7e3e" }}
                     src={
-
                         img ??
                         "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
                     }
@@ -54,24 +53,24 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
             <hr />
 
 
-            <p className="blogs-title">My blog posts   <MdExpandMore /> <MdExpandLess /></p>
+            <p className="blogs-title">My blog posts on geeek gazette</p>
 
             <main className="my-blogs">
                 {blogPostTitles.map(title => {
                     return (
-                        <div className="my-blog">
-                            <p className="title">{title.substring(0, 25)}...</p>
-                            <p className="time">two days ago</p>
+                        <div style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : " rgb(40, 97, 34)" }} className="my-blog">
+                            <p  style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d",}}  className="title">{title.substring(0, 30)}...</p>
+                            <p style={{ color: scrollPos < 20 ? "#4d7e3e" : "#6b6b6b",}} className="time">two days ago</p>
                         </div>
                     )
                 })}
             </main>
 
-            <footer className="buttons-container">
+            <footer className="buttons-container"> 
                 <button
                     style={{
                         color: scrollPos > 20 ? "#6b6b6b" : "#4d7e3e",
-                        borderColor: scrollPos > 20 ? "#d1d2d2" : "#4d7e3e"
+                        borderColor: scrollPos > 20 ? "#9b9999;" : "#4d7e3e"
                     }}
                     className="edit-btn"
                 >
