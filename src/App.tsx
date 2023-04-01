@@ -1,7 +1,16 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Layout } from "./Layout";
 import { HomePage, Navbar } from "./pages/index";
-import { FullBlogPage, EditBlog, NewBlogForm, LoginForm, SignUpForm, AuthHome ,UserProfileForm} from './pages';
+import {
+  FullBlogPage,
+  EditBlog,
+  NewBlogForm,
+  LoginForm,
+  SignUpForm,
+  About,
+  AuthHome,
+  UserProfileForm
+} from './pages';
 
 
 export const App = () => {
@@ -12,14 +21,16 @@ export const App = () => {
       <Route path="/" element={<Layout />}>
 
         <Route index element={<HomePage />} />
-        
+
         <Route path="blog">
           <Route path="write" element={<NewBlogForm />} />
           <Route path=":postId" element={<FullBlogPage />} />
           <Route path="edit/:blogId" element={<EditBlog />} />
         </Route>
 
-        <Route path="user/new-profile" element={<UserProfileForm/>}/>
+        <Route path="user/new-profile" element={<UserProfileForm />} />
+
+        <Route path="about" element={<About />}/>
 
       </Route>
 
