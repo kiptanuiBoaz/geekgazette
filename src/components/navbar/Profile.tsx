@@ -46,9 +46,9 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                     alt={`${fname}'s profile`}
                 />
 
-                <h3 style={{ color: scrollPos > 20 ? "#d1d2d2" : "#4d7e3e" }} className="names">{fname}{"  "}{lname}</h3>
-                <p className="email">{email}</p>
-                <p className="head-tag">{headTag}</p>
+                <h3 style={{ color: scrollPos > 20 ? "#d1d2d2" : "rgb(40, 97, 34)" }} className="names">{fname}{"  "}{lname}</h3>
+                <p style={{ color: scrollPos > 20 ? "#a09d9d" : "#4d7e3e" }} className="email">{email}</p>
+                <p  className="head-tag">{headTag}</p>
             </header>
             <hr />
 

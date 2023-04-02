@@ -5,7 +5,7 @@
     text-align: left;
     width: 90%;
     margin: auto;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
     .blog-image {
       width: 100%;
@@ -33,31 +33,31 @@
       color: #333;
       line-height: 26px;
       word-wrap: break-word;
-       font-family: Arial, Helvetica, sans-serif;
-       margin: 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0 auto;
     }
-    .post-edit {
-    width: 100px;
-      padding: 0.5rem;
-      // background-color: var(--primary-color);
-     text-align: center;
-      // border: 2px solid var(--primary-color);
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: normal;
-      cursor: pointer;
 
-      a{
-        text-decoration: none;
-        color: var(--primary-color);
-            }
-
-      &:hover {
+    .post-engagements {
+      display: flex;
+      flex-direction: row;
+      .post-edit {
         width: 100px;
-        background-color: var(--primary-color);
-        color: white;
-        a{
-          color: white;
+        padding: 0.5rem;
+        text-align: center;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: normal;
+        cursor: pointer;
+
+        a {
+          text-decoration: none;
+          color: var(--primary-color);
+        }
+
+        &:hover {
+          color: var(--primary-color);
+          font-weight: bold;
+         
         }
       }
     }
