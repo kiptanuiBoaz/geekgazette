@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useParams } from "react-router-dom";
 import TimeAgo from "../../utils/Timeago";
 import "./full-blog.scss";
@@ -8,7 +8,7 @@ import { AiFillLike } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { RiEditFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
-import { Comment } from './Comment';
+import { Comment, NewCommentForm } from '../../components';
 
 
 
@@ -22,12 +22,26 @@ interface BlogProps {
 
 export const FullBlog = ({ username, date, content, title, image }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
+    const [commenting, setCommenting] = useState<boolean>(false);
+
+    const commentInputRef = useRef<HTMLDivElement>(null);
     const { blogId } = useParams();
     const formattedDate = <TimeAgo timestamp={date} />;
     const navigate = useNavigate()
 
     const handleLike = () => { }
-    const handleComment = () => { }
+
+    const handleCommenting = () => {
+        setCommenting(false);
+    }
+    const scrollToMyElement = () => {
+        if (commentInputRef && commentInputRef.current) {
+            commentInputRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }
+    };
 
 
     return (
@@ -42,8 +56,8 @@ export const FullBlog = ({ username, date, content, title, image }: BlogProps) =
                 <div className='post-engagements'>
 
                     <p
-                        onMouseEnter={(e) => setHovered("edit")}
-                        onMouseLeave={(e) => setHovered(null)}
+                        onMouseEnter={() => setHovered("edit")}
+                        onMouseLeave={() => setHovered(null)}
                         className="post-edit"
                         onClick={() => navigate(`/blog/edit/${blogId}`)}
                     >
@@ -51,8 +65,8 @@ export const FullBlog = ({ username, date, content, title, image }: BlogProps) =
                     </p>
 
                     <p
-                        onMouseEnter={(e) => setHovered("like")}
-                        onMouseLeave={(e) => setHovered(null)}
+                        onMouseEnter={() => setHovered("like")}
+                        onMouseLeave={() => setHovered(null)}
                         className="post-edit"
                         onClick={() => handleLike}
                     >
@@ -65,10 +79,13 @@ export const FullBlog = ({ username, date, content, title, image }: BlogProps) =
                     </p>
 
                     <p
-                        onMouseEnter={(e) => setHovered("comment")}
-                        onMouseLeave={(e) => setHovered(null)}
+                        onMouseEnter={() => setHovered("comment")}
+                        onMouseLeave={() => setHovered(null)}
                         className="post-edit"
-                        onClick={() => handleComment}
+                        onClick={() => {
+                            setCommenting(true);
+                            scrollToMyElement();
+                        }}
                     >
                         {
                             hovered === "comment"
@@ -79,16 +96,25 @@ export const FullBlog = ({ username, date, content, title, image }: BlogProps) =
                     </p>
                 </div>
 
+
+
             </div>
 
             <div className='comments-container'>
                 <h5 className='comments-title'>Comments</h5>
+                {commenting &&
+                    <div ref={commentInputRef} className='comments-input'>
+                        <NewCommentForm handleCommenting={handleCommenting} />
+                    </div>
+                }
                 <Comment />
                 <Comment />
                 <Comment />
                 <Comment />
                 <Comment />
                 <Comment />
+
+
             </div>
 
         </article>

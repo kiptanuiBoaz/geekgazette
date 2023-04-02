@@ -1,6 +1,6 @@
 @import "../../pages/full-blog-page.scss";
 .blog-article {
-  padding: 60px 0px 30px 0px;
+  padding: 20px 0px 30px 0px;
 
   .blog-container {
     text-align: left;
@@ -29,10 +29,10 @@
       }
     }
     .body-content {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 500;
       color: #333;
-      line-height: 26px;
+      line-height: 30px;
       word-wrap: break-word;
       font-family: Arial, Helvetica, sans-serif;
       margin: 0 auto;

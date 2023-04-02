@@ -15,7 +15,7 @@ export const Comment = () => {
                 </p>
                 {/* <hr/> */}
             </main>
-          
+          {/* <ChildComment/> */}
 
         </article>
     )
