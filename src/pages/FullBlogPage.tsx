@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Blog, AuthorBlog, CategoryBlog, UserProfile, FullBlog } from '../components';
+import { Blog, AuthorBlog, CategoryBlog, AuthorProfile, FullBlog } from '../components';
 import "./full-blog-page.scss";
 
 
@@ -95,6 +95,8 @@ export const FullBlogPage = () => {
 
 
     const { title, content, id, date, username, avatar, category } = blog;
+    const lname = "Doe";
+    const fname ="John";
 
     return (
         <section className='full-blog'>
@@ -113,7 +115,7 @@ export const FullBlogPage = () => {
             <hr />
             <div className='side'>
                 <div className='user-profile'>
-                    <UserProfile avatar={avatar} username={username} />
+                    <AuthorProfile avatar={avatar} lname={lname}  fname={fname} />
                 </div>
                 <div className='trending'>
                     <h3 className='header-trending'>{`More by ${username}`} </h3>

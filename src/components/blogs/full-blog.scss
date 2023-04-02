@@ -1,3 +1,4 @@
+@import "../../pages/full-blog-page.scss";
 .blog-article {
   padding: 60px 0px 30px 0px;
 
@@ -57,9 +58,14 @@
         &:hover {
           color: var(--primary-color);
           font-weight: bold;
-         
         }
       }
+    }
+  }
+
+  .comments-container {
+    .comments-title {
+      @extend .more-title;
     }
   }
 }

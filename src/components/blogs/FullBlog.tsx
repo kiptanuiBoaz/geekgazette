@@ -8,6 +8,7 @@ import { AiFillLike } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { RiEditFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import { Comment } from './Comment';
 
 
 
@@ -55,7 +56,11 @@ export const FullBlog = ({ username, date, content, title, image }: BlogProps) =
                         className="post-edit"
                         onClick={() => handleLike}
                     >
-                        {hovered === "like" ? <AiFillLike /> : <BiLike />} {' '}{" "}Like
+                        {
+                            hovered === "like"
+                                ? <span><AiFillLike /> {' '}{" "}Like</span>
+                                : <span><BiLike />{' '}{" "}13</span>
+                        }
 
                     </p>
 
@@ -65,11 +70,25 @@ export const FullBlog = ({ username, date, content, title, image }: BlogProps) =
                         className="post-edit"
                         onClick={() => handleComment}
                     >
-                        {hovered !== "comment" ? <FaRegComment /> : <FaComment />} {' '}{" "}Comment
+                        {
+                            hovered === "comment"
+                                ? <span> <FaComment /> {' '}{" "}Comment</span>
+                                : <span><FaRegComment /> 4</span>
+                        }
 
                     </p>
                 </div>
 
+            </div>
+
+            <div className='comments-container'>
+                <h5 className='comments-title'>Comments</h5>
+                <Comment />
+                <Comment />
+                <Comment />
+                <Comment />
+                <Comment />
+                <Comment />
             </div>
 
         </article>

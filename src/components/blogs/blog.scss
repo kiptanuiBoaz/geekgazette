@@ -20,7 +20,7 @@
     .blog-header {
       display: flex;
       flex-direction: row;
-      // height: 2rem;
+      
       .username {
         font-size: 15px;
         padding: 0px;
@@ -41,7 +41,7 @@
     .title {
       margin: -6px 0 0 0;
       font-size: 23px;
-      color: #2c2c2c;
+      color: #1e1e1e;
 
       @media only screen and (max-width: 800px) {
         font-size: 20px;

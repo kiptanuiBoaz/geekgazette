@@ -33,7 +33,9 @@
       margin: 3px 0 0 0;
     }
   }
-
+  .blogs-title{
+    text-align: center;
+  }
   .my-blogs {
     max-height: 6cm;
     overflow-y: scroll;
@@ -52,6 +54,8 @@
     &::-webkit-scrollbar-corner {
       background-color: #f1f1f1;
     }
+
+   
     .my-blog {
       background-color: rgb(34, 97, 34);
       padding: 7px 0 5px 10px  ;

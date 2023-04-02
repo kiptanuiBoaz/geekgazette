@@ -1,0 +1,61 @@
+@import "../blogs//blog.scss";
+
+.comment {
+  @extend .blog;
+  flex-direction: column;
+  padding: 10px 15px;
+  width: 86%;
+//   margin:auto 10px auto auto;
+  height: fit-content;
+  background-color: #fff;
+  border: 1px solid var(--primary-backround);
+  
+
+  &:hover{
+    background-color: #fff;
+}
+
+  .comment-header {
+    @extend .blog-header;
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start;
+    align-items: center;
+    padding: 0 20px 0 0px;
+    margin: 0;
+
+  
+
+    .comment-avatar {
+      @extend .avatar;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      padding: 0;
+      margin: 0 15px 0 0;
+    }
+    .comment-author-name {
+      @extend .username;
+      font-size: 15px;
+      padding: 0 auto 0 0;
+      margin: 0;
+      color: #1e1e1e;
+    }
+
+    .comment-date {
+      @extend .date;
+      color: var(--accent-backround);
+      padding: 0 10px 0 0;
+      margin: 0 0 0 auto;
+    }
+  }
+
+  .comment-body {
+    margin: 0;
+    padding: 6px 0;
+    .comment-content {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

@@ -48,7 +48,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
 
                 <h3 style={{ color: scrollPos > 20 ? "#d1d2d2" : "rgb(40, 97, 34)" }} className="names">{fname}{"  "}{lname}</h3>
                 <p style={{ color: scrollPos > 20 ? "#a09d9d" : "#4d7e3e" }} className="email">{email}</p>
-                <p  className="head-tag">{headTag}</p>
+                <p className="head-tag">{headTag}</p>
             </header>
             <hr />
 
@@ -59,14 +59,14 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                 {blogPostTitles.map(title => {
                     return (
                         <div style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : " rgb(40, 97, 34)" }} className="my-blog">
-                            <p  style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d",}}  className="title">{title.substring(0, 30)}...</p>
-                            <p style={{ color: scrollPos < 20 ? "#4d7e3e" : "#6b6b6b",}} className="time">two days ago</p>
+                            <p style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d", }} className="title">{title.substring(0, 30)}...</p>
+                            <p style={{ color: scrollPos < 20 ? "#4d7e3e" : "#6b6b6b", }} className="time">two days ago</p>
                         </div>
                     )
                 })}
             </main>
 
-            <footer className="buttons-container"> 
+            <footer className="buttons-container">
                 <button
                     style={{
                         color: scrollPos > 20 ? "#6b6b6b" : "#4d7e3e",
