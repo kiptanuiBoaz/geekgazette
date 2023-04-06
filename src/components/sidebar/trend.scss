@@ -1,5 +1,17 @@
 .trend {
   width: 280px;
+
+      
+  @media only screen and (max-width: 1124px) {
+    width: 400px;
+  }
+
+       
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
+
+
   div {
     padding-left: 20px;
     &:hover{

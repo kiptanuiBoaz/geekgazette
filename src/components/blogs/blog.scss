@@ -8,6 +8,11 @@
   height: 150px;
   background-color: var(--primary-backround);
 
+  @media only screen and (max-width: 940px) {
+    // margin-left: 10px;
+    margin:20px;
+  }
+
   @media only screen and (max-width: 800px) {
     height: 130px;
   }
@@ -47,6 +52,12 @@
         font-size: 20px;
         // padding: 4px 8px;
       }
+
+      @media only screen and (max-width: 660px) {
+        font-size: 17px;
+        // padding: 4px 8px;
+      }
+
       &:hover {
         text-decoration: underline;
         color: black;
@@ -56,14 +67,15 @@
     .short-content {
       color: #292a29;
       margin: 0px;
+      overflow:visible;
 
       @media only screen and (max-width: 800px) {
         font-size: 13px;
         // padding: 4px 8px;
       }
-      @media only screen and (max-width: 680px) {
-        display: none;
-      }
+      // @media only screen and (max-width: 680px) {
+      //   display: none;
+      // }
     }
 
     .blog-footer {
@@ -107,6 +119,11 @@
       @media only screen and (max-width: 800px) {
         width: 250px;
         height: 130px;
+      }
+
+      @media only screen and (max-width: 580px) {
+        width: 150px;
+        height: 100%;
       }
     }
   }

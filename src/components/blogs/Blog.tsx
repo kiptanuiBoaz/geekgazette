@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./blog.scss";
 import { useNavigate } from 'react-router-dom';
 import TimeAgo from "../../utils/Timeago";
@@ -14,11 +14,36 @@ interface BlogProps {
     blogId: string;
 }
 
-export const Blog = ({ content, title, image, avatar, username, date, category,blogId }: BlogProps) => {
+export const Blog = ({ content, title, image, avatar, username, date, category, blogId }: BlogProps) => {
     const [brightness, setBrightness] = useState<string>("brightness(100%)");
-    const shortContent = content.substring(0, 100) + "...";
+    const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
+    const [shortContent, setShortContent] = useState<string>(content.substring(0, 100) + "...");
     const formattedDate = <TimeAgo timestamp={date} />
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            setDeviceWidth(window.innerWidth);
+            setShortContent(content.substring(0, deviceWidth < 500
+                ? 30
+                : deviceWidth < 640
+                    ? 50
+                    : 100
+            )
+                + "..."
+            );
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [deviceWidth]);
+
     return (
         <article
             key={username}
