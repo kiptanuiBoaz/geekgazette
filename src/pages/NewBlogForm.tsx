@@ -2,11 +2,9 @@ import React, { useState,useRef,useEffect } from 'react';
 import "./new-blog-form.scss";
 import { RiImageAddFill } from "react-icons/ri";
 
-// interface BlogInputFormProps {
-//   onSubmit: (formData: FormData) => void;
-// }
 
-export const NewBlogForm: React.FC = () => {
+
+ const NewBlogForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -103,3 +101,5 @@ export const NewBlogForm: React.FC = () => {
     </form>
   );
 };
+
+export default NewBlogForm;

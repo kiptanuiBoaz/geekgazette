@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-export const SignUpForm = () => {
+ const SignUpForm = () => {
   const navigate= useNavigate();
   const {
     
@@ -165,3 +165,5 @@ export const SignUpForm = () => {
     </section>
   )
 }
+
+export default SignUpForm;

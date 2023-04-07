@@ -3,7 +3,7 @@ import "./user-profile-form.scss";
 import { FiEdit } from "react-icons/fi";
 import heroImage from "../assets/hero/illustrator.png";
 
-export const UserProfileForm = () => {
+ const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const fnameRef = useRef<HTMLInputElement>(null);
@@ -69,3 +69,5 @@ export const UserProfileForm = () => {
         </section>
     )
 }
+
+export default UserProfileForm;

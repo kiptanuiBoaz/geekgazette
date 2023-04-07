@@ -1,8 +1,9 @@
 import React from 'react';
-import { NewBlogForm } from './NewBlogForm';
+import  NewBlogForm  from './NewBlogForm';
 
-export const EditBlog = () => {
+ const EditBlog = () => {
   return (
    <NewBlogForm/>
   )
 }
+export default EditBlog;

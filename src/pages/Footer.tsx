@@ -8,7 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import { HiTrendingUp } from "react-icons/hi";
 import logo from "../assets/navbar/geek-gazette-high-resolution-logo-white-on-transparent-background.png"
 
-export const Footer = () => {
+const  Footer = () => {
   const [hoverd, setHovered] = useState<number>(-1);
   return (
     <footer className='footer'>
@@ -51,3 +51,5 @@ export const Footer = () => {
     </footer>
   )
 }
+
+export default Footer;

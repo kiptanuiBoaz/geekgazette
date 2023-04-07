@@ -6,7 +6,7 @@ import "./full-blog-page.scss";
 
 
 
-export const FullBlogPage = () => {
+const  FullBlogPage = () => {
     const { postId } = useParams()
 
     const blog = {
@@ -132,3 +132,5 @@ export const FullBlogPage = () => {
 
     )
 }
+
+export default FullBlogPage;

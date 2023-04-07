@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { TogglePwdShow } from "../components";
 
 
-export const LoginForm = () => {
+ const LoginForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
     const emailRef = useRef<HTMLInputElement>(null);
 
@@ -51,3 +51,4 @@ export const LoginForm = () => {
         </section>
     )
 }
+export default LoginForm;

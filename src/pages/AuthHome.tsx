@@ -1,7 +1,7 @@
 import "./auth-home.scss";
 import { Outlet } from 'react-router-dom';
 
-export const AuthHome = () => {
+ const AuthHome = () => {
   return (
     <section className='auth-home'>
       <div className="container-left"></div>
@@ -10,3 +10,4 @@ export const AuthHome = () => {
     </section>
   )
 }
+export default AuthHome;

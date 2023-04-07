@@ -1,7 +1,7 @@
 import React from 'react';
 import { Hero, Read } from "../components/index";
 
-export const HomePage = () => {
+ const HomePage = () => {
   return (
     <main>
       <Hero />
@@ -10,3 +10,5 @@ export const HomePage = () => {
 
   )
 }
+
+export default HomePage;

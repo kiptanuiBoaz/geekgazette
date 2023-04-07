@@ -1,14 +1,15 @@
-export {Footer} from "./Footer";
-export {Navbar} from "./Navbar";
-export {HomePage} from "./HomePage";
-export {FullBlogPage}  from "./FullBlogPage";
-export {EditBlog} from "./EditBlog";
-export {NewBlogForm} from "./NewBlogForm";
-export {AuthHome} from "./AuthHome";
-export {SignUpForm} from "./SignUpForm";
-export {LoginForm} from "./LoginForm";
-export {UserProfileForm} from "./UserProfileForm";
-export {About} from "./About";
+export { default as Footer } from "./Footer";
+export { default as Navbar } from "./Navbar";
+export { default as HomePage } from "./HomePage";
+export { default as FullBlogPage } from "./FullBlogPage";
+export { default as EditBlog } from "./EditBlog";
+export { default as AuthHome } from "./AuthHome";
+export { default as SignUpForm } from "./SignUpForm";
+export { default as LoginForm } from "./LoginForm";
+export { default as UserProfileForm } from "./UserProfileForm";
+export { default as About } from "./About";
+
+
 
 
 

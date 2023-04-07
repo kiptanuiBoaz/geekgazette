@@ -8,10 +8,9 @@ import { NavLink } from "react-router-dom";
 import { MiniProfile } from "../components";
 
 
-export const Navbar = () => {
-  const [deviceWidth, setDeviceWidth] = useState<number>(0);
+ const Navbar = () => {
+  const [deviceWidth, setDeviceWidth] = useState<number>(window.innerWidth);
   const [scrollPos, setScrollPos] = useState<number>(0);
-
 
 
   useEffect(() => {
@@ -73,3 +72,5 @@ export const Navbar = () => {
 
   )
 }
+
+export default Navbar;

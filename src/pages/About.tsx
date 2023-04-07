@@ -9,7 +9,8 @@ interface AboutArr {
     avatar: string | undefined;
     tag: string;
 }
-export const About = () => {
+
+ const About = () => {
     aboutArr[1].avatar = fullLogo;
     const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -46,3 +47,5 @@ export const About = () => {
         </section>
     )
 }
+
+export default About;

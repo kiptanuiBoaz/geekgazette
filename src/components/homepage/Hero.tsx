@@ -20,7 +20,7 @@ export const Hero = () => {
 
 
 
-  return displayHero && (
+  return displayHero ? (
     <div className='hero-container'>
       <hr />
       <section className='hero'>
@@ -46,5 +46,6 @@ export const Hero = () => {
         </div>
       </section>
     </div>
-  )
+  ) :
+    <div></div>
 }
