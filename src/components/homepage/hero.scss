@@ -2,11 +2,15 @@
   background-color: var(--primary-backround);
   margin: 0;
   width: 100%;
-  padding-top:30px;
+  padding-top: 30px;
   .hero {
     display: flex;
     flex-wrap: wrap;
     padding: 20px 80px;
+
+    @media only screen and (max-width: 800px) {
+      padding: 10px 30px;
+    }
 
     .hero-left {
       width: 50%;
@@ -14,23 +18,31 @@
       flex-direction: column;
       justify-content: center;
 
-      @media only screen and (max-width: 600px) {
-        width: 90%;
+      @media only screen and (max-width: 800px) {
+        width: 95%;
       }
       .slogan {
         font-size: 30px;
         font-family: Georgia, "Times New Roman", Times, serif;
+
+        @media only screen and (max-width: 800px) {
+          font-size: 25px;
+        }
       }
 
       .tagline {
         font-size: 20px;
-        span{
-          color:var(--primary-color);
-          background-color:#cad8c5;
-          width:150px;
+
+        span {
+          color: var(--primary-color);
+          background-color: #cad8c5;
+          width: 150px;
           padding: 5px 15px;
           border-radius: 20px;
           margin: 0 20px 0 10px;
+          display: inline;
+          white-space: nowrap;
+          
         }
       }
 
@@ -39,7 +51,7 @@
         border-radius: 20px;
         padding: 8px 15px;
         border: none;
-        margin:10px 20px 0 0;
+        margin: 10px 20px 0 0;
         width: 200px;
         font-size: 17px;
 
@@ -71,7 +83,7 @@
         width: 500px;
         margin-left: 30px;
 
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 800px) {
           display: none;
         }
       }

@@ -47,9 +47,15 @@
 
         &::after {
           content: "";
-          display: block;
+          position: absolute;
+          width: 100%;
+          transform: scaleX(1);
           height: 2px;
-          background-color: #4d7e3e;
+          bottom: 0;
+          left: 0;
+          background-color: #205d2e;
+          transform-origin: bottom right;
+          transition: transform 0.25s ease-out;
         }
       }
 
@@ -184,11 +190,10 @@
       margin: auto 0 auto auto;
     }
     .expand-icon {
-     margin:auto 0 auto auto;
-     &:first-child{
-      padding: auto;
-     }
-      
+      margin: auto 0 auto auto;
+      &:first-child {
+        padding: auto;
+      }
     }
   }
 }

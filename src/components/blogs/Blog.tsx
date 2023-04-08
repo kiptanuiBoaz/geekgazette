@@ -18,6 +18,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category, 
     const [brightness, setBrightness] = useState<string>("brightness(100%)");
     const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
     const [shortContent, setShortContent] = useState<string>(content.substring(0, 100) + "...");
+    const [shortTitle, setShortTitle] = useState<string>(title.length > 50 ? title : title.substring(0, 49) + ("..."))
     const formattedDate = <TimeAgo timestamp={date} />
     const navigate = useNavigate();
 
@@ -35,6 +36,16 @@ export const Blog = ({ content, title, image, avatar, username, date, category, 
             )
                 + "..."
             );
+
+            setShortTitle(title.substring(0, deviceWidth < 500
+                ? 30
+                : deviceWidth < 640
+                    ? 35
+                    : 50
+            )
+                + "..."
+            )
+
         };
 
         window.addEventListener('resize', handleResize);
@@ -58,8 +69,8 @@ export const Blog = ({ content, title, image, avatar, username, date, category, 
                     <h5 className='username'>{username}</h5>
                 </div>
 
-
-                <h2 className='title'>{title}</h2>
+                {/* */}
+                <h2 className='title'>{shortTitle}</h2>
                 <p className='short-content'>{shortContent}</p>
 
                 <div className='blog-footer' >

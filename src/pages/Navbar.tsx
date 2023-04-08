@@ -64,8 +64,6 @@ import { MiniProfile } from "../components";
           <MiniProfile scrollPos = {scrollPos} />
         </div>
 
-
-
       </nav>
 
     </>
