@@ -18,7 +18,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category, 
     const [brightness, setBrightness] = useState<string>("brightness(100%)");
     const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
     const [shortContent, setShortContent] = useState<string>(content.substring(0, 100) + "...");
-    const [shortTitle, setShortTitle] = useState<string>(title.length > 50 ? title : title.substring(0, 49) + ("..."))
+    const [shortTitle, setShortTitle] = useState<string>(title.length > 70 ? title : title.substring(0, 69) + ("..."))
     const formattedDate = <TimeAgo timestamp={date} />
     const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category, 
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [deviceWidth]);
+    }, [deviceWidth,shortContent,shortTitle]);
 
     return (
         <article

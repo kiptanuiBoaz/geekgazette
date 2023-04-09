@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 import { MiniProfile } from "../components";
 
 
- const Navbar = () => {
+const Navbar = () => {
   const [deviceWidth, setDeviceWidth] = useState<number>(window.innerWidth);
   const [scrollPos, setScrollPos] = useState<number>(0);
 
@@ -52,17 +52,24 @@ import { MiniProfile } from "../components";
           <NavLink to="/"> <img src={scrollPos > 20 ? logoWhite : logoGreen} alt="logo" /></NavLink>
         </div>
 
-        <ul className="nav-link-container">
+        <ul
+          className={deviceWidth > 640 ? "nav-link-container" : 'mobile-nav'}>
           {navListComponent}
+          {/* <li style={{ color: scrollPos < 20 ? " #6b6b6b" : "#eeeee4" }} className="mini-profile">
+            <MiniProfile scrollPos={scrollPos} />
+
+          </li> */}
+
+          <li>
+            <button className={scrollPos < 20 ? "sign-up-btn-grey" : "sign-up-btn-green"}>
+              <NavLink style={{ color: scrollPos < 20 ? "#eeeee4" : "#4d7e3e" }} to="/auth/sign-up" className="sign-up">Sign Up</NavLink>
+            </button>
+          </li>
         </ul>
 
-        {/* <button className={scrollPos < 20 ? "sign-up-btn-grey" : "sign-up-btn-green"}>
-          <NavLink style={{ color: scrollPos < 20 ? "#eeeee4" : "#4d7e3e" }} to="/auth/sign-up" className="sign-up">Sign Up</NavLink>
-        </button> */}
 
-        <div style={{ color: scrollPos < 20 ? " #6b6b6b" : "#eeeee4" }} className="mini-profile">
-          <MiniProfile scrollPos = {scrollPos} />
-        </div>
+
+
 
       </nav>
 

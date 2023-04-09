@@ -1,22 +1,39 @@
 .navbar {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   background-color: var(--primary-backround);
   padding: 5px;
   margin: -7px 0 0 -5px;
-  justify-content: center;
   position: fixed;
   width: 100%;
   z-index: 5;
 
   .logo {
-    margin: 3px 0 0 5%;
+    margin: 3px 0 0 2%;
+    justify-self: flex-start;
     img {
       width: 120px;
     }
   }
 
+  .mobile-nav {
+    position: absolute;
+    top: 30px;
+    left: 75%;
+    background-color: #205d2e;
+    list-style: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 3px;
+    a {
+      text-decoration: none;
+      color: var(--primary-backround);
+    }
+    &:last-child{
+      margin-top:10px;
+    }
+  }
   .nav-link-container {
     display: flex;
     margin-right: 15px;
@@ -26,10 +43,10 @@
     width: 80%;
     justify-content: flex-end;
     margin-top: auto;
-    margin-bottom: auto;
+   
 
     .nav-link-grey {
-      margin: -3px 10px 11px 0;
+      margin: -5px 10px 11px 0;
       display: inline-block;
       width: 40px;
       white-space: nowrap;
@@ -100,6 +117,9 @@
 
       .active-style-green {
         @extend .active-style-grey;
+        &::after {
+          background-color: var(--primary-backround);
+        }
         color: var(--primary-backround);
       }
 
@@ -114,53 +134,52 @@
         }
       }
     }
+  
   }
-
   .sign-up-btn-grey {
-    background-color: var(--primary-color);
-    border-radius: 20px;
-    padding: 8px 15px;
-    border: none;
-    margin: 10px 5% 4px 0;
+      background-color: var(--primary-color);
+      border-radius: 20px;
+      padding: 8px 15px;
+      border: none;
+      margin: 0px 5% 4px 10px;
 
-    &:hover {
-      background-color: var(--hover-color);
-    }
+      &:hover {
+        background-color: var(--hover-color);
+      }
 
-    .sign-up {
-      display: inline-block;
-      width: 100%;
-      white-space: nowrap;
-      padding: 1%;
-      padding-right: 4px;
-      color: var(--primary-backround);
-      text-decoration: none;
-      font-size: 17px;
-
-      a {
+      .sign-up {
+        display: inline-block;
+        width: 100%;
+        white-space: nowrap;
+        padding: 1%;
+        padding-right: 4px;
         color: var(--primary-backround);
-        font-size: 20px;
+        text-decoration: none;
+        font-size: 17px;
+
+        a {
+          color: var(--primary-backround);
+          font-size: 20px;
+        }
       }
     }
-  }
 
-  .sign-up-btn-green {
-    @extend .sign-up-btn-grey;
-    background-color: var(--primary-backround);
+    .sign-up-btn-green {
+      @extend .sign-up-btn-grey;
+      background-color: var(--primary-backround);
 
-    &:hover {
-      background-color: var(--secondary-backround);
-    }
+      &:hover {
+        background-color: var(--secondary-backround);
+      }
 
-    .sign-up-green {
-      @extend .sign-up;
-      color: var(--primary-color);
-      a {
+      .sign-up-green {
+        @extend .sign-up;
         color: var(--primary-color);
+        a {
+          color: var(--primary-color);
+        }
       }
     }
-  }
-
   .mini-profile {
     border: 1px solid var(--secondary-backround);
     border-radius: 20px;
