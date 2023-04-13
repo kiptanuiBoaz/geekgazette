@@ -1,18 +1,19 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, ChangeEvent } from "react";
 import logo from "../assets/navbar/logo-no-bg-green.png";
 import "./sign-up-form.scss";
 import { Link } from "react-router-dom";
 import { ValidationMsgs, TogglePwdShow } from "../components";
 import { emailRegex, pwdRegex } from "../utils/REGEX";
 import { useNavigate } from "react-router-dom";
+import { api } from "../axios/axios";
 
+const REGISTER_URL = "/register";
 
+const SignUpForm = () => {
 
-
- const SignUpForm = () => {
-  const navigate= useNavigate();
+  const navigate = useNavigate();
   const {
-    
+
     AN_AT_SYMBOL_REGEX,
     NO_SPECIAL_CHARACTERS_EXCEPT_FOR_DOT_UNDERSCORE_REGEX,
     START_WITH_A_LETTER_OR_NUMBER_AND_DOT_AND_DASH_REGEX,
@@ -36,6 +37,7 @@ import { useNavigate } from "react-router-dom";
   const [passwordFocus, setPasswordFocus] = useState<boolean>(false);
   const [passwordValid, setPasswordValid] = useState<boolean>(false);
 
+
   //email states 
   const [email, setEmail] = useState<string>("");
   const [emailFocus, setEmailFocus] = useState<boolean>(false);
@@ -50,6 +52,11 @@ import { useNavigate } from "react-router-dom";
   const [confirmPassword, setConfirmPassowrd] = useState("");
   const [validMatch, setValidMatch] = useState(false);
   const [confirmFocus, setConfirmFocus] = useState(false);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const [errMsg, setErrMsg] = useState<string>("");
+  const errRef = useRef<HTMLElement>();
 
   //focus on the email when the component loads //only runs ounce
   useEffect(() => { emailRef.current?.focus(); }, [])
@@ -86,12 +93,40 @@ import { useNavigate } from "react-router-dom";
     { variable: charactersNumValid, p: `8 to 24 characters` },
     { variable: upperAndLowerValid, p: `Uppercase and lowercase letters [A-Z,a-z]` },
     { variable: numberValid, p: `Aleast one number [0-9]` },
-    { variable: specialCharactersValid, p: `Atleast one special character [@,#.*,&,%...]`},
+    { variable: specialCharactersValid, p: `Atleast one special character [@,#.*,&,%...]` },
   ]
 
   const validMatchPasswordArray = [
     { variable: validMatch, p: " Match the first password input field" },
   ]
+
+  const handleSubmit = async () => {
+    console.log(email, password);
+
+    setLoading(true)
+
+    try {
+      const response = await api.post(REGISTER_URL, JSON.stringify({ email, password }));
+      console.log(response.data)
+      console.log(response)
+      setSuccess(true);
+      //empty input fields
+      setPassword(""); setConfirmPassowrd(""); setEmail("");
+
+    } catch (err: any) {
+      //handle errors
+      if (!err?.response) {
+        setErrMsg('No Server Response');
+        setLoading(false);
+      } else if (err.response?.status === 409) {
+        setErrMsg('Username Taken');
+      } else {
+        setErrMsg('Registration Failed');
+      }
+      errRef?.current?.focus();//for screen readers
+    }
+    setLoading(false);
+  }
 
 
   return (
@@ -129,6 +164,7 @@ import { useNavigate } from "react-router-dom";
           onChange={(e) => setConfirmPassowrd(e.target.value)}
           onFocus={() => setConfirmFocus(true)}
           onBlur={() => setConfirmFocus(false)}
+          value={confirmPassword}
           className="sign-up-password"
           type={passwordVisibility ? "text" : "password"}
           placeholder="Confirm your password"
@@ -138,8 +174,16 @@ import { useNavigate } from "react-router-dom";
         <div className="sign-up-toggle-password-visibility" onClick={() => setPasswordVisibility(!passwordVisibility)}>
           <TogglePwdShow passwordVisibility={passwordVisibility} />
         </div>
-
-        <button onClick={()=>navigate("/user/new-profile")} type="submit" className="login-button">Sign Up</button>
+        {/* () => navigate("/user/new-profile") */}
+        <button
+          onClick={(e) => {
+            handleSubmit();
+            e.preventDefault();
+          }}
+          type="submit"
+          className="login-button"
+        >{loading ? "Signing Up..." : "Sign Up"}
+        </button>
 
         {/* password validation */}
         {passwordFocus && !passwordValid && password !== "" &&

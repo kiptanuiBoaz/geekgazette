@@ -2,18 +2,21 @@ import { useState, useEffect } from "react";
 
 
 
-const getLocalValue = (key:string, initValue:any) => {
+const getLocalValue = (key:any, initValue:any) => {
     // case of SSR on nextJS
-    if (typeof window === undefined) return initValue;
-
+    if (typeof window === 'undefined') return initValue;
+  
     // if a value is already stored
-    const localValue = JSON.parse(localStorage.getItem(key)||"")
-    if (localValue) return localValue;
-
-    //result of a funciton
+    const localValue = JSON.parse(localStorage.getItem(key) || 'null');
+    if (localValue !== null) return localValue;
+  
+    // result of a function
     if (initValue instanceof Function) return initValue();
- 
-}
+  
+    // default value
+    return initValue;
+  };
+  
 
 
 const useLocalStorage = ( key:string, initValue:any) => {

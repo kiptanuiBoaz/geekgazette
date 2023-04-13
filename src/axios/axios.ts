@@ -1,13 +1,15 @@
-import axios from "axios";
 const BASE_URL = "http://localhost:3500";
+import axios, { AxiosInstance } from 'axios';
 
+export const api: AxiosInstance = axios.create({
+  baseURL: BASE_URL,
+  timeout: 5000,
+  withCredentials: true, // set withCredentials to true
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
-//set global baseurls
-export default axios.create({
-    baseURL: BASE_URL,
-    withCredentials: true,
-    
-})
 
 //interceptors to be added
 //attach jwt and retry incase of failure

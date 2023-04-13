@@ -1,13 +1,65 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef,ChangeEvent } from "react";
 import logo from "../assets/navbar/logo-no-bg-green.png";
 import "./login-form.scss";
 import { Link } from "react-router-dom";
 import { TogglePwdShow } from "../components";
+import { useNavigate, useLocation } from "react-router-dom";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { api } from "../axios/axios";
 
 
- const LoginForm = () => {
+const LoginForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
     const emailRef = useRef<HTMLInputElement>(null);
+
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    //wher the user navigated from
+    const from = location?.state?.from?.pathname || "/";
+
+    const errRef = useRef<HTMLElement>();
+
+    const [email, setEmail] = useLocalStorage("email", '');
+    const [pwd, setPwd] = useState('');
+    const [errMsg, setErrMsg] = useState('');
+    const [loading,setLoading] =useState<boolean>(false);
+    const handleSubmit = async () => {
+        console.log(email, pwd);
+        setLoading(true);   
+        try {
+            const response = await api.post(
+                "/login",
+                JSON.stringify({ email, pwd }),
+            );
+
+            console.log(response?.data)
+
+            const accessToken = response?.data?.accessToken;
+            const roles = response?.data?.roles;
+
+            //send to global context
+
+            //navigate user to the route they're from
+            // navigate(from, { replace: true });
+        } catch (err: any) {
+
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 401) {
+                setErrMsg('Password is incorrect');
+            } else {
+                setErrMsg('Login Failed');
+            }
+            //focus for screen readers
+            errRef?.current?.focus();
+
+            setPwd(""); setEmail("");
+        }
+        setLoading(true);
+    }
 
     //focus on the user when the component loads 
     useEffect(() => {
@@ -22,6 +74,7 @@ import { TogglePwdShow } from "../components";
 
             <form className="login-form">
                 <input
+                    onChange={(e) => setEmail(e.target.value)}
                     className="email"
                     type="text"
                     placeholder="Enter email address"
@@ -31,6 +84,7 @@ import { TogglePwdShow } from "../components";
 
                 <br />
                 <input
+                    onChange={(e) => setPwd(e.target.value)}
                     className="password"
                     type={passwordVisibility ? "text" : "password"}
                     placeholder="Enter your password"
@@ -41,7 +95,7 @@ import { TogglePwdShow } from "../components";
                     <TogglePwdShow passwordVisibility={passwordVisibility} />
                 </div>
 
-                <button type="submit" className="login-button">Sign In</button>
+                <button onClick={(e)=>{handleSubmit(); e.preventDefault();}} type="submit" className="login-button">{loading ? "Signing In...":"Sign In"}</button>
 
             </form>
             <div className="sign-up-link">
