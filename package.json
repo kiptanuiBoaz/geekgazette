@@ -9,12 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
+    "@types/redux": "^3.6.0",
     "date-fns": "^2.29.3",
     "firebase": "^9.19.1",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.3",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "sass": "^1.59.3",
     "slick-carousel": "^1.8.1",

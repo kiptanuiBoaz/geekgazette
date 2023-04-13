@@ -5,12 +5,17 @@
   margin-left: 50px;
   border-radius: 4px;
   width: 90%;
-  height: 160px;
+
   background-color: var(--primary-backround);
+  height: 130px;
+
+  @media only screen and (max-width: 1315px) {
+    height: 160px;
+  }
 
   @media only screen and (max-width: 940px) {
     // margin-left: 10px;
-    margin:20px;
+    margin: 20px;
   }
 
   @media only screen and (max-width: 800px) {
@@ -25,13 +30,13 @@
     .blog-header {
       display: flex;
       flex-direction: row;
-      
+
       .username {
         font-size: 15px;
         padding: 0px;
         color: var(--accent-color);
         margin-bottom: 5px;
-        margin-top:13px;
+        margin-top: 13px;
       }
 
       .avatar {
@@ -68,7 +73,7 @@
     .short-content {
       color: #292a29;
       margin: 0px;
-      overflow:visible;
+      overflow: visible;
 
       @media only screen and (max-width: 800px) {
         font-size: 13px;
@@ -88,7 +93,6 @@
 
       @media only screen and (max-width: 800px) {
         font-size: 13px;
-      
       }
 
       .category {
@@ -106,17 +110,20 @@
       }
 
       .date {
-        padding: 2px 2px  2px 0;
+        padding: 2px 2px 2px 0;
       }
     }
-    
   }
 
   .blog-right {
     .blog-img {
       width: 300px;
-      height: 160px;
       object-fit: cover;
+      height: 130px;
+
+      @media only screen and (max-width: 1315px) {
+        height: 160px;
+      }
 
       @media only screen and (max-width: 800px) {
         width: 250px;
