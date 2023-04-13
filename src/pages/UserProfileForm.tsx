@@ -2,12 +2,39 @@ import React, { useRef, useEffect, useState } from 'react';
 import "./user-profile-form.scss";
 import { FiEdit } from "react-icons/fi";
 import heroImage from "../assets/hero/illustrator.png";
+import { storage } from "../firebase/firebase";
+import { ref, uploadBytes, getDownloadURL, } from "firebase/storage";
+import { v4 } from "uuid";
 
- const UserProfileForm = () => {
+const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [avatarUrl, setAvatarUrl] = useState<string|null>(null);
+
     const fnameRef = useRef<HTMLInputElement>(null);
-    useEffect(() => { fnameRef.current?.focus(); }, [])
+
+    useEffect(() => { fnameRef.current?.focus(); }, []);
+
+    useEffect(()=>{
+        const uploadImage = () => {
+            if (image == null) return;
+            const imageRef = ref(storage, `/userProfiles/${image.name + v4()} `);
+            uploadBytes(imageRef, image).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    setAvatarUrl(url);
+                });
+                alert("image uploaded")
+            })
+        };
+        uploadImage();
+    },[image]);
+
+
+  
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files && event.target.files[0];
+        setImage(file);
+       
+    };
 
     console.log(image);
     return (
@@ -18,7 +45,7 @@ import heroImage from "../assets/hero/illustrator.png";
 
                     <img
                         className='file-upload-image'
-                        src={previewUrl ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}
+                        src={avatarUrl ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}
                     />
                     <span className='prompt'> <FiEdit /> {' '}{" "}Upload Image </span>
                 </label>
@@ -28,15 +55,7 @@ import heroImage from "../assets/hero/illustrator.png";
                     className='image-input'
                     type="file"
                     accept="image/*"
-                    onChange={
-                        (e: React.ChangeEvent<HTMLInputElement>) => {
-                            const selectedFile = e.target.files?.[0];
-                            if (selectedFile) {
-                                setImage(selectedFile);
-                                setPreviewUrl( URL.createObjectURL(selectedFile));
-                            }
-                        }
-                    }
+                    onChange={handleImageChange }
 
                 />
                 <br />

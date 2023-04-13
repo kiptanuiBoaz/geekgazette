@@ -1,37 +1,42 @@
-import React, { useState,useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "./new-blog-form.scss";
 import { RiImageAddFill } from "react-icons/ri";
+import { storage } from "../firebase/firebase";
+import { ref,uploadBytes,getDownloadURL, } from "firebase/storage";
+import { v4 } from "uuid";
 
 
-
- const NewBlogForm: React.FC = () => {
+const NewBlogForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [image, setImage] = useState<File | null>(null);
-
-  const titleRef= useRef<HTMLInputElement>(null);
+  const [imageUrl,setImageUrl] = useState<string>("");
+  
+  const titleRef = useRef<HTMLInputElement>(null);
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
   };
 
-  const handleContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(event.target.value);
-  };
-
-  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(event.target.value);
-  };
-
+  const uploadImage = () => {
+    if (image == null) return;
+    const imageRef = ref(storage, `/blogImgs/${image.name + v4()} `);
+    uploadBytes(imageRef,image).then((snapshot)=>{
+      getDownloadURL(snapshot.ref).then((url)=>{
+        setImageUrl(url);
+      });
+      alert("image uploaded")
+    })
+  }
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     setImage(file);
   };
 
   useEffect(() => { titleRef.current?.focus(); }, [])
-  
-  
+
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -56,7 +61,7 @@ import { RiImageAddFill } from "react-icons/ri";
     <form className='blog-form' onSubmit={handleSubmit}>
 
       <input
-      ref= {titleRef}
+        ref={titleRef}
         className='title-input'
         type="text"
         value={title}
@@ -70,13 +75,12 @@ import { RiImageAddFill } from "react-icons/ri";
         className='content'
         placeholder='Content'
         value={content}
-        onChange={handleContentChange}
         rows={6} cols={50}
         required
       />
       <br />
 
-      <select className='category-select' value={category} onChange={handleCategoryChange} required>
+      <select className='category-select' value={category} required>
         <option value="">Select a category</option>
         <option value="technology">Technology</option>
         <option value="food">Food</option>
@@ -97,7 +101,9 @@ import { RiImageAddFill } from "react-icons/ri";
         required
       />
       <br />
-      <button onClick={()=>console.log(content)} className='submit-button' type="submit">Submit</button>
+      <img src={imageUrl} />
+      <button onClick={uploadImage} className='submit-button' type="submit">Submit</button>
+     
     </form>
   );
 };
