@@ -5,16 +5,31 @@ import heroImage from "../assets/hero/illustrator.png";
 import { storage } from "../firebase/firebase";
 import { ref, uploadBytes, getDownloadURL, } from "firebase/storage";
 import { v4 } from "uuid";
+import { api } from "../axios/axios";
+import { useNavigate, useLocation } from 'react-router-dom';
+
+const USER_URL = "/user"
+const email = "kserem88@gmail.com";
+const roles = 2001;
 
 const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
-    const [avatarUrl, setAvatarUrl] = useState<string|null>(null);
+    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [formData, setFormData] = useState({});
+    const [loading, setLoading] = useState<boolean>(false);
+    const [errMsg, setErrMsg] = useState<string | null>(null);
+
+    const userData = { ...formData, avatarUrl,email,roles };
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || "/";
 
     const fnameRef = useRef<HTMLInputElement>(null);
+    const errRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => { fnameRef.current?.focus(); }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         const uploadImage = () => {
             if (image == null) return;
             const imageRef = ref(storage, `/userProfiles/${image.name + v4()} `);
@@ -26,15 +41,52 @@ const UserProfileForm = () => {
             })
         };
         uploadImage();
-    },[image]);
+    }, [image]);
 
-
-  
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files && event.target.files[0];
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files && e.target.files[0];
         setImage(file);
-       
     };
+
+    const handleDataChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target;
+
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value,
+        }));
+    }
+
+    const handleSubmit = async () => {
+        console.log({ userData });
+        setLoading(true);
+        try {
+            const response = await api.post(USER_URL, JSON.stringify({ userData }),);
+            if (response.status === 200) navigate(from, { replace: true });
+
+            console.log(response)
+
+            //send to global context
+
+            //navigate user to the route they're from
+
+        } catch (err: any) {
+
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 401) {
+                setErrMsg('Password is incorrect');
+            } else {
+                setErrMsg('Login Failed');
+            }
+            //focus for screen readers
+            errRef?.current?.focus();
+
+        }
+        setLoading(false);
+    }
 
     console.log(image);
     return (
@@ -55,19 +107,19 @@ const UserProfileForm = () => {
                     className='image-input'
                     type="file"
                     accept="image/*"
-                    onChange={handleImageChange }
+                    onChange={handleImageChange}
 
                 />
                 <br />
 
-                <input ref={fnameRef} className='fname' type='text' placeholder="First Name" />
+                <input ref={fnameRef} className='fname' onChange={handleDataChange} name='fname' type='text' placeholder="First Name" />
                 <input className='lname' type='text' placeholder="Last Name" />
                 <br />
 
-                <input className='headline' placeholder='Headline e.g Software Developer' />
+                <input className='headline' name='headTag' onChange={handleDataChange} placeholder='Headline e.g Software Developer' />
                 <br />
 
-                <select className='gender-select' required>
+                <select className='gender-select' name='gender' onChange={handleDataChange} required>
                     <option value="">Selcet your gender</option>
                     <option value="male">Female</option>
                     <option value="female">Male</option>
@@ -77,11 +129,19 @@ const UserProfileForm = () => {
                 <div className="dob-div">
                     <label className='dob-label' htmlFor="dob" > Date of birth:</label>
                     {/* <BsFillCalendar2PlusFill/> */}
-                    <input className='dob-input' id="dob" type='date' />
+                    <input name='dob' onChange={handleDataChange} className='dob-input' id="dob" type='date' />
 
                 </div>
 
-                <button className='submit-button' type="submit">Submit</button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        handleSubmit();
+                    }}
+                    className='submit-button'
+                >
+                    {loading ? "Submitting..." : "Submit"}
+                </button>
             </form>
 
             <img className='illustrator-img' src={heroImage} alt="illustrator" />

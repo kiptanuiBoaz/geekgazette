@@ -6,6 +6,9 @@ import { TogglePwdShow } from "../components";
 import { useNavigate, useLocation } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { api } from "../axios/axios";
+import { useDispatch } from "react-redux";
+
+const LOGIN_URL = "/login";
 
 
 const LoginForm = () => {
@@ -24,16 +27,18 @@ const LoginForm = () => {
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [loading,setLoading] =useState<boolean>(false);
+
     const handleSubmit = async () => {
         console.log(email, pwd);
         setLoading(true);   
         try {
             const response = await api.post(
-                "/login",
+                LOGIN_URL,
                 JSON.stringify({ email, pwd }),
             );
+            if (response.status === 200) navigate("/user/new-profile");
 
-            console.log(response?.data)
+            console.log(response)
 
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
@@ -58,7 +63,7 @@ const LoginForm = () => {
 
             setPwd(""); setEmail("");
         }
-        setLoading(true);
+        setLoading(false);
     }
 
     //focus on the user when the component loads 
