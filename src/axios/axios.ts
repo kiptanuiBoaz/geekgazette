@@ -13,13 +13,13 @@ export const api: AxiosInstance = axios.create({
 });
 
 
-//interceptors to be added
-//attach jwt and retry incase of failure
-// export const axiosPrivate = axios.create({
-//     baseURL: BASE_URL,
-//     withCredentials: true,
-//     headers:{
-//         "Content-Type":"Application/json",
-//         withCredentials: true,
-//     }  
-// })
+// interceptors to be added
+// attach jwt and retry incase of failure
+export const privateApi = axios.create({
+    baseURL: BASE_URL,
+    withCredentials: true,
+    headers:{
+        "Content-Type":"Application/json",
+        withCredentials: true,
+    }  
+})
