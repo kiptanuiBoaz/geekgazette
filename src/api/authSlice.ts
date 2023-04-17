@@ -7,6 +7,7 @@ const initialState = {
     lname: "",
     accessToken: "",
     avatarUrl: "",
+    roles:{}
   }
 };
 
@@ -20,7 +21,7 @@ const authSlice = createSlice({
       state.user.fname = fname || state.user.fname;
       state.user.lname = lname || state.user.lname;
       state.user.accessToken = accessToken || state.user.accessToken;
-      state.auth.avatarUrl = avatarUrl || state.auth.avatarUrl;
+      state.user.avatarUrl = avatarUrl || state.user.avatarUrl;
     }
   }
 });

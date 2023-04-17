@@ -1,23 +1,19 @@
-import axios from "../axios/axios";
+import { api } from "../axios/axios";
+import { useDispatch } from 'react-redux';
+import { updateAuth } from '../api/authSlice';
 //import redux auth state
 
 const useRefreshToken = () => {
-    // const { setAuth } = useAuth();
+    const dispatch = useDispatch();
 
     const refresh = async () => {
-        const response = await axios.get<{ roles: string[], accessToken: string }>("/refresh", {
+        const response = await api.get<{ roles: any, accessToken: string }>("/refresh", {
             withCredentials: true,
         });
 
-        setAuth((prev:any) => {
-            console.log(JSON.stringify(prev));
-            console.log(response.data.accessToken);
-            return ({
-                ...prev,
-                roles: response.data.roles,
-                accessToken: response.data.accessToken
-            })
-        })
+        dispatch(updateAuth({ accessToken: response.data.accessToken }))
+
+        console.log(response.data.accessToken);
 
         return response.data.accessToken;
     };

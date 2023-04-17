@@ -6,6 +6,8 @@ import { ValidationMsgs, TogglePwdShow } from "../components";
 import { emailRegex, pwdRegex } from "../utils/REGEX";
 import { useNavigate } from "react-router-dom";
 import { api } from "../axios/axios";
+import { useDispatch } from "react-redux";
+import { updateAuth } from "../api/authSlice";
 
 const REGISTER_URL = "/register";
 
@@ -56,7 +58,9 @@ const SignUpForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [errMsg, setErrMsg] = useState<string>("");
+
   const errRef = useRef<HTMLElement>();
+  const dispatch = useDispatch();
 
   //focus on the email when the component loads //only runs ounce
   useEffect(() => { emailRef.current?.focus(); }, [])
@@ -107,12 +111,13 @@ const SignUpForm = () => {
 
     try {
       const response = await api.post(REGISTER_URL, JSON.stringify({ email, password }));
-      console.log(response.data)
       console.log(response)
-      setSuccess(true);
-      //empty input fields
-      setPassword(""); setConfirmPassowrd(""); setEmail("");
-      if (response.status === 200) navigate("auth/user/new-profile");
+
+      if (response.status === 201) {
+        setSuccess(true);
+        dispatch(updateAuth({ email }));
+        navigate("/auth/new-profile");
+      }
 
     } catch (err: any) {
       //handle errors

@@ -1,16 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
 import "./user-profile-form.scss";
 import { FiEdit } from "react-icons/fi";
-import heroImage from "../assets/hero/illustrator.png";
 import { storage } from "../firebase/firebase";
 import { ref, uploadBytes, getDownloadURL, } from "firebase/storage";
 import { v4 } from "uuid";
-import { api } from "../axios/axios";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { updateAuth } from '../api/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import usePrivateApi from "../hooks/usePrivateApi";
 
 const USER_URL = "/user"
-const email = "kserem88@gmail.com";
-const roles = 2001;
 
 const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
@@ -19,13 +18,19 @@ const UserProfileForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [errMsg, setErrMsg] = useState<string | null>(null);
 
-    const userData = { ...formData, avatarUrl,email,roles };
+
     const navigate = useNavigate();
     const location = useLocation();
+    const privateApi = usePrivateApi();
+
     const from = location?.state?.from?.pathname || "/";
+    const email = useSelector((state: { auth: { email: string } }) => state.auth.email);
+    const userData = { ...formData, avatarUrl, email };
 
     const fnameRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
+
+    const dispatch = useDispatch();
 
     useEffect(() => { fnameRef.current?.focus(); }, []);
 
@@ -56,19 +61,17 @@ const UserProfileForm = () => {
             [name]: value,
         }));
     }
-
+ console.log({ email });
     const handleSubmit = async () => {
-        console.log({ userData });
+       
         setLoading(true);
         try {
-            const response = await api.post(USER_URL, JSON.stringify({ userData }),);
-            if (response.status === 200) navigate(from, { replace: true });
-
-            console.log(response)
-
-            //send to global context
-
-            //navigate user to the route they're from
+            const res = await privateApi.put(USER_URL, JSON.stringify({ userData }),);
+            if (res.status === 200) {
+                dispatch(updateAuth({ ...res.data }))
+                navigate(from, { replace: true });
+            }
+            console.log(res);
 
         } catch (err: any) {
 
@@ -90,61 +93,61 @@ const UserProfileForm = () => {
 
     console.log(image);
     return (
-    
-            <form className='profile-form'>
-                <p className='instruction'>Please fill in your info before proceeding</p>
-                <label htmlFor="file-upload" className='custom-file-upload'>
 
-                    <img
-                        className='file-upload-image'
-                        src={avatarUrl ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}
-                    />
-                    <span className='prompt'> <FiEdit /> {' '}{" "}Upload Image </span>
-                </label>
+        <form className='profile-form'>
+            <p className='instruction'>Please fill in your info before proceeding</p>
+            <label htmlFor="file-upload" className='custom-file-upload'>
 
-                <input
-                    id="file-upload"
-                    className='image-input'
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-
+                <img
+                    className='file-upload-image'
+                    src={avatarUrl ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}
                 />
-                <br />
+                <span className='prompt'> <FiEdit /> {' '}{" "}Upload Image </span>
+            </label>
 
-                <input ref={fnameRef} className='fname' onChange={handleDataChange} name='fname' type='text' placeholder="First Name" />
-                <input className='lname' type='text' placeholder="Last Name" />
-                <br />
+            <input
+                id="file-upload"
+                className='image-input'
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
 
-                <input className='headline' name='headTag' onChange={handleDataChange} placeholder='Headline e.g Software Developer' />
-                <br />
+            />
+            <br />
 
-                <select className='gender-select' name='gender' onChange={handleDataChange} required>
-                    <option value="">Selcet your gender</option>
-                    <option value="male">Female</option>
-                    <option value="female">Male</option>
-                    <option value="">Rather not say</option>
-                </select>
+            <input ref={fnameRef} className='fname' onChange={handleDataChange} name='fname' type='text' placeholder="First Name" />
+            <input className='lname' type='text' placeholder="Last Name" />
+            <br />
 
-                <div className="dob-div">
-                    <label className='dob-label' htmlFor="dob" > Date of birth:</label>
-                    {/* <BsFillCalendar2PlusFill/> */}
-                    <input name='dob' onChange={handleDataChange} className='dob-input' id="dob" type='date' />
+            <input className='headline' name='headTag' onChange={handleDataChange} placeholder='Headline e.g Software Developer' />
+            <br />
 
-                </div>
+            <select className='gender-select' name='gender' onChange={handleDataChange} required>
+                <option value="">Selcet your gender</option>
+                <option value="male">Female</option>
+                <option value="female">Male</option>
+                <option value="">Rather not say</option>
+            </select>
 
-                <button
-                    onClick={(e) => {
-                        e.preventDefault();
-                        handleSubmit();
-                    }}
-                    className='submit-button'
-                >
-                    {loading ? "Submitting..." : "Submit"}
-                </button>
-            </form>
+            <div className="dob-div">
+                <label className='dob-label' htmlFor="dob" > Date of birth:</label>
+                {/* <BsFillCalendar2PlusFill/> */}
+                <input name='dob' onChange={handleDataChange} className='dob-input' id="dob" type='date' />
 
-     
+            </div>
+
+            <button
+                onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                }}
+                className='submit-button'
+            >
+                {loading ? "Submitting..." : "Submit"}
+            </button>
+        </form>
+
+
     )
 }
 

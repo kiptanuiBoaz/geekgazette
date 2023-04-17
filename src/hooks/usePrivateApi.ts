@@ -1,19 +1,18 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, {  AxiosResponse } from "axios";
 import { useEffect } from "react";
 import useRefreshToken from "./useRefreshToken";
-// import redux auth state
+import { useSelector } from 'react-redux';
+import { privateApi } from "../axios/axios";
 
-interface InternalAxiosRequestConfig<T> extends AxiosRequestConfig<T> {
-    sent?: boolean;
-}
+
+
 
 const usePrivateApi = () => {
     const refresh = useRefreshToken();
-    //   acces selectors from reducx
-    const auth = {};
+    const auth = useSelector((state:any)=>state.auth)
 
     useEffect(() => {
-        const requestIntercept = axios.interceptors.request.use(
+        const requestIntercept = privateApi.interceptors.request.use(
             (config: any) => {
                 if (!config?.headers["Authorization"]) {
                     config.headers["Authorization"] = `Bearer ${auth?.accessToken}`;
@@ -23,7 +22,7 @@ const usePrivateApi = () => {
             (error: any) => Promise.reject(error)
         );
 
-        const responseIntercept = axios.interceptors.response.use(
+        const responseIntercept = privateApi.interceptors.response.use(
             (response: AxiosResponse) => response,
             async (error: any) => {
                 const prevRequest = error?.config;
@@ -31,19 +30,19 @@ const usePrivateApi = () => {
                     prevRequest.sent = true;
                     const newAccessToken = await refresh();
                     prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-                    return axios(prevRequest);
+                    return privateApi(prevRequest);
                 }
                 return Promise.reject(error);
             }
         );
 
         return () => {
-            axios.interceptors.response.eject(responseIntercept);
-            axios.interceptors.request.eject(requestIntercept);
+            privateApi.interceptors.response.eject(responseIntercept);
+            privateApi.interceptors.request.eject(requestIntercept);
         };
     }, [auth, refresh]);
 
-    return axios;
+    return privateApi;
 };
 
 export default usePrivateApi;

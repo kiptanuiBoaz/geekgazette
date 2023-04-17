@@ -1,12 +1,20 @@
-import {api} from "../axios/axios";
-// import redux auth state 
+import { api } from "../axios/axios";
+import { updateAuth } from '../api/authSlice';
+import { useDispatch } from "react-redux";
 
 
 const useLogout = (): (() => void) => {
-    //update auth state to empty
+    const dispatch = useDispatch();
 
     const logout = async (): Promise<void> => {
-        // empty out the current auth state
+        dispatch(updateAuth({
+            email: "",
+            fname: "",
+            lname: "",
+            accessToken: "",
+            avatarUrl: "",
+            roles:{}
+        }))
 
         try {
             const response = await api.get("/logout", {
