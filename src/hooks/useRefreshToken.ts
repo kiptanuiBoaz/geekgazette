@@ -1,4 +1,4 @@
-import axios from "../api/axios";
+import axios from "../axios/axios";
 //import redux auth state
 
 const useRefreshToken = () => {
