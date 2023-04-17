@@ -90,7 +90,7 @@ const UserProfileForm = () => {
 
     console.log(image);
     return (
-        <section className='profile-form-container'>
+    
             <form className='profile-form'>
                 <p className='instruction'>Please fill in your info before proceeding</p>
                 <label htmlFor="file-upload" className='custom-file-upload'>
@@ -144,8 +144,7 @@ const UserProfileForm = () => {
                 </button>
             </form>
 
-            <img className='illustrator-img' src={heroImage} alt="illustrator" />
-        </section>
+     
     )
 }
 

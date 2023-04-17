@@ -1,102 +1,98 @@
 @import "./new-blog-form.scss";
 
-.profile-form-container {
-  align-items: center;
+.profile-form {
+  @extend .blog-form;
+  border-radius: 6px;
+  width: 420px;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-backround);
-  padding: 0 10%;
-  margin-top: 60px;
-  .profile-form {
-    @extend .blog-form;
-    border-radius: 6px;
-    width: 420px;
-    background-color: #fff;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+
+  .instruction {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .custom-file-upload {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);
+    // width: 397px;
+    flex-direction: column;
+    background-color: #fff;
 
-    .instruction{
-      color: var(--primary-color);
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .custom-file-upload {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      // width: 397px;
-      flex-direction: column;
+    &:hover {
       background-color: #fff;
+      color: var(--primary-color);
+    }
+    .file-upload-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
 
       &:hover {
-        background-color: #fff;
-        color:var(--primary-color)
-      }
-      .file-upload-image {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-
-        &:hover {
-          filter: brightness(0.8);
-        }
-      }
-
-      .prompt {
-        text-align: center;
+        filter: brightness(0.8);
       }
     }
 
-    .fname {
-      @extend .title-input;
-      width: 360px;
-    }
-    .lname {
-      @extend .fname;
-    }
-    .headline {
-      @extend .fname;
-      margin-top: -15px;
-    }
-    .dob-div {
-      width: 380px;
-      color: var(--accent-backround);
-
-      .dob-label {
-        width: 150px;
-        margin-right: 10px;
-        font-size: 18px;
-        padding-left: 10px;
-        margin-right: 25px;
-      }
-      .dob-input {
-        color: var(--accent-backround);
-        @extend .category-select;
-        width: 225px;
-        margin-left: 20;
-      }
-    }
-
-    input[type="date"] {
-      visibility: none;
-    }
-    .gender-select {
-      @extend .category-select;
-      width: 380px;
-      margin-top: -15px;
+    .prompt {
+      text-align: center;
     }
   }
 
-  .illustrator-img {
-    width: 500px;
-    @media only screen and (max-width: 950px) {
-      display: none;
+  .fname {
+    @extend .title-input;
+    width: 360px;
+  }
+  .lname {
+    @extend .fname;
+  }
+  .headline {
+    @extend .fname;
+    margin-top: -15px;
+  }
+  .dob-div {
+    width: 380px;
+    color: var(--accent-backround);
+
+    .dob-label {
+      width: 150px;
+      margin-right: 10px;
+      font-size: 18px;
+      padding-left: 10px;
+      margin-right: 25px;
     }
+    .dob-input {
+      color: var(--accent-backround);
+      @extend .category-select;
+      width: 225px;
+      margin-left: 20;
+    }
+  }
+
+  input[type="date"] {
+    visibility: none;
+  }
+  .gender-select {
+    @extend .category-select;
+    width: 380px;
+    margin-top: -15px;
+  }
+}
+
+.illustrator-img {
+  width: 500px;
+  @media only screen and (max-width: 950px) {
+    display: none;
   }
 }

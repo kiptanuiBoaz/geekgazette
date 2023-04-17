@@ -36,7 +36,7 @@ const LoginForm = () => {
                 LOGIN_URL,
                 JSON.stringify({ email, pwd }),
             );
-            if (response.status === 200) navigate("/user/new-profile");
+           
 
             console.log(response)
 
@@ -46,7 +46,7 @@ const LoginForm = () => {
             //send to global context
 
             //navigate user to the route they're from
-            // navigate(from, { replace: true });
+            navigate(from, { replace: true });
         } catch (err: any) {
 
             if (!err?.response) {

@@ -112,6 +112,7 @@ const SignUpForm = () => {
       setSuccess(true);
       //empty input fields
       setPassword(""); setConfirmPassowrd(""); setEmail("");
+      if (response.status === 200) navigate("auth/user/new-profile");
 
     } catch (err: any) {
       //handle errors

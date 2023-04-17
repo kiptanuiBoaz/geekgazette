@@ -26,13 +26,14 @@ export const App = () => {
             <Route path=":postId" element={<FullBlogPage />} />
             <Route path="edit/:blogId" element={<EditBlog />} />
           </Route>
-          <Route path="user/new-profile" element={<UserProfileForm />} />
+        
           <Route path="about" element={<About />} />
         </Route>
 
         <Route path="auth" element={<AuthHome />}>
           <Route path="sign-in" element={<LoginForm />} />
           <Route path="sign-up" element={<SignUpForm />} />
+          <Route path="new-profile" element={<UserProfileForm />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
