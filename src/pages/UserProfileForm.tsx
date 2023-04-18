@@ -9,7 +9,7 @@ import { updateAuth } from '../api/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import usePrivateApi from "../hooks/usePrivateApi";
 
-const USER_URL = "/user"
+const USER_URL = "/users"
 
 const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
@@ -24,7 +24,7 @@ const UserProfileForm = () => {
     const privateApi = usePrivateApi();
 
     const from = location?.state?.from?.pathname || "/";
-    const email = useSelector((state: { auth: { email: string } }) => state.auth.email);
+    const email = useSelector((state: { auth: { user: { email: string } } }) => state.auth.user.email);
     const userData = { ...formData, avatarUrl, email };
 
     const fnameRef = useRef<HTMLInputElement>(null);
@@ -61,12 +61,12 @@ const UserProfileForm = () => {
             [name]: value,
         }));
     }
- console.log({ email });
+    console.log(userData);
     const handleSubmit = async () => {
-       
+
         setLoading(true);
         try {
-            const res = await privateApi.put(USER_URL, JSON.stringify({ userData }),);
+            const res = await privateApi.put(USER_URL, JSON.stringify({...userData }),);
             if (res.status === 200) {
                 dispatch(updateAuth({ ...res.data }))
                 navigate(from, { replace: true });
@@ -91,7 +91,7 @@ const UserProfileForm = () => {
         setLoading(false);
     }
 
-    console.log(image);
+    console.log(email);
     return (
 
         <form className='profile-form'>
@@ -116,7 +116,7 @@ const UserProfileForm = () => {
             <br />
 
             <input ref={fnameRef} className='fname' onChange={handleDataChange} name='fname' type='text' placeholder="First Name" />
-            <input className='lname' type='text' placeholder="Last Name" />
+            <input className='lname' name='lname' type='text' onChange={handleDataChange} placeholder="Last Name" />
             <br />
 
             <input className='headline' name='headTag' onChange={handleDataChange} placeholder='Headline e.g Software Developer' />
@@ -124,8 +124,8 @@ const UserProfileForm = () => {
 
             <select className='gender-select' name='gender' onChange={handleDataChange} required>
                 <option value="">Selcet your gender</option>
-                <option value="male">Female</option>
-                <option value="female">Male</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
                 <option value="">Rather not say</option>
             </select>
 

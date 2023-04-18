@@ -10,6 +10,7 @@ const About = lazy(() => import ("./pages/About"));
 const SignUpForm = lazy(() => import ("./pages/SignUpForm"));
 const UserProfileForm = lazy(() => import ("./pages/UserProfileForm"));
 const AuthHome = lazy(() => import ("./pages/AuthHome"));
+const UserProfileEditPage = lazy(() => import ("./pages/UserProfileEditPage"));
 
 
 
@@ -26,6 +27,7 @@ export const App = () => {
             <Route path=":postId" element={<FullBlogPage />} />
             <Route path="edit/:blogId" element={<EditBlog />} />
           </Route>
+          <Route path="edit/:username" element={<UserProfileEditPage />}/>
         
           <Route path="about" element={<About />} />
         </Route>

@@ -5,8 +5,6 @@ import { useSelector } from 'react-redux';
 import { privateApi } from "../axios/axios";
 
 
-
-
 const usePrivateApi = () => {
     const refresh = useRefreshToken();
     const auth = useSelector((state:any)=>state.auth)
@@ -15,7 +13,7 @@ const usePrivateApi = () => {
         const requestIntercept = privateApi.interceptors.request.use(
             (config: any) => {
                 if (!config?.headers["Authorization"]) {
-                    config.headers["Authorization"] = `Bearer ${auth?.accessToken}`;
+                    config.headers["Authorization"] = `Bearer ${auth?.user.accessToken}`;
                 }
                 return config;
             },

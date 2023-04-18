@@ -13,7 +13,9 @@ const useLogout = (): (() => void) => {
             lname: "",
             accessToken: "",
             avatarUrl: "",
-            roles:{}
+            dob:"",
+            headTag: "",
+            roles:{User:2000}
         }))
 
         try {

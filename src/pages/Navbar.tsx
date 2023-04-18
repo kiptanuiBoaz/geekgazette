@@ -6,12 +6,13 @@ import { navList } from "../utils/navItems";
 import { navListTypes } from "../types";
 import { NavLink } from "react-router-dom";
 import { MiniProfile } from "../components";
+import { useSelector } from "react-redux";
 
 
 const Navbar = () => {
   const [deviceWidth, setDeviceWidth] = useState<number>(window.innerWidth);
   const [scrollPos, setScrollPos] = useState<number>(0);
-
+  const user = useSelector((state: any) => state.auth);
 
   useEffect(() => {
     const handleEvent = () => {
@@ -55,16 +56,27 @@ const Navbar = () => {
         <ul
           className={deviceWidth > 640 ? "nav-link-container" : 'mobile-nav'}>
           {navListComponent}
-          {/* <li style={{ color: scrollPos < 20 ? " #6b6b6b" : "#eeeee4" }} className="mini-profile">
-            <MiniProfile scrollPos={scrollPos} />
 
-          </li> */}
+          {user.email !=="" ?
+            <li style={{ color: scrollPos < 20 ? " #6b6b6b" : "#eeeee4" }} className="mini-profile">
+              <MiniProfile  scrollPos={scrollPos} />
+            </li>
+            :
 
-          <li>
-            <button className={scrollPos < 20 ? "sign-up-btn-grey" : "sign-up-btn-green"}>
-              <NavLink style={{ color: scrollPos < 20 ? "#eeeee4" : "#4d7e3e" }} to="/auth/sign-up" className="sign-up">Sign Up</NavLink>
-            </button>
-          </li>
+            <>
+              <li className={scrollPos < 20 ? "nav-link-grey" : "nav-link-green"}>
+                <NavLink to="auth/sign-in" className={({ isActive }) => isActive ? scrollPos < 20 ? "active-style-grey" : "active-style-green" : undefined}
+                >
+                  Sign In
+                </NavLink>
+              </li>
+              <li>
+                <button className={scrollPos < 20 ? "sign-up-btn-grey" : "sign-up-btn-green"}>
+                  <NavLink style={{ color: scrollPos < 20 ? "#eeeee4" : "#4d7e3e" }} to="/auth/sign-up" className="sign-up">Sign Up</NavLink>
+                </button>
+              </li>
+            </>
+          }
         </ul>
 
 

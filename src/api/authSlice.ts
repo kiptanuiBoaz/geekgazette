@@ -5,9 +5,11 @@ const initialState = {
     email: "",
     fname: "",
     lname: "",
+    headTag:"",
+    dob:"",
     accessToken: "",
-    avatarUrl: "",
-    roles:{}
+    avatarUrl: null,
+    roles:{User:2000}
   }
 };
 
@@ -16,7 +18,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     updateAuth: (state, action) => {
-      const { email, fname, lname, accessToken, avatarUrl } = action.payload;
+      const { email, fname, lname, accessToken, avatarUrl,dob,headTag,roles } = action.payload;
+      state.user.dob = dob || state.user.dob;
+      state.user.headTag = headTag || state.user.headTag;
+      state.user.roles = roles || state.user.roles;
       state.user.email = email || state.user.email;
       state.user.fname = fname || state.user.fname;
       state.user.lname = lname || state.user.lname;

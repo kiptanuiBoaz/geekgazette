@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { updateAuth } from "../api/authSlice";
 
 const REGISTER_URL = "/register";
+const LOGIN_URL = "/login";
 
 const SignUpForm = () => {
 
@@ -115,8 +116,20 @@ const SignUpForm = () => {
 
       if (response.status === 201) {
         setSuccess(true);
-        dispatch(updateAuth({ email }));
-        navigate("/auth/new-profile");
+
+        const response = await api.post(
+          LOGIN_URL,
+          JSON.stringify({ email, pwd: password }),
+        );
+
+        const { accessToken, roles } = response?.data;
+
+        if (response.status === 200) {
+          dispatch(updateAuth({ email, accessToken, roles, }));
+          console.log(response)
+          navigate("/auth/new-profile");
+        }
+
       }
 
     } catch (err: any) {

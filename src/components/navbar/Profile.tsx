@@ -3,17 +3,18 @@ import "./profile.scss";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { RiLogoutCircleRLine } from "react-icons/ri"
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useLogOut from "../../hooks/useLogout";
 interface ProfileProps {
     scrollPos: number;
 }
 
 export const Profile = ({ scrollPos }: ProfileProps) => {
-    const [fname, setFname] = useState<string>("Kiptanui");
-    const [lname, setlName] = useState<string>("Boaz");
-    const [img,] = useState<string | null>(null);
-    const headTag = "Web Developer";
-    const email = "boaserem022@gmail.com";
+    const { fname, avatarUrl, email, headTag, lname } = useSelector((state: any) => state.auth.user);
+    const navigate = useNavigate();
+    const logOut = useLogOut();
+    const username = email.substring(0, email.indexOf('@'));
 
     const blogPostTitles = [
         'The Top 5 Strategies for Building a Successful Brand',
@@ -40,7 +41,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                     className="main-avatar"
                     style={{ borderColor: scrollPos > 20 ? "#d1d2d2" : "#4d7e3e" }}
                     src={
-                        img ??
+                        avatarUrl ??
                         "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
                     }
                     alt={`${fname}'s profile`}
@@ -73,6 +74,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                         borderColor: scrollPos > 20 ? "#9b9999;" : "#4d7e3e"
                     }}
                     className="edit-btn"
+                    onClick={()=>navigate(`/edit/${username}`)}
                 >
                     Edit Profile <span className="edit-btn-span" > <FiEdit /></span>
                 </button>
@@ -82,6 +84,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                         borderColor: scrollPos > 20 ? "#d1d2d2" : "#4d7e3e"
                     }}
                     className="sign-out-btn"
+                    onClick={()=>logOut()}
                 >
                     Sign Out <span className="sign-out-btn-span"> <RiLogoutCircleRLine /></span>
                 </button>
