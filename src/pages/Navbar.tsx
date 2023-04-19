@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   const [deviceWidth, setDeviceWidth] = useState<number>(window.innerWidth);
   const [scrollPos, setScrollPos] = useState<number>(0);
-  const {email} = useSelector((state: any) => state.auth.user);
+  const { email } = useSelector((state: any) => state.auth.user);
 
   useEffect(() => {
     const handleEvent = () => {
@@ -28,9 +28,6 @@ const Navbar = () => {
     };
   }, [deviceWidth, scrollPos]);
 
-  console.log(scrollPos, deviceWidth);
-
-
   const navListComponent = navList.map(({ route, text }: navListTypes, i: number) =>
     <li key={i} className={scrollPos < 20 ? "nav-link-grey" : "nav-link-green"}>
       <NavLink
@@ -45,7 +42,7 @@ const Navbar = () => {
       </NavLink>
     </li>
   )
-  console.log({email})
+
   return (
     <>
       <nav className="navbar" style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : "#4d7e3e" }} >
@@ -57,9 +54,9 @@ const Navbar = () => {
           className={deviceWidth > 640 ? "nav-link-container" : 'mobile-nav'}>
           {navListComponent}
 
-          {email !==null ?
+          {email !== null ?
             <li style={{ color: scrollPos < 20 ? " #6b6b6b" : "#eeeee4" }} className="mini-profile">
-              <MiniProfile  scrollPos={scrollPos} />
+              <MiniProfile scrollPos={scrollPos} />
             </li>
             :
 

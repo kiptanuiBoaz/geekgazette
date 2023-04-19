@@ -66,8 +66,14 @@
   input[type="file"] {
     display: none;
   }
+
+  .preview-img{
+    width: 97%;
+    margin-bottom: 30px;
+  }
+
   .submit-button {
-    padding: 0.5rem;
+    padding: 0.5rem .7rem;
     background-color: var(--primary-color);
     color: var(--primary-backround);
     border: none;

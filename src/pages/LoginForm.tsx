@@ -37,12 +37,14 @@ const LoginForm = () => {
                 LOGIN_URL,
                 JSON.stringify({ email, pwd }),
             );
-console.log(response)
+            console.log(response)
             if (response.status === 200) {
-                dispatch(updateAuth({ ...response?.data?._doc }));
+                const user = {...response?.data?._doc,}
+                const accessToken = response.data.accessToken;
+                dispatch(updateAuth({ ...user, accessToken}));
                 navigate(from, { replace: true });
             }
-        
+
 
             navigate(from, { replace: true });
         } catch (err: any) {

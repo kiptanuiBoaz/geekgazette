@@ -61,14 +61,13 @@ const UserProfileForm = () => {
             [name]: value,
         }));
     }
-    console.log(userData);
     const handleSubmit = async () => {
 
         setLoading(true);
         try {
             const res = await privateApi.put(USER_URL, JSON.stringify({ ...userData }),);
             if (res.status === 200) {
-                dispatch(updateAuth({ ...res.data }))
+                dispatch(updateAuth({ ...res.data }));
                 navigate(from, { replace: true });
             }
             console.log(res);
