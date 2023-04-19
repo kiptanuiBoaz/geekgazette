@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef,ChangeEvent } from "react";
+import { useState, useEffect, useRef, ChangeEvent } from "react";
 import logo from "../assets/navbar/logo-no-bg-green.png";
 import "./login-form.scss";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { api } from "../axios/axios";
 import { useDispatch } from "react-redux";
+import { updateAuth } from "../api/authSlice";
 
 const LOGIN_URL = "/login";
 
@@ -15,10 +16,10 @@ const LoginForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
     const emailRef = useRef<HTMLInputElement>(null);
 
-
     const navigate = useNavigate();
     const location = useLocation();
-    //wher the user navigated from
+    const dispatch = useDispatch();
+
     const from = location?.state?.from?.pathname || "/";
 
     const errRef = useRef<HTMLElement>();
@@ -26,26 +27,23 @@ const LoginForm = () => {
     const [email, setEmail] = useLocalStorage("email", '');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [loading,setLoading] =useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleSubmit = async () => {
         console.log(email, pwd);
-        setLoading(true);   
+        setLoading(true);
         try {
             const response = await api.post(
                 LOGIN_URL,
                 JSON.stringify({ email, pwd }),
             );
-           
+console.log(response)
+            if (response.status === 200) {
+                dispatch(updateAuth({ ...response?.data?._doc }));
+                navigate(from, { replace: true });
+            }
+        
 
-            console.log(response)
-
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-
-            //send to global context
-
-            //navigate user to the route they're from
             navigate(from, { replace: true });
         } catch (err: any) {
 
@@ -100,7 +98,7 @@ const LoginForm = () => {
                     <TogglePwdShow passwordVisibility={passwordVisibility} />
                 </div>
 
-                <button onClick={(e)=>{handleSubmit(); e.preventDefault();}} type="submit" className="login-button">{loading ? "Signing In...":"Sign In"}</button>
+                <button onClick={(e) => { handleSubmit(); e.preventDefault(); }} type="submit" className="login-button">{loading ? "Signing In..." : "Sign In"}</button>
 
             </form>
             <div className="sign-up-link">
