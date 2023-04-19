@@ -1,24 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { User, AuthState } from "./reduxTypes";
 
-const initialState = {
+
+
+const initialState: AuthState = {
   user: {
-    email: "",
-    fname: "",
-    lname: "",
-    headTag:"",
-    dob:"",
-    accessToken: "",
-    avatarUrl: null,
-    roles:{User:2000}
-  }
+    email: null, fname: '', lname: '', headTag: '', dob: '', accessToken: '', avatarUrl: null, roles: { User: 2000 },
+  },
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    updateAuth: (state, action) => {
-      const { email, fname, lname, accessToken, avatarUrl,dob,headTag,roles } = action.payload;
+    updateAuth: (state, action: PayloadAction<User>) => {
+      const { email, fname, lname, accessToken, avatarUrl, dob, headTag, roles, } = action.payload;
+      
       state.user.dob = dob || state.user.dob;
       state.user.headTag = headTag || state.user.headTag;
       state.user.roles = roles || state.user.roles;
@@ -27,9 +24,12 @@ const authSlice = createSlice({
       state.user.lname = lname || state.user.lname;
       state.user.accessToken = accessToken || state.user.accessToken;
       state.user.avatarUrl = avatarUrl || state.user.avatarUrl;
-    }
-  }
+    },
+    resetAuth: (state) => {
+      state.user = initialState.user;
+    },
+  },
 });
 
-export const { updateAuth } = authSlice.actions;
+export const { updateAuth, resetAuth } = authSlice.actions;
 export default authSlice.reducer;

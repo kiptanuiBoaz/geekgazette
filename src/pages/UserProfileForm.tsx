@@ -18,7 +18,7 @@ const UserProfileForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [errMsg, setErrMsg] = useState<string | null>(null);
 
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const privateApi = usePrivateApi();
@@ -30,7 +30,7 @@ const UserProfileForm = () => {
     const fnameRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
 
-    const dispatch = useDispatch();
+
 
     useEffect(() => { fnameRef.current?.focus(); }, []);
 
@@ -66,7 +66,7 @@ const UserProfileForm = () => {
 
         setLoading(true);
         try {
-            const res = await privateApi.put(USER_URL, JSON.stringify({...userData }),);
+            const res = await privateApi.put(USER_URL, JSON.stringify({ ...userData }),);
             if (res.status === 200) {
                 dispatch(updateAuth({ ...res.data }))
                 navigate(from, { replace: true });
