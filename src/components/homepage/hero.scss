@@ -32,18 +32,18 @@
 
       .tagline {
         font-size: 20px;
-
-        span {
-          color: var(--primary-color);
-          background-color: #cad8c5;
-          width: 150px;
-          padding: 5px 15px;
-          border-radius: 20px;
-          margin: 0 20px 0 10px;
-          display: inline;
-          white-space: nowrap;
-          
-        }
+        margin-top: 0;
+          span {
+            color: var(--primary-color);
+            background-color: #cad8c5;
+            min-width: 300px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 0 20px 0 10px;
+            // display: inline;
+            white-space: nowrap;
+          }
+       
       }
 
       button {

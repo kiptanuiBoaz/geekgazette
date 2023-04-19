@@ -29,9 +29,10 @@ export const Hero = () => {
           <h1 className='slogan'>Where geeks come to get a fix</h1>
 
           <p className='tagline'>
-            Catch up with the lates on
-            <span> {categories[categoryIndex]}</span>
-            and get to share with like-minded geeks.
+            Catch up with the lates on <span> {categories[categoryIndex]}</span>
+          </p>
+          <p className='tagline'>
+            Get to share with like-minded geeks.
           </p>
 
           <button onClick={() => setDisplayHero(false)}>
