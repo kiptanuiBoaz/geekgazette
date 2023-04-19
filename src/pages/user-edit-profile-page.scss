@@ -8,7 +8,7 @@
   background-color: var(--primary-backround);
   padding: 0 10%;
   margin-top: 60px;
-  .profile-form {
+  .eprofile-form {
     @extend .blog-form;
     border-radius: 6px;
     width: 420px;
@@ -95,7 +95,7 @@
 
   .illustrator-img {
     width: 500px;
-    @media only screen and (max-width: 950px) {
+    @media only screen and (max-width: 980px) {
       display: none;
     }
   }

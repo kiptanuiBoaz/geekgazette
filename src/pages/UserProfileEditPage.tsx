@@ -76,7 +76,7 @@ const UserProfileForm = () => {
 
     return (
         <section className='profile-form-container'>
-            <form className='profile-form'>
+            <form className='eprofile-form'>
                 <p className='instruction'>Please fill in your info before proceeding</p>
                 <label htmlFor="file-upload" className='custom-file-upload'>
 
