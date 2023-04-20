@@ -5,7 +5,7 @@ import { User, AuthState } from "./reduxTypes";
 
 const initialState: AuthState = {
   user: {
-    email: null, fname: '', lname: '', headTag: '', dob: '', accessToken: '', avatarUrl: null, roles: { User: 2000 },
+    email: null, fname: '', lname: '', headTag: '', dob: '', accessToken: '', avatarUrl: null, roles: { User: 2001 },
   },
 };
 

@@ -84,6 +84,10 @@
         font-weight: normal;
         cursor: pointer;
 
+        &:disabled{
+          cursor: not-allowed;
+        }
+
         &:hover {
           background-color: var(--hover-color);
           color: white;

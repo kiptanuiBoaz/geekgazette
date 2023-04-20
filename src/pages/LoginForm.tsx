@@ -39,14 +39,16 @@ const LoginForm = () => {
             );
             console.log(response)
             if (response.status === 200) {
-                const user = {...response?.data?._doc,}
+                const user = { ...response?.data?._doc, }
                 const accessToken = response.data.accessToken;
-                dispatch(updateAuth({ ...user, accessToken}));
+                dispatch(updateAuth({ ...user, accessToken }));
                 navigate(from, { replace: true });
+            } else {
+                setEmail("");
+                setPasswordVisibility(false);
+                setPwd("");
             }
 
-
-            navigate(from, { replace: true });
         } catch (err: any) {
 
             if (!err?.response) {
@@ -100,7 +102,17 @@ const LoginForm = () => {
                     <TogglePwdShow passwordVisibility={passwordVisibility} />
                 </div>
 
-                <button onClick={(e) => { handleSubmit(); e.preventDefault(); }} type="submit" className="login-button">{loading ? "Signing In..." : "Sign In"}</button>
+                <button
+                    onClick={(e) => {
+                        handleSubmit();
+                        e.preventDefault();
+                    }}
+                    type="submit"
+                    className="login-button"
+                    disabled={email == "" && pwd == ""}
+                >
+                    {loading ? "Signing In..." : "Sign In"}
+                </button>
 
             </form>
             <div className="sign-up-link">

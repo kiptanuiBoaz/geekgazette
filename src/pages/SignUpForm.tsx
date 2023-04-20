@@ -201,7 +201,9 @@ const SignUpForm = () => {
           }}
           type="submit"
           className="login-button"
-        >{loading ? "Signing Up..." : "Sign Up"}
+          disabled={!validEmail || !validMatch || !passwordValid}
+        >
+          {loading ? "Signing Up..." : "Sign Up"}
         </button>
 
         {/* password validation */}
