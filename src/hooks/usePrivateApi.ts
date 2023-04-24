@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import  { AxiosResponse } from "axios";
 import { useEffect } from "react";
 import useRefreshToken from "./useRefreshToken";
 import { useSelector } from 'react-redux';

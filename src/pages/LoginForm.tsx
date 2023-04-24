@@ -25,9 +25,11 @@ const LoginForm = () => {
     const errRef = useRef<HTMLElement>();
 
     const [email, setEmail] = useLocalStorage("email", '');
+    const [accessToken,setAccessToken] = useLocalStorage("accessToken",'');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [loading, setLoading] = useState<boolean>(false);
+    const [persist, setPersist] = useState<boolean>(false);
 
     const handleSubmit = async () => {
         console.log(email, pwd);
@@ -42,6 +44,8 @@ const LoginForm = () => {
                 const user = { ...response?.data?._doc, }
                 const accessToken = response.data.accessToken;
                 dispatch(updateAuth({ ...user, accessToken }));
+                console.log("here")
+                setAccessToken(accessToken);
                 navigate(from, { replace: true });
             } else {
                 setEmail("");
@@ -66,13 +70,11 @@ const LoginForm = () => {
             setPwd(""); setEmail("");
         }
         setLoading(false);
+
     }
 
     //focus on the user when the component loads 
-    useEffect(() => {
-        emailRef.current?.focus();
-
-    }, [])//only runs ounce
+    useEffect(() => { emailRef.current?.focus(); }, [])
 
     return (
         <section className="form-container">
@@ -86,6 +88,7 @@ const LoginForm = () => {
                     type="text"
                     placeholder="Enter email address"
                     ref={emailRef}
+                    value={email}
                     required
                 />
 
@@ -93,6 +96,7 @@ const LoginForm = () => {
                 <input
                     onChange={(e) => setPwd(e.target.value)}
                     className="password"
+                    value={pwd}
                     type={passwordVisibility ? "text" : "password"}
                     placeholder="Enter your password"
                     autoComplete="off"
@@ -114,7 +118,20 @@ const LoginForm = () => {
                     {loading ? "Signing In..." : "Sign In"}
                 </button>
 
+                <div className="checkbox-container">
+                    <label className="checkbox-label">Remember me?</label>
+                    <div className="checkbox-wrapper">
+                        <input
+                            type="checkbox"
+                            className="checkbox-input"
+                            checked={persist}
+                            onChange={() => setPersist(!persist)}
+                        />
+                    </div>
+                </div>
+                {errMsg && <p className="err-msg">{errMsg}</p>}
             </form>
+
             <div className="sign-up-link">
                 <p className="sign-up-text">New here? Go to <Link to="/auth/sign-up">Sign-up</Link></p>
             </div>

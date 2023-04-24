@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../axios/axios";
 import { useDispatch } from "react-redux";
 import { updateAuth } from "../api/authSlice";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const REGISTER_URL = "/register";
 const LOGIN_URL = "/login";
@@ -42,7 +43,7 @@ const SignUpForm = () => {
 
 
   //email states 
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useLocalStorage("email", '');
   const [emailFocus, setEmailFocus] = useState<boolean>(false);
   const [validEmail, setValidEmail] = useState<boolean>(false);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -62,6 +63,9 @@ const SignUpForm = () => {
 
   const errRef = useRef<HTMLElement>();
   const dispatch = useDispatch();
+  const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
+
+
 
   //focus on the email when the component loads //only runs ounce
   useEffect(() => { emailRef.current?.focus(); }, [])
@@ -125,11 +129,17 @@ const SignUpForm = () => {
         const { accessToken, roles } = response?.data;
 
         if (response.status === 200) {
+          setAccessToken(accessToken);
           dispatch(updateAuth({ email, accessToken, roles, }));
+        
           console.log(response)
           navigate("/auth/new-profile");
         }
 
+      } else {
+        setPassword("");
+        setConfirmPassowrd("");
+        setEmail("");
       }
 
     } catch (err: any) {

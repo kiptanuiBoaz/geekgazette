@@ -84,7 +84,11 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                         borderColor: scrollPos > 20 ? "#d1d2d2" : "#4d7e3e"
                     }}
                     className="sign-out-btn"
-                    onClick={()=>logOut()}
+                    onClick={()=>{
+                        logOut();
+                        navigate("/auth/sign-in")
+                    }
+                    }
                 >
                     Sign Out <span className="sign-out-btn-span"> <RiLogoutCircleRLine /></span>
                 </button>

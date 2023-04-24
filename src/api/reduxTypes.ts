@@ -1,14 +1,14 @@
 export interface User {
     email: string | null;
-    fname: string;
-    lname: string;
-    headTag: string;
-    dob: string;
-    accessToken: string;
+    fname: string  | null;
+    lname: string  | null;
+    headTag: string  | null;
+    dob: string  | null;
+    accessToken: string  | null;
     avatarUrl: string | null;
     roles: {
       User: number;
-    };
+    } | null
   }
   
  export interface AuthState {

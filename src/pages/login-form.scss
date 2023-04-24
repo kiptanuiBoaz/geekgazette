@@ -1,117 +1,141 @@
+.form-container {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  margin: auto;
+  height: 550px;
+  width: 450px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-  .form-container {
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    margin: auto;
-    height: 550px;
-    width: 450px;
-    background-color: white;
+  .logo {
+    width: 150px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .login-form {
+    display: flex;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
 
-    .logo {
-      width: 150px;
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+    .email {
+      height: 2rem;
+      border: 3px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: -0.2rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      // width: 100%;
+      color: var(--accent-backround);
 
-    .login-form {
-      display: flex;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      flex-direction: column;
-      width: 80%;
-      margin: auto;
-
-      .email {
-        height: 2rem;
-        border: 3px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 0.7rem;
-        padding: 0.5rem;
-        font-size: 1rem;
-        // width: 100%;
-        color: var(--accent-backround);
-
-        &:focus {
-          border-color: var(--primary-color);
-          outline: none; /* remove the default blue outline */
-        }
-
-        &:hover{
-          border-color: var(--secondary-color);
-          outline: none;
-        }
+      &:focus {
+        border-color: var(--primary-color);
+        outline: none; /* remove the default blue outline */
       }
 
-      .password {
-        @extend .email;
-      }
-
-      .toggle-password-visibility {
-        // background-color: var(--primary-backround);
-        position: absolute;
-        top: 51%;
-        width: 2rem;
-        height: 2rem;
-        left: 90%;
-        font-size: 20px;
-
-        .hide {
-          color: var(--secondary-backround);
-          //  background-color: var(--primary-backround);
-        }
-
-        .show {
-          color: var(--primary-color);
-        }
-      }
-
-      .login-button {
-        width: 100%;
-        padding: .8rem;
-        background-color: var(--primary-color);
-        color: var(--primary-backround);
-        border: none;
-        border-radius: 4px;
-        font-size: 1.2rem;
-        font-weight: normal;
-        cursor: pointer;
-
-        &:disabled{
-          cursor: not-allowed;
-        }
-
-        &:hover {
-          background-color: var(--hover-color);
-          color: white;
-        }
+      &:hover {
+        border-color: var(--secondary-color);
+        outline: none;
       }
     }
-    .sign-up-link {
+
+    .password {
+      @extend .email;
+      margin-bottom: 0.7rem;
+    }
+
+    .toggle-password-visibility {
+      // background-color: var(--primary-backround);
       position: absolute;
-      top: 90%;
-      left: 0%;
-      background-color: var(--primary-backround);
+      top: 40%;
+      width: 2rem;
+      height: 2rem;
+      left: 90%;
+      font-size: 20px;
+
+      .hide {
+        color: var(--secondary-backround);
+        //  background-color: var(--primary-backround);
+      }
+
+      .show {
+        color: var(--primary-color);
+      }
+    }
+
+    .login-button {
       width: 100%;
-      text-align: center;
-      .sign-up-text {
+      padding: 0.8rem;
+      background-color: var(--primary-color);
+      color: var(--primary-backround);
+      border: none;
+      border-radius: 4px;
+      font-size: 1.2rem;
+      font-weight: normal;
+      cursor: pointer;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
+
+      &:hover {
+        background-color: var(--hover-color);
+        color: white;
+      }
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-top: 0.4rem;
+      font-size: 15px;
+
+      .checkbox-label {
+        margin-right: 5px;
+        width: 100%;
         color: var(--accent-backround);
-        a {
-          color: var(--primary-color);
-          text-decoration: none;
-          &:hover {
-            color: var(--hover-color);
-            text-decoration: underline;
-          }
+      }
+
+      .checkbox-wrapper {
+        display: flex;
+        justify-content: flex-end;
+
+        .checkbox-input {
+          /* Add your custom checkbox styles here */
         }
       }
     }
-  
+    .err-msg {
+      color: rgb(230, 119, 119);
+    }
+  }
+
+  .sign-up-link {
+    position: absolute;
+    top: 90%;
+    left: 0%;
+    background-color: var(--primary-backround);
+    width: 100%;
+    text-align: center;
+    .sign-up-text {
+      color: var(--accent-backround);
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+        &:hover {
+          color: var(--hover-color);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }
