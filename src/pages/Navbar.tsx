@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   const [deviceWidth, setDeviceWidth] = useState<number>(window.innerWidth);
   const [scrollPos, setScrollPos] = useState<number>(0);
-  const { email } = useSelector((state: any) => state.auth.user);
+  const { email } = useSelector((state: any) => state?.auth?.user);
 
   useEffect(() => {
     const handleEvent = () => {
