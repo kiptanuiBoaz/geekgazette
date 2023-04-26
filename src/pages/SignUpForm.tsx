@@ -43,7 +43,7 @@ const SignUpForm = () => {
 
 
   //email states 
-  const [email, setEmail] = useLocalStorage("email", '');
+    const [email, setEmail] = useLocalStorage("email", '');
   const [emailFocus, setEmailFocus] = useState<boolean>(false);
   const [validEmail, setValidEmail] = useState<boolean>(false);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -63,7 +63,6 @@ const SignUpForm = () => {
 
   const errRef = useRef<HTMLElement>();
   const dispatch = useDispatch();
-  const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
 
 
 
@@ -129,7 +128,7 @@ const SignUpForm = () => {
         const { accessToken, roles } = response?.data;
 
         if (response.status === 200) {
-          setAccessToken(accessToken);
+          localStorage.setItem("accessToken",accessToken);
           dispatch(updateAuth({ email, accessToken, roles, }));
         
           console.log(response)

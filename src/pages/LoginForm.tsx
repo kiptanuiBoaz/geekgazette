@@ -44,7 +44,7 @@ const LoginForm = () => {
                 const user = { ...response?.data?._doc, }
                 const accessToken = response.data.accessToken;
                 dispatch(updateAuth({ ...user, accessToken }));
-                console.log("here")
+                console.log(accessToken)
                 setAccessToken(accessToken);
                 navigate(from, { replace: true });
             } else {
@@ -54,7 +54,6 @@ const LoginForm = () => {
             }
 
         } catch (err: any) {
-
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {

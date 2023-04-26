@@ -15,7 +15,7 @@ export const api: AxiosInstance = axios.create({
 
 // interceptors to be added
 // attach jwt and retry incase of failure
-export const privateApi = axios.create({
+export const privateApi:AxiosInstance = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
     headers:{

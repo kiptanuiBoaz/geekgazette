@@ -10,3 +10,7 @@ const store = configureStore({
 });
 
 export default store;
+
+store.subscribe(() => {
+  localStorage.setItem("user", JSON.stringify(store.getState().auth.user));
+});

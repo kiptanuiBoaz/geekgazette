@@ -9,11 +9,12 @@ const getLocalValue = (key:any, initValue:any) => {
     if (localValue !== null) return localValue;
   
     // result of a function
-    if (initValue instanceof Function) return initValue();
+    if (typeof initValue === 'function') return initValue();
   
     // default value
     return initValue;
   };
+  
   
 
 
