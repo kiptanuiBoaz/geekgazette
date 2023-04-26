@@ -8,6 +8,7 @@ const useLogout = (): (() => void) => {
 
     const logout = async (): Promise<void> => {
        dispatch(resetAuth());
+       localStorage.removeItem("user");
         try {
             const response = await api.get("/logout", {
                 withCredentials: true
