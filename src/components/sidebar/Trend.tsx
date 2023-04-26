@@ -1,23 +1,17 @@
 import React from 'react';
 import "./trend.scss";
 import TimeAgo from "../../utils/Timeago";
+import { TrendProps } from '../../types/blog-types/trendProps';
 
 
-interface TrendProps {
-    title: string
-    avatar: string;
-    username: string;
-    date: string;
-    category: string;
-}
 
-export const Trend = ({ title, avatar, username, date, category }: TrendProps) => {
+export const Trend = ({ title, avatarUrl, fname, date, category }: TrendProps) => {
     const [shortTitle, setShortTitle] = React.useState(title.length > 48 ? title.substring(0, 47) + ("...") : title)
     const formattedDate = <TimeAgo timestamp={date} />
     return (
         <article className='trend'>
             <div>
-                <h5 className='username'><img src={avatar} alt={username} />{username}</h5>
+                <h5 className='username'><img src={avatarUrl} alt={fname} />{fname}</h5>
                 <h2 className='title'>{shortTitle}</h2>
 
                 <div >

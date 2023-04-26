@@ -2,22 +2,14 @@ import React, { useState, useEffect } from 'react';
 import "./blog.scss";
 import { useNavigate } from 'react-router-dom';
 import TimeAgo from "../../utils/Timeago";
+import { BlogProps } from '../../types/blog-types/blogPropTypes';
 
-interface BlogProps {
-    content: string;
-    title: string;
-    image: string;
-    avatar: string;
-    username: string;
-    date: string;
-    category: string;
-    blogId: string;
-}
 
-export const Blog = ({ content, title, image, avatar, username, date, category, blogId }: BlogProps) => {
+
+export const Blog = ({ body, title, imgUrl,avatarUrl, fname, date, category, _id }: BlogProps) => {
     const [brightness, setBrightness] = useState<string>("brightness(100%)");
     const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
-    const [shortContent, setShortContent] = useState<string>(content.substring(0, 100) + "...");
+    const [shortContent, setShortContent] = useState<string>(body.substring(0, 100) + "...");
     const [shortTitle, setShortTitle] = useState<string>(title.length > 70 ? title : title.substring(0, 69) + ("..."))
     const formattedDate = <TimeAgo timestamp={date} />
     const navigate = useNavigate();
@@ -28,7 +20,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category, 
     useEffect(() => {
         const handleResize = () => {
             setDeviceWidth(window.innerWidth);
-            setShortContent(content.substring(0, deviceWidth < 500
+            setShortContent(body.substring(0, deviceWidth < 500
                 ? 30
                 : deviceWidth < 640
                     ? 50
@@ -57,16 +49,16 @@ export const Blog = ({ content, title, image, avatar, username, date, category, 
 
     return (
         <article
-            key={username}
+            key={fname}
             onMouseEnter={() => setBrightness("brightness(50%)")}
             onMouseLeave={() => setBrightness("brightness(100%)")}
             className='blog'
-            onClick={() => { navigate(`blog/${blogId}`) }}
+            onClick={() => { navigate(`blog/${_id}`) }}
         >
             <div className='blog-left'>
                 <div className='blog-header'>
-                    <img className='avatar' src={avatar} alt={username} />
-                    <h5 className='username'>{username}</h5>
+                    <img className='avatar' src={avatarUrl} alt={fname} />
+                    <h5 className='username'>{fname}</h5>
                 </div>
 
                 {/* */}
@@ -81,7 +73,7 @@ export const Blog = ({ content, title, image, avatar, username, date, category, 
             {/* <Link to={`post/${post.id}`}>Title</Link> */}
 
             <div className='blog-right'>
-                <img style={{ "filter": brightness }} className='blog-img' src={image} alt={title} />
+                <img style={{ "filter": brightness }} className='blog-img' src={imgUrl} alt={title} />
             </div>
         </article>
     )

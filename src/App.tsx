@@ -24,18 +24,52 @@ export const App = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      
       try {
         const response = await privateApi.get(POSTS_URL);
+        const postsWithoutAuthor = response.data;
+
+        const authorRequests =  postsWithoutAuthor.map(async (post: any) => {
+          if (!post.email) {
+            return post; // or handle the missing email property in some other way
+          }
+          try {
+            const res = await privateApi.get(`/users?email=${post.email}`);
+            const user = res.data;
+            console.log(user)
+            return {
+              ...post,
+              author: {
+                fname: user.fname,
+                lname: user.lname,
+                avatarUrl: user.avatarUrl,
+                headTag: user.headTag
+              }
+
+            };
+          } catch (err) {
+            return console.error(err);
+          }
+        });
+
+        const postsWithAuthors = await Promise.all(authorRequests);
+
+        // const postsWithAuthors = postsWithoutAuthor.map((post: any, index: number) => {
+        //   return {
+        //     ...post,
+        //     author: authors[index],
+        //   };
+        // });
         dispatch(setPosts(response.data));
-        console.log(response.data);
+        console.log(postsWithAuthors);
       } catch (error) {
         console.log(error);
       }
     };
-  
+
     fetchPosts();
   }, []);
-  
+
 
   return (
     <Suspense fallback={<p>Loading...</p>}>

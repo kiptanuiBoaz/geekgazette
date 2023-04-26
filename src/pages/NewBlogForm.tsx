@@ -22,8 +22,8 @@ const NewBlogForm: React.FC = () => {
   const [imageUploading, setImageUploading] = useState<boolean>(false);
 
   const date = new Date();
-  const { email } = useSelector((state: any) => state.auth.user);
-  const postData = { title, date, body, email, category, imgUrl }
+  const authorEmail = useSelector((state: any) => state.auth.user.email);
+  const postData = { title, date, body, authorEmail, category, imgUrl }
   const titleRef = useRef<HTMLInputElement>(null);
   const privateApi = usePrivateApi();
   const dispatch = useDispatch();
