@@ -1,29 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PostInterface } from './reduxTypes';
 
-const initialState = {
-  posts: []
+interface PostsState {
+  posts: PostInterface[];
+}
+
+const initialState: PostsState = {
+  posts: [],
 };
 
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    addPost: (state, action) => {
+    addPost: (state, action: PayloadAction<PostInterface>) => {
       state.posts.push(action.payload);
     },
-    updatePost: (state, action) => {
+    updatePost: (state, action: PayloadAction<PostInterface>) => {
       const { id, ...updates } = action.payload;
       const postIndex = state.posts.findIndex(post => post.id === id);
       if (postIndex !== -1) {
         state.posts[postIndex] = { ...state.posts[postIndex], ...updates };
       }
     },
-    deletePost: (state, action) => {
+    deletePost: (state, action: PayloadAction<string>) => {
       const postId = action.payload;
       state.posts = state.posts.filter(post => post.id !== postId);
-    }
+    },
+    setPosts: (state, action: PayloadAction<PostInterface[]>) => {
+      state.posts = action.payload;
+    },
   }
 });
 
-export const { addPost, updatePost, deletePost } = postsSlice.actions;
+export const { addPost, updatePost, deletePost, setPosts } = postsSlice.actions;
 export default postsSlice.reducer;

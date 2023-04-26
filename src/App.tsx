@@ -12,10 +12,31 @@ const UserProfileForm = lazy(() => import("./pages/UserProfileForm"));
 const AuthHome = lazy(() => import("./pages/AuthHome"));
 const UserProfileEditPage = lazy(() => import("./pages/UserProfileEditPage"));
 const RequireAuth = lazy(() => import("./pages/RequireAuth"));
+import { useDispatch } from "react-redux";
+import usePrivateApi from "./hooks/usePrivateApi";
+import { setPosts } from "./api/postsSlice";
 
+const POSTS_URL = "/posts";
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const privateApi = usePrivateApi();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await privateApi.get(POSTS_URL);
+        dispatch(setPosts(response.data));
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
   
+    fetchPosts();
+  }, []);
+  
+
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <Routes>

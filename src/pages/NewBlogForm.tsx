@@ -6,6 +6,9 @@ import { ref, uploadBytesResumable, getDownloadURL, } from "firebase/storage";
 import { v4 } from "uuid";
 import { useSelector } from 'react-redux';
 import usePrivateApi from "../hooks/usePrivateApi";
+import { categoryList } from '../assets/read/categories';
+import { addPost } from '../api/postsSlice';
+import { useDispatch } from 'react-redux';
 
 const POSTS_URL = "/posts"
 
@@ -23,6 +26,7 @@ const NewBlogForm: React.FC = () => {
   const postData = { title, date, body, email, category, imgUrl }
   const titleRef = useRef<HTMLInputElement>(null);
   const privateApi = usePrivateApi();
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -59,8 +63,9 @@ const NewBlogForm: React.FC = () => {
       const response = await privateApi.post(POSTS_URL, { ...postData });
 
       if (response.status === 201) {
+        dispatch(addPost(response.data._doc));
         console.log(response.data._doc);
-       
+      
       }
 
     } catch (e: any) {
@@ -95,9 +100,8 @@ const NewBlogForm: React.FC = () => {
 
       <select onChange={(e) => setCategory(e.target.value)} className='category-select' value={category} required>
         <option value="">Select a category</option>
-        <option value="technology">Technology</option>
-        <option value="food">Food</option>
-        <option value="travel">Travel</option>
+        {categoryList.map(category=><option value={category}>{category}</option>)}
+      
       </select>
       <br />
 
