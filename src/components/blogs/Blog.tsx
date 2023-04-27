@@ -6,7 +6,7 @@ import { BlogProps } from '../../types/blog-types/blogPropTypes';
 
 
 
-export const Blog = ({ body, title, imgUrl,avatarUrl, fname, date, category, _id }: BlogProps) => {
+export const Blog = ({ body, title, imgUrl, date, category, _id:postId,author:{fname,avatarUrl,lname} }: BlogProps) => {
     const [brightness, setBrightness] = useState<string>("brightness(100%)");
     const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
     const [shortContent, setShortContent] = useState<string>(body.substring(0, 100) + "...");
@@ -53,12 +53,12 @@ export const Blog = ({ body, title, imgUrl,avatarUrl, fname, date, category, _id
             onMouseEnter={() => setBrightness("brightness(50%)")}
             onMouseLeave={() => setBrightness("brightness(100%)")}
             className='blog'
-            onClick={() => { navigate(`/blog/read/${_id}`) }}
+            onClick={() => { navigate(`/blog/read/${postId}`) }}
         >
             <div className='blog-left'>
                 <div className='blog-header'>
                     <img className='avatar' src={avatarUrl} alt={fname} />
-                    <h5 className='username'>{fname}</h5>
+                    <h5 className='username'>{fname} {lname}</h5>
                 </div>
 
                 {/* */}
@@ -70,7 +70,6 @@ export const Blog = ({ body, title, imgUrl,avatarUrl, fname, date, category, _id
                     <p className='category'>{category}</p>
                 </div>
             </div>
-            {/* <Link to={`post/${post.id}`}>Title</Link> */}
 
             <div className='blog-right'>
                 <img style={{ "filter": brightness }} className='blog-img' src={imgUrl} alt={title} />

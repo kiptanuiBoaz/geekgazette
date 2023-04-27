@@ -20,6 +20,7 @@ export interface PostInterface {
   imgUrl: string;
   title: string;
   category: string;
+  authorEmail:string;
   body: string;
   email: string;
   date: string;
@@ -33,4 +34,9 @@ export interface PostInterface {
     userId: string;
     date: string;
   }[];
+  author:{
+    fname:string;
+    lname:string;
+    avatarUrl:string;
+  }
 }

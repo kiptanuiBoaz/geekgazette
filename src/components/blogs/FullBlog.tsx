@@ -7,20 +7,24 @@ import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { RiEditFill } from "react-icons/ri";
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Comment, NewCommentForm } from '../../components';
 
 
 
 interface BlogProps {
-    username: string;
     date: string;
-    content: string;
+    body: string;
     title: string;
-    image: string;
+    imgUrl: string;
+    author: {
+        fname: string;
+        lname: string;
+        avatarUrl: string;
+    }
 }
 
-export const FullBlog = ({ username, date, content, title, image }: BlogProps) => {
+export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
     const [commenting, setCommenting] = useState<boolean>(false);
 
@@ -51,10 +55,15 @@ export const FullBlog = ({ username, date, content, title, image }: BlogProps) =
         <article className='blog-article'>
 
             <div className='blog-container'>
-                <img src={image} alt={title} className='blog-image' />
+                <img src={imgUrl} alt={title} className='blog-image' />
                 <h2 className='title'>{title}</h2>
-                <p className='header-info'>{`Published`}<span>{formattedDate}</span> {`by`} <span>{`${username}`}</span></p>
-                <p className='body-content'>{content}</p>
+                <p className='header-info'>
+                    {`Published`}
+                    <span>{formattedDate}</span>
+                    {`by`}
+                    <span> {`${fname} ${lname}`}</span>
+                </p>
+                <p className='body-content'>{body}</p>
 
                 <div className='post-engagements'>
 

@@ -1,20 +1,18 @@
 .trend {
   width: 280px;
+  margin-bottom: 30px;
 
-      
   @media only screen and (max-width: 1124px) {
     width: 400px;
   }
 
-       
   @media only screen and (max-width: 880px) {
     width: 85vw;
   }
 
-
   div {
     padding-left: 20px;
-    &:hover{
+    &:hover {
       color: black;
     }
 
@@ -23,7 +21,7 @@
       padding: 1px;
       margin: -1px;
       color: #454745;
-      
+
       @media only screen and (max-width: 800px) {
         font-size: 11px;
         // padding: 4px 8px;
@@ -41,7 +39,6 @@
       font-size: 19px;
       color: #565856;
 
-      
       @media only screen and (max-width: 800px) {
         font-size: 16px;
         // padding: 4px 8px;
@@ -51,7 +48,9 @@
         color: black;
       }
     }
-
+.short-content{
+  margin:7px 0;
+}
     div {
       margin: -8px;
       margin-left: -25px;
@@ -59,14 +58,13 @@
       flex-direction: row;
       font-size: 14px;
 
-      
       @media only screen and (max-width: 800px) {
         font-size: 12px;
         // padding: 4px 8px;
       }
 
       .category {
-        margin-left: 4px;
+        margin: 0 4px;
         padding: 1px 6px;
         background-color: var(--secondary-backround);
         border-radius: 5px;
@@ -77,6 +75,7 @@
 
       .date {
         padding: 2px;
+        margin: 0;
         color: var(--secondary-backround);
       }
     }

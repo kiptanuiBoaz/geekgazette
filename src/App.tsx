@@ -74,10 +74,13 @@ export const App = () => {
             <Route element={<RequireAuth />} >
               <Route path="write" element={<NewBlogForm />} />
               <Route path="edit/:blogId" element={<EditBlog />} />
-              <Route path="edit/:username" element={<UserProfileEditPage />} />
+              <Route path="read/:postId" element={<FullBlogPage />} />
             </Route>
           </Route>
-          <Route path="read/:postId" element={<FullBlogPage />} />
+          <Route element={<RequireAuth />} >
+            <Route path="edit/:username" element={<UserProfileEditPage />} />
+          </Route>
+
           <Route path="about" element={<About />} />
         </Route>
 

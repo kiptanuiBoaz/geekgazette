@@ -17,15 +17,15 @@ const postsSlice = createSlice({
       state.posts.push(action.payload);
     },
     updatePost: (state, action: PayloadAction<PostInterface>) => {
-      const { id, ...updates } = action.payload;
-      const postIndex = state.posts.findIndex(post => post.id === id);
+      const { _id, ...updates } = action.payload;
+      const postIndex = state.posts.findIndex(post => post._id === _id);
       if (postIndex !== -1) {
         state.posts[postIndex] = { ...state.posts[postIndex], ...updates };
       }
     },
     deletePost: (state, action: PayloadAction<string>) => {
       const postId = action.payload;
-      state.posts = state.posts.filter(post => post.id !== postId);
+      state.posts = state.posts.filter(post => post._id !== postId);
     },
     setPosts: (state, action: PayloadAction<PostInterface[]>) => {
       state.posts = action.payload;
