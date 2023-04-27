@@ -115,7 +115,7 @@ const SignUpForm = () => {
 
     try {
       const response = await api.post(REGISTER_URL, JSON.stringify({ email, password }));
-      console.log(response)
+      // console.log(response)
 
       if (response.status === 201) {
         setSuccess(true);
@@ -131,7 +131,7 @@ const SignUpForm = () => {
           localStorage.setItem("accessToken",accessToken);
           dispatch(updateAuth({ email, accessToken, roles, }));
         
-          console.log(response)
+          // console.log(response)
           navigate("/auth/new-profile");
         }
 

@@ -53,7 +53,7 @@ export const Blog = ({ body, title, imgUrl,avatarUrl, fname, date, category, _id
             onMouseEnter={() => setBrightness("brightness(50%)")}
             onMouseLeave={() => setBrightness("brightness(100%)")}
             className='blog'
-            onClick={() => { navigate(`blog/${_id}`) }}
+            onClick={() => { navigate(`/blog/read/${_id}`) }}
         >
             <div className='blog-left'>
                 <div className='blog-header'>

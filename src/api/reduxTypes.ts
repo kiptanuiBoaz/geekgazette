@@ -23,7 +23,7 @@ export interface PostInterface {
   body: string;
   email: string;
   date: string;
-  id:string;
+  _id:string;
   comments: {
     userId: string;
     date: string;

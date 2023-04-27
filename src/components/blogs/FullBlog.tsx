@@ -7,7 +7,7 @@ import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { RiEditFill } from "react-icons/ri";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { Comment, NewCommentForm } from '../../components';
 
 
@@ -26,8 +26,11 @@ export const FullBlog = ({ username, date, content, title, image }: BlogProps) =
 
     const commentInputRef = useRef<HTMLDivElement>(null);
     const { blogId } = useParams();
+
     const formattedDate = <TimeAgo timestamp={date} />;
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location)
 
     const handleLike = () => { }
 

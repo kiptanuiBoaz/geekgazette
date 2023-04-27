@@ -24,19 +24,19 @@ export const App = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      
+
       try {
         const response = await privateApi.get(POSTS_URL);
         const postsWithoutAuthor = response.data;
 
-        const authorRequests =  postsWithoutAuthor.map(async (post: any) => {
-          if (!post.email) {
-            return post; // or handle the missing email property in some other way
-          }
+        const authorRequests = postsWithoutAuthor.map(async (post: any) => {
+          // or handle the missing email property in some other way
+          if (!post.authorEmail) return post;
+          //get author info from users
           try {
-            const res = await privateApi.get(`/users?email=${post.email}`);
+            const res = await privateApi.get(`/users/user?email=${post.authorEmail}`);
             const user = res.data;
-            console.log(user)
+            //retrun new users with added author info
             return {
               ...post,
               author: {
@@ -54,14 +54,7 @@ export const App = () => {
 
         const postsWithAuthors = await Promise.all(authorRequests);
 
-        // const postsWithAuthors = postsWithoutAuthor.map((post: any, index: number) => {
-        //   return {
-        //     ...post,
-        //     author: authors[index],
-        //   };
-        // });
-        dispatch(setPosts(response.data));
-        console.log(postsWithAuthors);
+        dispatch(setPosts(postsWithAuthors));
       } catch (error) {
         console.log(error);
       }
@@ -84,9 +77,10 @@ export const App = () => {
               <Route path="edit/:username" element={<UserProfileEditPage />} />
             </Route>
           </Route>
-          <Route path=":postId" element={<FullBlogPage />} />
+          <Route path="read/:postId" element={<FullBlogPage />} />
           <Route path="about" element={<About />} />
         </Route>
+
 
         <Route path="auth" element={<AuthHome />}>
           <Route path="sign-in" element={<LoginForm />} />
