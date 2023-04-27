@@ -9,25 +9,36 @@ import usePrivateApi from "../hooks/usePrivateApi";
 import { categoryList } from '../assets/read/categories';
 import { addPost } from '../api/postsSlice';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { PostInterface } from '../api/reduxTypes';
 
 const POSTS_URL = "/posts"
 
-const NewBlogForm: React.FC = () => {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [category, setCategory] = useState('');
+const NewBlogForm: React.FC = () => {  
+  const {postId} = useParams();
+
+  //posts from state and filter blog curently editing
+  const blogs = useSelector((state: any) => state?.posts.posts);
+  const blog: PostInterface = blogs.find((b: PostInterface) => b._id === postId);
+
+
+  const [title, setTitle] = useState(blog.title||"");
+  const [body, setBody] = useState(blog.body||"");
+  const [category, setCategory] = useState(blog.category||"");
   const [image, setImage] = useState<File | null>(null);
-  const [imgUrl, setImgUrl] = useState<string>("");
+  const [imgUrl, setImgUrl] = useState<string>(blog.imgUrl||"");
   const [loading, setLoading] = useState<boolean>(false);
   const [imageUploading, setImageUploading] = useState<boolean>(false);
 
+ const privateApi = usePrivateApi();
+  const dispatch = useDispatch();
   const date = new Date();
+
+
   const authorEmail = useSelector((state: any) => state.auth.user.email);
   const postData = { title, date, body, authorEmail, category, imgUrl }
   const titleRef = useRef<HTMLInputElement>(null);
-  const privateApi = usePrivateApi();
-  const dispatch = useDispatch();
-
+ 
 
   useEffect(() => {
     const uploadImage = async () => {

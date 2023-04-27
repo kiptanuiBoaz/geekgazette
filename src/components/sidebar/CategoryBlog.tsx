@@ -18,7 +18,7 @@ export const CategoryBlog = ({ title, date, author:{avatarUrl,fname}, body }: Tr
     const formattedDate = <TimeAgo timestamp= {date} />
     return (
         <article className='trend'>
-            <div>
+            <div >
                 <h5 className='username'><img src={avatarUrl} alt={fname} />{fname}</h5>
                 <h2 className='title'>{title}</h2>
                 <p className='short-content'>{shortContent}...</p>

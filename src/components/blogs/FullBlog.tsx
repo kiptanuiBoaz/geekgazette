@@ -10,8 +10,6 @@ import { RiEditFill } from "react-icons/ri";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Comment, NewCommentForm } from '../../components';
 
-
-
 interface BlogProps {
     date: string;
     body: string;
