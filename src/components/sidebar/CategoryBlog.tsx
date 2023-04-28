@@ -22,7 +22,7 @@ export const CategoryBlog = ({ title, date, author:{avatarUrl,fname}, body }: Tr
                 <h5 className='username'><img src={avatarUrl} alt={fname} />{fname}</h5>
                 <h2 className='title'>{title}</h2>
                 <p className='short-content'>{shortContent}...</p>
-                <div >
+                <div className='trend-footer'>
                     <p className='date'>{formattedDate}</p>
 
                 </div>

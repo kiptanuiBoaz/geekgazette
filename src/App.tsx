@@ -72,8 +72,8 @@ export const App = () => {
 
           <Route path="blog">
             <Route element={<RequireAuth />} >
-              <Route path="write" element={<NewBlogForm />} />
-              <Route path="edit/:blogId" element={<EditBlog />} />
+              <Route path="write" element={<NewBlogForm postId={undefined} />} />
+              <Route path="edit/:postId" element={<EditBlog />} />
               <Route path="read/:postId" element={<FullBlogPage />} />
             </Route>
           </Route>

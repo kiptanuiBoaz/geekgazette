@@ -24,7 +24,7 @@ const FullBlogPage = () => {
         <section className='full-blog'>
             <div className='main'>
 
-                <FullBlog {...blog} />
+                <FullBlog  {...blog} />
 
                 <div className='more-blogs'>
                     <hr />

@@ -7,7 +7,7 @@ import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { RiEditFill } from "react-icons/ri";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Comment, NewCommentForm } from '../../components';
 
 interface BlogProps {
@@ -27,12 +27,11 @@ export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }
     const [commenting, setCommenting] = useState<boolean>(false);
 
     const commentInputRef = useRef<HTMLDivElement>(null);
-    const { blogId } = useParams();
+    const { postId } = useParams();
+    console.log(postId)
 
     const formattedDate = <TimeAgo timestamp={date} />;
     const navigate = useNavigate();
-    const location = useLocation();
-    console.log(location)
 
     const handleLike = () => { }
 
@@ -69,7 +68,7 @@ export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }
                         onMouseEnter={() => setHovered("edit")}
                         onMouseLeave={() => setHovered(null)}
                         className="post-edit"
-                        onClick={() => navigate(`/blog/edit/${blogId}`)}
+                        onClick={() => navigate(`/blog/edit/${postId}`)}
                     >
                         {hovered === "edit" ? <RiEditFill /> : <FiEdit />} {' '}{" "} Edit
                     </p>

@@ -9,28 +9,28 @@ import usePrivateApi from "../hooks/usePrivateApi";
 import { categoryList } from '../assets/read/categories';
 import { addPost } from '../api/postsSlice';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { PostInterface } from '../api/reduxTypes';
 
-const POSTS_URL = "/posts"
+const POSTS_URL = "/posts";
+interface PostFormPros {
+  postId: string | undefined;
+}
 
-const NewBlogForm: React.FC = () => {  
-  const {postId} = useParams();
+const NewBlogForm = ({ postId }: PostFormPros) => {
 
   //posts from state and filter blog curently editing
-  const blogs = useSelector((state: any) => state?.posts.posts);
-  const blog: PostInterface = blogs.find((b: PostInterface) => b._id === postId);
-
-
-  const [title, setTitle] = useState(blog.title||"");
-  const [body, setBody] = useState(blog.body||"");
-  const [category, setCategory] = useState(blog.category||"");
+    const blogs = useSelector((state: any) => state?.posts.posts);
+    const blog: PostInterface = postId ? blogs.find((b: PostInterface) => b._id === postId) : null;
+  
+  const [title, setTitle] = useState(blog ? blog.title : "" );
+  const [body, setBody] = useState(blog ? blog.body : "" );
+  const [category, setCategory] = useState(blog ? blog.category: "" );
   const [image, setImage] = useState<File | null>(null);
-  const [imgUrl, setImgUrl] = useState<string>(blog.imgUrl||"");
+  const [imgUrl, setImgUrl] = useState<string>(blog ? blog.imgUrl: "");
   const [loading, setLoading] = useState<boolean>(false);
   const [imageUploading, setImageUploading] = useState<boolean>(false);
 
- const privateApi = usePrivateApi();
+  const privateApi = usePrivateApi();
   const dispatch = useDispatch();
   const date = new Date();
 
@@ -38,7 +38,7 @@ const NewBlogForm: React.FC = () => {
   const authorEmail = useSelector((state: any) => state.auth.user.email);
   const postData = { title, date, body, authorEmail, category, imgUrl }
   const titleRef = useRef<HTMLInputElement>(null);
- 
+
 
   useEffect(() => {
     const uploadImage = async () => {
@@ -76,7 +76,7 @@ const NewBlogForm: React.FC = () => {
       if (response.status === 201) {
         dispatch(addPost(response.data._doc));
         console.log(response.data._doc);
-      
+
       }
 
     } catch (e: any) {
@@ -111,8 +111,8 @@ const NewBlogForm: React.FC = () => {
 
       <select onChange={(e) => setCategory(e.target.value)} className='category-select' value={category} required>
         <option value="">Select a category</option>
-        {categoryList.map(category=><option value={category}>{category}</option>)}
-      
+        {categoryList.map(category => <option value={category}>{category}</option>)}
+
       </select>
       <br />
 

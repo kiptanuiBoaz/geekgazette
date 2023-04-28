@@ -14,7 +14,7 @@ export const Trend = ({ title,author:{ avatarUrl,lname, fname,}, date, category 
                 <h5 className='username'><img src={avatarUrl} alt={fname} />{fname} {lname}</h5>
                 <h2 className='title'>{shortTitle}</h2>
 
-                <div >
+                <div className='trend-footer'>
                     <p className='date'>{formattedDate}</p>
                     <p className='category'>{category}</p>
                 </div>

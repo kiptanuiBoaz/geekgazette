@@ -18,7 +18,7 @@ export const AuthorBlog = ({ title, date, category, body }: TrendProps) => {
 
                 <h2 className='title'>{title}</h2>
                 <p className='short-content'>{shortContent}...</p>
-                <div >
+                <div className='trend-footer'>
                     <p className='date'>{formattedDate}</p>
                     <p className='category'>{category}</p>
                 </div>
