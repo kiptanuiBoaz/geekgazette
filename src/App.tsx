@@ -13,7 +13,7 @@ const AuthHome = lazy(() => import("./pages/AuthHome"));
 const UserProfileEditPage = lazy(() => import("./pages/UserProfileEditPage"));
 const RequireAuth = lazy(() => import("./pages/RequireAuth"));
 import { useDispatch } from "react-redux";
-import {api} from "./axios/axios";
+import { api } from "./axios/axios";
 import { setPosts } from "./api/postsSlice";
 
 const POSTS_URL = "/posts";
@@ -34,18 +34,13 @@ export const App = () => {
           //get author info from users
           try {
             const res = await api.get(`/users/user?email=${post.authorEmail}`);
-            const user = res.data;
+            const { fname, lname, avatarUrl, headTag } = res.data;
             //retrun new users with added author info
             return {
               ...post,
-              author: {
-                fname: user.fname,
-                lname: user.lname,
-                avatarUrl: user.avatarUrl,
-                headTag: user.headTag
-              }
-
+              author: { fname, lname, avatarUrl, headTag }
             };
+
           } catch (err) {
             return console.error(err);
           }
@@ -76,6 +71,7 @@ export const App = () => {
               <Route path="read/:postId" element={<FullBlogPage />} />
             </Route>
           </Route>
+          
           <Route element={<RequireAuth />} >
             <Route path="edit/:username" element={<UserProfileEditPage />} />
           </Route>

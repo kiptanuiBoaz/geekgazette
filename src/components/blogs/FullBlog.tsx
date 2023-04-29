@@ -28,7 +28,7 @@ export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }
 
     const commentInputRef = useRef<HTMLDivElement>(null);
     const { postId } = useParams();
-    console.log(postId)
+    console.log(postId);
 
     const formattedDate = <TimeAgo timestamp={date} />;
     const navigate = useNavigate();
@@ -57,7 +57,7 @@ export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }
                 <p className='header-info'>
                     {`Published`}
                     <span>{formattedDate}</span>
-                    {`by`}
+                    {" "}  {`by`}
                     <span> {`${fname} ${lname}`}</span>
                 </p>
                 <p className='body-content'>{body}</p>
