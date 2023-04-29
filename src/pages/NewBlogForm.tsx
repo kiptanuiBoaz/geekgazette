@@ -7,9 +7,11 @@ import { v4 } from "uuid";
 import { useSelector } from 'react-redux';
 import usePrivateApi from "../hooks/usePrivateApi";
 import { categoryList } from '../assets/read/categories';
-import { addPost } from '../api/postsSlice';
+import { addPost, updatePost } from '../api/postsSlice';
 import { useDispatch } from 'react-redux';
 import { PostInterface } from '../api/reduxTypes';
+import { useNavigate } from 'react-router-dom';
+import { api } from "../axios/axios";
 
 const POSTS_URL = "/posts";
 interface PostFormPros {
@@ -17,26 +19,25 @@ interface PostFormPros {
 }
 
 const NewBlogForm = ({ postId }: PostFormPros) => {
-
   //posts from state and filter blog curently editing
-    const blogs = useSelector((state: any) => state?.posts.posts);
-    const blog: PostInterface = postId ? blogs.find((b: PostInterface) => b._id === postId) : null;
-  
-  const [title, setTitle] = useState(blog ? blog.title : "" );
-  const [body, setBody] = useState(blog ? blog.body : "" );
-  const [category, setCategory] = useState(blog ? blog.category: "" );
+  const blogs = useSelector((state: any) => state?.posts.posts);
+  const blog: PostInterface = postId ? blogs.find((b: PostInterface) => b._id === postId) : null;
+
+  const [title, setTitle] = useState(blog ? blog.title : "");
+  const [body, setBody] = useState(blog ? blog.body : "");
+  const [category, setCategory] = useState(blog ? blog.category : "");
   const [image, setImage] = useState<File | null>(null);
-  const [imgUrl, setImgUrl] = useState<string>(blog ? blog.imgUrl: "");
+  const [imgUrl, setImgUrl] = useState<string>(blog ? blog.imgUrl : "");
   const [loading, setLoading] = useState<boolean>(false);
   const [imageUploading, setImageUploading] = useState<boolean>(false);
 
   const privateApi = usePrivateApi();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const date = new Date();
 
-
   const authorEmail = useSelector((state: any) => state.auth.user.email);
-  const postData = { title, date, body, authorEmail, category, imgUrl }
+  const postData = { title, date, body, authorEmail, category, imgUrl, postId }
   const titleRef = useRef<HTMLInputElement>(null);
 
 
@@ -71,17 +72,37 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await privateApi.post(POSTS_URL, { ...postData });
+      const response = await privateApi({
+        method: blog ? "put" : "post",
+        url: POSTS_URL,
+        data: postData,
+      });
 
+      let postId;
+      //from new blog
       if (response.status === 201) {
-        dispatch(addPost(response.data._doc));
-        console.log(response.data._doc);
+        const res = await api.get(`/users/user?email=${authorEmail}`);
+        const { fname, lname, avatarUrl, headTag } = res.data;
 
+        const PostWithAuthor = {
+          ...response.data._doc,
+          author: { fname, lname, avatarUrl, headTag }
+        }
+
+        dispatch(addPost(PostWithAuthor));
+        postId = response.data._doc._id;
       }
+      //from edited blog
+      if (response.status === 200 && blog !== null) {
+        dispatch(updatePost(response.data));
+        postId = response.data._id;
+      }
+      //to the full blog page
+      navigate(`/blog/read/${postId}`);
 
-    } catch (e: any) {
-      console.error(e.message);
-    };
+    } catch (error) {
+      console.log(error);
+    }
     setLoading(false);
   };
 
@@ -121,7 +142,7 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
           imageUploading
             ? "Uploading..."
             : imgUrl !== ""
-              ? "Change Image"
+              ? "Edit Image"
               : "Upload Image"
         }
       </label>

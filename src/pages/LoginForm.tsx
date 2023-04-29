@@ -25,7 +25,6 @@ const LoginForm = () => {
     const errRef = useRef<HTMLElement>();
 
     const [email, setEmail] = useLocalStorage("email", '');
-    const [accessToken,setAccessToken] = useLocalStorage("accessToken",'');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [loading, setLoading] = useState<boolean>(false);
@@ -45,7 +44,6 @@ const LoginForm = () => {
                 const accessToken = response.data.accessToken;
                 dispatch(updateAuth({ ...user, accessToken }));
                 console.log(accessToken)
-                setAccessToken(accessToken);
                 navigate(from, { replace: true });
             } else {
                 setEmail("");

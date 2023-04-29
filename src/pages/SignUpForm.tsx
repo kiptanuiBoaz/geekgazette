@@ -43,7 +43,7 @@ const SignUpForm = () => {
 
 
   //email states 
-    const [email, setEmail] = useLocalStorage("email", '');
+    const [email, setEmail] = useState('');
   const [emailFocus, setEmailFocus] = useState<boolean>(false);
   const [validEmail, setValidEmail] = useState<boolean>(false);
   const emailRef = useRef<HTMLInputElement>(null);

@@ -13,20 +13,19 @@ const AuthHome = lazy(() => import("./pages/AuthHome"));
 const UserProfileEditPage = lazy(() => import("./pages/UserProfileEditPage"));
 const RequireAuth = lazy(() => import("./pages/RequireAuth"));
 import { useDispatch } from "react-redux";
-import usePrivateApi from "./hooks/usePrivateApi";
+import {api} from "./axios/axios";
 import { setPosts } from "./api/postsSlice";
 
 const POSTS_URL = "/posts";
 
 export const App = () => {
   const dispatch = useDispatch();
-  const privateApi = usePrivateApi();
 
   useEffect(() => {
     const fetchPosts = async () => {
 
       try {
-        const response = await privateApi.get(POSTS_URL);
+        const response = await api.get(POSTS_URL);
         const postsWithoutAuthor = response.data;
 
         const authorRequests = postsWithoutAuthor.map(async (post: any) => {
@@ -34,7 +33,7 @@ export const App = () => {
           if (!post.authorEmail) return post;
           //get author info from users
           try {
-            const res = await privateApi.get(`/users/user?email=${post.authorEmail}`);
+            const res = await api.get(`/users/user?email=${post.authorEmail}`);
             const user = res.data;
             //retrun new users with added author info
             return {

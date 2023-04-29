@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import usePrivateApi from "../hooks/usePrivateApi";
 import { updateAuth } from "../api/authSlice";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { v4 } from "uuid";
+import { storage } from "../firebase/firebase";
 
 
 const USER_URL = "/users";
@@ -17,9 +20,11 @@ const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [errMsg, setErrMsg] = useState<string | null>(null);
+    const [uploadingImage, setUploadingImage] = useState<boolean>(false);
 
     const fnameRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
+    const [newAvatarUrl, setNewAvatarUrl] = useState<string | null>(formData.avatarUrl);
 
     //fns from hooks
     const navigate = useNavigate();
@@ -43,10 +48,30 @@ const UserProfileForm = () => {
         }));
     }
 
+    useEffect(() => {
+        const uploadImage = async () => {
+            try {
+                setUploadingImage(true);
+                if (image == null) return;
+                const imageRef = ref(storage, `/userProfiles/${image.name + v4()} `);
+                const snapshot = await uploadBytesResumable(imageRef, image);
+                const url = await getDownloadURL(snapshot.ref);
+                setNewAvatarUrl(url);
+
+            } catch (e) {
+                console.log(e);
+            } finally {
+                setUploadingImage(false);
+            }
+
+        };
+        uploadImage();
+    }, [image]);
+
     useEffect(() => { fnameRef.current?.focus(); }, []);
 
     const handleSubmit = async () => {
-
+        formData.avatarUrl = newAvatarUrl;
         setLoading(true);
         try {
             const res = await privateApi.put(USER_URL, JSON.stringify({ ...formData }),);
@@ -82,9 +107,9 @@ const UserProfileForm = () => {
 
                     <img
                         className='file-upload-image'
-                        src={avatarUrl ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}
+                        src={newAvatarUrl ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}
                     />
-                    <span className='prompt'> <FiEdit /> {' '}{" "}Upload Image </span>
+                    <span className='prompt'> <FiEdit /> {' '}{" "}{uploadingImage ? "Uploading..." : "Edit Image"} </span>
                 </label>
 
                 <input

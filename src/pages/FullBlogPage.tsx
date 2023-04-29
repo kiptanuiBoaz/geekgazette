@@ -12,11 +12,11 @@ interface PostsState {
 const FullBlogPage = () => {
     const { postId } = useParams();
     const blogs = useSelector((state: any) => state?.posts.posts);
-    console.log(postId);
 
+    //current blog
     const blog: PostInterface = blogs.find((b: PostInterface) => b._id === postId);
 
-    const { title, body, _id, date, authorEmail, category, author: { avatarUrl, fname, lname } } = blog;
+    const {  authorEmail, category, author: { avatarUrl, fname, lname } } = blog;
     const authorBlogs = blogs.filter((b: PostInterface) => b.authorEmail === authorEmail);
     const categoryBlogs = blogs.filter((b: PostInterface) => b.category === category);
 
