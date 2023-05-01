@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Link, useParams } from "react-router-dom";
+import  { useState, useRef ,useEffect} from 'react';
+import {  useParams } from "react-router-dom";
 import TimeAgo from "../../utils/Timeago";
 import "./full-blog.scss";
 import { FaComment, FaRegComment } from "react-icons/fa";
@@ -9,18 +9,9 @@ import { FiEdit } from "react-icons/fi";
 import { RiEditFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import { Comment, NewCommentForm } from '../../components';
+import { BlogProps } from '../../types/blog-types/blogPropTypes';
 
-interface BlogProps {
-    date: string;
-    body: string;
-    title: string;
-    imgUrl: string;
-    author: {
-        fname: string;
-        lname: string;
-        avatarUrl: string;
-    }
-}
+
 
 export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
@@ -38,6 +29,7 @@ export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }
     const handleCommenting = () => {
         setCommenting(false);
     }
+
     const scrollToMyElement = () => {
         if (commentInputRef && commentInputRef.current) {
             commentInputRef.current.scrollIntoView({
@@ -46,6 +38,8 @@ export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }
             });
         }
     };
+
+    // useEffect(()=>{window.scrollTo(0,0)},[postId])
 
 
     return (
@@ -111,18 +105,18 @@ export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }
 
             <div className='comments-container'>
                 <h5 className='comments-title'>Comments</h5>
+
+                <Comment />
+                <Comment />
+                <Comment />
+                <Comment />
+                <Comment />
+                <Comment />
                 {commenting &&
                     <div ref={commentInputRef} className='comments-input'>
                         <NewCommentForm handleCommenting={handleCommenting} />
                     </div>
                 }
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-
 
             </div>
 

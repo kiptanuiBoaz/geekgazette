@@ -1,26 +1,36 @@
 import React from 'react';
 import "./trend.scss";
 import TimeAgo from "../../utils/Timeago";
+import { useNavigate } from 'react-router-dom';
 
 interface TrendProps {
     title: string
     date: string;
-   
+    _id: string
     body: string;
-    author:{
+    author: {
         avatarUrl: string;
         fname: string;
     }
 }
 
-export const CategoryBlog = ({ title, date, author:{avatarUrl,fname}, body }: TrendProps) => {
+export const CategoryBlog = ({ title, date, _id: postId, author: { avatarUrl, fname }, body }: TrendProps) => {
     const shortContent = body.substring(0, 30);
-    const formattedDate = <TimeAgo timestamp= {date} />
+    const formattedDate = <TimeAgo timestamp={date} />
+    const navigate = useNavigate();
     return (
         <article className='trend'>
             <div >
                 <h5 className='username'><img src={avatarUrl} alt={fname} />{fname}</h5>
-                <h2 className='title'>{title}</h2>
+                <h2
+                    className='title'
+                    onClick={() => {
+                        navigate(`/blog/read/${postId}`);
+                        window.scroll(0,0);
+                    }}
+                >
+                    {title}
+                </h2>
                 <p className='short-content'>{shortContent}...</p>
                 <div className='trend-footer'>
                     <p className='date'>{formattedDate}</p>

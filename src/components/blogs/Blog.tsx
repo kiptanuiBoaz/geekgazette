@@ -3,6 +3,12 @@ import "./blog.scss";
 import { useNavigate } from 'react-router-dom';
 import TimeAgo from "../../utils/Timeago";
 import { BlogProps } from '../../types/blog-types/blogPropTypes';
+import { animateScroll } from 'react-scroll';
+
+// const scrollToTop = () => {
+//   animateScroll.scrollToTop();
+// }
+
 
 
 
@@ -53,7 +59,10 @@ export const Blog = ({ body, title, imgUrl, date, category, _id:postId,author:{f
             onMouseEnter={() => setBrightness("brightness(50%)")}
             onMouseLeave={() => setBrightness("brightness(100%)")}
             className='blog'
-            onClick={() => { navigate(`/blog/read/${postId}`) }}
+            onClick={() => { 
+                navigate(`/blog/read/${postId}`);
+                // window.scrollTo(0,0);
+            }}
         >
             <div className='blog-left'>
                 <div className='blog-header'>

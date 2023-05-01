@@ -7,17 +7,20 @@ import { navListTypes } from "../types";
 import { NavLink } from "react-router-dom";
 import { MiniProfile } from "../components";
 import { useSelector } from "react-redux";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { VscChromeClose } from "react-icons/vsc";
 
 
 const Navbar = () => {
   const [deviceWidth, setDeviceWidth] = useState<number>(window.innerWidth);
   const [scrollPos, setScrollPos] = useState<number>(0);
   const { email } = useSelector((state: any) => state?.auth?.user);
+  const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
 
   useEffect(() => {
     const handleEvent = () => {
       setDeviceWidth(window.innerWidth);
-      setScrollPos(window.pageYOffset);
+      setScrollPos(window.scrollY);
     }
     window.addEventListener('resize', handleEvent);
     window.addEventListener('scroll', handleEvent);
@@ -50,8 +53,11 @@ const Navbar = () => {
           <NavLink to="/"> <img src={scrollPos > 20 ? logoWhite : logoGreen} alt="logo" /></NavLink>
         </div>
 
+
         <ul
-          className={deviceWidth > 640 ? "nav-link-container" : 'mobile-nav'}>
+          className={deviceWidth > 640 ? "nav-link-container" : 'mobile-nav'}
+          style={{ display: !showMobileNav && deviceWidth < 640 ? "none" : "" }}
+        >
           {navListComponent}
 
           {email !== null ?
@@ -75,11 +81,16 @@ const Navbar = () => {
             </>
           }
         </ul>
-
-
-
-
-
+        <div
+          onClick={() => setShowMobileNav(!showMobileNav)}
+          className="hamburger"
+          style={{
+            color: scrollPos > 20 ? "#eeeee4" : "#4d7e3e",
+            display: deviceWidth > 640 ? "none" : ""
+          }}
+        >
+          {!showMobileNav ? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
+        </div>
       </nav>
 
     </>
