@@ -39,7 +39,7 @@ const FullBlogPage = () => {
             <hr />
             <div className='side'>
                 <div className='user-profile'>
-                    <AuthorProfile avatar={avatarUrl} lname={lname} fname={fname} />
+                    <AuthorProfile {...blog.author} />
                 </div>
                 {authorBlogs.length > 1 && <div className='trending'>
                     <h3 className='header-trending'>{`More by ${fname}`} </h3>

@@ -38,5 +38,6 @@ export interface PostInterface {
     fname:string;
     lname:string;
     avatarUrl:string;
+    headTag:string;
   }
 }

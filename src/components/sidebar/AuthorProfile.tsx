@@ -2,17 +2,18 @@ import React from 'react';
 import "./author-profile.scss";
 
 interface UserProps {
-    avatar: string;
+    avatarUrl: string;
     lname: string;
     fname:string;
+    headTag: string;
 }
 
-export const AuthorProfile = ({ avatar, lname,fname }: UserProps) => {
+export const AuthorProfile = ({ avatarUrl,headTag, lname,fname }: UserProps) => {
     return (
         <div className='user-profile'>
-            <img className='user-image' src={avatar} alt={fname} />
+            <img className='user-image' src={avatarUrl} alt={fname} />
             <h4 className='username'>{fname}{" "}{lname}</h4>
-            <p className='head-tag'>{`Systems Engineer`}</p>
+            <p className='head-tag'>{headTag}</p>
         </div>
     )
 }
