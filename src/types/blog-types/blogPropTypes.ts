@@ -5,6 +5,7 @@ export interface BlogProps {
     date: string;
     category: string;
     _id: string;
+    authorEmail:string;
     author:{
         avatarUrl: string;
         fname: string;

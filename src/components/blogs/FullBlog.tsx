@@ -10,12 +10,14 @@ import { RiEditFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import { Comment, NewCommentForm } from '../../components';
 import { BlogProps } from '../../types/blog-types/blogPropTypes';
+import { useSelector } from 'react-redux';
 
 
 
-export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }: BlogProps) => {
+export const FullBlog = ({ author: { fname, lname }, date,authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
     const [commenting, setCommenting] = useState<boolean>(false);
+    const {  email } = useSelector((state: any) => state.auth.user);
 
     const commentInputRef = useRef<HTMLDivElement>(null);
     const { postId } = useParams();
@@ -58,14 +60,14 @@ export const FullBlog = ({ author: { fname, lname }, date, body, title, imgUrl }
 
                 <div className='post-engagements'>
 
-                    <p
+                   {email === authorEmail && <p
                         onMouseEnter={() => setHovered("edit")}
                         onMouseLeave={() => setHovered(null)}
                         className="post-edit"
                         onClick={() => navigate(`/blog/edit/${postId}`)}
                     >
                         {hovered === "edit" ? <RiEditFill /> : <FiEdit />} {' '}{" "} Edit
-                    </p>
+                    </p>}
 
                     <p
                         onMouseEnter={() => setHovered("like")}

@@ -12,17 +12,13 @@ interface PostsState {
 const FullBlogPage = () => {
     const { postId } = useParams();
     const blogs = useSelector((state: PostsState) => state?.posts.posts);
-  //current blog
-  const blog: PostInterface | undefined = blogs.find((b: PostInterface) => b._id === postId);
-  
-  if (!blog) {
-    return <div>Loading...</div>; // or render some other loading indicator
-  }
+    //current blog
+    const blog: PostInterface | undefined = blogs.find((b: PostInterface) => b._id === postId);
 
-    console.log(blog);
-    console.log(postId)
+    // or render some other loading indicator
+    if (!blog) return <div>Loading...</div>;
 
-    const {  authorEmail, category, author: { avatarUrl, fname, lname } } = blog;
+    const { authorEmail, category, author: { avatarUrl, fname, lname } } = blog;
     const authorBlogs = blogs.filter((b: PostInterface) => b.authorEmail === authorEmail);
     const categoryBlogs = blogs.filter((b: PostInterface) => b.category === category);
 
