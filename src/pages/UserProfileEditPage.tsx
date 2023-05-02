@@ -33,6 +33,7 @@ const UserProfileForm = () => {
     const dispatch = useDispatch();
 
     const from = location?.state?.from?.pathname || "/";
+   
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files && e.target.files[0];
@@ -102,7 +103,7 @@ const UserProfileForm = () => {
     return (
         <section className='profile-form-container'>
             <form className='eprofile-form'>
-                <p className='instruction'>Please fill in your info before proceeding</p>
+                <p className='instruction'>Please fill in your profile info</p>
                 <label htmlFor="file-upload" className='custom-file-upload'>
 
                     <img

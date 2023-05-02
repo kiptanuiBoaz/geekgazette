@@ -4,7 +4,7 @@ import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { RiLogoutCircleRLine } from "react-icons/ri"
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import useLogOut from "../../hooks/useLogout";
 interface ProfileProps {
     scrollPos: number;
@@ -14,7 +14,12 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
     const { fname, avatarUrl, email, headTag, lname } = useSelector((state: any) => state.auth.user);
     const navigate = useNavigate();
     const logOut = useLogOut();
+    const location = useLocation();
+
     const username = email.substring(0, email.indexOf('@'));
+    const hasTestRoute = location.pathname.includes("/edit/");
+    
+    if(hasTestRoute) return <></>;
 
     const blogPostTitles = [
         'The Top 5 Strategies for Building a Successful Brand',
