@@ -38,7 +38,7 @@
   }
   .my-blogs {
     max-height: 6cm;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-left: 5px;
     &::-webkit-scrollbar {
       width: 5px;
