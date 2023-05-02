@@ -1,5 +1,5 @@
-import  { useState, useRef ,useEffect} from 'react';
-import {  useParams } from "react-router-dom";
+import { useState, useRef, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import TimeAgo from "../../utils/Timeago";
 import "./full-blog.scss";
 import { FaComment, FaRegComment } from "react-icons/fa";
@@ -14,10 +14,10 @@ import { useSelector } from 'react-redux';
 
 
 
-export const FullBlog = ({ author: { fname, lname }, date,authorEmail, body, title, imgUrl }: BlogProps) => {
+export const FullBlog = ({ author: { fname, lname }, date, authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
     const [commenting, setCommenting] = useState<boolean>(false);
-    const {  email } = useSelector((state: any) => state.auth.user);
+    const { email } = useSelector((state: any) => state.auth.user);
 
     const commentInputRef = useRef<HTMLDivElement>(null);
     const { postId } = useParams();
@@ -26,10 +26,23 @@ export const FullBlog = ({ author: { fname, lname }, date,authorEmail, body, tit
     const formattedDate = <TimeAgo timestamp={date} />;
     const navigate = useNavigate();
 
-    const handleLike = () => { }
+    const handleLike = () => {
+
+    }
+
+    const checkAuth = () => {
+        if (email === null) {
+            alert("Sign In first to like this post");
+            navigate("/auth/sign-in");
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     const handleCommenting = () => {
-        setCommenting(false);
+        setCommenting(true);
+        scrollToMyElement();
     }
 
     const scrollToMyElement = () => {
@@ -60,7 +73,7 @@ export const FullBlog = ({ author: { fname, lname }, date,authorEmail, body, tit
 
                 <div className='post-engagements'>
 
-                   {email === authorEmail && <p
+                    {email === authorEmail && <p
                         onMouseEnter={() => setHovered("edit")}
                         onMouseLeave={() => setHovered(null)}
                         className="post-edit"
@@ -73,7 +86,7 @@ export const FullBlog = ({ author: { fname, lname }, date,authorEmail, body, tit
                         onMouseEnter={() => setHovered("like")}
                         onMouseLeave={() => setHovered(null)}
                         className="post-edit"
-                        onClick={() => handleLike}
+                        onClick={() => { checkAuth() && handleLike }}
                     >
                         {
                             hovered === "like"
@@ -87,10 +100,7 @@ export const FullBlog = ({ author: { fname, lname }, date,authorEmail, body, tit
                         onMouseEnter={() => setHovered("comment")}
                         onMouseLeave={() => setHovered(null)}
                         className="post-edit"
-                        onClick={() => {
-                            setCommenting(true);
-                            scrollToMyElement();
-                        }}
+                        onClick={() => { checkAuth() && handleCommenting }}
                     >
                         {
                             hovered === "comment"
