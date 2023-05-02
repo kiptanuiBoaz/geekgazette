@@ -15,8 +15,6 @@ interface PostsState {
 export const Read = () => {
   const blogs = useSelector((state: PostsState) => state?.posts.posts);
 
-
-
   return (
     <section className='read'>
 

@@ -6,8 +6,15 @@ import { RiLogoutCircleRLine } from "react-icons/ri"
 import { useSelector } from "react-redux";
 import { useNavigate,useLocation } from "react-router-dom";
 import useLogOut from "../../hooks/useLogout";
+import { PostInterface } from "../../api/reduxTypes";
+import TimeAgo from "../../utils/Timeago";
+
 interface ProfileProps {
     scrollPos: number;
+}
+
+interface PostsState {
+  posts:{ posts: PostInterface[];}
 }
 
 export const Profile = ({ scrollPos }: ProfileProps) => {
@@ -19,21 +26,13 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
     const username = email.substring(0, email.indexOf('@'));
     const hasTestRoute = location.pathname.includes("/edit/");
     
+    //closet the profile during profile edit
     if(hasTestRoute) return <></>;
 
-    const blogPostTitles = [
-        'The Top 5 Strategies for Building a Successful Brand',
-        '10 Tips for Mastering the Art of Time Management',
-        'Why Emotional Intelligence is Critical for Leadership',
-        'How to Create Compelling Content for Your Blog',
-        'The Science of Happiness: Insights from Positive Psychology',
-        'The Power of Networking: How to Build Stronger Connections',
-        'The Benefits of Meditation: A Beginner\'s Guide',
-        'The Art of Storytelling: How to Craft Captivating Narratives',
-        'The Future of Work: Trends and Predictions for 2023',
-        'The Secrets of High-Performing Teams: Lessons from Top Companies'
-    ];
+    const blogs = useSelector((state: PostsState) => state?.posts.posts);
+    const currentUserBlogs = blogs.filter((blog:PostInterface) => blog.authorEmail === email);
 
+    
     return (
         <article style={{
             backgroundColor: scrollPos < 20 ? "#d1d2d2" : "#4d7e3e",
@@ -57,16 +56,14 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                 <p className="head-tag">{headTag}</p>
             </header>
             <hr />
-
-
-            <p className="blogs-title">My blog posts on geeek gazette</p>
+            {currentUserBlogs.length > 0 &&  <p className="blogs-title">My blog posts on geeek gazette</p>}
 
             <main className="my-blogs">
-                {blogPostTitles.map(title => {
+                {currentUserBlogs?.map(({title,date}) => {
                     return (
                         <div style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : " rgb(40, 97, 34)" }} className="my-blog">
                             <p style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d", }} className="title">{title.substring(0, 30)}...</p>
-                            <p style={{ color: scrollPos < 20 ? "#4d7e3e" : "#6b6b6b", }} className="time">two days ago</p>
+                            <p style={{ color: scrollPos < 20 ? "#4d7e3e" : "#6b6b6b", }} className="time"><TimeAgo timestamp={date} /></p>
                         </div>
                     )
                 })}
