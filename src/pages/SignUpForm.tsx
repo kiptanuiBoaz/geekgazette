@@ -94,7 +94,7 @@ const SignUpForm = () => {
     { variable: atSymbolValid, p: `An "@" symbol` },
     { variable: atSymbolValid, p: `No special characters except for "." and "_"` },
     { variable: startsWithLetter, p: `Start with a letter or number` },
-    { variable: containsDomainExtension, p: `A domain name extension (e.g. ".com,.org etc.)` },
+    { variable: containsDomainExtension, p: `A domain name extension (e.g. ".com,.org)` },
   ]
 
   const validPasswordArray = [

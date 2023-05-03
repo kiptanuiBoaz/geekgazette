@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./new-comment-form.scss"
-import ".."
+import { useSelector } from 'react-redux';
+import { privateApi } from '../../axios/axios';
 const MAX_LENGTH = 200;
 
 interface CommentFormProps {
@@ -9,34 +10,42 @@ interface CommentFormProps {
 }
 
 export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) => {
-    const [value, setValue] = useState('');
-    const chars = value.length;
+    const [text, setText] = useState<string>("");
 
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const inputValue = event.target.value.slice(0, MAX_LENGTH);
-        setValue(inputValue);
+    const chars = text.length;
+    const date = new Date;
+    const { email: userEmail } = useSelector((state: any) => state.auth.user);
+
+
+    const handleSubmit = async () => {
+        try {
+            const res = await privateApi.post("/comments", { text, date, userEmail,postId });
+            console.log(res)
+        } catch (e) {
+            console.log(e)
+        }
     };
 
 
-    const handleChildCommenting = () => {
-        handleCommenting();
-    }
 
     return (
         <div className='comment-input-container'>
             <textarea
                 className="comment-input"
                 id="textInput"
-                value={value}
-                onChange={handleChange}
+                value={text}
+                onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
+                    const inputValue = event.target.value.slice(0, MAX_LENGTH);
+                    setText(inputValue);
+                }}
                 maxLength={MAX_LENGTH}
                 placeholder='Add comment'
             />
             <footer className='comment-input-footer'>
                 <p className='char-count  '>{`${chars}/200`}</p>
                 <div className='buttons'>
-                    <button className='submit'>Submit</button>
-                    <button className='cancel' onClick={handleChildCommenting}>Cancel</button>
+                    <button onClick={()=>handleSubmit()} className='submit'>Submit</button>
+                    <button className='cancel' onClick={() => handleCommenting()}>Cancel</button>
                 </div>
 
 

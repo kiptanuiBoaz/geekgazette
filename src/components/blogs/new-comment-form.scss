@@ -4,6 +4,8 @@
 .comment-input-container {
   @extend .comment;
   height: fit-content;
+  padding-top: .5rem;
+  padding-bottom: 0rem;
   .comment-input {
     border: none;
     border-bottom: 2px solid #ccc;
