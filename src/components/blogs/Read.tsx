@@ -24,7 +24,7 @@ export const Read = () => {
           <Row />
         </div>
 
-        {blogs.map(blog => <Blog {...blog} />)}
+        {blogs.map(blog => <Blog key={blog._id} {...blog} />)}
 
       </div>
 
@@ -34,12 +34,12 @@ export const Read = () => {
 
         <div className='trending'>
           <h3 className='header-trending'>Trending <HiTrendingUp /></h3>
-          {blogs.map((blog, i) => { if (i < 3) return <Trend {...blog} /> })}
+          {blogs.map((blog, i) => { if (i < 3) return <Trend key={blog._id} {...blog} /> })}
         </div>
 
         <div className='trending'>
           <h3 className='header-trending'>Latest<FiClock /></h3>
-          {blogs.map((blog, i) => { if (i < 3) return <Trend {...blog} /> })}
+          {blogs.map((blog, i) => { if (i < 3) return <Trend key={blog._id} {...blog} /> })}
         </div>
 
       </div>

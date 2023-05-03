@@ -36,7 +36,7 @@ const  Footer = () => {
         <div className='categories'>
           <h5>Porpular categories</h5>
           {["Technology", "Sports", "Religion"].map((cat, i) =>
-            <p onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(-1)}>
+            <p onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(-1)} key={cat}>
               <Link to={cat} >
                 {cat} {hoverd === i && <HiTrendingUp />}
               </Link>

@@ -73,7 +73,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                 <button
                     style={{
                         color: scrollPos > 20 ? "#6b6b6b" : "#4d7e3e",
-                        borderColor: scrollPos > 20 ? "#9b9999;" : "#4d7e3e"
+                        borderColor: scrollPos > 20 ? "#9b9999" : "#4d7e3e"
                     }}
                     className="edit-btn"
                     onClick={()=>navigate(`/edit/${username}`)}

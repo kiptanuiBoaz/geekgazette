@@ -41,18 +41,19 @@ export const FullBlog = ({ author: { fname, lname }, date, authorEmail, body, ti
     }
 
     const handleCommenting = () => {
-        setCommenting(true);
-        scrollToMyElement();
+        console.log("Commenting clicked")
+        setCommenting(!commenting);
+        // scrollToMyElement();
     }
 
-    const scrollToMyElement = () => {
-        if (commentInputRef && commentInputRef.current) {
-            commentInputRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-            });
-        }
-    };
+    // const scrollToMyElement = () => {
+    //     if (commentInputRef && commentInputRef.current) {
+    //         commentInputRef.current.scrollIntoView({
+    //             behavior: 'smooth',
+    //             block: 'start',
+    //         });
+    //     }
+    // };
 
     // useEffect(()=>{window.scrollTo(0,0)},[postId])
 
@@ -100,35 +101,31 @@ export const FullBlog = ({ author: { fname, lname }, date, authorEmail, body, ti
                         onMouseEnter={() => setHovered("comment")}
                         onMouseLeave={() => setHovered(null)}
                         className="post-edit"
-                        onClick={() => { checkAuth() && handleCommenting }}
+                        onClick={() => { checkAuth() && handleCommenting() }}
                     >
-                        {
-                            hovered === "comment"
-                                ? <span> <FaComment /> {' '}{" "}Comment</span>
-                                : <span><FaRegComment /> 4</span>
+                        {hovered === "comment"
+                            ? <span> <FaComment /> {' '}{" "}Comment</span>
+                            : <span><FaRegComment /> 4</span>
                         }
 
                     </p>
                 </div>
-
-
-
             </div>
 
             <div className='comments-container'>
                 <h5 className='comments-title'>Comments</h5>
-
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
                 {commenting &&
                     <div ref={commentInputRef} className='comments-input'>
-                        <NewCommentForm handleCommenting={handleCommenting} />
+                        <NewCommentForm  postId= {postId}  handleCommenting={handleCommenting} />
                     </div>
                 }
+                <Comment />
+                <Comment />
+                <Comment />
+                <Comment />
+                <Comment />
+                <Comment />
+
 
             </div>
 

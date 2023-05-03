@@ -31,7 +31,7 @@ const FullBlogPage = () => {
                 <div className='more-blogs'>
                     <hr />
                     <h4 className="more-title">More from Geek Gazette</h4>
-                    {blogs.map((blog: PostInterface) => <Blog {...blog} />)}
+                    {blogs.map((blog: PostInterface) => <Blog key={blog._id}  {...blog} />)}
                 </div>
 
             </div>
@@ -43,12 +43,12 @@ const FullBlogPage = () => {
                 </div>
                 {authorBlogs.length > 1 && <div className='trending'>
                     <h3 className='header-trending'>{`More by ${fname}`} </h3>
-                    {authorBlogs.map((blog: PostInterface) => <AuthorBlog {...blog} />)}
+                    {authorBlogs.map((blog: PostInterface) => <AuthorBlog key={blog._id}  {...blog} />)}
                 </div>}
 
                 {category.length > 0 && <div className='trending'>
                     <h3 className='header-trending'>{`More on ${category}`} </h3>
-                    {categoryBlogs.map((blog: PostInterface) => <CategoryBlog {...blog} />)}
+                    {categoryBlogs.map((blog: PostInterface) => <CategoryBlog  key={blog._id}  {...blog} />)}
                 </div>}
 
             </div>

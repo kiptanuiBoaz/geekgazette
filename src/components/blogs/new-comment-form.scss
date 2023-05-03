@@ -1,0 +1,74 @@
+@import "../../pages/new-blog-form.scss";
+@import "./comment.scss";
+
+.comment-input-container {
+  @extend .comment;
+  height: fit-content;
+  .comment-input {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    resize: vertical;
+    margin-bottom: .5rem;
+    padding: 0.5rem 0 0 0.5rem;
+    overflow-y: hidden;
+    font-size: 1rem;
+    width: 98%;
+    color: var(--accent-backround);
+    &:hover {
+      border-color: var(--primary-color);
+      outline: none; /* remove the default blue outline */
+    }
+
+    &:focus {
+      border-color: var(--primary-color);
+      outline: none; /* remove the default blue outline */
+    }
+  }
+
+  .comment-input-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 98%;
+    padding: 0;
+    margin: 0;
+    .char-count {
+      justify-self: center;
+      color: var(--hover-color);
+    }
+
+    .buttons {
+      justify-self: center;
+
+      .submit {
+        padding: 0.5rem 0.7rem;
+        background-color: var(--primary-color);
+        color: var(--primary-backround);
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--hover-color);
+          color: white;
+        }
+      }
+      .cancel {
+        margin-left: 20px;
+        padding: 0.5rem 0.7rem;
+        background-color: var(--primary-backround);
+        color: var(--primary-color);
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgb(242, 117, 117);
+          color: white;
+        }
+      }
+    }
+  }
+}
