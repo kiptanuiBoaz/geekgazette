@@ -27,12 +27,12 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
     const hasTestRoute = location.pathname.includes("/edit/");
     
     //closet the profile during profile edit
-    if(hasTestRoute) return <></>;
+   
 
     const blogs = useSelector((state: PostsState) => state?.posts.posts);
     const currentUserBlogs = blogs.filter((blog:PostInterface) => blog.authorEmail === email);
 
-    
+    if(hasTestRoute) return;
     return (
         <article style={{
             backgroundColor: scrollPos < 20 ? "#d1d2d2" : "#4d7e3e",
@@ -61,7 +61,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
             <main className="my-blogs">
                 {currentUserBlogs?.map(({title,date}) => {
                     return (
-                        <div style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : " rgb(40, 97, 34)" }} className="my-blog">
+                        <div key={title} style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : " rgb(40, 97, 34)" }} className="my-blog">
                             <p style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d", }} className="title">{title.substring(0, 30)}...</p>
                             <p style={{ color: scrollPos < 20 ? "#4d7e3e" : "#6b6b6b", }} className="time"><TimeAgo timestamp={date} /></p>
                         </div>

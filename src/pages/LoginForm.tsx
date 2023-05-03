@@ -38,12 +38,10 @@ const LoginForm = () => {
                 LOGIN_URL,
                 JSON.stringify({ email, pwd }),
             );
-            console.log(response)
             if (response.status === 200) {
                 const user = { ...response?.data?._doc, }
                 const accessToken = response.data.accessToken;
                 dispatch(updateAuth({ ...user, accessToken }));
-                console.log(accessToken)
                 navigate(from, { replace: true });
             } else {
                 setEmail("");
