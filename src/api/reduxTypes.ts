@@ -29,6 +29,7 @@ export interface PostInterface {
     userId: string;
     date: string;
     text: string;
+    _id:string;
   }[];
   likes: {
     userId: string;

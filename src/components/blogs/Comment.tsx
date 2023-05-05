@@ -1,22 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./comment.scss";
+import { api } from '../../axios/axios';
+import TimeAgo from '../../utils/Timeago';
 
-export const Comment = () => {
-    return (
-        <article className='comment'>
-            <header className='comment-header'>
-                <img className='comment-avatar' src='https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60' />
-                <h6 className='comment-author-name'>John Doe</h6>
-                <p className='comment-date'>3 days ago</p>
-            </header>
-            <main className='comment-body'>
-                <p className='comment-content'>
-                    great article, some info is pertaining to class components that are nowdays less used but the concepts are usefull.
-                </p>
-                {/* <hr/> */}
-            </main>
-          {/* <ChildComment/> */}
-
-        </article>
-    )
+interface CommentProps {
+    _id: string;
+    userEmail: string;
+    date: string;
+    text: string;
 }
+// { _id, userEmail, date, text }: CommentProps
+export const BlogComment = ({userEmail,text,date,_id}:CommentProps) => {
+    //fetch user immediately the component mounts
+    const [authorName, setAuthorName] = useState('');
+    const [authorAvatar, setAuthorAvatar] = useState('');
+
+
+    useEffect(() => {
+        const fetchAuthor = async () => {
+            try {
+                const res = await api.get(`/users/user?email=${userEmail}`);
+                const { fname, lname, avatarUrl } = res.data;
+                setAuthorName(`${fname} ${lname}`);
+                setAuthorAvatar(avatarUrl);
+            } catch (error) {
+                console.log(error);
+            }
+
+        };
+        fetchAuthor();
+    }, []);
+
+    const formattedDate = <TimeAgo timestamp={date} />;
+
+    return (
+        <div className='comment' key={_id}>
+            <div className='comment-avatar'>
+                <img src={authorAvatar} alt='avatar' />
+            </div>
+            <div className='comment-content'>
+                <div className='comment-header'>
+                    <p className='comment-author'>{authorName}</p>
+                    <p className='comment-date'>{formattedDate}</p>
+                </div>
+                <p className='comment-text'>{text}</p>
+            </div>
+        </div>
+    );
+};
+

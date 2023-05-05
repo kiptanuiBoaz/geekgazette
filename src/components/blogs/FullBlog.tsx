@@ -8,13 +8,19 @@ import { AiFillLike } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { RiEditFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
-import { Comment, NewCommentForm } from '../../components';
+import { BlogComment, NewCommentForm } from '../../components';
 import { BlogProps } from '../../types/blog-types/blogPropTypes';
 import { useSelector } from 'react-redux';
 
+interface CommentInterface {
+    date: string;
+    text: string;
+    userEmail: string;
+    _id: string;
+}
 
 
-export const FullBlog = ({ author: { fname, lname }, date, authorEmail, body, title, imgUrl }: BlogProps) => {
+export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
     const [commenting, setCommenting] = useState<boolean>(false);
     const { email } = useSelector((state: any) => state.auth.user);
@@ -56,8 +62,7 @@ export const FullBlog = ({ author: { fname, lname }, date, authorEmail, body, ti
     // };
 
     // useEffect(()=>{window.scrollTo(0,0)},[postId])
-
-
+console.log(...comments)
     return (
         <article className='blog-article'>
 
@@ -113,20 +118,16 @@ export const FullBlog = ({ author: { fname, lname }, date, authorEmail, body, ti
             </div>
 
             <div className='comments-container'>
-                <h5 className='comments-title'>Comments</h5>
+                {comments.length > 0 && <h5 className='comments-title'>Comments</h5>}
                 {commenting &&
                     <div ref={commentInputRef} className='comments-input'>
-                        <NewCommentForm  postId= {postId}  handleCommenting={handleCommenting} />
+                        <NewCommentForm postId={postId} handleCommenting={handleCommenting} />
                     </div>
                 }
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
 
+                {comments?.length > 0 && comments?.map((comment: CommentInterface) => <BlogComment  {...comment} />)}
 
+ {/*  */}
             </div>
 
         </article>

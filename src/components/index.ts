@@ -9,5 +9,5 @@ export {ValidationMsgs} from "./auth/ValidationMsgs";
 export {TogglePwdShow} from "./auth/TogglePwdShow";
 export {Profile} from "./navbar/Profile";
 export {MiniProfile} from "./navbar/MiniProfile";
-export {Comment} from "./blogs/Comment";
+export {BlogComment} from "./blogs/Comment";
 export {NewCommentForm} from "./blogs/NewCommentForm";
