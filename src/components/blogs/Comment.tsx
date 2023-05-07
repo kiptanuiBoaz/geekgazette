@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import "./comment.scss";
 import { api } from '../../axios/axios';
 import TimeAgo from '../../utils/Timeago';
+import { useSelector } from 'react-redux';
+import {MdDelete} from "react-icons/md"
 
 interface CommentProps {
     _id: string;
@@ -11,9 +13,10 @@ interface CommentProps {
 }
 
 export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
-    //fetch user immediately the component mounts
     const [authorName, setAuthorName] = useState('');
     const [authorAvatar, setAuthorAvatar] = useState('');
+    const [hovered,setHovered] = useState<boolean>(false);
+    const { email } = useSelector((state: any) => state.auth.user);
 
 
     useEffect(() => {
@@ -36,13 +39,16 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
     return (
         <div className='comment' key={_id}>
 
-            <div className='comment-content'>
+            <div onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)} className='comment-content'>
                 <div className='comment-header'>
                     <img className='comment-avatar' src={authorAvatar} alt='avatar' />
                     <p className='comment-author'>{authorName}</p>
+                        {hovered && email === userEmail &&  <span> <MdDelete/> {" "} Delete </span>}
                     <p className='comment-date'>{formattedDate}</p>
+                   
                 </div>
                 <p className='comment-text'>{text}</p>
+             
             </div>
         </div>
     );

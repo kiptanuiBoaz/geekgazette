@@ -28,7 +28,6 @@ export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail
 
     const commentInputRef = useRef<HTMLDivElement>(null);
     const { postId } = useParams();
-    console.log(postId);
 
     const formattedDate = <TimeAgo timestamp={date} />;
     const navigate = useNavigate();
