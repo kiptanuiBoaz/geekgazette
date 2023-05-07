@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { privateApi } from '../../axios/axios';
 import { addComment } from '../../api/postsSlice';
 import { useDispatch } from 'react-redux';
+import { redirect } from 'react-router-dom';
 const MAX_LENGTH = 200;
 
 interface CommentFormProps {
@@ -22,9 +23,11 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
 
     const handleSubmit = async () => {
         try {
-            const res = await privateApi.post("/comments", { text, date, userEmail,postId });
-            dispatch(addComment({ postId, newComment:{  ...res.data} }));
-            console.log(res)
+            const res = await privateApi.post("/comments", { text, date, userEmail, postId });
+            if (res.status === 200) {
+                dispatch(addComment({ postId, newComment: { ...res.data } }));
+                setText("");
+            }
         } catch (e) {
             console.log(e)
         }
@@ -46,13 +49,14 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
                 placeholder='Add comment'
             />
             <footer className='comment-input-footer'>
-                <p className='char-count  '>{`${chars}/200`}</p>
+
                 <div className='buttons'>
-                    <button onClick={()=>handleSubmit()} className='submit'>Submit</button>
+                    <button onClick={() => handleSubmit()} className='submit'>Submit</button>
                     <button className='cancel' onClick={() => handleCommenting()}>Cancel</button>
+
                 </div>
 
-
+                <p className='char-count  '>{`${chars}/200`}</p>
             </footer>
 
         </div>

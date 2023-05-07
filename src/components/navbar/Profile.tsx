@@ -59,10 +59,17 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
             {currentUserBlogs.length > 0 &&  <p className="blogs-title">My blog posts on geeek gazette</p>}
 
             <main className="my-blogs">
-                {currentUserBlogs?.map(({title,date}) => {
+                {currentUserBlogs?.map(({title,date,_id:postId}) => {
                     return (
                         <div key={title} style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : " rgb(40, 97, 34)" }} className="my-blog">
-                            <p style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d", }} className="title">{title.substring(0, 30)}...</p>
+                            <p 
+                            style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d", }} 
+                            className="title"
+                            onClick={()=> navigate(`/blog/read/${postId}`)}
+                             
+                            >
+                                {title.substring(0, 30)}...
+                            </p>
                             <p style={{ color: scrollPos < 20 ? "#4d7e3e" : "#6b6b6b", }} className="time"><TimeAgo timestamp={date} /></p>
                         </div>
                     )
