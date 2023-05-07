@@ -11,10 +11,24 @@ export interface User {
   } | null
 }
 
+export interface DeleteCommentPayload {
+  postId: string;
+  commentId: string;
+}
+
 export interface AuthState {
   user: User;
 }
 
+export  interface NewCommentPayload {
+  postId: string;
+  newComment: {
+    date: string;
+    text: string;
+    userEmail: string;
+    _id: string;
+  };
+};
 
 export interface PostInterface {
   imgUrl: string;
@@ -26,7 +40,7 @@ export interface PostInterface {
   date: string;
   _id:string;
   comments: {
-    userId: string;
+    userEmail: string;
     date: string;
     text: string;
     _id:string;

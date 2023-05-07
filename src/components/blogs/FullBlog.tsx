@@ -23,6 +23,7 @@ interface CommentInterface {
 export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
     const [commenting, setCommenting] = useState<boolean>(false);
+    const [dispComments, setComments] = useState(comments);
     const { email } = useSelector((state: any) => state.auth.user);
 
     const commentInputRef = useRef<HTMLDivElement>(null);
@@ -32,9 +33,10 @@ export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail
     const formattedDate = <TimeAgo timestamp={date} />;
     const navigate = useNavigate();
 
-    const handleLike = () => {
-
-    }
+    useEffect(() => {
+        setComments(comments);
+    }, [comments])
+    const handleLike = {}
 
     const checkAuth = () => {
         if (email === null) {
@@ -52,17 +54,8 @@ export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail
         // scrollToMyElement();
     }
 
-    // const scrollToMyElement = () => {
-    //     if (commentInputRef && commentInputRef.current) {
-    //         commentInputRef.current.scrollIntoView({
-    //             behavior: 'smooth',
-    //             block: 'start',
-    //         });
-    //     }
-    // };
-
-    // useEffect(()=>{window.scrollTo(0,0)},[postId])
-console.log(...comments)
+    
+    console.log(...comments)
     return (
         <article className='blog-article'>
 
@@ -125,9 +118,9 @@ console.log(...comments)
                     </div>
                 }
 
-                {comments?.length > 0 && comments?.map((comment: CommentInterface) => <BlogComment  {...comment} />)}
+                {dispComments?.length > 0 && comments?.map((comment: CommentInterface) => <BlogComment  {...comment} />)}
 
- {/*  */}
+
             </div>
 
         </article>

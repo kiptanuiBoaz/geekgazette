@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "./new-comment-form.scss"
 import { useSelector } from 'react-redux';
 import { privateApi } from '../../axios/axios';
+import { addComment } from '../../api/postsSlice';
+import { useDispatch } from 'react-redux';
 const MAX_LENGTH = 200;
 
 interface CommentFormProps {
@@ -14,12 +16,14 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
 
     const chars = text.length;
     const date = new Date;
+    const dispatch = useDispatch();
     const { email: userEmail } = useSelector((state: any) => state.auth.user);
 
 
     const handleSubmit = async () => {
         try {
             const res = await privateApi.post("/comments", { text, date, userEmail,postId });
+            dispatch(addComment({ postId, newComment:{  ...res.data} }));
             console.log(res)
         } catch (e) {
             console.log(e)

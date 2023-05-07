@@ -22,7 +22,7 @@
     flex-direction: row;
     justify-items: flex-start;
     align-items: center;
-    padding: 0 20px 0 0px;
+    padding: -10px 20px 0 0px;
     margin: 0;
     @media only screen and (max-width: 460px) {
       padding: 0 15px 0 0px;
@@ -68,7 +68,7 @@
 
   .comment-body {
     margin: 0;
-    padding: 6px 0;
+    padding:  0;
     .comment-content {
       margin: 0;
       padding: 0;
