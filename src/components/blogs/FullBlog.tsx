@@ -50,7 +50,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail
     }
 
     //open comment box
-    const handleCommenting = () => { console.log("Commenting clicked") }
+    const handleCommenting = () => { setCommenting(!commenting) }
 
     return (
         <article className='blog-article'>
@@ -99,7 +99,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail
                     >
                         {hovered === "comment"
                             ? <span> <FaComment /> {' '}{" "}Comment</span>
-                            : <span><FaRegComment /> 4</span>
+                            : <span><FaRegComment /> {comments.length > 0 ? comments.length : ""}</span>
                         }
 
                     </p>
