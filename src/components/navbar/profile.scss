@@ -35,6 +35,7 @@
   }
   .blogs-title{
     text-align: center;
+    
   }
   .my-blogs {
     max-height: 6cm;
@@ -66,6 +67,7 @@
         margin: 0;
         font-size: 14px;
         color: #6b6b6b;
+        cursor: pointer;
 
         &:hover{
           text-decoration: underline;
