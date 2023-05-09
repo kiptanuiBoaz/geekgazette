@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./new-comment-form.scss"
 import { useSelector } from 'react-redux';
-import { privateApi } from '../../axios/axios';
+import usePrivateApi from "../../hooks/usePrivateApi"
 import { addComment } from '../../api/postsSlice';
 import { useDispatch } from 'react-redux';
 import { redirect } from 'react-router-dom';
@@ -18,6 +18,9 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
     const chars = text.length;
     const date = new Date;
     const dispatch = useDispatch();
+    const privateApi = usePrivateApi();
+
+    // currently signed in user from redux store
     const { email: userEmail } = useSelector((state: any) => state.auth.user);
 
 
@@ -32,8 +35,6 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
             console.log(e)
         }
     };
-
-
 
     return (
         <div className='comment-input-container'>

@@ -21,7 +21,7 @@ export interface AuthState {
 }
 
 export  interface NewCommentPayload {
-  postId: string;
+  postId: string|undefined;
   newComment: {
     date: string;
     text: string;

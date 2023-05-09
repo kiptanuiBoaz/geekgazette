@@ -32,11 +32,13 @@ export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail
     const formattedDate = <TimeAgo timestamp={date} />;
     const navigate = useNavigate();
 
+    //forcing re-render when updating comments during  add or delete
     useEffect(() => {
         setComments(comments);
     }, [comments])
     const handleLike = {}
 
+    //check if user is signed in
     const checkAuth = () => {
         if (email === null) {
             alert("Sign In first to like this post");
@@ -47,14 +49,9 @@ export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail
         }
     }
 
-    const handleCommenting = () => {
-        console.log("Commenting clicked")
-        setCommenting(!commenting);
-        // scrollToMyElement();
-    }
+    //open comment box
+    const handleCommenting = () => { console.log("Commenting clicked") }
 
-    
-    console.log(...comments)
     return (
         <article className='blog-article'>
 
