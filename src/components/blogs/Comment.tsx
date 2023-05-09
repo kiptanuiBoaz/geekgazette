@@ -58,9 +58,7 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
         } catch (error) {
             console.log(error);
         }
-
     }
-
 
     return (
         <div className='comment' key={_id}>

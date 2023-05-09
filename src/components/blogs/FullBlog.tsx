@@ -12,9 +12,11 @@ import { BlogComment, NewCommentForm } from '../../components';
 import { BlogProps } from '../../types/blog-types/blogPropTypes';
 import { useSelector, useDispatch } from 'react-redux';
 import usePrivateApi from '../../hooks/usePrivateApi';
-import { updateLikes } from '../../api/postsSlice';
+import { updateLikes, deletePost } from '../../api/postsSlice';
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const LIKES_URL = "/likes"
+const POSTS_URL = "/posts"
 interface CommentInterface {
     date: string;
     text: string;
@@ -42,8 +44,8 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     //forcing re-render when updating comments during  add or delete
     useEffect(() => {
         setComments(comments.slice().sort((a, b) => new Date(b.date) - new Date(a.date)));
-      }, [comments]);
-      
+    }, [comments]);
+
 
     //check if user is signed in
     const checkAuth = () => {
@@ -54,10 +56,10 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         } else {
             return true;
         }
-    }
+    };
 
     //open comment box
-    const handleCommenting = () => { setCommenting(!commenting) }
+    const handleCommenting = () => { setCommenting(!commenting) };
 
     //submitting comments to server
     const handleLike = async () => {
@@ -73,13 +75,24 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                 dispatch(updateLikes({ postId, ...res.data }))
             }
 
-            console.log(res);
         } catch (err) {
             console.log(err);
         }
+    };
 
-
-    }
+    //delete post from DB
+    const handleDelete = async () => {
+        try {
+            const res = await privateApi.delete(POSTS_URL, { data: { postId } });
+            // delete from redux strore
+            if (res.status === 200) {
+                dispatch(deletePost({ postId }));
+                navigate("/");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <article className='blog-article'>
@@ -133,6 +146,8 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                         }
 
                     </p>
+                    {authorEmail === email && <button onClick={handleDelete}>  <RiDeleteBinLine />Delete post </button>}
+
                 </div>
             </div>
 
