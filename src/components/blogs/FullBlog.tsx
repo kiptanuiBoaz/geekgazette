@@ -86,7 +86,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
             const res = await privateApi.delete(POSTS_URL, { data: { postId } });
             // delete from redux strore
             if (res.status === 200) {
-                dispatch(deletePost({ postId }));
+                dispatch(deletePost(postId ));
                 navigate("/");
             }
         } catch (error) {
