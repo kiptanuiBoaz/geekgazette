@@ -64,7 +64,6 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
 
     return (
         <div className='comment' key={_id}>
-
             <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className='comment-content'>
                 <div className='comment-header'>
                     <img className='comment-avatar' src={authorAvatar} alt='avatar' />

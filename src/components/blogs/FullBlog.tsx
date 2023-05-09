@@ -26,7 +26,7 @@ interface CommentInterface {
 export const FullBlog = ({ author: { fname, lname }, comments, likes, date, authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
     const [commenting, setCommenting] = useState<boolean>(false);
-    const [dispComments, setComments] = useState(comments);
+    const [dispComments, setComments] = useState<CommentInterface[]>([]);
     const { email } = useSelector((state: any) => state.auth.user);
     const [currentUseLiked, setCurrentUserLiked] = useState<boolean>(false);
 
@@ -40,7 +40,10 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     const dispatch = useDispatch();
 
     //forcing re-render when updating comments during  add or delete
-    useEffect(() => { setComments(comments); }, [comments])
+    useEffect(() => {
+        setComments(comments.slice().sort((a, b) => new Date(b.date) - new Date(a.date)));
+      }, [comments]);
+      
 
     //check if user is signed in
     const checkAuth = () => {
@@ -141,7 +144,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                     </div>
                 }
 
-                {dispComments?.length > 0 && comments?.map((comment: CommentInterface) => <BlogComment  {...comment} />)}
+                {dispComments?.length > 0 && dispComments?.map((comment: CommentInterface) => <BlogComment key={comment._id}  {...comment} />)}
 
 
             </div>
