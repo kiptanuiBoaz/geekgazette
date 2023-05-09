@@ -19,8 +19,8 @@ const FullBlogPage = () => {
     if (!blog) return <div>Loading...</div>;
 
     const { authorEmail, category, author: { avatarUrl, fname, lname } } = blog;
-    const authorBlogs = blogs.filter((b: PostInterface) => b.authorEmail === authorEmail);
-    const categoryBlogs = blogs.filter((b: PostInterface) => b.category === category);
+    const authorBlogs = blogs?.filter((b: PostInterface) => b.authorEmail === authorEmail)?.slice(0,3);
+    const categoryBlogs = blogs?.filter((b: PostInterface) => b.category === category)?.slice(0,3);
 
     return (
         <section className='full-blog'>
