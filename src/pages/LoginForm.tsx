@@ -31,7 +31,6 @@ const LoginForm = () => {
     const [persist, setPersist] = useState<boolean>(false);
 
     const handleSubmit = async () => {
-        console.log(email, pwd);
         setLoading(true);
         try {
             const response = await api.post(

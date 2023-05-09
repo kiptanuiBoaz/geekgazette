@@ -13,7 +13,6 @@ const useLogout = (): (() => void) => {
             const response = await api.get("/logout", {
                 withCredentials: true
             });
-            console.log(response);
         } catch (error) {
             console.error(error);
         }
