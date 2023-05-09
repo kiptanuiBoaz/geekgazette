@@ -11,6 +11,18 @@ export interface User {
   } | null
 }
 
+export interface PostsState {
+  posts: PostInterface[];
+}
+
+
+
+
+export interface UpdateLikesPayload {
+  postId: string;
+  userEmail: string;
+  date: string;
+}
 export interface DeleteCommentPayload {
   postId: string;
   commentId: string;
@@ -46,7 +58,7 @@ export interface PostInterface {
     _id:string;
   }[];
   likes: {
-    userId: string;
+    userEmail: string;
     date: string;
   }[];
   author:{

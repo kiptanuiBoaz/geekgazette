@@ -10,8 +10,11 @@ import { RiEditFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import { BlogComment, NewCommentForm } from '../../components';
 import { BlogProps } from '../../types/blog-types/blogPropTypes';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import usePrivateApi from '../../hooks/usePrivateApi';
+import { updateLikes } from '../../api/postsSlice';
 
+const LIKES_URL = "/likes"
 interface CommentInterface {
     date: string;
     text: string;
@@ -20,23 +23,24 @@ interface CommentInterface {
 }
 
 
-export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail, body, title, imgUrl }: BlogProps) => {
+export const FullBlog = ({ author: { fname, lname }, comments, likes, date, authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
     const [commenting, setCommenting] = useState<boolean>(false);
     const [dispComments, setComments] = useState(comments);
     const { email } = useSelector((state: any) => state.auth.user);
+    const [currentUseLiked, setCurrentUserLiked] = useState<boolean>(false);
 
     const commentInputRef = useRef<HTMLDivElement>(null);
     const { postId } = useParams();
+    const likeDate = new Date();
 
     const formattedDate = <TimeAgo timestamp={date} />;
     const navigate = useNavigate();
+    const privateApi = usePrivateApi();
+    const dispatch = useDispatch();
 
     //forcing re-render when updating comments during  add or delete
-    useEffect(() => {
-        setComments(comments);
-    }, [comments])
-    const handleLike = {}
+    useEffect(() => { setComments(comments); }, [comments])
 
     //check if user is signed in
     const checkAuth = () => {
@@ -51,6 +55,28 @@ export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail
 
     //open comment box
     const handleCommenting = () => { setCommenting(!commenting) }
+
+    //submitting comments to server
+    const handleLike = async () => {
+        try {
+            const res = await privateApi.put(LIKES_URL, {
+                postId,
+                userEmail: email,
+                date: likeDate
+            });
+
+            // remove comment from react redux
+            if (res.status === 200) {
+                dispatch(updateLikes({ postId, ...res.data }))
+            }
+
+            console.log(res);
+        } catch (err) {
+            console.log(err);
+        }
+
+
+    }
 
     return (
         <article className='blog-article'>
@@ -81,12 +107,13 @@ export const FullBlog = ({ author: { fname, lname }, comments, date, authorEmail
                         onMouseEnter={() => setHovered("like")}
                         onMouseLeave={() => setHovered(null)}
                         className="post-edit"
-                        onClick={() => { checkAuth() && handleLike }}
+                        onClick={() => { checkAuth() && handleLike() }}
                     >
-                        {
-                            hovered === "like"
-                                ? <span><AiFillLike /> {' '}{" "}Like</span>
-                                : <span><BiLike />{' '}{" "}13</span>
+                        {hovered !== "like"
+                            ? likes.some(like => like.userEmail === email)
+                                ? <span> <AiFillLike style={{ color: " #4d7e3e" }} /> {likes.length > 0 ? likes.length : ""}</span>
+                                : <span><BiLike />{' '}{" "}{likes.length > 0 ? likes.length : ""}</span>
+                            : <span><AiFillLike /> {' '}{" "}{likes.some(like => like.userEmail === email) ? "Unlike" : "Like"}</span>
                         }
 
                     </p>

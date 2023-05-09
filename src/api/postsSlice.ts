@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PostInterface ,NewCommentPayload,DeleteCommentPayload} from './reduxTypes';
-
-interface PostsState {
-  posts: PostInterface[];
-}
-
+import { PostInterface, NewCommentPayload, DeleteCommentPayload, UpdateLikesPayload, PostsState } from './reduxTypes';
 
 const initialState: PostsState = {
   posts: [],
@@ -50,8 +45,32 @@ const postsSlice = createSlice({
         state.posts[postIndex].comments = state.posts[postIndex].comments.filter(comment => comment._id !== commentId);
       }
     },
+
+    updateLikes: (state: PostsState, action: PayloadAction<UpdateLikesPayload>) => {
+      const { postId, userEmail, date } = action.payload;
+      const postIndex = state.posts.findIndex(post => post._id === postId);
+      if (postIndex !== -1) {
+        const post = state.posts[postIndex];
+        const likeIndex = post.likes.findIndex(like => like.userEmail === userEmail);
+        if (likeIndex !== -1) {
+          // Remove the like if it already exists
+          post.likes.splice(likeIndex, 1);
+        } else {
+          // Add a new like otherwise
+          post.likes.push({ userEmail, date });
+        }
+      }
+    }
   }
 });
 
-export const { addPost, updatePost, deletePost, setPosts,addComment, deleteComment} = postsSlice.actions;
+export const {
+  addPost,
+  updatePost,
+  deletePost,
+  setPosts,
+  addComment,
+  deleteComment,
+  updateLikes } = postsSlice.actions;
+
 export default postsSlice.reducer;
