@@ -20,6 +20,7 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
     const [authorName, setAuthorName] = useState('');
     const [authorAvatar, setAuthorAvatar] = useState('');
     const [hovered, setHovered] = useState<boolean>(false);
+       const [deleting, setDeleting] = useState<boolean>(false);
 
     //currently signed in  user from redux store
     const { email } = useSelector((state: any) => state.auth.user);
@@ -65,12 +66,34 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
             <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className='comment-content'>
                 <div className='comment-header'>
                     <img className='comment-avatar' src={authorAvatar} alt='avatar' />
-                    <p className='comment-author'>{authorName}</p>
-                    {hovered && email === userEmail && <span onClick={() => handleDeleteComment()}> <MdDelete /> {" "} Delete </span>}
+                    <h5 className='comment-author'>{authorName}</h5>
+
                     <p className='comment-date'>{formattedDate}</p>
 
                 </div>
-                <p className='comment-text'>{text}</p>
+                <p className='comment-content'>
+                    {text}
+                    {<span
+                        style={{ visibility: hovered && email === userEmail ? "visible" : "hidden" }}
+                        className='delete-icon'
+                        onClick={() => setDeleting(true)}
+                    >
+                        <MdDelete /> {" "} 
+                    </span>}
+                </p>
+
+                {deleting && <div className='delete-modal'>
+                        <div className='modal-content'>
+                            <h5 className='delete-confirmation'>Delete Comment?</h5>
+                            <hr />
+                            <p className='delete-description'>This can’t be undone, your comment will be removed permanently</p>
+                            <footer className='modal-footer'>
+                                <button className='modal-delete-btn' onClick={handleDeleteComment}>Proceed</button>
+                                <button className='modal-cancel-btn' onClick={() => setDeleting(false)}>Cancel</button>
+                            </footer>
+                        </div>
+
+                    </div>}
 
             </div>
         </div>

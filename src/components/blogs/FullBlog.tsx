@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import usePrivateApi from '../../hooks/usePrivateApi';
 import { updateLikes, deletePost } from '../../api/postsSlice';
 import { RiDeleteBinLine } from "react-icons/ri";
+import { MdDeleteForever } from "react-icons/md"
 
 const LIKES_URL = "/likes"
 const POSTS_URL = "/posts"
@@ -110,15 +111,28 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
 
                 <div className='post-engagements'>
 
-                    {email === authorEmail && <p
-                        onMouseEnter={() => setHovered("edit")}
-                        onMouseLeave={() => setHovered(null)}
-                        className="post-edit"
-                        onClick={() => navigate(`/blog/edit/${postId}`)}
-                    >
-                        {hovered === "edit" ? <RiEditFill /> : <FiEdit />} {' '}{" "} Edit
-                    </p>}
+                    {email === authorEmail && <>
+                        <p
+                            onMouseEnter={() => setHovered("edit")}
+                            onMouseLeave={() => setHovered(null)}
+                            className="post-edit"
+                            onClick={() => navigate(`/blog/edit/${postId}`)}
+                        >
+                            {hovered === "edit" ? <span><RiEditFill /> {" "}Edit</span> : <FiEdit />} {' '}{" "}
+                        </p>
+                        <p
+                            onClick={() => setDeleting(true)}
+                            onMouseEnter={() => setHovered("delete")}
+                            onMouseLeave={() => setHovered(null)}
+                            className="post-edit"
+                        >
+                            {hovered === "delete"
+                                ? <span><MdDeleteForever />{" "}Delete</span>
+                                : <span><RiDeleteBinLine /></span>
+                            }</p>
 
+                    </>}
+                   
                     <p
                         onMouseEnter={() => setHovered("like")}
                         onMouseLeave={() => setHovered(null)}
@@ -146,13 +160,12 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                         }
 
                     </p>
-                    {authorEmail === email && <button onClick={() => setDeleting(true)} >  <RiDeleteBinLine />Delete post </button>}
 
                     {/* post delete confirmation modal */}
                     {deleting && <div className='delete-modal'>
                         <div className='modal-content'>
                             <h5 className='delete-confirmation'>Delete Post?</h5>
-                            <hr/>
+                            <hr />
                             <p className='delete-description'>This can’t be undone and it will be removed from your profile</p>
                             <footer className='modal-footer'>
                                 <button className='modal-delete-btn' onClick={handleDelete}>Proceed</button>
