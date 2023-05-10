@@ -30,7 +30,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     const [commenting, setCommenting] = useState<boolean>(false);
     const [dispComments, setComments] = useState<CommentInterface[]>([]);
     const { email } = useSelector((state: any) => state.auth.user);
-    const [currentUseLiked, setCurrentUserLiked] = useState<boolean>(false);
+    const [deleting, setDeleting] = useState<boolean>(false);
 
     const commentInputRef = useRef<HTMLDivElement>(null);
     const { postId } = useParams();
@@ -86,7 +86,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
             const res = await privateApi.delete(POSTS_URL, { data: { postId } });
             // delete from redux strore
             if (res.status === 200) {
-                dispatch(deletePost(postId ));
+                dispatch(deletePost(postId));
                 navigate("/");
             }
         } catch (error) {
@@ -146,21 +146,38 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                         }
 
                     </p>
-                    {authorEmail === email && <button onClick={handleDelete}>  <RiDeleteBinLine />Delete post </button>}
+                    {authorEmail === email && <button onClick={() => setDeleting(true)} >  <RiDeleteBinLine />Delete post </button>}
+
+                    {/* post delete confirmation modal */}
+                    {deleting && <div className='delete-modal'>
+                        <div className='modal-content'>
+                            <h5 className='delete-confirmation'>Delete Post?</h5>
+                            <hr/>
+                            <p className='delete-description'>This can’t be undone and it will be removed from your profile</p>
+                            <footer className='modal-footer'>
+                                <button className='modal-delete-btn' onClick={handleDelete}>Proceed</button>
+                                <button className='modal-cancel-btn' onClick={() => setDeleting(false)}>Cancel</button>
+                            </footer>
+                        </div>
+
+                    </div>}
 
                 </div>
             </div>
 
             <div className='comments-container'>
                 {comments.length > 0 && <h5 className='comments-title'>Comments</h5>}
-                {commenting &&
-                    <div ref={commentInputRef} className='comments-input'>
-                        <NewCommentForm postId={postId} handleCommenting={handleCommenting} />
-                    </div>
+
+                {/* new comment input */}
+                {commenting && <div ref={commentInputRef} className='comments-input'>
+                    <NewCommentForm postId={postId} handleCommenting={handleCommenting} />
+                </div>
                 }
 
-                {dispComments?.length > 0 && dispComments?.map((comment: CommentInterface) => <BlogComment key={comment._id}  {...comment} />)}
-
+                {/* sorted comments */}
+                {dispComments?.length > 0 && dispComments?.map(
+                    (comment: CommentInterface) => <BlogComment key={comment._id}  {...comment} />
+                )}
 
             </div>
 
