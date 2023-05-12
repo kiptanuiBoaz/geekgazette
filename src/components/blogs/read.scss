@@ -1,7 +1,7 @@
 .read {
   display: flex;
   flex-wrap: wrap-reverse;
-  margin: 60px 20px;
+  margin: 60px 0px;
   width: 100%;
   align-items: flex-start; /* align children at the top */
 
@@ -13,8 +13,8 @@
     @media only screen and (min-width: 1150px) {
       width: 70%;
     }
-    @media only screen and (max-width: 1000px) {
-      width: 1000px;
+    @media only screen and (max-width:  1160px) {
+      width: 100%;
     }
     &::-webkit-scrollbar {
       width: 0;
@@ -25,9 +25,10 @@
 
   .line {
     margin-left: 0;
-    margin-top: 40px;
+    // margin-top: 40px;
+    height: 28cm;
     @media only screen and (max-width: 1200px) {
-      display: none;
+      display: none; transform: rotate(90deg);
     }
   }
 
@@ -36,7 +37,7 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1;
-    @media only screen and (max-width: 1150px) {
+    @media only screen and (max-width: 1180px) {
       justify-content: space-around;
     }
 

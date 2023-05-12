@@ -6,26 +6,30 @@
   border-radius: 4px;
   width: 90%;
   background-color: var(--primary-backround);
-  height: 130px;
+  height: 160px;
 
-  @media only screen and (max-width: 1315px) {
-    height: 160px;
+  @media only screen and (max-width: 1180px) {
+    height: 130px;
+  }
+
+  @media only screen and (max-width: 1085px) {
+    height: 159px;
   }
 
   @media only screen and (max-width: 940px) {
-    // margin-left: 10px;
+    height: 160px;
     margin: 20px;
   }
 
   @media only screen and (max-width: 800px) {
-    height: 150px;
+    height: 160px;
   }
   &:hover {
     background-color: var(--secondary-backround);
   }
   .blog-left {
     padding-left: 30px;
-    width: 60%;
+    width: 70%;
     .blog-header {
       display: flex;
       flex-direction: row;
@@ -118,15 +122,20 @@
 
   .blog-right {
     float: right;
+    margin-right: 0;
     .blog-img {
       float: right;
       width: 300px;
       object-fit: cover;
-      height: 130px;
+      height: 160px;
 
-      @media only screen and (max-width: 1315px) {
-        height: 160px;
+      @media only screen and (max-width: 1180px) {
+        height: 130px;
       }
+
+      @media only screen and (max-width: 1085px) {
+        height: 159px;
+      }      
 
       @media only screen and (max-width: 800px) {
         width: 250px;

@@ -85,7 +85,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                     className="edit-btn"
                     onClick={() => navigate(`/edit/${username}`)}
                 >
-                    Edit Profile  <FiEdit style={{ paddingLeft: "4px" }} />
+                    Edit Profile   <FiEdit style={{ paddingLeft: "4px" }} />
                 </button>
                 <button
                     style={{

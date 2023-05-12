@@ -76,8 +76,8 @@ export const Read = () => {
         {filterdBlogs.map(blog => <Blog key={blog._id} {...blog} />)}
 
       </div>
-
-      <hr className='line' />
+<hr className='line' />
+      
 
       <div className='blogs-trends-container'>
 
