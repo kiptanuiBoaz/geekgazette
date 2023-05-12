@@ -32,7 +32,7 @@ const FullBlogPage = () => {
                 <div className='more-blogs'>
                     <hr />
                     <h4 className="more-title">More from Geek Gazette</h4>
-                    {blogs.map((blog: PostInterface) => <Blog key={blog._id}  {...blog} />)}
+                    {blogs.slice(0,3).map((blog: PostInterface) => <Blog key={blog._id}  {...blog} />)}
                 </div>
 
             </div>
