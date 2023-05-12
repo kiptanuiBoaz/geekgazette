@@ -56,7 +56,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                 <p className="head-tag">{headTag}</p>
             </header>
             <hr />
-            {currentUserBlogs.length > 0 && <p className="blogs-title">My blog posts on geeek gazette</p>}
+            {currentUserBlogs.length > 0 && <p className="blogs-title">My blog post(s) on geeek gazette</p>}
 
             <main className="my-blogs">
                 {currentUserBlogs?.map(({ title, date, _id: postId }) => {
