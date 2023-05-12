@@ -17,9 +17,10 @@ export const AuthorBlog = ({ title, date, _id: postId, category, body }: TrendPr
     const navigate = useNavigate();
     return (
         <article className='trend'>
-            <div>
+            <div className='trend-content'>
                 <h2 onClick={() => { navigate(`/blog/read/${postId}`) }} className='title'>{title}</h2>
                 <p className='short-content'>{shortContent}...</p>
+                
                 <div className='trend-footer'>
                     <p className='date'>{formattedDate}</p>
                     <p className='category'>{category}</p>

@@ -3,13 +3,13 @@
   align-items: center;
   background-color: var(--primary-backround);
   padding: 5px;
-  margin: -7px 0 0 -5px;
+  margin: 0;
   position: fixed;
   width: 100%;
   z-index: 5;
 
   .logo {
-    margin: 3px 0 0 2%;
+    margin: 3px 0 0 5%;
     justify-self: flex-start;
     img {
       width: 120px;
@@ -193,7 +193,7 @@
     display: flex;
     flex-direction: row;
     min-width: 100px;
-    margin: 0 20px 0 0;
+    margin: 0 -5px 0 0;
     height: 2.1rem;
     width: max-content;
     color: var(--accent-backround);

@@ -10,7 +10,7 @@
     width: 85vw;
   }
 
-  div {
+  .trend-content {
     padding-left: 20px;
     &:hover {
       color: black;
@@ -19,12 +19,11 @@
     .username {
       font-size: 12px;
       padding: 1px;
-      margin: -1px;
+      margin: 0px;
       color: #454745;
 
       @media only screen and (max-width: 800px) {
         font-size: 11px;
-        // padding: 4px 8px;
       }
       img {
         width: 15px;
@@ -36,8 +35,9 @@
 
     .title {
       margin: 0px;
-      font-size: 19px;
-      color: #565856;
+      font-size: 17px;
+      color: #494a49;
+      padding: 0;
 
       @media only screen and (max-width: 800px) {
         font-size: 16px;
@@ -49,11 +49,12 @@
       }
     }
     .short-content {
-      margin: 7px 0;
+      margin: 0px 0;
+      font-size:14px ;
     }
     .trend-footer {
-      margin: -5px;
-      margin-left: -25px;
+      margin: 0px;
+      // margin-left: -25px;
       display: flex;
       flex-direction: row;
       font-size: 14px;

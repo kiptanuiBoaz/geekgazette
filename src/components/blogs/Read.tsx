@@ -20,6 +20,7 @@ export const Read = () => {
 
   //algorithm to calculate trending props
   useEffect(() => {
+    // setLoading(true);
     setTredingBlogs(
       blogs.slice().sort((a, b) => {
         // Sort by date created
@@ -45,7 +46,9 @@ export const Read = () => {
         // Default: no sorting needed
         return 0;
       }))
+      // setLoading(false);
   }, [blogs]);
+
 
   //fn to change the caegory
   const handleCategoryChange = (e: string) => {

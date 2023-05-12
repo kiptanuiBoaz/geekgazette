@@ -11,17 +11,18 @@ interface TrendProps {
     author: {
         avatarUrl: string;
         fname: string;
+        lname:string;
     }
 }
 
-export const CategoryBlog = ({ title, date, _id: postId, author: { avatarUrl, fname }, body }: TrendProps) => {
+export const CategoryBlog = ({ title, date, _id: postId, author: { avatarUrl, fname ,lname}, body }: TrendProps) => {
     const shortContent = body.substring(0, 30);
     const formattedDate = <TimeAgo timestamp={date} />
     const navigate = useNavigate();
     return (
         <article className='trend'>
-            <div >
-                <h5 className='username'><img src={avatarUrl} alt={fname} />{fname}</h5>
+            <div className='trend-content'>
+                <h5 className='username'><img src={avatarUrl} alt={fname} />{fname}{" "}{lname}</h5>
                 <h2
                     className='title'
                     onClick={() => {

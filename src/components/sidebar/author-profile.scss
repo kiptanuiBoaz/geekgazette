@@ -12,11 +12,16 @@
   }
 
   .username {
-    color: var(--primary-color);
-    margin:6px -2px -2px -2px;
+    color: var(--hover-color);
+    margin:6px 0px 0px 0px;
+    padding: 0;
+    font-size: 20px;
   }
 
-  .bio {
+  .head-tag {
     text-align: center;
+    margin: 0;
+    font-size: 15px;
+    color: #494a49;
   }
 }

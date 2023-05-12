@@ -15,6 +15,7 @@ const RequireAuth = lazy(() => import("./pages/RequireAuth"));
 import { useDispatch } from "react-redux";
 import { api } from "./axios/axios";
 import { setPosts } from "./api/postsSlice";
+import { Spinner } from "./components";
 
 const POSTS_URL = "/posts";
 
@@ -59,7 +60,7 @@ export const App = () => {
 
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<Spinner/>}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

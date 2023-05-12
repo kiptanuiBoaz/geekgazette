@@ -78,7 +78,7 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
                         className='delete-icon'
                         onClick={() => setDeleting(true)}
                     >
-                        <MdDelete /> {" "} 
+                        <MdDelete /> {" "} delete
                     </span>}
                 </p>
 

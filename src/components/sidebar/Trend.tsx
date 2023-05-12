@@ -12,7 +12,7 @@ export const Trend = ({ title,author:{ avatarUrl,lname, fname,}, date, _id:postI
     const navigate = useNavigate();
     return (
         <article className='trend'  onClick={() => { navigate(`/blog/read/${postId}`) }}>
-            <div>
+            <div className='trend-content'>
                 <h5 className='username'><img src={avatarUrl} alt={fname} />{fname} {lname}</h5>
                 <h2 className='title'>{shortTitle}</h2>
 
@@ -22,7 +22,6 @@ export const Trend = ({ title,author:{ avatarUrl,lname, fname,}, date, _id:postI
                 </div>
             </div>
 
-            {/* <hr /> */}
         </article>
     )
 }

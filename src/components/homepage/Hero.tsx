@@ -48,5 +48,5 @@ export const Hero = () => {
       </section>
     </div>
   ) :
-    <div></div>
+    <></>
 }
