@@ -32,6 +32,8 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     const [dispComments, setComments] = useState<CommentInterface[]>([]);
     const { email } = useSelector((state: any) => state.auth.user);
     const [deleting, setDeleting] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
+
 
     const commentInputRef = useRef<HTMLDivElement>(null);
     const { postId } = useParams();
@@ -83,6 +85,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
 
     //delete post from DB
     const handleDelete = async () => {
+        setLoading(true);
         try {
             const res = await privateApi.delete(POSTS_URL, { data: { postId } });
             // delete from redux strore
@@ -93,6 +96,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         } catch (error) {
             console.log(error);
         }
+        setLoading(false);
     };
 
     return (
@@ -132,7 +136,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                             }</p>
 
                     </>}
-                   
+
                     <p
                         onMouseEnter={() => setHovered("like")}
                         onMouseLeave={() => setHovered(null)}
@@ -168,7 +172,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                             <hr />
                             <p className='delete-description'>This can’t be undone and it will be removed from your profile</p>
                             <footer className='modal-footer'>
-                                <button className='modal-delete-btn' onClick={handleDelete}>Proceed</button>
+                                <button className='modal-delete-btn' onClick={handleDelete}>{loading ? "Deleting..." : "Proceed"}</button>
                                 <button className='modal-cancel-btn' onClick={() => setDeleting(false)}>Cancel</button>
                             </footer>
                         </div>

@@ -21,6 +21,7 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
     const [authorAvatar, setAuthorAvatar] = useState('');
     const [hovered, setHovered] = useState<boolean>(false);
        const [deleting, setDeleting] = useState<boolean>(false);
+       const [loading,setLoading] = useState<boolean>(false);
 
     //currently signed in  user from redux store
     const { email } = useSelector((state: any) => state.auth.user);
@@ -50,6 +51,7 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
 
     //delete commetn from db
     const handleDeleteComment = async () => {
+        setLoading(true);
         try {
             const res = await privateApi.delete(COMMENTS_URL, { data: { commentId: _id, postId } });
             //delete from redux store
@@ -59,6 +61,7 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
         } catch (error) {
             console.log(error);
         }
+        setLoading(false);
     }
 
     return (
@@ -88,7 +91,7 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
                             <hr />
                             <p className='delete-description'>This can’t be undone, your comment will be removed permanently</p>
                             <footer className='modal-footer'>
-                                <button className='modal-delete-btn' onClick={handleDeleteComment}>Proceed</button>
+                                <button className='modal-delete-btn' onClick={handleDeleteComment}>{loading ? "Deleting...":"Proceed"}</button>
                                 <button className='modal-cancel-btn' onClick={() => setDeleting(false)}>Cancel</button>
                             </footer>
                         </div>

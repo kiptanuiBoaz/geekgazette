@@ -14,6 +14,7 @@ interface CommentFormProps {
 
 export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) => {
     const [text, setText] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
 
     const chars = text.length;
     const date = new Date;
@@ -25,6 +26,7 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
 
 
     const handleSubmit = async () => {
+        setLoading(true);
         try {
             const res = await privateApi.post("/comments", { text, date, userEmail, postId });
             if (res.status === 200) {
@@ -34,6 +36,7 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
         } catch (e) {
             console.log(e)
         }
+        setLoading(false);
     };
 
     return (
@@ -52,7 +55,7 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
             <footer className='comment-input-footer'>
 
                 <div className='buttons'>
-                    <button onClick={() => handleSubmit()} className='submit'>Submit</button>
+                    <button onClick={() => handleSubmit()} className='submit'>{loading ? "Submitting..." : "Submit"}</button>
                     <button className='cancel' onClick={() => handleCommenting()}>Cancel</button>
 
                 </div>

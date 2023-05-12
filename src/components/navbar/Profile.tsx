@@ -4,7 +4,7 @@ import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { RiLogoutCircleRLine } from "react-icons/ri"
 import { useSelector } from "react-redux";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import useLogOut from "../../hooks/useLogout";
 import { PostInterface } from "../../api/reduxTypes";
 import TimeAgo from "../../utils/Timeago";
@@ -14,25 +14,25 @@ interface ProfileProps {
 }
 
 interface PostsState {
-  posts:{ posts: PostInterface[];}
+    posts: { posts: PostInterface[]; }
 }
 
 export const Profile = ({ scrollPos }: ProfileProps) => {
     const { fname, avatarUrl, email, headTag, lname } = useSelector((state: any) => state.auth.user);
     const navigate = useNavigate();
+    //logout fn from useLogout hook
     const logOut = useLogOut();
     const location = useLocation();
 
     const username = email.substring(0, email.indexOf('@'));
     const hasTestRoute = location.pathname.includes("/edit/");
-    
-    //closet the profile during profile edit
-   
 
+    //current user's blog posts
     const blogs = useSelector((state: PostsState) => state?.posts.posts);
-    const currentUserBlogs = blogs.filter((blog:PostInterface) => blog.authorEmail === email);
+    const currentUserBlogs = blogs.filter((blog: PostInterface) => blog.authorEmail === email);
 
-    if(hasTestRoute) return;
+    //closet the profile during profile edit
+    if (hasTestRoute) return;
     return (
         <article style={{
             backgroundColor: scrollPos < 20 ? "#d1d2d2" : "#4d7e3e",
@@ -56,17 +56,17 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                 <p className="head-tag">{headTag}</p>
             </header>
             <hr />
-            {currentUserBlogs.length > 0 &&  <p className="blogs-title">My blog posts on geeek gazette</p>}
+            {currentUserBlogs.length > 0 && <p className="blogs-title">My blog posts on geeek gazette</p>}
 
             <main className="my-blogs">
-                {currentUserBlogs?.map(({title,date,_id:postId}) => {
+                {currentUserBlogs?.map(({ title, date, _id: postId }) => {
                     return (
                         <div key={title} style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : " rgb(40, 97, 34)" }} className="my-blog">
-                            <p 
-                            style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d", }} 
-                            className="title"
-                            onClick={()=> navigate(`/blog/read/${postId}`)}
-                             
+                            <p
+                                style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d", }}
+                                className="title"
+                                onClick={() => navigate(`/blog/read/${postId}`)}
+
                             >
                                 {title.substring(0, 30)}...
                             </p>
@@ -83,9 +83,9 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                         borderColor: scrollPos > 20 ? "#9b9999" : "#4d7e3e"
                     }}
                     className="edit-btn"
-                    onClick={()=>navigate(`/edit/${username}`)}
+                    onClick={() => navigate(`/edit/${username}`)}
                 >
-                    Edit Profile <span className="edit-btn-span" > <FiEdit /></span>
+                    Edit Profile  <FiEdit style={{ paddingLeft: "4px" }} />
                 </button>
                 <button
                     style={{
@@ -93,13 +93,13 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                         borderColor: scrollPos > 20 ? "#d1d2d2" : "#4d7e3e"
                     }}
                     className="sign-out-btn"
-                    onClick={()=>{
+                    onClick={() => {
                         logOut();
                         navigate("/auth/sign-in")
                     }
                     }
                 >
-                    Sign Out <span className="sign-out-btn-span"> <RiLogoutCircleRLine /></span>
+                    Sign out <RiLogoutCircleRLine style={{ paddingLeft: "4px" }} />
                 </button>
             </footer>
         </article>

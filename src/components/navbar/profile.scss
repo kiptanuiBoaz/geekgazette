@@ -33,9 +33,8 @@
       margin: 3px 0 0 0;
     }
   }
-  .blogs-title{
+  .blogs-title {
     text-align: center;
-    
   }
   .my-blogs {
     max-height: 6cm;
@@ -56,10 +55,9 @@
       background-color: #f1f1f1;
     }
 
-   
     .my-blog {
       background-color: rgb(34, 97, 34);
-      padding: 7px 0 5px 10px  ;
+      padding: 7px 0 5px 10px;
       margin: 5px 0;
       border-radius: 5px;
 
@@ -69,7 +67,7 @@
         color: #6b6b6b;
         cursor: pointer;
 
-        &:hover{
+        &:hover {
           text-decoration: underline;
           font-weight: bold;
         }
@@ -78,7 +76,6 @@
         margin: 0;
         font-style: italic;
         font-size: 13px;
-       
       }
     }
   }
@@ -86,31 +83,35 @@
   .buttons-container {
     text-align: center;
     padding: 15px 0;
+    display: flex;
     .edit-btn {
       border-radius: 20px;
-      padding: 6px 4px;
+      padding: 6px 6px;
       width: 110px;
       margin: 0 5px;
       background-color: var(--primary-backround);
       border-width: 2px;
       font-size: 15px;
+      cursor: pointer;
 
-      .edit-btn-span {
-        display: none;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+
+      &:hover{
+        background-color: var(--secondary-backround);
       }
 
-      &:hover {
-        .edit-btn-span {
-          display: inline;
-        }
-      }
+      
     }
 
     .sign-out-btn {
       @extend .edit-btn;
-
-      .sign-out-btn-span {
-        @extend .edit-btn-span;
+      &:hover {
+        background-color: rgb(242, 117, 117);
+        color: white!important;
+        border-color:  rgb(242, 117, 117) !important;
+        
       }
     }
   }
