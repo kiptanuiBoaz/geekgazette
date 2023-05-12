@@ -80,7 +80,6 @@ const UserProfileForm = () => {
                 dispatch(updateAuth({ ...res.data }))
                 navigate(from, { replace: true });
             }
-            console.log(res);
 
         } catch (err: any) {
 

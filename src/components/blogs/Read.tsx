@@ -20,7 +20,6 @@ export const Read = () => {
 
   //algorithm to calculate trending props
   useEffect(() => {
-    // setLoading(true);
     setTredingBlogs(
       blogs.slice().sort((a, b) => {
         // Sort by date created
@@ -46,7 +45,6 @@ export const Read = () => {
         // Default: no sorting needed
         return 0;
       }))
-      // setLoading(false);
   }, [blogs]);
 
 
@@ -76,8 +74,8 @@ export const Read = () => {
         {filterdBlogs.map(blog => <Blog key={blog._id} {...blog} />)}
 
       </div>
-<hr className='line' />
-      
+      <hr className='line' />
+
 
       <div className='blogs-trends-container'>
 

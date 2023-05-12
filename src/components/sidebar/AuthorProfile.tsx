@@ -9,6 +9,9 @@ interface UserProps {
 }
 
 export const AuthorProfile = ({ avatarUrl,headTag, lname,fname }: UserProps) => {
+
+    React.useEffect(()=>{},[ avatarUrl,headTag, lname,fname ]);
+
     return (
         <div className='user-profile'>
             <img className='user-image' src={avatarUrl} alt={fname} />

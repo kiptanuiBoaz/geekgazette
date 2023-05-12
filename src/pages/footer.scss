@@ -20,9 +20,16 @@
       width: 250px;
       color:  var(--primary-backround);
       
+      .source-code{
+        display: flex;
+        align-items: center;
+        padding:4px
+      }
+      
       a {
         color:  var(--primary-backround);
         text-decoration: none;
+        
         &:hover {
           text-decoration: underline;
           color:white
@@ -37,12 +44,19 @@
       display: flex;
       flex-direction: column;
       width: 170px;
+    
       @extend .company;
       h5 {
         font-size: 17px;
         // font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         margin-bottom: 7px;
         margin-top: 0;
+      }
+
+      a{
+        display: flex;
+        align-items: center;
+        padding:4px
       }
     }
 

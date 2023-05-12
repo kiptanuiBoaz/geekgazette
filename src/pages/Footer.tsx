@@ -34,15 +34,15 @@ const Footer = () => {
         <div className='company'>
           <Link to="/" ><img src={logo} alt="logo" /></Link>
           <p>Where geeks come to get their fix</p>
-          <a href='https://github.com/kiptanuiBoaz/geekgazette' target='_blank'>Source code <FaCode /></a>
+          <a className='source-code' href='https://github.com/kiptanuiBoaz/geekgazette' target='_blank'>Source code <FaCode style={{paddingLeft:"5px"}}/></a>
         </div>
 
         <div className='developer'>
           <h5>About the developer</h5>
-          <a href="https://github.com/kiptanuiBoaz" target='_blank'> <BsGithub /> {" "} GitHub</a>
-          <a href='#'><CgProfile /> {" "} Portfolio</a>
-          <a href='https://twitter.com/k_boazo' target='_blank'> <FaTwitter /> {" "} Twitter</a>
-          <a href='https://www.linkedin.com/in/kiptanui-boaz-466154217/'target='_blank'> <FaLinkedin /> {" "} LinkedIn</a>
+          <a href="https://github.com/kiptanuiBoaz" target='_blank'> <BsGithub style={{paddingRight:"5px"}} /> {" "} GitHub</a>
+          <a href='#'><CgProfile style={{paddingRight:"5px"}}/> {" "} Portfolio</a>
+          <a href='https://twitter.com/k_boazo' target='_blank'> <FaTwitter style={{paddingRight:"5px"}}/> {" "} Twitter</a>
+          <a href='https://www.linkedin.com/in/kiptanui-boaz-466154217/'target='_blank'> <FaLinkedin style={{paddingRight:"5px"}} /> {" "} LinkedIn</a>
         </div>
 
         <div className='privacy'>
