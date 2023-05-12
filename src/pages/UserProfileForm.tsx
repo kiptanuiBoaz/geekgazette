@@ -11,10 +11,18 @@ import usePrivateApi from "../hooks/usePrivateApi";
 
 const USER_URL = "/users"
 
+interface UserData {
+    fname: string;
+    lname: string;
+    headTag: string;
+    dob:string;
+    gender: string;
+}
+
 const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState<UserData>({});
     const [loading, setLoading] = useState<boolean>(false);
     const [errMsg, setErrMsg] = useState<string | null>(null);
 
@@ -141,6 +149,7 @@ const UserProfileForm = () => {
                     handleSubmit();
                 }}
                 className='submit-button'
+                disabled={!avatarUrl || !formData.dob|| !formData.gender || !formData.headTag|| !formData.fname ||!formData.lname}
             >
                 {loading ? "Submitting..." : "Submit"}
             </button>
