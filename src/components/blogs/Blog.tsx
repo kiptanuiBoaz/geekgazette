@@ -12,46 +12,49 @@ import { animateScroll } from 'react-scroll';
 
 
 
-export const Blog = ({ body, title, imgUrl, date, category, _id:postId,author:{fname,avatarUrl,lname} }: BlogProps) => {
+export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author: { fname, avatarUrl, lname } }: BlogProps) => {
     const [brightness, setBrightness] = useState<string>("brightness(100%)");
     const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
-    const [shortContent, setShortContent] = useState<string>(body.substring(0, 100) + "...");
-    const [shortTitle, setShortTitle] = useState<string>(title.length > 70 ? title : title.substring(0, 69) + ("..."))
+    const [shortBody, setShortBody] = useState<string>("");
+    const [shortTitle, setShortTitle] = useState<string>(title.length > 70 ? title : title.substring(0, 69) + ("..."));
+    const [dots, setDots] = useState<string>("");
+    const [titleDots, setTitleDots] = useState<string>("");
+
     const formattedDate = <TimeAgo timestamp={date} />
     const navigate = useNavigate();
 
+    //body readmore dots
+    useEffect(() => { setDots(body.length > shortBody.length ? "..." : "") }, [deviceWidth, body, shortBody]);
 
+    //title readmore dots
+    useEffect(() => { setTitleDots(title.length > shortTitle.length ? "..." : "") }, [deviceWidth, title, shortTitle]);
 
-
+    //truncate the blog content
     useEffect(() => {
-        const handleResize = () => {
-            setDeviceWidth(window.innerWidth);
-            setShortContent(body.substring(0, deviceWidth < 500
-                ? 30
-                : deviceWidth < 640
-                    ? 50
-                    : 100
-            )
-                + "..."
-            );
+        setShortBody(body.substring(0, deviceWidth < 500 ? 30 :
+            deviceWidth < 640
+                ? 50
+                : 100
+        ))
+    }, [deviceWidth, shortBody]);
 
-            setShortTitle(title.substring(0, deviceWidth < 500
-                ? 30
-                : deviceWidth < 640
-                    ? 35
-                    : 50
-            )
-                + "..."
-            )
+    //truncate the title length
+    useEffect(() => {
+        setShortTitle(title.substring(0, deviceWidth < 500 ? 30 :
+            deviceWidth < 640
+                ? 55
+                : 70
+        ))
+    }, [deviceWidth, shortTitle]);
 
-        };
-
+    //monitor the screen width
+    useEffect(() => {
+        const handleResize = () => { setDeviceWidth(window.innerWidth); };
         window.addEventListener('resize', handleResize);
-
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [deviceWidth,shortContent,shortTitle]);
+    }, [deviceWidth]);
 
     return (
         <article
@@ -59,7 +62,7 @@ export const Blog = ({ body, title, imgUrl, date, category, _id:postId,author:{f
             onMouseEnter={() => setBrightness("brightness(50%)")}
             onMouseLeave={() => setBrightness("brightness(100%)")}
             className='blog'
-            onClick={() => { 
+            onClick={() => {
                 navigate(`/blog/read/${postId}`);
                 // window.scrollTo(0,0);
             }}
@@ -71,8 +74,8 @@ export const Blog = ({ body, title, imgUrl, date, category, _id:postId,author:{f
                 </div>
 
                 {/* */}
-                <h2 className='title'>{shortTitle}</h2>
-                <p className='short-content'>{shortContent}</p>
+                <h2 className='title'>{shortTitle}{titleDots}</h2>
+                <p className='short-content'>{shortBody}{dots}</p>
 
                 <div className='blog-footer' >
                     <p className='date'>{formattedDate}</p>

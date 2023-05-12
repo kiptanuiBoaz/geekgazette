@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Blog, AuthorBlog, CategoryBlog, AuthorProfile, FullBlog } from '../components';
@@ -15,6 +15,7 @@ const FullBlogPage = () => {
     //current blog
     const blog: PostInterface | undefined = blogs.find((b: PostInterface) => b._id === postId);
 
+    useEffect(() => {window.scroll(0,0)},[postId]);
     // or render some other loading indicator
     if (!blog) return <div>Loading...</div>;
 

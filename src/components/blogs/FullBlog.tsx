@@ -44,6 +44,8 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     const privateApi = usePrivateApi();
     const dispatch = useDispatch();
 
+
+    useEffect(() => {window.scroll(0,0)},[]);
     //forcing re-render when updating comments during  add or delete
     useEffect(() => {
         setComments(comments.slice().sort((a, b) => new Date(b.date) - new Date(a.date)));

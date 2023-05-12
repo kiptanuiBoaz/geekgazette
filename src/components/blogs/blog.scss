@@ -5,7 +5,6 @@
   margin-left: 50px;
   border-radius: 4px;
   width: 90%;
-
   background-color: var(--primary-backround);
   height: 130px;
 
@@ -26,7 +25,7 @@
   }
   .blog-left {
     padding-left: 30px;
-
+    width: 60%;
     .blog-header {
       display: flex;
       flex-direction: row;
@@ -117,7 +116,9 @@
   }
 
   .blog-right {
+    float: right;
     .blog-img {
+      float: right;
       width: 300px;
       object-fit: cover;
       height: 130px;
