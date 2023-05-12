@@ -7,7 +7,7 @@
   width: 250px;
   border-radius: 5px;
   box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.996);
-cursor: auto;
+  cursor: auto;
 
   .profile-header {
     text-align: center;
@@ -36,7 +36,7 @@ cursor: auto;
   }
   .blogs-title {
     text-align: center;
-    margin:0;
+    margin: 0;
     padding: 0;
     font-size: 14px;
   }
@@ -91,31 +91,29 @@ cursor: auto;
     .edit-btn {
       border-radius: 20px;
       padding: 6px 6px;
-      width: 110px;
+      width: 120px;
       margin: 0 5px;
       background-color: var(--primary-backround);
       border-width: 2px;
       font-size: 15px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-       display: flex;
-       align-items: center;
-       justify-content: center;
-
-      &:hover{
-        background-color: var(--secondary-backround);
+      &:hover {
+        background-color: var(--hover-color);
+        color:var(--primary-backround)!important;
+        border-color: var(--secondary-color)!important;
       }
-
-      
     }
 
     .sign-out-btn {
       @extend .edit-btn;
       &:hover {
         background-color: rgb(242, 117, 117);
-        color: white!important;
-        border-color:  rgb(242, 117, 117) !important;
-        
+        color: white !important;
+        border-color: rgb(242, 117, 117) !important;
       }
     }
   }

@@ -37,7 +37,7 @@ const FullBlogPage = () => {
 
             </div>
 
-            <hr />
+            <hr className='line' />
             <div className='side'>
                 <div className='user-profile'>
                     <AuthorProfile {...blog.author} />

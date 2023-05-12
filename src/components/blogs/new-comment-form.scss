@@ -51,6 +51,14 @@
         font-size: 1rem;
         cursor: pointer;
 
+        &:disabled{
+          background-color: var(--disabled-color);
+    
+          &:hover{
+            background-color: var(--disabled-color);
+          }
+        }
+
         &:hover {
           background-color: var(--hover-color);
           color: white;

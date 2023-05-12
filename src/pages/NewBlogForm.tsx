@@ -23,11 +23,11 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
   const blogs = useSelector((state: any) => state?.posts.posts);
   const blog: PostInterface = postId ? blogs.find((b: PostInterface) => b._id === postId) : null;
 
-  const [title, setTitle] = useState(blog ? blog.title : "");
+  const [title, setTitle] = useState(blog ? blog.title : null);
   const [body, setBody] = useState(blog ? blog.body : "");
-  const [category, setCategory] = useState(blog ? blog.category : "");
+  const [category, setCategory] = useState<string | null>(blog ? blog.category : null);
   const [image, setImage] = useState<File | null>(null);
-  const [imgUrl, setImgUrl] = useState<string>(blog ? blog.imgUrl : "");
+  const [imgUrl, setImgUrl] = useState<string | null>(blog ? blog.imgUrl : null);
   const [loading, setLoading] = useState<boolean>(false);
   const [imageUploading, setImageUploading] = useState<boolean>(false);
 
@@ -113,7 +113,7 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
         ref={titleRef}
         className='title-input'
         type="text"
-        value={title}
+        value={title??""}
         onChange={(e) => setTitle(e.target.value)}
         placeholder='Title'
         required
@@ -130,7 +130,7 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
       />
       <br />
 
-      <select onChange={(e) => setCategory(e.target.value)} className='category-select' value={category} required>
+      <select onChange={(e) => setCategory(e.target.value)} className='category-select' value={category??""} required>
         <option value="">Select a category</option>
         {categoryList.map(category => <option value={category}>{category}</option>)}
 
@@ -156,8 +156,15 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
         required
       />
       <br />
-      <img className='preview-img' src={imgUrl} />
-      <button onClick={(e) => handleSubmit(e)} className='submit-button' type="submit">{loading ? "Submiting..." : "Submit"}</button>
+      <img className='preview-img' src={imgUrl ?? ""} />
+      <button
+        onClick={(e) => handleSubmit(e)}
+        disabled={!title || !body || !category || !imgUrl}
+        className='submit-button'
+        type="submit"
+      >
+        {loading ? "Submiting..." : "Submit"}
+      </button>
 
     </form>
   );
