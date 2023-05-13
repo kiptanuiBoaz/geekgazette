@@ -83,9 +83,13 @@
       font-size: 1.2rem;
       font-weight: normal;
       cursor: pointer;
-
-      &:disabled {
-        cursor: not-allowed;
+      
+      &:disabled{
+        background-color: var(--disabled-color);
+  
+        &:hover{
+          background-color: var(--disabled-color);
+        }
       }
 
       &:hover {

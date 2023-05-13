@@ -107,7 +107,7 @@ const LoginForm = () => {
                     }}
                     type="submit"
                     className="login-button"
-                    disabled={email == "" && pwd == ""}
+                    disabled={email === "" || pwd === ""}
                 >
                     {loading ? "Signing In..." : "Sign In"}
                 </button>
