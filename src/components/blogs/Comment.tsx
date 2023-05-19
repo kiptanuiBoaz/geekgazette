@@ -18,7 +18,7 @@ interface CommentProps {
 
 export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
     const [authorName, setAuthorName] = useState('');
-    const [authorAvatar, setAuthorAvatar] = useState('');
+    const [authorAvatar, setAuthorAvatar] = useState(null);
     const [hovered, setHovered] = useState<boolean>(false);
        const [deleting, setDeleting] = useState<boolean>(false);
        const [loading,setLoading] = useState<boolean>(false);

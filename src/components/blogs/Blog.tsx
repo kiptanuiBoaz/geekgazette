@@ -69,7 +69,7 @@ export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author:
         >
             <div className='blog-left'>
                 <div className='blog-header'>
-                    <img className='avatar' src={avatarUrl} alt={fname} />
+                    <img className='avatar' src={avatarUrl ?? "https://media.tenor.com/joLYNfFQGDgAAAAC/loading.gif"} alt={fname} />
                     <h5 className='username'>{fname} {lname}</h5>
                 </div>
 

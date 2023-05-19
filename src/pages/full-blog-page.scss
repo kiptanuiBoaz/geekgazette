@@ -15,6 +15,7 @@
   &:nth-child(3) {
     order: 2;
   }
+  min-height: 80vh;
 
   .main {
     @extend .blogs;

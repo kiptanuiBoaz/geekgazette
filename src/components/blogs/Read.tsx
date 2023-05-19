@@ -60,7 +60,7 @@ export const Read = () => {
     )
 
   }, [blogs, selectedCategory]);
-  if(blogs.length < 1) return <p>Loading...</p>
+  if(blogs.length < 1) return <p style={{height:"500px"}}>Loading...</p>
   return (
     <section className='read'>
 

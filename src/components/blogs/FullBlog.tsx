@@ -45,7 +45,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     const dispatch = useDispatch();
 
 
-    useEffect(() => {window.scroll(0,0)},[]);
+    useEffect(() => { window.scroll(0, 0) }, []);
     //forcing re-render when updating comments during  add or delete
     useEffect(() => {
         setComments(comments.slice().sort((a, b) => new Date(b.date) - new Date(a.date)));
@@ -68,10 +68,10 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
 
     //submitting comments to server
     const handleLike = async () => {
-        try { 
+        try {
             // remove comment from react redux
             dispatch(updateLikes({
-                   postId,
+                postId,
                 userEmail: email,
                 date: likeDate.toJSON()
             }))
@@ -82,7 +82,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                 userEmail: email,
                 date: likeDate
             });
-           
+
             if (res.status !== 200) {
                 dispatch(updateLikes({ postId, ...res.data }))
             }
@@ -108,6 +108,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         setLoading(false);
     };
 
+    if(!fname) return <p>Loading...</p>
     return (
         <article className='blog-article'>
 

@@ -24,7 +24,7 @@ export const MiniProfile = ({ scrollPos }: MiniProfileProps) => {
             <img
                 onClick={() => setShowProfile(!showProfile)}
                 className="avatar"
-                src={avatarUrl ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}
+                src={avatarUrl ?? "https://media.tenor.com/joLYNfFQGDgAAAAC/loading.gif"}
             />
             <p onClick={() => setShowProfile(!showProfile)} className="username">{fname} </p>
             <div
