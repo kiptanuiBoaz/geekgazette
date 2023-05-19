@@ -18,15 +18,18 @@ const Footer = () => {
   const [hoverd, setHovered] = useState<number>(-1);
   const blogs = useSelector((state: PostsState) => state?.posts.posts);
 
-  const categories = blogs.reduce((counts: any, blog: PostInterface) => {
-    counts[blog.category] = (counts[blog.category] || 0) + 1;
-    return counts;
-  }, {});
+  let sortedCategories: string[] = [];
 
-  const sortedCategories = Object.entries(categories)
-    .sort((a, b) => b[1] - a[1])
-    .map(([category]) => category);
+  if (blogs && blogs.length > 0) {
+    const categories = blogs.reduce((counts: any, blog: PostInterface) => {
+      counts[blog.category] = (counts[blog.category] || 0) + 1;
+      return counts;
+    }, {});
 
+    sortedCategories = Object.entries(categories)
+      .sort((a, b) => b[1] - a[1])
+      .map(([category]) => category);
+  }
 
   return (
     <footer className='footer'>
@@ -34,15 +37,15 @@ const Footer = () => {
         <div className='company'>
           <Link to="/" ><img src={logo} alt="logo" /></Link>
           <p>Where geeks come to get their fix</p>
-          <a className='source-code' href='https://github.com/kiptanuiBoaz/geekgazette' target='_blank'>Source code <FaCode style={{paddingLeft:"5px"}}/></a>
+          <a className='source-code' href='https://github.com/kiptanuiBoaz/geekgazette' target='_blank'>Source code <FaCode style={{ paddingLeft: "5px" }} /></a>
         </div>
 
         <div className='developer'>
           <h5>About the developer</h5>
-          <a href="https://github.com/kiptanuiBoaz" target='_blank'> <BsGithub style={{paddingRight:"5px"}} /> {" "} GitHub</a>
-          <a href='#'><CgProfile style={{paddingRight:"5px"}}/> {" "} Portfolio</a>
-          <a href='https://twitter.com/k_boazo' target='_blank'> <FaTwitter style={{paddingRight:"5px"}}/> {" "} Twitter</a>
-          <a href='https://www.linkedin.com/in/kiptanui-boaz-466154217/'target='_blank'> <FaLinkedin style={{paddingRight:"5px"}} /> {" "} LinkedIn</a>
+          <a href="https://github.com/kiptanuiBoaz" target='_blank'> <BsGithub style={{ paddingRight: "5px" }} /> {" "} GitHub</a>
+          <a href='#'><CgProfile style={{ paddingRight: "5px" }} /> {" "} Portfolio</a>
+          <a href='https://twitter.com/k_boazo' target='_blank'> <FaTwitter style={{ paddingRight: "5px" }} /> {" "} Twitter</a>
+          <a href='https://www.linkedin.com/in/kiptanui-boaz-466154217/' target='_blank'> <FaLinkedin style={{ paddingRight: "5px" }} /> {" "} LinkedIn</a>
         </div>
 
         <div className='privacy'>
@@ -54,7 +57,7 @@ const Footer = () => {
 
         <div className='categories'>
           <h5>Porpular categories</h5>
-          {sortedCategories?.slice(0,4)?.map((cat, i) =>
+          {sortedCategories?.slice(0, 4)?.map((cat, i) =>
             <p onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(-1)} key={cat}>
               <Link to={cat} >
                 {cat} {hoverd === i && <HiTrendingUp />}

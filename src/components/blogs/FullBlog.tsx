@@ -68,15 +68,22 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
 
     //submitting comments to server
     const handleLike = async () => {
-        try {
+        try { 
+            // remove comment from react redux
+            dispatch(updateLikes({
+                   postId,
+                userEmail: email,
+                date: likeDate.toJSON()
+            }))
+
+            //remove from db
             const res = await privateApi.put(LIKES_URL, {
                 postId,
                 userEmail: email,
                 date: likeDate
             });
-
-            // remove comment from react redux
-            if (res.status === 200) {
+           
+            if (res.status !== 200) {
                 dispatch(updateLikes({ postId, ...res.data }))
             }
 

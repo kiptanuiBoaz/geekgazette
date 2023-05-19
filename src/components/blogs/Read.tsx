@@ -17,7 +17,6 @@ export const Read = () => {
   const [trendingBlogs, setTredingBlogs] = useState<PostInterface[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [filterdBlogs, setFilterdBlogs] = useState<PostInterface[]>([]);
-
   //algorithm to calculate trending props
   useEffect(() => {
     setTredingBlogs(
@@ -61,7 +60,7 @@ export const Read = () => {
     )
 
   }, [blogs, selectedCategory]);
-
+  if(blogs.length < 1) return <p>Loading...</p>
   return (
     <section className='read'>
 

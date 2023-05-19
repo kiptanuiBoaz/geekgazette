@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3500";
+const BASE_URL = "https://geekgazette-server.onrender.com";
 import axios, { AxiosInstance } from 'axios';
 
 export const api: AxiosInstance = axios.create({

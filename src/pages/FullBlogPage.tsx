@@ -32,7 +32,7 @@ const FullBlogPage = () => {
                 <div className='more-blogs'>
                     <hr />
                     <h4 className="more-title">More from Geek Gazette</h4>
-                    {blogs.slice(0,3).map((blog: PostInterface) => <Blog key={blog._id}  {...blog} />)}
+                    {blogs.filter((b=> b._id !== postId)).slice(0,3).map((blog: PostInterface) => <Blog key={blog._id}  {...blog} />)}
                 </div>
 
             </div>
