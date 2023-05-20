@@ -15,6 +15,7 @@ import usePrivateApi from '../../hooks/usePrivateApi';
 import { updateLikes, deletePost } from '../../api/postsSlice';
 import { RiDeleteBinLine } from "react-icons/ri";
 import { MdDeleteForever } from "react-icons/md"
+import { Fade,Zoom } from "react-awesome-reveal";
 
 const LIKES_URL = "/likes"
 const POSTS_URL = "/posts"
@@ -113,7 +114,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         <article className='blog-article'>
 
             <div className='blog-container'>
-                <img src={imgUrl} alt={title} className='blog-image' />
+                <Zoom><img src={imgUrl} alt={title} className='blog-image' /></Zoom>
                 <h2 className='title'>{title}</h2>
                 <p className='header-info'>
                     {`Published`}
@@ -121,7 +122,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                     {" "}  {`by`}
                     <span> {`${fname} ${lname}`}</span>
                 </p>
-                <p className='body-content'>{body}</p>
+                <Fade cascade><p className='body-content'>{body}</p></Fade>
 
                 <div className='post-engagements'>
 

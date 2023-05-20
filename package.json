@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/axios": "^0.14.0",
     "@types/redux": "^3.6.0",

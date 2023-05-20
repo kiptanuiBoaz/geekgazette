@@ -4,12 +4,13 @@ import logoGreen from "../assets/navbar/logo-no-bg-green.png";
 import logoWhite from "../assets/navbar/logo-no-bg-white.png";
 import { navList } from "../utils/navItems";
 import { navListTypes } from "../types";
-import { NavLink,useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { MiniProfile } from "../components";
 import { useSelector } from "react-redux";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { VscChromeClose } from "react-icons/vsc";
 import { Profile } from "../components";
+import { Slide } from "react-awesome-reveal";
 
 
 const Navbar = () => {
@@ -63,7 +64,7 @@ const Navbar = () => {
           <NavLink to="/"> <img src={scrollPos > 20 ? logoWhite : logoGreen} alt="logo" /></NavLink>
         </div>
 
-
+        <Slide cascade direction="right">
         <ul
           className={deviceWidth > 640 ? "nav-link-container" : 'mobile-nav'}
           style={{ display: !showMobileNav && deviceWidth < 640 ? "none" : "" }}
@@ -75,9 +76,9 @@ const Navbar = () => {
               style={{ color: scrollPos < 20 ? " #6b6b6b" : "#eeeee4" }}
               className="mini-profile"
               onClick={() => {
-                if(deviceWidth < 640) setShowMobileNav(!showMobileNav);
+                if (deviceWidth < 640) setShowMobileNav(!showMobileNav);
                 setShowProfile(!showProfile);
-                
+
               }}
             >
               <MiniProfile showProfile={showProfile} scrollPos={scrollPos} />
@@ -105,8 +106,9 @@ const Navbar = () => {
             </>
           }
         </ul>
+        </Slide>
         <div
-          onClick={() =>{ 
+          onClick={() => {
             setShowMobileNav(!showMobileNav);
             showProfile && setShowProfile(false);
           }}
@@ -116,10 +118,10 @@ const Navbar = () => {
             display: deviceWidth > 640 ? "none" : ""
           }}
         >
-          {!showMobileNav && !showProfile? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
-        
-        </div> 
-         {showProfile && <Profile scrollPos={scrollPos} />}
+          {!showMobileNav && !showProfile ? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
+
+        </div>
+        {showProfile && <Profile scrollPos={scrollPos} />}
       </nav>
 
     </>

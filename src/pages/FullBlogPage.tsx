@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Blog, AuthorBlog, CategoryBlog, AuthorProfile, FullBlog } from '../components';
 import { PostInterface } from '../api/reduxTypes';
 import "./full-blog-page.scss";
+import { Fade} from "react-awesome-reveal";
 
 interface PostsState {
     posts: { posts: PostInterface[]; }
@@ -50,16 +51,22 @@ const FullBlogPage = () => {
             <hr className='line' />
             <div className='side'>
                 <div className='user-profile'>
+                <Fade cascade>
                     <AuthorProfile {...blog.author} />
+                    </Fade>
                 </div>
                 {authorBlogs.length > 1 && <div className='trending'>
                     <h3 className='header-trending'>{`More by ${fname}`} </h3>
+                    <Fade cascade>
                     {authorBlogs.map((blog: PostInterface) => <AuthorBlog key={blog._id}  {...blog} />)}
+                    </Fade>
                 </div>}
 
                 {category.length > 0 && <div className='trending'>
                     <h3 className='header-trending'>{`More on ${category}`} </h3>
+                    <Fade cascade>
                     {categoryBlogs.map((blog: PostInterface) => <CategoryBlog  key={blog._id}  {...blog} />)}
+                    </Fade>
                 </div>}
 
             </div>

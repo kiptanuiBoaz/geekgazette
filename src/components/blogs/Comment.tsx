@@ -8,6 +8,7 @@ import { deleteComment } from '../../api/postsSlice';
 import usePrivateApi from '../../hooks/usePrivateApi';
 const COMMENTS_URL = "/comments"
 import { useParams } from 'react-router-dom';
+import { Fade, Zoom } from "react-awesome-reveal";
 
 interface CommentProps {
     _id: string;
@@ -20,8 +21,8 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
     const [authorName, setAuthorName] = useState('');
     const [authorAvatar, setAuthorAvatar] = useState(null);
     const [hovered, setHovered] = useState<boolean>(false);
-       const [deleting, setDeleting] = useState<boolean>(false);
-       const [loading,setLoading] = useState<boolean>(false);
+    const [deleting, setDeleting] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     //currently signed in  user from redux store
     const { email } = useSelector((state: any) => state.auth.user);
@@ -65,40 +66,46 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
     }
 
     return (
-        <div className='comment' key={_id}>
-            <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className='comment-content'>
-                <div className='comment-header'>
-                    <img className='comment-avatar' src={authorAvatar ?? "https://media.tenor.com/joLYNfFQGDgAAAAC/loading.gif"} alt='avatar' />
-                    <h5 className='comment-author'>{authorName}</h5>
+        <Fade>
+            <div className='comment' key={_id}>
+                <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className='comment-content'>
+                    <div className='comment-header'>
+                        <img className='comment-avatar' src={authorAvatar ?? "https://media.tenor.com/joLYNfFQGDgAAAAC/loading.gif"} alt='avatar' />
+                        <h5 className='comment-author'>{authorName}</h5>
 
-                    <p className='comment-date'>{formattedDate}</p>
+                        <p className='comment-date'>{formattedDate}</p>
 
-                </div>
-                <p className='comment-content'>
-                    {text}
-                    {<span
-                        style={{ visibility: hovered && email === userEmail ? "visible" : "hidden" }}
-                        className='delete-icon'
-                        onClick={() => setDeleting(true)}
-                    >
-                        <MdDelete /> {" "} delete
-                    </span>}
-                </p>
+                    </div>
 
-                {deleting && <div className='delete-modal'>
-                        <div className='modal-content'>
-                            <h5 className='delete-confirmation'>Delete Comment?</h5>
-                            <hr />
-                            <p className='delete-description'>This can’t be undone, your comment will be removed permanently</p>
-                            <footer className='modal-footer'>
-                                <button className='modal-delete-btn' onClick={handleDeleteComment}>{loading ? "Deleting...":"Proceed"}</button>
-                                <button className='modal-cancel-btn' onClick={() => setDeleting(false)}>Cancel</button>
-                            </footer>
-                        </div>
+                    <p className='comment-content'>
+                        {text}
+                        {<span
+                            style={{ visibility: hovered && email === userEmail ? "visible" : "hidden" }}
+                            className='delete-icon'
+                            onClick={() => setDeleting(true)}
+                        >
+                            <MdDelete /> {" "} delete
+                        </span>}
+                    </p>
 
+
+
+                    {deleting && <div className='delete-modal'>
+                        <Zoom>
+                            <div className='modal-content'>
+                                <h5 className='delete-confirmation'>Delete Comment?</h5>
+                                <hr />
+                                <p className='delete-description'>This can’t be undone, your comment will be removed permanently</p>
+                                <footer className='modal-footer'>
+                                    <button className='modal-delete-btn' onClick={handleDeleteComment}>{loading ? "Deleting..." : "Proceed"}</button>
+                                    <button className='modal-cancel-btn' onClick={() => setDeleting(false)}>Cancel</button>
+                                </footer>
+                            </div>
+                        </Zoom>
                     </div>}
 
+                </div>
             </div>
-        </div>
+        </Fade>
     );
 };

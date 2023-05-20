@@ -7,6 +7,7 @@ import { HiTrendingUp } from 'react-icons/hi';
 import { FiClock } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { PostInterface } from '../../api/reduxTypes';
+import { Fade} from "react-awesome-reveal";
 
 interface PostsState {
   posts: { posts: PostInterface[]; }
@@ -60,7 +61,7 @@ export const Read = () => {
     )
 
   }, [blogs, selectedCategory]);
-  if(blogs.length < 1) return <p style={{height:"500px"}}>Loading...</p>
+  if (blogs.length < 1) return <p style={{ height: "500px" }}>Loading...</p>
   return (
     <section className='read'>
 
@@ -78,14 +79,21 @@ export const Read = () => {
 
       <div className='blogs-trends-container'>
 
+
         <div className='trending'>
           <h3 className='header-trending'>Trending <HiTrendingUp /></h3>
-          {trendingBlogs?.slice(0, 3)?.map(blog => <Trend key={blog._id} {...blog} />)}
+          <Fade cascade>
+            {trendingBlogs?.slice(0, 3)?.map(blog => <Trend key={blog._id} {...blog} />)}
+          </Fade>
         </div>
+
+
 
         <div className='trending'>
           <h3 className='header-trending'>Latest<FiClock /></h3>
-          {trendingBlogs?.slice(3, 6)?.map(blog => <Trend key={blog._id} {...blog} />)}
+          <Fade cascade>
+            {trendingBlogs?.slice(3, 6)?.map(blog => <Trend key={blog._id} {...blog} />)}
+          </Fade>
         </div>
 
       </div>

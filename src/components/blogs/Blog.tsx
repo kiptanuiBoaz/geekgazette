@@ -4,12 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import TimeAgo from "../../utils/Timeago";
 import { BlogProps } from '../../types/blog-types/blogPropTypes';
 import { animateScroll } from 'react-scroll';
-
-// const scrollToTop = () => {
-//   animateScroll.scrollToTop();
-// }
-
-
+import { Zoom } from "react-awesome-reveal";
 
 
 export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author: { fname, avatarUrl, lname } }: BlogProps) => {
@@ -57,35 +52,37 @@ export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author:
     }, [deviceWidth]);
 
     return (
-        <article
-            key={fname}
-            onMouseEnter={() => setBrightness("brightness(50%)")}
-            onMouseLeave={() => setBrightness("brightness(100%)")}
-            className='blog'
-            onClick={() => {
-                navigate(`/blog/read/${postId}`);
-                // window.scrollTo(0,0);
-            }}
-        >
-            <div className='blog-left'>
-                <div className='blog-header'>
-                    <img className='avatar' src={avatarUrl ?? "https://media.tenor.com/joLYNfFQGDgAAAAC/loading.gif"} alt={fname} />
-                    <h5 className='username'>{fname} {lname}</h5>
+        <Zoom>
+            <article
+                key={fname}
+                onMouseEnter={() => setBrightness("brightness(50%)")}
+                onMouseLeave={() => setBrightness("brightness(100%)")}
+                className='blog'
+                onClick={() => {
+                    navigate(`/blog/read/${postId}`);
+                    // window.scrollTo(0,0);
+                }}
+            >
+                <div className='blog-left'>
+                    <div className='blog-header'>
+                        <img className='avatar' src={avatarUrl ?? "https://media.tenor.com/joLYNfFQGDgAAAAC/loading.gif"} alt={fname} />
+                        <h5 className='username'>{fname} {lname}</h5>
+                    </div>
+
+                    {/* */}
+                    <h2 className='title'>{shortTitle}{titleDots}</h2>
+                    <p className='short-content'>{shortBody}{dots}</p>
+
+                    <div className='blog-footer' >
+                        <p className='date'>{formattedDate}</p>
+                        <p className='category'>{category}</p>
+                    </div>
                 </div>
 
-                {/* */}
-                <h2 className='title'>{shortTitle}{titleDots}</h2>
-                <p className='short-content'>{shortBody}{dots}</p>
-
-                <div className='blog-footer' >
-                    <p className='date'>{formattedDate}</p>
-                    <p className='category'>{category}</p>
+                <div className='blog-right'>
+                    <img style={{ "filter": brightness }} className='blog-img' src={imgUrl} alt={title} />
                 </div>
-            </div>
-
-            <div className='blog-right'>
-                <img style={{ "filter": brightness }} className='blog-img' src={imgUrl} alt={title} />
-            </div>
-        </article>
+            </article>
+        </Zoom>
     )
 }
