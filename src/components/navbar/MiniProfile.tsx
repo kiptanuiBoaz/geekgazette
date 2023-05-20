@@ -5,36 +5,24 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 interface MiniProfileProps {
     scrollPos: number;
+    showProfile: boolean;
 }
 
-export const MiniProfile = ({ scrollPos }: MiniProfileProps) => {
+export const MiniProfile = ({ scrollPos,showProfile }: MiniProfileProps) => {
     const { fname, avatarUrl } = useSelector((state: any) => state.auth.user);
-    const [showProfile, setShowProfile] = useState<boolean>(false);
-
-    const location = useLocation();
-    const [route, setRoute] = useState<string>(location.pathname);
-
-    useEffect(() => {
-        if (location.pathname.startsWith('/edit/')) setShowProfile(false);
-    }, [route])
-
 
     return (
         <>
             <img
-                onClick={() => setShowProfile(!showProfile)}
                 className="avatar"
                 src={avatarUrl ?? "https://media.tenor.com/joLYNfFQGDgAAAAC/loading.gif"}
             />
-            <p onClick={() => setShowProfile(!showProfile)} className="username">{fname} </p>
-            <div
-                onClick={() => setShowProfile(!showProfile)}
-                className="expand-icon"
-            >
+            <p className="username">{fname} </p>
+            <div className="expand-icon">
                 {showProfile ? <MdExpandLess /> : <MdExpandMore />}
             </div>
 
-            {showProfile && <Profile scrollPos={scrollPos} />}
+            
         </>
     )
 }

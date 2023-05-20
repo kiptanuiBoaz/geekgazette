@@ -8,6 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useLogOut from "../../hooks/useLogout";
 import { PostInterface } from "../../api/reduxTypes";
 import TimeAgo from "../../utils/Timeago";
+import { VscChromeClose } from "react-icons/vsc";
 
 interface ProfileProps {
     scrollPos: number;
@@ -25,14 +26,14 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
     const location = useLocation();
 
     const username = email.substring(0, email.indexOf('@'));
-    const hasTestRoute = location.pathname.includes("/edit/");
+    let hasTestRoute = location.pathname.includes("/edit/");
 
     //current user's blog posts
     const blogs = useSelector((state: PostsState) => state?.posts.posts);
     const currentUserBlogs = blogs.filter((blog: PostInterface) => blog.authorEmail === email);
 
     //closet the profile during profile edit
-    if (hasTestRoute) return;
+    if (hasTestRoute) return false;
     return (
         <article style={{
             backgroundColor: scrollPos < 20 ? "#d1d2d2" : "#4d7e3e",
@@ -41,6 +42,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
             className="profile"
         >
             <header className="profile-header">
+
                 <img
                     className="main-avatar"
                     style={{ borderColor: scrollPos > 20 ? "#d1d2d2" : "#4d7e3e" }}
@@ -50,7 +52,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                     }
                     alt={`${fname}'s profile`}
                 />
-
+                {/* <VscChromeClose className="close-btn" /> */}
                 <h3 style={{ color: scrollPos > 20 ? "#d1d2d2" : "rgb(40, 97, 34)" }} className="names">{fname}{"  "}{lname}</h3>
                 <p style={{ color: scrollPos > 20 ? "#a09d9d" : "#4d7e3e" }} className="email">{email}</p>
                 <p className="head-tag">{headTag}</p>

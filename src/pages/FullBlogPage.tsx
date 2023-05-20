@@ -15,7 +15,17 @@ const FullBlogPage = () => {
     //current blog
     const blog: PostInterface | undefined = blogs.find((b: PostInterface) => b._id === postId);
 
-    useEffect(() => {window.scroll(0,0)},[postId]);
+    useEffect(() => {
+        const scrollToTop = () => {
+            window.scrollTo({
+                top: -200,
+                behavior: 'smooth'
+            });
+        };
+
+        // Scroll to top after rendering is complete
+        window.requestAnimationFrame(scrollToTop);
+    }, [postId]);
     // or render some other loading indicator
     if (!blog) return <div>Loading...</div>;
 

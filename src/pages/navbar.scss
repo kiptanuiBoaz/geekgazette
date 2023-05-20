@@ -12,7 +12,16 @@
     margin: 3px 0 0 5%;
     justify-self: flex-start;
     img {
-      width: 120px;
+      // @media only screen and (min-width: 640px) {
+       
+      // }
+      @media only screen and (min-width: 400px) {
+       width: 120px;
+      }
+
+      @media only screen and (max-width: 400px) {
+        width: 70px;
+      }
     }
   }
 
@@ -27,13 +36,14 @@
   .mobile-nav {
     position: absolute;
     top: 30px;
-    left: 75%;
+    left: 55%;
     background-color: #205d2e;
     list-style: none;
-    padding: 10px;
+    padding: 13px 10px;
     text-align: center;
-    font-size: 20px;
+    font-size: 17px;
     border-radius: 3px;
+    
     a {
       text-decoration: none;
       color: var(--primary-backround);

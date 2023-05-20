@@ -16,7 +16,7 @@ const USER_URL = "/users";
 const UserProfileForm = () => {
     const [formData, setFormData] = useState({ ...useSelector((state: any) => state.auth.user) });
 
-    const { fname, lname, dob, headTag, avatarUrl } = formData;
+    const { fname, lname, dob,gender, headTag } = formData;
     const [image, setImage] = useState<File | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [errMsg, setErrMsg] = useState<string | null>(null);
@@ -129,7 +129,7 @@ const UserProfileForm = () => {
                 <input className='headline' value={headTag} name='headTag' onChange={handleDataChange} placeholder='Headline e.g Software Developer' />
                 <br />
 
-                <select className='gender-select' name='gender' onChange={handleDataChange} required>
+                <select value={gender} className='gender-select' name='gender' onChange={handleDataChange} required>
                     <option value="">Selcet your gender</option>
                     <option value="female">Female</option>
                     <option value="male">Male</option>
