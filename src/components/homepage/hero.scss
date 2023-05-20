@@ -33,17 +33,17 @@
       .tagline {
         font-size: 20px;
         margin-top: 0;
-          span {
-            color: var(--primary-color);
-            background-color: #cad8c5;
-            min-width: 300px;
-            padding: 5px 15px;
-            border-radius: 20px;
-            margin: 0 20px 0 10px;
-            // display: inline;
-            white-space: nowrap;
-          }
-       
+
+        .span {
+          color: var(--primary-color);
+          background-color: #cad8c5;
+          min-width: 300px;
+          padding: 5px 15px;
+          border-radius: 20px;
+          margin: 0 20px 0 10px;
+          line-height: 30px;
+          white-space: nowrap;
+        }
       }
 
       button {
@@ -52,8 +52,15 @@
         padding: 8px 15px;
         border: none;
         margin: 10px 20px 0 0;
-        width: 200px;
-        font-size: 17px;
+        width: 79%;
+        font-size: 20px;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        @media only screen and (max-width: 400px) {
+          width: 160px;
+          font-size: 15px;
+          align-self: center;
+          margin-bottom: 20px;
+        }
 
         &:hover {
           background-color: var(--hover-color);

@@ -29,7 +29,7 @@ export const Hero = () => {
           <h1 className='slogan'>Where geeks come to get a fix</h1>
 
           <p className='tagline'>
-            Catch up with the lates on <span> {categories[categoryIndex]}</span>
+            Catch up with the latest on <span className='span'> {categories[categoryIndex]}</span>
           </p>
           <p className='tagline'>
             Get to share with like-minded geeks.
