@@ -1,8 +1,11 @@
 .hero-container {
   background-color: var(--primary-backround);
   margin: 0;
-  width: 100%;
+  width: 100vw;
   padding-top: 30px;
+  @media only screen and (max-width: 400px) {
+    padding-top: 0px;
+  }
   .hero {
     display: flex;
     flex-wrap: wrap;
@@ -11,6 +14,10 @@
     @media only screen and (max-width: 800px) {
       padding: 10px 30px;
     }
+
+    @media only screen and (max-width: 400px) {
+      padding: 0px 20px;
+     }
 
     .hero-left {
       width: 50%;

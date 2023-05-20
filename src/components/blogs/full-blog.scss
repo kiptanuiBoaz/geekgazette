@@ -1,7 +1,9 @@
 @import "../../pages/full-blog-page.scss";
 .blog-article {
   padding: 20px 0px 30px 0px;
-
+  @media only screen and (max-width: 400px) {
+    padding: 0px 0 0 0;
+  }
   .blog-container {
     text-align: left;
     width: 90%;
@@ -27,6 +29,7 @@
       @media only screen and (max-width: 460px) {
         font-size: 22px;
       }
+     
     }
     .header-info {
       font-size: 15px;
@@ -149,6 +152,11 @@
   .comments-container {
     .comments-title {
       @extend .more-title;
+      @media only screen and (max-width: 400px) {
+        width: 100%;
+        margin-left: 0;
+  
+      }
     }
   }
 }

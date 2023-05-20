@@ -1,27 +1,25 @@
 .read {
   display: flex;
   flex-wrap: wrap-reverse;
-  margin: 60px 0px;
-  width: 100%;
+  margin: 60px 0;
+  width: 100vw;
   align-items: flex-start; /* align children at the top */
-
 
   .blogs {
     width: 900px;
-    overflow: auto;
+    overflow-x: auto;
     max-height: 28cm;
-
+    scrollbar-width: none; /* for Firefox */
     @media only screen and (min-width: 1150px) {
       width: 70%;
     }
-    @media only screen and (max-width:  1160px) {
-      width: 100%;
+    @media only screen and (max-width: 1160px) {
+      width: 100vw;
     }
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
     }
-    scrollbar-width: none; /* for Firefox */
   }
 
   .line {
@@ -29,7 +27,8 @@
     // margin-top: 40px;
     height: 28cm;
     @media only screen and (max-width: 1200px) {
-      display: none; transform: rotate(90deg);
+      display: none;
+      transform: rotate(90deg);
     }
   }
 
@@ -38,16 +37,25 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1;
+
+    margin: 0 30px auto auto;
+
     @media only screen and (max-width: 1180px) {
       justify-content: space-around;
     }
+    @media only screen and (max-width: 400px) {
+      width: 100vw;
+    }
 
-    margin:0 30px auto auto;
     .header-trending {
       color: var(--hover-color);
       width: 100%;
       padding: 15px 20px;
       background-color: var(--primary-backround);
+
+      @media only screen and (max-width: 400px) {
+        width: 90%;
+      }
 
       @media only screen and (max-width: 800px) {
         font-size: 16px;

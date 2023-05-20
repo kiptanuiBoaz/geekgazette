@@ -36,7 +36,7 @@ const Footer = () => {
       <div className='top'>
         <div className='company'>
           <Link to="/" ><img src={logo} alt="logo" /></Link>
-          <p>Where geeks come to get their fix</p>
+          <p className='slogan'>Where geeks come to get their fix</p>
           <a className='source-code' href='https://github.com/kiptanuiBoaz/geekgazette' target='_blank'>Source code <FaCode style={{ paddingLeft: "5px" }} /></a>
         </div>
 

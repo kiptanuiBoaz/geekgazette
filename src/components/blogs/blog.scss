@@ -8,6 +8,11 @@
   background-color: var(--primary-backround);
   height: 160px;
 
+  @media only screen and (max-width: 400px) {
+    margin-left: 10px;
+    width: 97%;
+  }
+
   @media only screen and (max-width: 1180px) {
     height: 130px;
   }
@@ -30,6 +35,10 @@
   .blog-left {
     padding-left: 30px;
     width: 70%;
+
+    @media only screen and (max-width: 400px) {
+      padding-left: 20px;
+    }
     .blog-header {
       display: flex;
       flex-direction: row;

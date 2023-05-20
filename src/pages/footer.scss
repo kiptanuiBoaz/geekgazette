@@ -1,15 +1,15 @@
 .footer {
   background-color: var(--primary-color);
-  color:var(--primary-backround);
-  width: 100%;
+  color: var(--primary-backround);
+  width: device-width;
   margin: 0px;
   padding-bottom: 5px;
   position: relative;
   z-index: 3;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 
   .top {
-    padding:  20px  20px 5px 20px;
+    padding: 20px 20px 5px 20px;
     display: flex;
     flex-wrap: wrap;
     color: var(--primary-backround);
@@ -18,21 +18,30 @@
 
     .company {
       width: 250px;
-      color:  var(--primary-backround);
-      
-      .source-code{
+      color: var(--primary-backround);
+
+      .slogan{
+        @media only screen and (max-width: 400px) {
+          font-size: 15px;
+        }
+      }
+      .source-code {
         display: flex;
         align-items: center;
-        padding:4px
+        padding: 4px;
+
+        @media only screen and (max-width: 400px) {
+          font-size: 15px;
+        }
       }
-      
+
       a {
-        color:  var(--primary-backround);
+        color: var(--primary-backround);
         text-decoration: none;
-        
+
         &:hover {
           text-decoration: underline;
-          color:white
+          color: white;
         }
       }
       img {
@@ -41,22 +50,31 @@
     }
 
     .developer {
+      @extend .company;
       display: flex;
       flex-direction: column;
       width: 170px;
-    
-      @extend .company;
-      h5 {
-        font-size: 17px;
-        // font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin-bottom: 7px;
-        margin-top: 0;
+      @media only screen and (max-width: 400px) {
+        width: fit-content;
+        margin-top:10px;
       }
 
-      a{
+      h5 {
+        font-size: 17px;
+        margin-bottom: 7px;
+        margin-top: 0;
+        @media only screen and (max-width: 400px) {
+          font-size: 15px;
+        }
+      }
+
+      a {
         display: flex;
         align-items: center;
-        padding:4px
+        padding: 4px;
+        @media only screen and (max-width: 400px) {
+          font-size: 13px;
+        }
       }
     }
 
@@ -65,7 +83,9 @@
     }
 
     .categories {
-      p{margin :0;}
+      p {
+        margin: 0;
+      }
       @extend .developer;
     }
   }
