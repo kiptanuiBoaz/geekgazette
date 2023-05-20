@@ -53,12 +53,12 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                     alt={`${fname}'s profile`}
                 />
                 {/* <VscChromeClose className="close-btn" /> */}
-                <h3 style={{ color: scrollPos > 20 ? "#d1d2d2" : "rgb(40, 97, 34)" }} className="names">{fname}{"  "}{lname}</h3>
+                <h3 style={{ color: scrollPos > 20 ? " #eeeee4 " : "rgb(40, 97, 34)" }} className="names">{fname}{"  "}{lname}</h3>
                 <p style={{ color: scrollPos > 20 ? "#a09d9d" : "#4d7e3e" }} className="email">{email}</p>
-                <p className="head-tag">{headTag}</p>
+                <p style={{ color: scrollPos > 20 ? "#d1d2d2" : "#6b6b6b", }} className="head-tag">{headTag}</p>
             </header>
             <hr />
-            {currentUserBlogs.length > 0 && <p className="blogs-title">My blog post(s) on geeek gazette</p>}
+            {currentUserBlogs.length > 0 && <p style={{ color: scrollPos > 20 ? " #eeeee4 " : "rgb(40, 97, 34)" }} className="blogs-title">My blog post(s) on geeek gazette</p>}
 
             <main className="my-blogs">
                 {currentUserBlogs?.map(({ title, date, _id: postId }) => {
