@@ -7,7 +7,7 @@ import { HiTrendingUp } from 'react-icons/hi';
 import { FiClock } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { PostInterface } from '../../api/reduxTypes';
-import { Fade} from "react-awesome-reveal";
+import { Fade,Zoom} from "react-awesome-reveal";
 
 interface PostsState {
   posts: { posts: PostInterface[]; }
@@ -82,18 +82,18 @@ export const Read = () => {
 
         <div className='trending'>
           <h3 className='header-trending'>Trending <HiTrendingUp /></h3>
-          <Fade cascade>
+          <Zoom cascade>
             {trendingBlogs?.slice(0, 3)?.map(blog => <Trend key={blog._id} {...blog} />)}
-          </Fade>
+          </Zoom>
         </div>
 
 
 
         <div className='trending'>
           <h3 className='header-trending'>Latest<FiClock /></h3>
-          <Fade cascade>
+          <Zoom cascade>
             {trendingBlogs?.slice(3, 6)?.map(blog => <Trend key={blog._id} {...blog} />)}
-          </Fade>
+          </Zoom>
         </div>
 
       </div>

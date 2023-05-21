@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import TimeAgo from "../../utils/Timeago";
 import { BlogProps } from '../../types/blog-types/blogPropTypes';
 import { animateScroll } from 'react-scroll';
-import { Zoom } from "react-awesome-reveal";
+import { Fade, Zoom } from "react-awesome-reveal";
 
 
 export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author: { fname, avatarUrl, lname } }: BlogProps) => {
@@ -52,7 +52,7 @@ export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author:
     }, [deviceWidth]);
 
     return (
-        <Zoom>
+        <Fade>
             <article
                 key={fname}
                 onMouseEnter={() => setBrightness("brightness(50%)")}
@@ -83,6 +83,6 @@ export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author:
                     <img style={{ "filter": brightness }} className='blog-img' src={imgUrl} alt={title} />
                 </div>
             </article>
-        </Zoom>
+        </Fade>
     )
 }

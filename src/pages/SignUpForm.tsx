@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../axios/axios";
 import { useDispatch } from "react-redux";
 import { updateAuth } from "../api/authSlice";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { Zoom } from "react-awesome-reveal";
 
 const REGISTER_URL = "/register";
 const LOGIN_URL = "/login";
@@ -43,7 +43,7 @@ const SignUpForm = () => {
 
 
   //email states 
-    const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [emailFocus, setEmailFocus] = useState<boolean>(false);
   const [validEmail, setValidEmail] = useState<boolean>(false);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -116,7 +116,7 @@ const SignUpForm = () => {
     try {
       const response = await api.post(REGISTER_URL, JSON.stringify({ email, password }));
       // console.log(response)
-
+      console.log(response)
       if (response.status === 201) {
         setSuccess(true);
 
@@ -128,13 +128,15 @@ const SignUpForm = () => {
         const { accessToken, roles } = response?.data;
 
         if (response.status === 200) {
-          localStorage.setItem("accessToken",accessToken);
+          localStorage.setItem("accessToken", accessToken);
           dispatch(updateAuth({ email, accessToken, roles, }));
-        
+
           // console.log(response)
           navigate("/auth/new-profile");
         }
 
+      } else if (response.status === 409) {
+        setErrMsg("Sorry this email has already singed up, try onother of go to sign In")
       } else {
         setPassword("");
         setConfirmPassowrd("");
@@ -147,7 +149,7 @@ const SignUpForm = () => {
         setErrMsg('No Server Response');
         setLoading(false);
       } else if (err.response?.status === 409) {
-        setErrMsg('Username Taken');
+        setErrMsg('Sorry this email has already singed up, try onother of go to sign In');
       } else {
         setErrMsg('Registration Failed');
       }
@@ -230,8 +232,10 @@ const SignUpForm = () => {
           <ValidationMsgs identifier="Password must" msgsArray={validMatchPasswordArray} />
         }
 
-      </form>
+        
 
+      </form>
+<Zoom>{errMsg && <p>{errMsg}</p>}</Zoom>
       <div className="sign-up-link">
         <p className="sign-up-text">Already have an account? Go to <Link to="/auth/sign-in">Sign-In</Link></p>
       </div>
