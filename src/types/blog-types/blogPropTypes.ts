@@ -2,7 +2,7 @@ export interface BlogProps {
     body: string;
     title: string;
     imgUrl: string;
-    date: string;
+    date: any;
     category: string;
     _id: string;
     authorEmail: string;

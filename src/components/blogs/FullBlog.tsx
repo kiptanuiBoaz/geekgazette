@@ -16,6 +16,7 @@ import { updateLikes, deletePost } from '../../api/postsSlice';
 import { RiDeleteBinLine } from "react-icons/ri";
 import { MdDeleteForever } from "react-icons/md"
 import { Fade,Zoom } from "react-awesome-reveal";
+import { Params } from 'react-router-dom';
 
 const LIKES_URL = "/likes"
 const POSTS_URL = "/posts"
@@ -37,7 +38,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
 
 
     const commentInputRef = useRef<HTMLDivElement>(null);
-    const { postId } = useParams();
+    const { postId }:Readonly<Params<string>> = useParams();
     const likeDate = new Date();
 
     const formattedDate = <TimeAgo timestamp={date} />;
@@ -49,7 +50,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     useEffect(() => { window.scroll(0, 0) }, []);
     //forcing re-render when updating comments during  add or delete
     useEffect(() => {
-        setComments(comments.slice().sort((a, b) => new Date(b.date) - new Date(a.date)));
+        setComments(comments.slice().sort((a:CommentInterface, b:CommentInterface) => parseInt(b.date) - parseInt(a.date)));
     }, [comments]);
 
 
@@ -198,7 +199,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
 
                 {/* new comment input */}
                 {commenting && <div ref={commentInputRef} className='comments-input'>
-                    <NewCommentForm postId={postId} handleCommenting={handleCommenting} />
+                    <Zoom><NewCommentForm postId={postId} handleCommenting={handleCommenting} /></Zoom>
                 </div>
                 }
 

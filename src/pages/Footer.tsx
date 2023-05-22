@@ -27,7 +27,7 @@ const Footer = () => {
     }, {});
 
     sortedCategories = Object.entries(categories)
-      .sort((a, b) => b[1] - a[1])
+      .sort((a:any, b:any) => b[1] - a[1])
       .map(([category]) => category);
   }
 

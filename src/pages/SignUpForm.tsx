@@ -129,7 +129,7 @@ const SignUpForm = () => {
 
         if (response.status === 200) {
           localStorage.setItem("accessToken", accessToken);
-          dispatch(updateAuth({ email, accessToken, roles, }));
+          dispatch(updateAuth({ email, accessToken, roles,fname:"",headTag:"",lname:"",dob:"",avatarUrl:"" }));
 
           // console.log(response)
           navigate("/auth/new-profile");
@@ -232,10 +232,9 @@ const SignUpForm = () => {
           <ValidationMsgs identifier="Password must" msgsArray={validMatchPasswordArray} />
         }
 
-        
 
       </form>
-<Zoom>{errMsg && <p>{errMsg}</p>}</Zoom>
+      <Zoom>{errMsg && <p>{errMsg}</p>}</Zoom>
       <div className="sign-up-link">
         <p className="sign-up-text">Already have an account? Go to <Link to="/auth/sign-in">Sign-In</Link></p>
       </div>

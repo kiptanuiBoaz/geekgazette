@@ -64,7 +64,7 @@ const Navbar = () => {
           <NavLink to="/"> <img src={scrollPos > 20 ? logoWhite : logoGreen} alt="logo" /></NavLink>
         </div>
 
-        <Slide cascade direction="right">
+        {/* <Slide cascade direction="right"> */}
         <ul
           className={deviceWidth > 640 ? "nav-link-container" : 'mobile-nav'}
           style={{ display: !showMobileNav && deviceWidth < 640 ? "none" : "" }}
@@ -106,7 +106,7 @@ const Navbar = () => {
             </>
           }
         </ul>
-        </Slide>
+        {/* </Slide> */}
         <div
           onClick={() => {
             setShowMobileNav(!showMobileNav);

@@ -22,7 +22,7 @@ interface UserData {
 const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-    const [formData, setFormData] = useState<UserData>({});
+    const [formData, setFormData] = useState<any>({});
     const [loading, setLoading] = useState<boolean>(false);
     const [errMsg, setErrMsg] = useState<string | null>(null);
 
@@ -64,7 +64,7 @@ const UserProfileForm = () => {
     const handleDataChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
 
-        setFormData(prevFormData => ({
+        setFormData((prevFormData:any) => ({
             ...prevFormData,
             [name]: value,
         }));

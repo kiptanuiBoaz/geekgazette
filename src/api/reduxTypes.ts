@@ -19,7 +19,7 @@ export interface PostsState {
 
 
 export interface UpdateLikesPayload {
-  postId: string;
+  postId: string  | undefined;
   userEmail: string;
   date: string;
 }

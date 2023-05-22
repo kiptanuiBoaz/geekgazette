@@ -33,7 +33,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
     const currentUserBlogs = blogs.filter((blog: PostInterface) => blog.authorEmail === email);
 
     //closet the profile during profile edit
-    if (hasTestRoute) return false;
+    if (hasTestRoute) return <></>;
     return (
         <article style={{
             backgroundColor: scrollPos < 20 ? "#d1d2d2" : "#4d7e3e",
