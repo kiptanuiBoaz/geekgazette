@@ -7,14 +7,16 @@ const useRefreshToken = () => {
     const dispatch = useDispatch();
 
     const refresh = async () => {
-        const response = await api.get<{ roles: any, accessToken: string }>("/refresh", {
+        const response = await api.get("/refresh", {
             withCredentials: true,
         });
 
-        dispatch(updateAuth({ accessToken: response.data.accessToken }))
+        const user = { ...response?.data?._doc, }
+        const accessToken = response.data.accessToken;
+        dispatch(updateAuth({ ...user, accessToken }));
 
         console.log(response.data.accessToken);
-
+``
         return response.data.accessToken;
     };
 
