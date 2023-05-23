@@ -233,7 +233,7 @@ const SignUpForm = () => {
 
 
       </form>
-      <Zoom>{errMsg && <p>{errMsg}</p>}</Zoom>
+      <Zoom>{errMsg && <p className="error-msg">{errMsg}</p>}</Zoom>
       <div className="sign-up-link">
         <p className="sign-up-text">Already have an account? Go to <Link to="/auth/sign-in">Sign-In</Link></p>
       </div>

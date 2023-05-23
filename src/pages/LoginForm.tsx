@@ -8,6 +8,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import { api } from "../axios/axios";
 import { useDispatch } from "react-redux";
 import { updateAuth } from "../api/authSlice";
+import { Zoom } from "react-awesome-reveal";
 
 const LOGIN_URL = "/login";
 
@@ -126,8 +127,9 @@ const LoginForm = () => {
                         />
                     </div>
                 </div>
-                {errMsg && <p className="err-msg">{errMsg}</p>}
-            </form>
+             
+            </form> 
+              <Zoom>{errMsg && <p className="err-msg">{errMsg}</p>}</Zoom>
 
             <div className="sign-up-link">
                 <p className="sign-up-text">New here? Go to <Link to="/auth/sign-up">Sign-up</Link></p>

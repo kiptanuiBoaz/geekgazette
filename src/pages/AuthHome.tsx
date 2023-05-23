@@ -6,7 +6,7 @@ import {FaHome} from "react-icons/fa";
  const AuthHome = () => {
   return (
     <section className='auth-home'>
-      <div className="homebtn">  <Link  to="/"><FaHome/></Link></div>
+      <div className="homebtn">  <Link  to="/">Home<FaHome/></Link></div>
       <div className="container-left"></div>
       <div className="container-right"></div>
       <Outlet/>

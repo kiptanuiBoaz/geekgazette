@@ -90,4 +90,13 @@
       }
     }
   }
+  .error-msg{
+    color: rgb(230, 119, 119);
+    position: absolute;
+    top: 360px;
+    // right: 60%;
+    left: 8%;
+    font-size: 15px;
+    width: fit-content;
+  }
 }
