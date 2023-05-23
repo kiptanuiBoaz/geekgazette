@@ -110,7 +110,6 @@ const SignUpForm = () => {
 
   const handleSubmit = async () => {
     console.log(email, password);
-
     setLoading(true)
 
     try {

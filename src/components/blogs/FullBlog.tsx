@@ -18,6 +18,7 @@ import { MdDeleteForever } from "react-icons/md"
 import { Fade, Zoom } from "react-awesome-reveal";
 import { Params } from 'react-router-dom';
 
+
 const LIKES_URL = "/likes"
 const POSTS_URL = "/posts"
 interface CommentInterface {
@@ -50,7 +51,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     useEffect(() => { window.scroll(0, 0) }, []);
     //forcing re-render when updating comments during  add or delete
     useEffect(() => {
-        setComments(comments.slice().sort((a: CommentInterface, b: CommentInterface) => parseInt(b.date) - parseInt(a.date)));
+        setComments(comments.slice().reverse());
     }, [comments]);
 
 
@@ -115,14 +116,19 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         <article className='blog-article'>
 
             <div className='blog-container'>
-                <Zoom><img src={imgUrl} alt={title} className='blog-image' /></Zoom>
+                <Zoom>
+                    <img src={imgUrl} alt={title} className='blog-image' />
+                </Zoom>
+
                 <h2 className='title'>{title}</h2>
+
                 <p className='header-info'>
                     {`Published`}
                     <span>{formattedDate}</span>
                     {" "}  {`by`}
                     <span> {`${fname} ${lname}`}</span>
                 </p>
+
                 <Fade cascade><p className='body-content'>{body}</p></Fade>
 
                 <div className='post-engagements'>
@@ -168,7 +174,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                         onMouseEnter={() => setHovered("comment")}
                         onMouseLeave={() => setHovered(null)}
                         className="post-edit"
-                        onClick={() => { 
+                        onClick={() => {
                             checkAuth() && handleCommenting();
                             commentInputRef?.current?.scrollIntoView({ behavior: 'smooth' });
                         }}
@@ -181,7 +187,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                     </p>
 
                     {/* post delete confirmation modal */}
-                    {deleting && <div  className='delete-modal'>
+                    {deleting && <div className='delete-modal'>
                         <div className='modal-content'>
                             <h5 className='delete-confirmation'>Delete Post?</h5>
                             <hr />

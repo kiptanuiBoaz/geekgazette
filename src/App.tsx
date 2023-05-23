@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Layout } from "./Layout";
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -12,19 +12,23 @@ const UserProfileForm = lazy(() => import("./pages/UserProfileForm"));
 const AuthHome = lazy(() => import("./pages/AuthHome"));
 const UserProfileEditPage = lazy(() => import("./pages/UserProfileEditPage"));
 const RequireAuth = lazy(() => import("./pages/RequireAuth"));
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { api } from "./axios/axios";
 import { setPosts } from "./api/postsSlice";
 import { Spinner } from "./components";
+import { PostInterface } from "./api/reduxTypes"
 
 const POSTS_URL = "/posts";
+interface PostsState {
+  posts: { posts: PostInterface[]; }
+}
 
 export const App = () => {
   const dispatch = useDispatch();
+  const blogs = useSelector((state: PostsState) => state?.posts.posts);
 
   useEffect(() => {
     const fetchPosts = async () => {
-
       try {
         const response = await api.get(POSTS_URL);
         const postsWithoutAuthor = response.data;
@@ -56,11 +60,11 @@ export const App = () => {
     };
 
     fetchPosts();
-  }, []);
+  },[]);
 
-
+  if (blogs.length === 0) return <Spinner />
   return (
-    <Suspense fallback={<Spinner/>}>
+    <Suspense fallback={<Spinner />}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
