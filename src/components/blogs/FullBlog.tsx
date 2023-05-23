@@ -110,7 +110,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         }
         setLoading(false);
     };
-
+    if (!postId) return <p>Loading...</p>
     if (!fname) return <p>Loading...</p>
     return (
         <article className='blog-article'>
