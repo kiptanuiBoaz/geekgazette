@@ -15,7 +15,7 @@ import usePrivateApi from '../../hooks/usePrivateApi';
 import { updateLikes, deletePost } from '../../api/postsSlice';
 import { RiDeleteBinLine } from "react-icons/ri";
 import { MdDeleteForever } from "react-icons/md"
-import { Fade,Zoom } from "react-awesome-reveal";
+import { Fade, Zoom } from "react-awesome-reveal";
 import { Params } from 'react-router-dom';
 
 const LIKES_URL = "/likes"
@@ -38,7 +38,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
 
 
     const commentInputRef = useRef<HTMLDivElement>(null);
-    const { postId }:Readonly<Params<string>> = useParams();
+    const { postId }: Readonly<Params<string>> = useParams();
     const likeDate = new Date();
 
     const formattedDate = <TimeAgo timestamp={date} />;
@@ -50,7 +50,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     useEffect(() => { window.scroll(0, 0) }, []);
     //forcing re-render when updating comments during  add or delete
     useEffect(() => {
-        setComments(comments.slice().sort((a:CommentInterface, b:CommentInterface) => parseInt(b.date) - parseInt(a.date)));
+        setComments(comments.slice().sort((a: CommentInterface, b: CommentInterface) => parseInt(b.date) - parseInt(a.date)));
     }, [comments]);
 
 
@@ -110,7 +110,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         setLoading(false);
     };
 
-    if(!fname) return <p>Loading...</p>
+    if (!fname) return <p>Loading...</p>
     return (
         <article className='blog-article'>
 
@@ -168,7 +168,10 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                         onMouseEnter={() => setHovered("comment")}
                         onMouseLeave={() => setHovered(null)}
                         className="post-edit"
-                        onClick={() => { checkAuth() && handleCommenting() }}
+                        onClick={() => { 
+                            checkAuth() && handleCommenting();
+                            commentInputRef?.current?.scrollIntoView({ behavior: 'smooth' });
+                        }}
                     >
                         {hovered === "comment"
                             ? <span> <FaComment /> {' '}{" "}Comment</span>
@@ -178,7 +181,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                     </p>
 
                     {/* post delete confirmation modal */}
-                    {deleting && <div className='delete-modal'>
+                    {deleting && <div  className='delete-modal'>
                         <div className='modal-content'>
                             <h5 className='delete-confirmation'>Delete Post?</h5>
                             <hr />

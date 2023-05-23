@@ -16,7 +16,6 @@ const useRefreshToken = () => {
         dispatch(updateAuth({ ...user, accessToken }));
 
         console.log(response.data.accessToken);
-``
         return response.data.accessToken;
     };
 
