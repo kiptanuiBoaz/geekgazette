@@ -20,9 +20,10 @@ const LoginForm = () => {
     const location = useLocation();
     const dispatch = useDispatch();
 
-    const from = location?.state?.from?.pathname || "/";
-
+    // Get the previous location or set it as the root path "/"
+    const from = location?.state?.from || "/";
     const errRef = useRef<HTMLElement>();
+
 
     const [email, setEmail] = useLocalStorage("email", '');
     const [pwd, setPwd] = useState('');
@@ -41,6 +42,8 @@ const LoginForm = () => {
                 const user = { ...response?.data?._doc, }
                 const accessToken = response.data.accessToken;
                 dispatch(updateAuth({ ...user, accessToken }));
+
+                // Navigate to the previous location
                 navigate(from, { replace: true });
             } else {
                 setEmail("");
