@@ -9,6 +9,7 @@ import useLogOut from "../../hooks/useLogout";
 import { PostInterface } from "../../api/reduxTypes";
 import TimeAgo from "../../utils/Timeago";
 import { VscChromeClose } from "react-icons/vsc";
+import { Confirm, Report } from "notiflix";
 
 interface ProfileProps {
     scrollPos: number;
@@ -96,10 +97,29 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                     }}
                     className="sign-out-btn"
                     onClick={() => {
-                        logOut();
-                        navigate("/auth/sign-in")
-                    }
-                    }
+                        Confirm.show(
+                            'Want to Sign out?',
+                            'You will be Signed Out of your account',
+                            'Yes',
+                            'No',
+                            () => {
+                                logOut();
+                                navigate("/auth/sign-in");
+                                Confirm.show(
+                                    "Logged Out successfully!",
+                                    "You can continue reading through GeekGazette while signed out, to do so just navigate back to our main page",
+                                    "<< Go back home",
+                                    "Nah! I'm good",
+                                    () => { navigate("/") },
+                                    ()=>{navigate("/auth/sign-in")},
+
+                                )
+                            },
+                            () => navigate("/"),
+                            { backgroundColor: "" }
+                        );
+
+                    }}
                 >
                     Sign out <RiLogoutCircleRLine style={{ paddingLeft: "4px" }} />
                 </button>

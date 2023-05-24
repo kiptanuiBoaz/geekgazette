@@ -212,6 +212,10 @@ const SignUpForm = () => {
           type="submit"
           className="login-button"
           disabled={!validEmail || !validMatch || !passwordValid}
+          style={{
+            backgroundColor: loading ? " #d1d2d2" : "",
+            color: loading ? " #fff" : ""
+          }}
         >
           {loading ? "Signing Up..." : "Sign Up"}
         </button>

@@ -9,6 +9,7 @@ import { api } from "../axios/axios";
 import { useDispatch } from "react-redux";
 import { updateAuth } from "../api/authSlice";
 import { Zoom } from "react-awesome-reveal";
+import { Notify } from "notiflix";
 
 const LOGIN_URL = "/login";
 
@@ -44,6 +45,8 @@ const LoginForm = () => {
                 const accessToken = response.data.accessToken;
                 dispatch(updateAuth({ ...user, accessToken }));
 
+                //notify
+                Notify.success("Logged in successfully",{timeout:1000});
                 // Navigate to the previous location
                 navigate(from, { replace: true });
             } else {
@@ -112,6 +115,10 @@ const LoginForm = () => {
                     type="submit"
                     className="login-button"
                     disabled={email === "" || pwd === ""}
+                    style={{
+                        backgroundColor: loading ? " #d1d2d2" : "",
+                        color: loading ? " #fff" : ""
+                    }}
                 >
                     {loading ? "Signing In..." : "Sign In"}
                 </button>
@@ -127,9 +134,9 @@ const LoginForm = () => {
                         />
                     </div>
                 </div>
-             
-            </form> 
-              <Zoom>{errMsg && <p className="err-msg">{errMsg}</p>}</Zoom>
+
+            </form>
+            <Zoom>{errMsg && <p className="err-msg">{errMsg}</p>}</Zoom>
 
             <div className="sign-up-link">
                 <p className="sign-up-text">New here? Go to <Link to="/auth/sign-up">Sign-up</Link></p>

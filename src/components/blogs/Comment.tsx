@@ -79,13 +79,13 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
 
                     <p className='comment-content'>
                         {text}
-                        {<span
+                        {<button
                             style={{ visibility: hovered && email === userEmail ? "visible" : "hidden" }}
                             className='delete-icon'
                             onClick={() => setDeleting(true)}
                         >
                             <MdDelete /> {" "} delete
-                        </span>}
+                        </button>}
                     </p>
 
 
