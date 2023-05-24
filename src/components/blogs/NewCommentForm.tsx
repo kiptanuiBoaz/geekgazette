@@ -70,7 +70,14 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
       />
       <footer className="comment-input-footer">
         <div className="buttons">
-          <button onClick={() => handleSubmit()} className="submit" disabled={!text}>
+          <button 
+          onClick={() => handleSubmit()} 
+          style={{
+            backgroundColor: loading ? " #d1d2d2":"",
+            color: loading ? " #fff":""
+          }} 
+          className="submit" 
+          disabled={!text}>
             {loading ? 'Submitting...' : 'Submit'}
           </button>
           <button className="cancel" onClick={() => handleCommenting()}>

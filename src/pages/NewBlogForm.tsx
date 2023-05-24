@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { PostInterface } from '../api/reduxTypes';
 import { useNavigate } from 'react-router-dom';
 import { api } from "../axios/axios";
+import { Report } from 'notiflix';
 
 const POSTS_URL = "/posts";
 interface PostFormPros {
@@ -91,14 +92,41 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
 
         dispatch(addPost(PostWithAuthor));
         postId = response.data._doc._id;
+
+         //notify the user
+      Report.success(
+        "Blog Created!",
+        "Your blog will now be available on the timeline, you can alsa make  changes anytime by visiting your profile on the top right",
+        "Okay",
+        {
+          buttonBackground:"#4d7e3e",
+          svgColor:" #4d7e3e",
+          titleColor:" #4d7e3e",
+          backOverlayColor:" rgba(76, 76, 76, 0.82)",
+        }
+      )
       }
       //from edited blog
       if (response.status === 200 && blog !== null) {
         dispatch(updatePost(response.data));
         postId = response.data._id;
+
+           //notify the user
+      Report.success(
+        "Changes Submitted!",
+        "Changes will be visible when you visit the blog on the timeline or on your profile on the top left",
+        "Okay",
+        {
+          buttonBackground:"#4d7e3e",
+          svgColor:" #4d7e3e",
+          titleColor:" #4d7e3e",
+          backOverlayColor:" rgba(76, 76, 76, 0.82)",
+        }
+      )
       }
       //to the full blog page
       navigate(`/blog/read/${postId}`);
+     
 
     } catch (error) {
       console.log(error);
@@ -160,6 +188,10 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
       <button
         onClick={(e) => handleSubmit(e)}
         disabled={!title || !body || !category || !imgUrl}
+        style={{
+          backgroundColor: loading ? " #d1d2d2":"",
+          color: loading ? " #fff":""
+        }} 
         className='submit-button'
         type="submit"
       >

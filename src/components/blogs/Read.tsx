@@ -8,6 +8,7 @@ import { FiClock } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { PostInterface } from '../../api/reduxTypes';
 import { Fade,Zoom} from "react-awesome-reveal";
+import { Spinner } from '../../components/index';
 
 interface PostsState {
   posts: { posts: PostInterface[]; }
@@ -61,7 +62,7 @@ export const Read = () => {
     )
 
   }, [blogs, selectedCategory]);
-  if (blogs.length < 1) return <p style={{ height: "500px" }}>Loading...</p>
+  if (blogs.length < 1) return <p style={{ height: "500px" }}><Spinner/></p>
   return (
     <section className='read'>
 

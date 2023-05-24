@@ -15,7 +15,7 @@ interface UserData {
     fname: string;
     lname: string;
     headTag: string;
-    dob:string;
+    dob: string;
     gender: string;
 }
 
@@ -64,7 +64,7 @@ const UserProfileForm = () => {
     const handleDataChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
 
-        setFormData((prevFormData:any) => ({
+        setFormData((prevFormData: any) => ({
             ...prevFormData,
             [name]: value,
         }));
@@ -148,8 +148,12 @@ const UserProfileForm = () => {
                     e.preventDefault();
                     handleSubmit();
                 }}
+                style={{
+                    backgroundColor: loading ? " #d1d2d2" : "",
+                    color: loading ? " #fff" : ""
+                }}
                 className='submit-button'
-                disabled={!avatarUrl || !formData.dob|| !formData.gender || !formData.headTag|| !formData.fname ||!formData.lname}
+                disabled={!avatarUrl || !formData.dob || !formData.gender || !formData.headTag || !formData.fname || !formData.lname}
             >
                 {loading ? "Submitting..." : "Submit"}
             </button>

@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
+
 
 export const Spinner = () => {
-  return (
-    <div>Loading...</div>
-  )
+  return <p>Spinner</p>
 }

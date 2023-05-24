@@ -148,6 +148,10 @@ const UserProfileForm = () => {
                         handleSubmit();
                     }}
                     className='submit-button'
+                    style={{
+                        backgroundColor: loading ? " #d1d2d2":"",
+                        color: loading ? " #fff":""
+                      }} 
                 >
                     {loading ? "Submitting..." : "Submit"}
                 </button>

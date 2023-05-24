@@ -15,6 +15,7 @@
     "@types/redux": "^3.6.0",
     "date-fns": "^2.29.3",
     "firebase": "^9.19.1",
+    "notiflix": "^3.2.6",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.3",
     "react-dom": "^18.2.0",

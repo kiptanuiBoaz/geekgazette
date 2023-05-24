@@ -116,7 +116,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         <article className='blog-article'>
 
             <div className='blog-container'>
-                <Zoom>
+                <Zoom triggerOnce={true}>
                     <img src={imgUrl} alt={title} className='blog-image' />
                 </Zoom>
 

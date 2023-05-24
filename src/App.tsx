@@ -17,6 +17,7 @@ import { api } from "./axios/axios";
 import { setPosts } from "./api/postsSlice";
 import { Spinner } from "./components";
 import { PostInterface } from "./api/reduxTypes"
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const POSTS_URL = "/posts";
 interface PostsState {
@@ -25,10 +26,12 @@ interface PostsState {
 
 export const App = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
   const blogs = useSelector((state: PostsState) => state?.posts.posts);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setIsLoading(true);
       try {
         const response = await api.get(POSTS_URL);
         const postsWithoutAuthor = response.data;
@@ -60,11 +63,12 @@ export const App = () => {
     };
 
     fetchPosts();
+    setIsLoading(false);
   },[]);
 
-  if (blogs.length === 0) return <Spinner />
+  if (isLoading) return <Spinner />
   return (
-    <Suspense fallback={<Spinner />}>
+    <Suspense fallback={<p>Loading...</p>}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
