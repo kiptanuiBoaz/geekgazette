@@ -9,6 +9,7 @@ import usePrivateApi from '../../hooks/usePrivateApi';
 const COMMENTS_URL = "/comments"
 import { useParams } from 'react-router-dom';
 import { Fade, Zoom } from "react-awesome-reveal";
+import { Confirm } from 'notiflix';
 
 interface CommentProps {
     _id: string;
@@ -82,27 +83,38 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
                         {<button
                             style={{ visibility: hovered && email === userEmail ? "visible" : "hidden" }}
                             className='delete-icon'
-                            onClick={() => setDeleting(true)}
+                            onClick={() => {
+                                Confirm.show(
+                                    'Want to Sign out?',
+                                    'This can’t be undone, your comment will be removed permanently',
+                                    loading ? "Deleting..." : "Proceed",
+                                    'Cancel',
+                                    () => {
+                                        handleDeleteComment();
+                                    },
+                                    () => { }
+                                );
+                            }}
                         >
                             <MdDelete /> {" "} delete
                         </button>}
                     </p>
 
 
-
+{/* 
                     {deleting && <div className='delete-modal'>
                         <Zoom>
                             <div className='modal-content'>
                                 <h5 className='delete-confirmation'>Delete Comment?</h5>
                                 <hr />
-                                <p className='delete-description'>This can’t be undone, your comment will be removed permanently</p>
+                                <p className='delete-description'></p>
                                 <footer className='modal-footer'>
-                                    <button className='modal-delete-btn' onClick={handleDeleteComment}>{loading ? "Deleting..." : "Proceed"}</button>
-                                    <button className='modal-cancel-btn' onClick={() => setDeleting(false)}>Cancel</button>
+                                    <button className='modal-delete-btn' onClick={ }>{}</button>
+                                    <button className='modal-cancel-btn' onClick={() => setDeleting(false)}></button>
                                 </footer>
                             </div>
                         </Zoom>
-                    </div>}
+                    </div>} */}
 
                 </div>
             </div>

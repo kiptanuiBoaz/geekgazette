@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { PostInterface } from '../../api/reduxTypes';
 import { Fade,Zoom} from "react-awesome-reveal";
 import { Spinner } from '../../components/index';
+// import { Loading } from 'notiflix';
 
 interface PostsState {
   posts: { posts: PostInterface[]; }
@@ -21,6 +22,7 @@ export const Read = () => {
   const [filterdBlogs, setFilterdBlogs] = useState<PostInterface[]>([]);
   //algorithm to calculate trending props
   useEffect(() => {
+    // Loading.remove()
     setTredingBlogs(
       blogs.slice().sort((a, b) => {
         // Sort by date created

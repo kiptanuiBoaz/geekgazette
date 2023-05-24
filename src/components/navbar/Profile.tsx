@@ -21,6 +21,7 @@ interface PostsState {
 
 export const Profile = ({ scrollPos }: ProfileProps) => {
     const { fname, avatarUrl, email, headTag, lname } = useSelector((state: any) => state.auth.user);
+    // console.log(fname)
     const navigate = useNavigate();
     //logout fn from useLogout hook
     const logOut = useLogOut();
@@ -38,7 +39,6 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
     return (
         <article style={{
             backgroundColor: scrollPos < 20 ? "#d1d2d2" : "#4d7e3e",
-
         }}
             className="profile"
         >

@@ -31,7 +31,7 @@ export const App = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-Loading.dots();
+      Loading.dots();
       try {
         const response = await api.get(POSTS_URL);
         const postsWithoutAuthor = response.data;
@@ -56,7 +56,7 @@ Loading.dots();
 
         const postsWithAuthors = await Promise.all(authorRequests);
 
-        dispatch(setPosts(postsWithAuthors));  Loading.remove();
+        dispatch(setPosts(postsWithAuthors)); Loading.remove();
       } catch (error) {
         console.log(error);
       }
@@ -64,9 +64,9 @@ Loading.dots();
 
     fetchPosts();
 
-  },[]);
+  }, []);
 
- 
+
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <Routes>
