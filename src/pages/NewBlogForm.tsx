@@ -4,20 +4,35 @@ import { RiImageAddFill } from "react-icons/ri";
 import { storage } from "../firebase/firebase";
 import { ref, uploadBytesResumable, getDownloadURL, } from "firebase/storage";
 import { v4 } from "uuid";
-import { useSelector } from 'react-redux';
 import usePrivateApi from "../hooks/usePrivateApi";
 import { categoryList } from '../assets/read/categories';
 import { addPost, updatePost } from '../api/postsSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PostInterface } from '../api/reduxTypes';
 import { useNavigate } from 'react-router-dom';
 import { api } from "../axios/axios";
-import { Report } from 'notiflix';
+import { Report, IReportOptions } from 'notiflix';
 
 const POSTS_URL = "/posts";
 interface PostFormPros {
   postId: string | undefined;
 }
+
+interface ICustomReportOptions extends IReportOptions {
+  buttonBackground: string;
+  svgColor: string;
+titleColor: string;
+backOverlayColor: string;
+}
+
+const options: ICustomReportOptions = {
+  buttonBackground: "#4d7e3e",
+  svgColor: " #4d7e3e",
+  titleColor: " #4d7e3e",
+  backOverlayColor: " rgba(76, 76, 76, 0.82)",
+  // specify other allowed properties from IReportOptions
+};
+
 
 const NewBlogForm = ({ postId }: PostFormPros) => {
   //posts from state and filter blog curently editing
@@ -93,40 +108,32 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
         dispatch(addPost(PostWithAuthor));
         postId = response.data._doc._id;
 
-         //notify the user
-      Report.success(
-        "Blog Created!",
-        "Your blog will now be available on the timeline, you can alsa make  changes anytime by visiting your profile on the top right",
-        "Okay",
-        {
-          buttonBackground:"#4d7e3e",
-          svgColor:" #4d7e3e",
-          titleColor:" #4d7e3e",
-          backOverlayColor:" rgba(76, 76, 76, 0.82)",
-        }
-      )
+        //notify the user
+        Report.success(
+          "Blog Created!",
+          "Your blog will now be available on the timeline, you can alsa make  changes anytime by visiting your profile on the top right",
+          "Okay",
+          () => { },
+          options
+        )
       }
       //from edited blog
       if (response.status === 200 && blog !== null) {
         dispatch(updatePost(response.data));
         postId = response.data._id;
 
-           //notify the user
-      Report.success(
-        "Changes Submitted!",
-        "Changes will be visible when you visit the blog on the timeline or on your profile on the top left",
-        "Okay",
-        {
-          buttonBackground:"#4d7e3e",
-          svgColor:" #4d7e3e",
-          titleColor:" #4d7e3e",
-          backOverlayColor:" rgba(76, 76, 76, 0.82)",
-        }
-      )
+        //notify the user
+        Report.success(
+          "Changes Submitted!",
+          "Changes will be visible when you visit the blog on the timeline or on your profile on the top left",
+          "Okay",
+          () => { },
+          options
+        )
       }
       //to the full blog page
       navigate(`/blog/read/${postId}`);
-     
+
 
     } catch (error) {
       console.log(error);
@@ -141,7 +148,7 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
         ref={titleRef}
         className='title-input'
         type="text"
-        value={title??""}
+        value={title ?? ""}
         onChange={(e) => setTitle(e.target.value)}
         placeholder='Title'
         required
@@ -158,7 +165,7 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
       />
       <br />
 
-      <select onChange={(e) => setCategory(e.target.value)} className='category-select' value={category??""} required>
+      <select onChange={(e) => setCategory(e.target.value)} className='category-select' value={category ?? ""} required>
         <option value="">Select a category</option>
         {categoryList.map(category => <option value={category}>{category}</option>)}
 
@@ -189,9 +196,9 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
         onClick={(e) => handleSubmit(e)}
         disabled={!title || !body || !category || !imgUrl}
         style={{
-          backgroundColor: loading ? " #d1d2d2":"",
-          color: loading ? " #fff":""
-        }} 
+          backgroundColor: loading ? " #d1d2d2" : "",
+          color: loading ? " #fff" : ""
+        }}
         className='submit-button'
         type="submit"
       >

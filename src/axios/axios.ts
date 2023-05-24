@@ -3,7 +3,6 @@ import axios, { AxiosInstance } from 'axios';
 
 export const api: AxiosInstance = axios.create({
     baseURL: BASE_URL,
-    timeout: 30000,
     withCredentials: true, // set withCredentials to true
     headers: {
         "Content-Type": "Application/json",
@@ -18,7 +17,6 @@ export const api: AxiosInstance = axios.create({
 export const privateApi: AxiosInstance = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
-    timeout: 30000,
     headers: {
         "Content-Type": "Application/json",
         withCredentials: true,

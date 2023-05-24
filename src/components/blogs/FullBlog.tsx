@@ -17,6 +17,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { MdDeleteForever } from "react-icons/md"
 import { Fade, Zoom } from "react-awesome-reveal";
 import { Params } from 'react-router-dom';
+import { Report } from 'notiflix';
 
 
 const LIKES_URL = "/likes"
@@ -58,9 +59,14 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     //check if user is signed in
     const checkAuth = () => {
         if (email === null) {
-            alert("Sign In first to like this post");
-            navigate("/auth/sign-in");
-            return false;
+            Report.info(
+                'Please Sign In',
+                'To interract with this post, you are required to sign in or sign up if you  don not have an account on GeekGazete',
+                'Sign In',
+                ()=> navigate("/auth/sign-in"),
+            )
+            return;
+           
         } else {
             return true;
         }
