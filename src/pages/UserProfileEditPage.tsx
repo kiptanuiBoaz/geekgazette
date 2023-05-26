@@ -6,9 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import usePrivateApi from "../hooks/usePrivateApi";
 import { updateAuth } from "../api/authSlice";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, } from "firebase/storage";
 import { v4 } from "uuid";
 import { storage } from "../firebase/firebase";
+import { Notify } from 'notiflix';
 
 
 const USER_URL = "/users";
@@ -50,23 +51,22 @@ const UserProfileForm = () => {
     }
 
     useEffect(() => {
-        const uploadImage = async () => {
-            try {
-                setUploadingImage(true);
-                if (image == null) return;
-                const imageRef = ref(storage, `/userProfiles/${image.name + v4()} `);
-                const snapshot = await uploadBytesResumable(imageRef, image);
-                const url = await getDownloadURL(snapshot.ref);
-                setNewAvatarUrl(url);
-
-            } catch (e) {
-                console.log(e);
-            } finally {
-                setUploadingImage(false);
-            }
-
+        setUploadingImage(true);
+        const uploadImage = () => {
+            if (image == null) return;
+            const imageRef = ref(storage, `/userProfiles/${image.name + v4()} `);
+            uploadBytes(imageRef, image).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    setNewAvatarUrl(url);
+                });
+                Notify.success(
+                    "Image uploaded successfully",
+                    { timeout: 1000, cssAnimationStyle: "from-right" }
+                );
+            })
         };
         uploadImage();
+        setUploadingImage(false);
     }, [image]);
 
     useEffect(() => { fnameRef.current?.focus(); }, []);

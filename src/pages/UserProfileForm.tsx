@@ -8,6 +8,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { updateAuth } from '../api/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import usePrivateApi from "../hooks/usePrivateApi";
+import { Notify } from 'notiflix';
 
 const USER_URL = "/users"
 
@@ -38,7 +39,13 @@ const UserProfileForm = () => {
     const fnameRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
 
-
+    Notify.merge({
+        success: {
+            background: " #4d7e3e",
+            notiflixIconColor: " #eeeee4",
+            textColor: " #eeeee4"
+        }
+    })
 
     useEffect(() => { fnameRef.current?.focus(); }, []);
 
@@ -50,7 +57,10 @@ const UserProfileForm = () => {
                 getDownloadURL(snapshot.ref).then((url) => {
                     setAvatarUrl(url);
                 });
-                alert("image uploaded")
+                Notify.success(
+                    "Image uploaded successfully",
+                    { timeout: 1000, cssAnimationStyle: "from-right" }
+                );
             })
         };
         uploadImage();

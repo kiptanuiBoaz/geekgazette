@@ -21,8 +21,8 @@ interface PostFormPros {
 interface ICustomReportOptions extends IReportOptions {
   buttonBackground: string;
   svgColor: string;
-titleColor: string;
-backOverlayColor: string;
+  titleColor: string;
+  backOverlayColor: string;
 }
 
 const options: ICustomReportOptions = {
