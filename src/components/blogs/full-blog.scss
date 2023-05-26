@@ -26,19 +26,21 @@
 
     .title {
       color: var(--primary-color);
-
+      font-family: var(----blog-title-font);
       @media only screen and (max-width: 460px) {
         font-size: 22px;
       }
-     
     }
     .header-info {
       font-size: 15px;
       color: #717471;
       span {
         color: var(--primary-color);
+        font-weight: bold;
       }
-
+      .author-names {
+        font-family: var(--author-font);
+      }
       @media only screen and (max-width: 460px) {
         font-size: 14px;
       }
@@ -156,7 +158,6 @@
       @media only screen and (max-width: 400px) {
         width: 100%;
         margin-left: 0;
-  
       }
     }
   }

@@ -146,7 +146,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                     {`Published`}
                     <span>{formattedDate}</span>
                     {" "}  {`by`}
-                    <span> {`${fname} ${lname}`}</span>
+                    <span className='author-names'> {`${fname} ${lname}`}</span>
                 </p>
 
                 <Fade cascade><p className='body-content'>{body}</p></Fade>

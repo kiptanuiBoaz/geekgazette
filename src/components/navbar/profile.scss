@@ -36,7 +36,9 @@
     }
     .names {
       margin: 3px 0 0 0;
-      font-size: 20px;
+      font-size: 18px;
+      font-family: var(--author-font);
+      font-weight: normal;
     }
 
     .email {

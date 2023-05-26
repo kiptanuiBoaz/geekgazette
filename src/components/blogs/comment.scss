@@ -1,6 +1,5 @@
 @import "../blogs//blog.scss";
 
-
 .comment {
   @extend .blog;
   flex-direction: column;
@@ -9,7 +8,7 @@
   height: fit-content;
   background-color: #fff;
   border: 1px solid var(--primary-backround);
-  z-index:1;
+  z-index: 1;
   @media only screen and (max-width: 460px) {
     padding: 7px 11px;
   }
@@ -49,8 +48,8 @@
       font-size: 15px;
       padding: 0 auto 0 0;
       margin: 0;
-      // color: #1e1e1e;
-      color:var(--primary-color);
+      color: var(--primary-color);
+      font-family: var(--author-font);
 
       @media only screen and (max-width: 460px) {
         font-size: 13px;
@@ -70,9 +69,9 @@
   }
 
   .comment-content {
-    margin: 4px  0;
+    margin: 4px 0;
     font-size: 15px;
-
+    font-family: var(--blog-text-font);
     .delete-icon {
       float: right;
       margin-right: 20px;
@@ -80,11 +79,10 @@
       padding: 0 5px;
       border-radius: 2px;
       color: var(--primary-color);
-     
-      &:hover{
-        background-color: rgb(242, 117, 117);
-        color: white;       
 
+      &:hover {
+        background-color: rgb(242, 117, 117);
+        color: white;
       }
     }
   }
@@ -96,7 +94,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 50!important;
+    z-index: 50 !important;
     display: flex;
     justify-content: center;
     align-items: center;

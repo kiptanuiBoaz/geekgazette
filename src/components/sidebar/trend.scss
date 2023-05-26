@@ -21,6 +21,7 @@
       padding: 1px;
       margin: 0px;
       color: #454745;
+      font-family: var(--author-font);
 
       @media only screen and (max-width: 800px) {
         font-size: 11px;
@@ -39,7 +40,7 @@
       color: #494a49;
       padding: 0;
       cursor: pointer;
-
+      font-family: var(--blog-title-font);
       @media only screen and (max-width: 800px) {
         font-size: 16px;
         // padding: 4px 8px;
@@ -52,7 +53,7 @@
     .short-content {
       margin: 0px 0;
       font-size: 14px;
-    
+      font-family: var(--blog-text-font);
     }
     .trend-footer {
       margin: 0px;

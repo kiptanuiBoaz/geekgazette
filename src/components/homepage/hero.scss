@@ -29,9 +29,8 @@
         width: 95%;
       }
       .slogan {
-        font-size: 30px;
-        font-family: Georgia, "Times New Roman", Times, serif;
-
+        font-size: 33px;
+        font-family: var(--main-header-font);
         @media only screen and (max-width: 800px) {
           font-size: 25px;
         }
@@ -40,6 +39,7 @@
       .tagline {
         font-size: 20px;
         margin-top: 0;
+        font-family: var(--subheadings-font);
 
         .span {
           color: var(--primary-color);
@@ -61,7 +61,7 @@
         margin: 10px 20px 0 0;
         width: 79%;
         font-size: 20px;
-        font-family: Georgia, "Times New Roman", Times, serif;
+        font-family: var(--main-header-font);
         @media only screen and (max-width: 400px) {
           width: 160px;
           font-size: 15px;

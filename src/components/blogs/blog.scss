@@ -50,6 +50,7 @@
         color: var(--accent-color);
         margin-bottom: 5px;
         margin-top: 13px;
+        font-family: var(--author-font);
       }
 
       .avatar {
@@ -64,18 +65,17 @@
 
     .title {
       margin: -6px 0 0 0;
-      font-size: 22px;
+      font-size: 19px;
       color: #1e1e1e;
       cursor: pointer;
+      font-family: var(--blog-title-font);
 
       @media only screen and (max-width: 800px) {
         font-size: 20px;
-        // padding: 4px 8px;
       }
 
       @media only screen and (max-width: 660px) {
         font-size: 17px;
-        // padding: 4px 8px;
       }
 
       &:hover {
@@ -88,14 +88,13 @@
       color: #292a29;
       margin: 0px;
       overflow: visible;
+      font-family: var(--blog-text-font);
+      font-size:15px;
 
       @media only screen and (max-width: 800px) {
         font-size: 13px;
-        // padding: 4px 8px;
+      
       }
-      // @media only screen and (max-width: 680px) {
-      //   display: none;
-      // }
     }
 
     .blog-footer {
