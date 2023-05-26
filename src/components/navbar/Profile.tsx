@@ -105,18 +105,35 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                             () => {
                                 logOut();
                                 navigate("/auth/sign-in");
-                                Confirm.show(
-                                    "Logged Out successfully!",
-                                    "You can continue reading through GeekGazette while signed out, to do so just navigate back to our main page",
-                                    "<< Go back home",
-                                    "Nah! I'm good",
-                                    () => { navigate("/") },
-                                    ()=>{navigate("/auth/sign-in")},
+                                // Confirm.show(
+                                //     "Logged Out successfully!",
+                                //     "You can continue reading through GeekGazette while signed out, to do so just navigate back to our main page",
+                                //     "<< Go back home",
+                                //     "Nah! I'm good",
+                                //     () => { navigate("/") },
+                                //     ()=>{navigate("/auth/sign-in")},
+                                //     {
+                                //         okButtonBackground:" #4d7e3e",
+                                //         titleColor:"#4d7e3e",
+                                //         borderRadius:"15px",
+                                //         distance:"20px",
+                                //         cssAnimationStyle:"zoom",
+                                //         buttonsFontSize:"17px",
+                                //         titleFontSize:"18px"
+                                //     }
 
-                                )
+                                // )
                             },
                             () => navigate("/"),
-                            { backgroundColor: "" }
+                            {
+                                okButtonBackground:" #4d7e3e",
+                                titleColor:"#4d7e3e",
+                                borderRadius:"15px",
+                                distance:"20px",
+                                cssAnimationStyle:"zoom",
+                                buttonsFontSize:"17px",
+                                titleFontSize:"18px"
+                            }
                         );
 
                     }}

@@ -4,7 +4,7 @@ import { Loading } from 'notiflix';
 
 export const Spinner = () => {
   return (
-    <section className='spinner'>
+    <section style={{ height: "500px" }} className='spinner'>
       <div>{Loading.dots() as ReactNode}</div>
     </section>
   );

@@ -64,7 +64,7 @@ export const Read = () => {
     )
 
   }, [blogs, selectedCategory]);
-  if (blogs.length < 1) return <p style={{ height: "500px" }}><Spinner/></p>
+  if (blogs.length < 1) return <Spinner/>
   return (
     <section className='read'>
 

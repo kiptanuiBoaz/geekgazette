@@ -85,36 +85,27 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
                             className='delete-icon'
                             onClick={() => {
                                 Confirm.show(
-                                    'Want to Sign out?',
+                                    'Want to delete this comment?',
                                     'This can’t be undone, your comment will be removed permanently',
                                     loading ? "Deleting..." : "Proceed",
                                     'Cancel',
-                                    () => {
-                                        handleDeleteComment();
-                                    },
-                                    () => { }
+                                    () => { handleDeleteComment(); },
+                                    () => { },
+                                    {
+                                        okButtonBackground:" #4d7e3e",
+                                        titleColor:"#4d7e3e",
+                                        borderRadius:"15px",
+                                        distance:"20px",
+                                        cssAnimationStyle:"zoom",
+                                        buttonsFontSize:"17px",
+                                        titleFontSize:"18px"
+                                    }
                                 );
                             }}
                         >
                             <MdDelete /> {" "} delete
                         </button>}
                     </p>
-
-
-{/* 
-                    {deleting && <div className='delete-modal'>
-                        <Zoom>
-                            <div className='modal-content'>
-                                <h5 className='delete-confirmation'>Delete Comment?</h5>
-                                <hr />
-                                <p className='delete-description'></p>
-                                <footer className='modal-footer'>
-                                    <button className='modal-delete-btn' onClick={ }>{}</button>
-                                    <button className='modal-cancel-btn' onClick={() => setDeleting(false)}></button>
-                                </footer>
-                            </div>
-                        </Zoom>
-                    </div>} */}
 
                 </div>
             </div>
