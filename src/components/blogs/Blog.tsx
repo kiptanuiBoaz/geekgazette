@@ -29,7 +29,7 @@ export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author:
         setShortBody(body.substring(0, deviceWidth < 500 ? 30 :
             deviceWidth < 640
                 ? 50
-                : 100
+                : 90
         ))
     }, [deviceWidth, shortBody]);
 
