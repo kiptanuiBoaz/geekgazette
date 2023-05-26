@@ -68,6 +68,7 @@
     width: 80%;
     justify-content: flex-end;
     margin-top: auto;
+  
 
     @media only screen and (max-width: 920px) {
       padding-right: 20px;
@@ -107,11 +108,11 @@
       a {
         padding: 3px;
         color: var(--primary-color);
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: var(--author-font);
         text-decoration: none;
         font-weight: 500;
         font-size: 17px;
-        padding: 4px 0px;
+        padding: 0px 0px;
         display: inline-block;
         position: relative;
 
