@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { updateAuth } from "../api/authSlice";
 import { Zoom } from "react-awesome-reveal";
 import { Notify } from "notiflix";
+import { FaHome, FaAngleLeft } from "react-icons/fa"
+import { BsArrowBarLeft } from "react-icons/bs";
 
 const LOGIN_URL = "/login";
 
@@ -37,8 +39,8 @@ const LoginForm = () => {
     Notify.merge({
         success: {
             background: " #4d7e3e",
-            notiflixIconColor:" #eeeee4",
-            textColor:" #eeeee4"
+            notiflixIconColor: " #eeeee4",
+            textColor: " #eeeee4"
         }
     })
 
@@ -49,7 +51,7 @@ const LoginForm = () => {
                 LOGIN_URL,
                 JSON.stringify({ email, pwd }),
             );
-            
+
             if (response.status === 200) {
                 const user = { ...response?.data?._doc, }
                 const accessToken = response.data.accessToken;
@@ -152,6 +154,9 @@ const LoginForm = () => {
 
             </form>
             <Zoom>{errMsg && <p className="err-msg">{errMsg}</p>}</Zoom>
+            <p onClick={() => { navigate("/"); window.location.reload(); }} className="home">
+                <FaAngleLeft /><FaHome />
+            </p>
 
             <div className="sign-up-link">
                 <p className="sign-up-text">New here? Go to <Link to="/auth/sign-up">Sign-up</Link></p>

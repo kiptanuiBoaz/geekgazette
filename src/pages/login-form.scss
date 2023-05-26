@@ -130,6 +130,14 @@
     font-size: 15px;
     width: fit-content;
   }
+  .home{
+    color:var(--primary-color);
+    font-size: large;
+    padding: 10px 25px;
+    &:hover{
+      font-size: larger;
+    }
+  }
 
   .sign-up-link {
     position: absolute;
