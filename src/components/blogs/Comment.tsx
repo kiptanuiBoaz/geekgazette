@@ -80,33 +80,33 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
 
                     <p className='comment-content'>
                         {text}
-                        {<button
-                            style={{ visibility: hovered && email === userEmail ? "visible" : "hidden" }}
-                            className='delete-icon'
-                            onClick={() => {
-                                Confirm.show(
-                                    'Want to delete this comment?',
-                                    'This can’t be undone, your comment will be removed permanently',
-                                    loading ? "Deleting..." : "Proceed",
-                                    'Cancel',
-                                    () => { handleDeleteComment(); },
-                                    () => { },
-                                    {
-                                        okButtonBackground:" #4d7e3e",
-                                        titleColor:"#4d7e3e",
-                                        borderRadius:"15px",
-                                        distance:"20px",
-                                        cssAnimationStyle:"zoom",
-                                        buttonsFontSize:"17px",
-                                        titleFontSize:"18px"
-                                    }
-                                );
-                            }}
-                        >
-                            <MdDelete /> {" "} delete
-                        </button>}
-                    </p>
 
+                    </p>
+                    {<button
+                        style={{ visibility: email === userEmail ? "visible" : "hidden" }}
+                        className='delete-icon'
+                        onClick={() => {
+                            Confirm.show(
+                                'Want to delete this comment?',
+                                'This can’t be undone, your comment will be removed permanently',
+                                loading ? "Deleting..." : "Proceed",
+                                'Cancel',
+                                () => { handleDeleteComment(); },
+                                () => { },
+                                {
+                                    okButtonBackground: " #4d7e3e",
+                                    titleColor: "#4d7e3e",
+                                    borderRadius: "15px",
+                                    distance: "20px",
+                                    cssAnimationStyle: "zoom",
+                                    buttonsFontSize: "17px",
+                                    titleFontSize: "18px"
+                                }
+                            );
+                        }}
+                    >
+                        <MdDelete /> {" "} delete
+                    </button>}
                 </div>
             </div>
         </Fade>

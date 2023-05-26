@@ -72,21 +72,22 @@
     margin: 4px 0;
     font-size: 15px;
     font-family: var(--blog-text-font);
-    .delete-icon {
-      float: right;
-      margin-right: 20px;
-      cursor: pointer;
-      padding: 0 5px;
-      border-radius: 2px;
-      color: var(--primary-color);
-
-      &:hover {
-        background-color: rgb(242, 117, 117);
-        color: white;
-      }
+  }
+  .delete-icon {
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 1px 5px;
+    border-radius: 2px;
+    color: var(--primary-color);
+    outline: none;
+    border-color: var(--primary-color);
+    &:hover {
+      background-color: rgb(242, 117, 117);
+      color: white;
+      border-color: rgb(242, 117, 117);
     }
   }
-
   .delete-modal {
     position: fixed;
     background-color: rgba(76, 76, 76, 0.82);
