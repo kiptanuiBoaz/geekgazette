@@ -5,7 +5,7 @@
   @extend .read;
   flex-wrap: wrap;
   padding: 50px 0 0 0;
-  // min-height: 700px;
+  min-height: 700px;
   &:nth-child(1) {
     order: 1;
   }

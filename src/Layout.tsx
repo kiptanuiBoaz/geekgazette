@@ -5,7 +5,7 @@ export const Layout = () => {
     return (
         <>
             <Navbar />
-            <main>
+            <main style={{minHeight:"650px"}}>
                 {/* represents all the children */}
                 <Outlet />
             </main>

@@ -17,7 +17,8 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { MdDeleteForever } from "react-icons/md"
 import { Fade, Zoom } from "react-awesome-reveal";
 import { Params } from 'react-router-dom';
-import { Report } from 'notiflix';
+import { Loading, Confirm } from 'notiflix';
+
 
 
 const LIKES_URL = "/likes"
@@ -59,14 +60,24 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     //check if user is signed in
     const checkAuth = () => {
         if (email === null) {
-            Report.info(
-                'Please Sign In',
+            Confirm.show(
+                'Please Sign In!',
                 'To interract with this post, you are required to sign in or sign up if you  don not have an account on GeekGazete',
-                'Sign In',
-                ()=> navigate("/auth/sign-in"),
-            )
+                "Sign In",
+                'Cancel',
+                () => navigate("/auth/sign-in"),
+                () => { },
+                {
+                    okButtonBackground: " #4d7e3e",
+                    titleColor: "#4d7e3e",
+                    borderRadius: "15px",
+                    distance: "20px",
+                    cssAnimationStyle: "zoom",
+                    buttonsFontSize: "17px",
+                    titleFontSize: "18px"
+                }
+            );
             return;
-           
         } else {
             return true;
         }
@@ -116,8 +127,11 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         }
         setLoading(false);
     };
-    if (!postId) return <p>Loading...</p>
-    if (!fname) return <p>Loading...</p>
+    if (!postId || !fname) {
+        Loading.dots()
+    } else {
+        Loading.remove()
+    };
     return (
         <article className='blog-article'>
 

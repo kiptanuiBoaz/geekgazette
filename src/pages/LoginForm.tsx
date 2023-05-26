@@ -33,6 +33,15 @@ const LoginForm = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [persist, setPersist] = useState<boolean>(false);
 
+    //customizing the notify notification
+    Notify.merge({
+        success: {
+            background: " #4d7e3e",
+            notiflixIconColor:" #eeeee4",
+            textColor:" #eeeee4"
+        }
+    })
+
     const handleSubmit = async () => {
         setLoading(true);
         try {
@@ -46,10 +55,15 @@ const LoginForm = () => {
                 dispatch(updateAuth({ ...user, accessToken }));
 
                 //notify
-                Notify.success("Logged in successfully",{timeout:1000});
+                Notify.success(
+                    "Logged in successfully",
+                    { timeout: 1000, cssAnimationStyle: "from-right" }
+                );
+
                 // Navigate to the previous location
                 navigate(from, { replace: true });
             } else {
+                //clearing form fields 
                 setEmail("");
                 setPasswordVisibility(false);
                 setPwd("");
