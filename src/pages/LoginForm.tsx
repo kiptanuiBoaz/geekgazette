@@ -49,6 +49,7 @@ const LoginForm = () => {
                 LOGIN_URL,
                 JSON.stringify({ email, pwd }),
             );
+            
             if (response.status === 200) {
                 const user = { ...response?.data?._doc, }
                 const accessToken = response.data.accessToken;

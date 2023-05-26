@@ -9,6 +9,8 @@
   z-index: 5;
   
 
+ 
+
   @media only screen and (max-width: 400px) {
     position: relative;
   }
@@ -66,6 +68,10 @@
     width: 80%;
     justify-content: flex-end;
     margin-top: auto;
+
+    @media only screen and (max-width: 920px) {
+      padding-right: 20px;
+    }
 
     .nav-link-grey {
       margin: -5px 10px 11px 0;
