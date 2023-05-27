@@ -4,7 +4,7 @@ export const aboutArr = [
     {
         avatar: "https://pbs.twimg.com/profile_images/1586229189979545607/BugYGxpV_400x400.jpg",
         tag: "the developer",
-        p: "Meet Boaz, a MERN stack developer with a passion for technology. He's currently pursuing an Electrical and Electronics Engineering degree at Moi University but has found his calling in software development. John is skilled in MongoDB, Express, React, and Node.js and has experience building web applications. He's a fast learner, highly motivated, and always looking for opportunities to learn and grow in the tech industry",
+        p: "Meet Boaz, a MERN stack developer with a passion for technology. He's currently pursuing an Electrical and Electronics Engineering degree at Moi University but has found his calling in software development. Boaz is skilled in MongoDB, Express, React, and Node.js and has experience building web applications. He's a fast learner, highly motivated, and always looking for opportunities to learn and grow in the tech industry",
         link:"/about"
     },
     {
