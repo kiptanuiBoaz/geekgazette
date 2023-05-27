@@ -191,7 +191,7 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
         required
       />
       <br />
-      <img className='preview-img' src={imgUrl ?? ""} />
+      {imgUrl && <img className='preview-img' src={imgUrl ?? ""} />}
       <button
         onClick={(e) => handleSubmit(e)}
         disabled={!title || !body || !category || !imgUrl}
