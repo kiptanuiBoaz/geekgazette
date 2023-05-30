@@ -9,3 +9,10 @@ export interface BlogProps {
         avatarUrl: string;
     }
 }
+
+export interface CommentInterface {
+    date: string;
+    text: string;
+    userEmail: string;
+    _id: string;
+}

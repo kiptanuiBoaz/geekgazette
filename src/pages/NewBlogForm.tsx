@@ -11,27 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PostInterface } from '../api/reduxTypes';
 import { useNavigate } from 'react-router-dom';
 import { api } from "../axios/axios";
-import { Report, IReportOptions } from 'notiflix';
+import { Report } from 'notiflix';
+import { PostFormPros, options } from '../types/new-blog/newBlogTypes';
+import {POSTS_URL} from "../utils/apiroutes";
 
-const POSTS_URL = "/posts";
-interface PostFormPros {
-  postId: string | undefined;
-}
-
-interface ICustomReportOptions extends IReportOptions {
-  buttonBackground: string;
-  svgColor: string;
-  titleColor: string;
-  backOverlayColor: string;
-}
-
-const options: ICustomReportOptions = {
-  buttonBackground: "#4d7e3e",
-  svgColor: " #4d7e3e",
-  titleColor: " #4d7e3e",
-  backOverlayColor: " rgba(76, 76, 76, 0.82)",
-  // specify other allowed properties from IReportOptions
-};
 
 
 const NewBlogForm = ({ postId }: PostFormPros) => {

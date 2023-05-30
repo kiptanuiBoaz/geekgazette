@@ -1,4 +1,3 @@
-import React from 'react';
 import { Hero, Read } from "../components/index";
 
 const HomePage = () => {

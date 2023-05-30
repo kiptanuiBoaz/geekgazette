@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import "./profile.scss";
-import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { RiLogoutCircleRLine } from "react-icons/ri"
 import { useSelector } from "react-redux";
@@ -8,20 +6,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useLogOut from "../../hooks/useLogout";
 import { PostInterface } from "../../api/reduxTypes";
 import TimeAgo from "../../utils/Timeago";
-import { VscChromeClose } from "react-icons/vsc";
-import { Confirm, Report } from "notiflix";
+import { Confirm } from "notiflix";
+import { ProfileProps,PostsState } from "../../types/navbar-types/profileTypes";
 
-interface ProfileProps {
-    scrollPos: number;
-}
-
-interface PostsState {
-    posts: { posts: PostInterface[]; }
-}
 
 export const Profile = ({ scrollPos }: ProfileProps) => {
     const { fname, avatarUrl, email, headTag, lname } = useSelector((state: any) => state.auth.user);
-    // console.log(fname)
+  
     const navigate = useNavigate();
     //logout fn from useLogout hook
     const logOut = useLogOut();
@@ -43,7 +34,6 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
             className="profile"
         >
             <header className="profile-header">
-
                 <img
                     className="main-avatar"
                     style={{ borderColor: scrollPos > 20 ? "#d1d2d2" : "#4d7e3e" }}
@@ -53,12 +43,12 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                     }
                     alt={`${fname}'s profile`}
                 />
-                {/* <VscChromeClose className="close-btn" /> */}
                 <h3 style={{ color: scrollPos > 20 ? " #eeeee4 " : "rgb(40, 97, 34)" }} className="names">{fname}{"  "}{lname}</h3>
                 <p style={{ color: scrollPos > 20 ? "#a09d9d" : "#4d7e3e" }} className="email">{email}</p>
                 <p style={{ color: scrollPos > 20 ? "#d1d2d2" : "#6b6b6b", }} className="head-tag">{headTag}</p>
             </header>
             <hr />
+
             {currentUserBlogs.length > 0 && <p style={{ color: scrollPos > 20 ? " #eeeee4 " : "rgb(40, 97, 34)" }} className="blogs-title">My blog post(s) on geeek gazette</p>}
 
             <main className="my-blogs">

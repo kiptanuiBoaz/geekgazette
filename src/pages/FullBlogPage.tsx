@@ -4,15 +4,14 @@ import { useSelector } from 'react-redux';
 import { Blog, AuthorBlog, CategoryBlog, AuthorProfile, FullBlog } from '../components';
 import { PostInterface } from '../api/reduxTypes';
 import "./full-blog-page.scss";
-import { Zoom,Fade } from "react-awesome-reveal";
+import { Zoom, Fade } from "react-awesome-reveal";
+import { PostsStateInterface } from "../types/blog-types/fullBlogPageTypes";
 
-interface PostsState {
-    posts: { posts: PostInterface[]; }
-}
+
 
 const FullBlogPage = () => {
     const { postId } = useParams();
-    const blogs = useSelector((state: PostsState) => state?.posts.posts);
+    const blogs = useSelector((state: PostsStateInterface) => state?.posts.posts);
     //current blog
     const blog: PostInterface | undefined = blogs.find((b: PostInterface) => b._id === postId);
 

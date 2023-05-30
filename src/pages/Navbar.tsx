@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./navbar.scss";
 import logoGreen from "../assets/navbar/logo-no-bg-green.png";
 import logoWhite from "../assets/navbar/logo-no-bg-white.png";
@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { VscChromeClose } from "react-icons/vsc";
 import { Profile } from "../components";
-import { Slide } from "react-awesome-reveal";
 
 
 const Navbar = () => {
@@ -19,11 +18,6 @@ const Navbar = () => {
   const { email } = useSelector((state: any) => state?.auth?.user);
   const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
   const [showProfile, setShowProfile] = useState<boolean>(false);
-
-  const location = useLocation();
-  const [route, setRoute] = useState<string>(location.pathname);
-
-
 
   useEffect(() => {
     const handleEvent = () => {
@@ -64,7 +58,6 @@ const Navbar = () => {
           <NavLink to="/"> <img src={scrollPos > 20 ? logoWhite : logoGreen} alt="logo" /></NavLink>
         </div>
 
-        {/* <Slide cascade direction="right"> */}
         <ul
           className={deviceWidth > 640 ? "nav-link-container" : 'mobile-nav'}
           style={{ display: !showMobileNav && deviceWidth < 640 ? "none" : "" }}
@@ -91,7 +84,6 @@ const Navbar = () => {
                   to="auth/sign-in"
                   className={({ isActive }) =>
                     isActive ? scrollPos < 20 ? "active-style-grey" : "active-style-green" : undefined
-
                   }
 
                 >
@@ -106,7 +98,7 @@ const Navbar = () => {
             </>
           }
         </ul>
-        {/* </Slide> */}
+
         <div
           onClick={() => {
             setShowMobileNav(!showMobileNav);

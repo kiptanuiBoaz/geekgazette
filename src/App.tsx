@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Layout } from "./Layout";
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -15,19 +15,13 @@ const RequireAuth = lazy(() => import("./pages/RequireAuth"));
 import { useDispatch, useSelector } from "react-redux";
 import { api } from "./axios/axios";
 import { setPosts } from "./api/postsSlice";
-import { Spinner } from "./components";
-import { PostInterface } from "./api/reduxTypes"
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { POSTS_URL } from "./utils/apiroutes";
 
-const POSTS_URL = "/posts";
-interface PostsState {
-  posts: { posts: PostInterface[]; }
-}
+
 
 export const App = () => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
-  const blogs = useSelector((state: PostsState) => state?.posts.posts);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -104,3 +98,4 @@ export const App = () => {
 
 // npm run dev -- --host
 // K2!xD^TGz?87Menx
+

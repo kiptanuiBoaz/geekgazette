@@ -9,16 +9,9 @@ import { updateAuth } from '../api/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import usePrivateApi from "../hooks/usePrivateApi";
 import { Notify } from 'notiflix';
+import { UserDataInterface } from '../types/new-user-types/newUserTypes';
+import { USER_URL } from '../utils/apiroutes';
 
-const USER_URL = "/users"
-
-interface UserData {
-    fname: string;
-    lname: string;
-    headTag: string;
-    dob: string;
-    gender: string;
-}
 
 const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
@@ -34,18 +27,18 @@ const UserProfileForm = () => {
 
     const from = location?.state?.from?.pathname || "/";
     const email = useSelector((state: { auth: { user: { email: string } } }) => state.auth.user.email);
-    const userData = { ...formData, avatarUrl, email };
+    const userData: UserDataInterface = { ...formData, avatarUrl, email };
 
     const fnameRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
 
-    Notify.merge({
+    Notify.init({
         success: {
             background: " #4d7e3e",
             notiflixIconColor: " #eeeee4",
             textColor: " #eeeee4"
         }
-    })
+    });
 
     useEffect(() => { fnameRef.current?.focus(); }, []);
 

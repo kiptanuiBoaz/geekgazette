@@ -18,18 +18,9 @@ import { MdDeleteForever } from "react-icons/md"
 import { Fade, Zoom } from "react-awesome-reveal";
 import { Params } from 'react-router-dom';
 import { Loading, Confirm } from 'notiflix';
-
-
-
-const LIKES_URL = "/likes"
-const POSTS_URL = "/posts"
-interface CommentInterface {
-    date: string;
-    text: string;
-    userEmail: string;
-    _id: string;
-}
-
+import { POSTS_URL, LIKES_URL } from '../../utils/apiroutes';
+import { CommentInterface } from '../../types/blog-types/fullBlogProps';
+import { confirmOptions } from '../../utils/confirmOptions';
 
 export const FullBlog = ({ author: { fname, lname }, comments, likes, date, authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
@@ -67,15 +58,6 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                 'Cancel',
                 () => navigate("/auth/sign-in"),
                 () => { },
-                {
-                    okButtonBackground: " #4d7e3e",
-                    titleColor: "#4d7e3e",
-                    borderRadius: "15px",
-                    distance: "20px",
-                    cssAnimationStyle: "zoom",
-                    buttonsFontSize: "17px",
-                    titleFontSize: "18px"
-                }
             );
             return;
         } else {
@@ -127,11 +109,10 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         }
         setLoading(false);
     };
-    if (!postId || !fname) {
-        Loading.dots()
-    } else {
-        Loading.remove()
-    };
+
+    //loading state
+    (!postId || !fname) ? Loading.dots() : Loading.remove();
+
     return (
         <article className='blog-article'>
 

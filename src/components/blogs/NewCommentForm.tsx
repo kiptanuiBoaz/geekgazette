@@ -4,13 +4,10 @@ import { useSelector } from 'react-redux';
 import usePrivateApi from '../../hooks/usePrivateApi';
 import { addComment } from '../../api/postsSlice';
 import { useDispatch } from 'react-redux';
+import { CommentFormProps } from '../../types/comment-types/commentTypes';
+import { COMMENTS_URL, COMMENT_MAX_LENGTH } from "../../utils/apiroutes";
 
-const MAX_LENGTH = 200;
 
-interface CommentFormProps {
-  handleCommenting: () => void;
-  postId: string | undefined;
-}
 
 export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) => {
   const [text, setText] = useState<string>('');
@@ -44,7 +41,7 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const res = await privateApi.post('/comments', { text, date, userEmail, postId });
+      const res = await privateApi.post(COMMENTS_URL, { text, date, userEmail, postId });
       if (res.status === 200) {
         dispatch(addComment({ postId, newComment: { ...res.data } }));
         setText('');
@@ -62,22 +59,22 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
         id="textInput"
         value={text}
         onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
-          const inputValue = event.target.value.slice(0, MAX_LENGTH);
+          const inputValue = event.target.value.slice(0, COMMENT_MAX_LENGTH);
           setText(inputValue);
         }}
-        maxLength={MAX_LENGTH}
+        maxLength={COMMENT_MAX_LENGTH}
         placeholder="Add comment"
       />
       <footer className="comment-input-footer">
         <div className="buttons">
-          <button 
-          onClick={() => handleSubmit()} 
-          style={{
-            backgroundColor: loading ? " #d1d2d2":"",
-            color: loading ? " #fff":""
-          }} 
-          className="submit" 
-          disabled={!text}>
+          <button
+            onClick={() => handleSubmit()}
+            style={{
+              backgroundColor: loading ? " #d1d2d2" : "",
+              color: loading ? " #fff" : ""
+            }}
+            className="submit"
+            disabled={!text}>
             {loading ? 'Submitting...' : 'Submit'}
           </button>
           <button className="cancel" onClick={() => handleCommenting()}>

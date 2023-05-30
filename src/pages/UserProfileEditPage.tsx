@@ -10,9 +10,9 @@ import { ref, uploadBytes, getDownloadURL, } from "firebase/storage";
 import { v4 } from "uuid";
 import { storage } from "../firebase/firebase";
 import { Notify } from 'notiflix';
+import { USER_URL } from '../utils/apiroutes';
 
 
-const USER_URL = "/users";
 
 const UserProfileForm = () => {
     const [formData, setFormData] = useState({ ...useSelector((state: any) => state.auth.user) });

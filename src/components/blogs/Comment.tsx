@@ -10,19 +10,13 @@ const COMMENTS_URL = "/comments"
 import { useParams } from 'react-router-dom';
 import { Fade, Zoom } from "react-awesome-reveal";
 import { Confirm } from 'notiflix';
+import { CommentProps } from '../../types/comment-types/commentTypes';
 
-interface CommentProps {
-    _id: string;
-    userEmail: string;
-    date: string;
-    text: string;
-}
+
 
 export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
     const [authorName, setAuthorName] = useState('');
     const [authorAvatar, setAuthorAvatar] = useState(null);
-    const [hovered, setHovered] = useState<boolean>(false);
-    const [deleting, setDeleting] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
 
     //currently signed in  user from redux store
@@ -69,7 +63,7 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
     return (
         <Fade>
             <div className='comment' key={_id}>
-                <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className='comment-content'>
+                <div  className='comment-content'>
                     <div className='comment-header'>
                         <img className='comment-avatar' src={authorAvatar ?? "https://media.tenor.com/joLYNfFQGDgAAAAC/loading.gif"} alt='avatar' />
                         <h5 className='comment-author'>{authorName}</h5>
