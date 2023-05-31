@@ -55,6 +55,10 @@ export const Read = () => {
     setSelectedCategory(e);
   };
 
+  const shuffleArray= (array:PostInterface[])=> {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
   //filter the blogs 
   useEffect(() => {
     setFilterdBlogs(selectedCategory === "all"
@@ -73,7 +77,7 @@ export const Read = () => {
           <Row handleCategoryChange={handleCategoryChange} />
         </div>
 
-        {filterdBlogs.map(blog => <Blog key={blog._id} {...blog} />)}
+        {shuffleArray(filterdBlogs).map(blog => <Blog key={blog._id} {...blog} />)}
 
       </div>
       <hr className='line' />

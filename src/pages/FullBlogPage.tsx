@@ -22,7 +22,6 @@ const FullBlogPage = () => {
                 behavior: 'smooth'
             });
         };
-
         // Scroll to top after rendering is complete
         window.requestAnimationFrame(scrollToTop);
     }, [postId]);
@@ -30,8 +29,8 @@ const FullBlogPage = () => {
     if (!blog) return <div>Loading...</div>;
 
     const { authorEmail, category, author: { avatarUrl, fname, lname } } = blog;
-    const authorBlogs = blogs?.filter((b: PostInterface) => b.authorEmail === authorEmail)?.slice(0, 3);
-    const categoryBlogs = blogs?.filter((b: PostInterface) => b.category === category)?.slice(0, 3);
+    const authorBlogs = blogs?.filter((b: PostInterface) => b.authorEmail === authorEmail)?.filter((p: PostInterface) => p._id !== postId)?.slice(0, 3);
+    const categoryBlogs = blogs?.filter((b: PostInterface) => b.category === category)?.filter((p: PostInterface) => p._id !== postId)?.slice(0, 3);
 
     return (
         <section className='full-blog'>
@@ -61,7 +60,7 @@ const FullBlogPage = () => {
                     </Zoom>
                 </div>}
 
-                {category.length > 0 && <div className='trending'>
+                {categoryBlogs.length > 0 && <div className='trending'>
                     <h3 className='header-trending'>{`More on ${category}`} </h3>
                     <Zoom cascade>
                         {categoryBlogs.map((blog: PostInterface) => <CategoryBlog key={blog._id}  {...blog} />)}

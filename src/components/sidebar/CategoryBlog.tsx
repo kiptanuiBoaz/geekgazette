@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState,useEffect} from 'react';
 import "./trend.scss";
 import TimeAgo from "../../utils/Timeago";
 import { useNavigate } from 'react-router-dom';
@@ -17,8 +17,12 @@ interface TrendProps {
 
 export const CategoryBlog = ({ title, date, _id: postId, author: { avatarUrl, fname ,lname}, body }: TrendProps) => {
     const shortContent = body.substring(0, 30);
+    const [shortTitle, setShortTitle] = useState<string>("");
     const formattedDate = <TimeAgo timestamp={date} />
     const navigate = useNavigate();
+
+    useEffect(()=>setShortTitle(title.length > 48 ? title.substring(0, 47) + ("...") : title),[]);
+
     return (
         <article className='trend'>
             <div className='trend-content'>
@@ -30,7 +34,7 @@ export const CategoryBlog = ({ title, date, _id: postId, author: { avatarUrl, fn
                         window.scroll(0,0);
                     }}
                 >
-                    {title}
+                    {shortTitle}
                 </h2>
                 <p className='short-content'>{shortContent}...</p>
                 <div className='trend-footer'>
