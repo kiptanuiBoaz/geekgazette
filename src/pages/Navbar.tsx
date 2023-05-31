@@ -57,11 +57,40 @@ const Navbar = () => {
         <div className="logo" >
           <NavLink to="/"> <img src={scrollPos > 20 ? logoWhite : logoGreen} alt="logo" /></NavLink>
         </div>
+        <div
+          onClick={() => {
+            setShowMobileNav(!showMobileNav);
+            showProfile && setShowProfile(false);
+          }}
+          className="hamburger"
+          style={{
+            color: scrollPos > 20 ? "#eeeee4" : "#4d7e3e",
+            display: deviceWidth > 640 ? "none" : ""
+          }}
+        >
+          {!showMobileNav && !showProfile ? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
+
+        </div>
 
         <ul
           className={deviceWidth > 640 ? "nav-link-container" : 'mobile-nav'}
           style={{ display: !showMobileNav && deviceWidth < 640 ? "none" : "" }}
         >
+          <div
+            onClick={() => {
+              setShowMobileNav(!showMobileNav);
+              showProfile && setShowProfile(false);
+            }}
+            className="hamburger"
+            style={{
+              color: "#eeeee4",
+              display: deviceWidth > 640 ? "none" : ""
+            }}
+          >
+            {!showMobileNav && !showProfile ? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
+
+          </div>
+
           {navListComponent}
 
           {email !== null ?
@@ -99,20 +128,18 @@ const Navbar = () => {
           }
         </ul>
 
-        <div
-          onClick={() => {
-            setShowMobileNav(!showMobileNav);
-            showProfile && setShowProfile(false);
-          }}
-          className="hamburger"
+        {showMobileNav && deviceWidth < 640 && <div
           style={{
-            color: scrollPos > 20 ? "#eeeee4" : "#4d7e3e",
-            display: deviceWidth > 640 ? "none" : ""
-          }}
-        >
-          {!showMobileNav && !showProfile ? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
-
-        </div>
+            backgroundColor: "rgba(59, 66, 60, 0.6)",
+            height: "100vh",
+            width: "100vw",
+            zIndex: 3,
+            position: "absolute",
+            marginBottom: -130,
+            marginLeft:-20,
+            bottom:-550
+          }}>
+        </div>}
         {showProfile && <Profile scrollPos={scrollPos} />}
       </nav>
 

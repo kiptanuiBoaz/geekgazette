@@ -7,9 +7,6 @@
   position: fixed;
   width: 100%;
   z-index: 5;
-  
-
- 
 
   @media only screen and (max-width: 400px) {
     position: relative;
@@ -42,21 +39,42 @@
 
   .mobile-nav {
     position: absolute;
-    top: 30px;
-    left: 55%;
-    background-color: #205d2e;
+    top: -19px;
+    right: 0;
+    background-color: var(--primary-color);
     list-style: none;
+    color: var(--primary-backround) !important;
     padding: 13px 10px;
-    text-align: center;
+    text-align: left;
     font-size: 17px;
     border-radius: 3px;
+    height: 100vh;
+    width: 250px;
+    z-index: 5;
+    font-size: 20px;
+    padding-left: 30px;
+
+    .active-style-green{
+      text-decoration: underline;
+      color: #fff;
+    }
+    .active-style-grey{
+      text-decoration: underline;
+      color: #fff;
+    }
 
     a {
       text-decoration: none;
       color: var(--primary-backround);
+      margin-top: 20px;
+
+      &:hover{
+        color:#fff;
+        font-weight: bold;
+      }
     }
     &:last-child {
-      margin-top: 10px;
+      margin-top: 15px;
     }
   }
   .nav-link-container {
@@ -68,7 +86,6 @@
     width: 80%;
     justify-content: flex-end;
     margin-top: auto;
-  
 
     @media only screen and (max-width: 920px) {
       padding-right: 20px;
@@ -223,6 +240,9 @@
 
     &:hover {
       background-color: #ccc;
+    }
+    @media only screen and (max-width: 640px) {
+      color: var(--primary-backround) !important;
     }
 
     .username {
