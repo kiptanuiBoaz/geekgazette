@@ -137,7 +137,8 @@ const Navbar = () => {
             position: "absolute",
             marginBottom: -130,
             marginLeft:-20,
-            bottom:-550
+            bottom:-550,
+            marginTop:"-30px"
           }}>
         </div>}
         {showProfile && <Profile scrollPos={scrollPos} />}
