@@ -134,11 +134,10 @@ const Navbar = () => {
             height: "100vh",
             width: "100vw",
             zIndex: 3,
-            position: "absolute",
-            marginBottom: -130,
+            position: "fixed",
             marginLeft:-20,
-            bottom:-550,
-            marginTop:"-30px"
+           marginBottom:-700,
+            marginTop:"-35px",
           }}>
         </div>}
         {showProfile && <Profile scrollPos={scrollPos} />}
