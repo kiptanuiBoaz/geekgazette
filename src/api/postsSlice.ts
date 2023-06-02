@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PostInterface, NewCommentPayload, DeleteCommentPayload, UpdateLikesPayload, PostsState } from './reduxTypes';
+import { PostsStateInterface } from '../types/blog-types/fullBlogPageTypes';
 
 const initialState: PostsState = {
   posts: [],
@@ -75,3 +76,4 @@ export const {
   updateLikes } = postsSlice.actions;
 
 export default postsSlice.reducer;
+export const selectPosts = (state: PostsStateInterface) => state?.posts?.posts;

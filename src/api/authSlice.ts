@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User, AuthState } from "./reduxTypes";
+import { User, AuthState, PostsState } from "./reduxTypes";
+import { PostsStateInterface } from '../types/blog-types/fullBlogPageTypes';
 
 const storedUser = localStorage.getItem("user");
 const initialState: AuthState = storedUser ? JSON.parse(storedUser) : {
-  user:{
+  user: {
     email: null, fname: '', lname: '', headTag: '', dob: '', accessToken: '', avatarUrl: null, roles: { User: 2001 },
   },
 };
@@ -24,12 +25,15 @@ const authSlice = createSlice({
       state.user.avatarUrl = avatarUrl || state.user.avatarUrl;
       localStorage.setItem("user", JSON.stringify(state)); // store updated state in the local storage
     },
-    resetAuth: (state) => {
+    resetAuth: (state) => { 
+      // remove the user from the local storage
+      localStorage.removeItem("user");
       state.user = initialState.user;
-      localStorage.removeItem("user"); // remove the user from the local storage
+     
     },
   },
 });
 
 export const { updateAuth, resetAuth } = authSlice.actions;
 export default authSlice.reducer;
+export const selectUser = (state: any) => state?.auth?.user;

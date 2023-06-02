@@ -5,13 +5,13 @@ import { Blog, AuthorBlog, CategoryBlog, AuthorProfile, FullBlog } from '../comp
 import { PostInterface } from '../api/reduxTypes';
 import "./full-blog-page.scss";
 import { Zoom, Fade } from "react-awesome-reveal";
-import { PostsStateInterface } from "../types/blog-types/fullBlogPageTypes";
+import { selectPosts } from '../api/postsSlice';
 
 
 
 const FullBlogPage = () => {
     const { postId } = useParams();
-    const blogs = useSelector((state: PostsStateInterface) => state?.posts.posts);
+    const blogs = useSelector(selectPosts);
     //current blog
     const blog: PostInterface | undefined = blogs.find((b: PostInterface) => b._id === postId);
 
@@ -25,10 +25,11 @@ const FullBlogPage = () => {
         // Scroll to top after rendering is complete
         window.requestAnimationFrame(scrollToTop);
     }, [postId]);
+
     // or render some other loading indicator
     if (!blog) return <div>Loading...</div>;
 
-    const { authorEmail, category, author: { avatarUrl, fname, lname } } = blog;
+    const { authorEmail, category, author: {  fname } } = blog;
     const authorBlogs = blogs?.filter((b: PostInterface) => b.authorEmail === authorEmail)?.filter((p: PostInterface) => p._id !== postId)?.slice(0, 3);
     const categoryBlogs = blogs?.filter((b: PostInterface) => b.category === category)?.filter((p: PostInterface) => p._id !== postId)?.slice(0, 3);
 

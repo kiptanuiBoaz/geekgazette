@@ -154,7 +154,7 @@ const LoginForm = () => {
 
             </form>
             <Zoom>{errMsg && <p className="err-msg">{errMsg}</p>}</Zoom>
-            <p onClick={() => { navigate("/"); window.location.reload(); }} className="home">
+            <p onClick={() => { navigate("/"); }} className="home">
                 <FaAngleLeft /><FaHome />
             </p>
 

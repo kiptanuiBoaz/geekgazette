@@ -19,7 +19,7 @@ export interface PostsState {
 
 
 export interface UpdateLikesPayload {
-  postId: string  | undefined;
+  postId: string | undefined;
   userEmail: string;
   date: string;
 }
@@ -32,8 +32,8 @@ export interface AuthState {
   user: User;
 }
 
-export  interface NewCommentPayload {
-  postId: string|undefined;
+export interface NewCommentPayload {
+  postId: string | undefined;
   newComment: {
     date: string;
     text: string;
@@ -46,25 +46,25 @@ export interface PostInterface {
   imgUrl: string;
   title: string;
   category: string;
-  authorEmail:string;
+  authorEmail: string;
   body: string;
   email: string;
   date: string;
-  _id:string;
+  _id: string;
   comments: {
     userEmail: string;
     date: string;
     text: string;
-    _id:string;
+    _id: string;
   }[];
   likes: {
     userEmail: string;
     date: string;
   }[];
-  author:{
-    fname:string;
-    lname:string;
-    avatarUrl:string;
-    headTag:string;
+  author: {
+    fname: string;
+    lname: string;
+    avatarUrl: string;
+    headTag: string;
   }
 }

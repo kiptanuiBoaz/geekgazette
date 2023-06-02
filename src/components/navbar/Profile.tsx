@@ -7,23 +7,27 @@ import useLogOut from "../../hooks/useLogout";
 import { PostInterface } from "../../api/reduxTypes";
 import TimeAgo from "../../utils/Timeago";
 import { Confirm } from "notiflix";
-import { ProfileProps,PostsState } from "../../types/navbar-types/profileTypes";
+import { ProfileProps } from "../../types/navbar-types/profileTypes";
+import { selectUser } from "../../api/authSlice";
+import { selectPosts } from "../../api/postsSlice";
 
 
 export const Profile = ({ scrollPos }: ProfileProps) => {
-    const { fname, avatarUrl, email, headTag, lname } = useSelector((state: any) => state.auth.user);
-  
-    const navigate = useNavigate();
+    const { fname, avatarUrl, email, headTag, lname } = useSelector(selectUser);
+
+
     //logout fn from useLogout hook
     const logOut = useLogOut();
     const location = useLocation();
+    const navigate = useNavigate();
 
     const username = email.substring(0, email.indexOf('@'));
     let hasTestRoute = location.pathname.includes("/edit/");
 
     //current user's blog posts
-    const blogs = useSelector((state: PostsState) => state?.posts.posts);
-    const currentUserBlogs = blogs.filter((blog: PostInterface) => blog.authorEmail === email);
+    const currentUserBlogs = useSelector(selectPosts).filter(
+        (blog: PostInterface) => blog.authorEmail === email
+    );
 
     //closet the profile during profile edit
     if (hasTestRoute) return <></>;
@@ -92,19 +96,16 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                             'You will be Signed Out of your account',
                             'Yes',
                             'No',
-                            () => {
-                                logOut();
-                                navigate("/auth/sign-in");
-                            },
+                            () => { logOut() },
                             () => navigate("/"),
                             {
-                                okButtonBackground:" #4d7e3e",
-                                titleColor:"#4d7e3e",
-                                borderRadius:"15px",
-                                distance:"20px",
-                                cssAnimationStyle:"zoom",
-                                buttonsFontSize:"17px",
-                                titleFontSize:"18px"
+                                okButtonBackground: " #4d7e3e",
+                                titleColor: "#4d7e3e",
+                                borderRadius: "15px",
+                                distance: "20px",
+                                cssAnimationStyle: "zoom",
+                                buttonsFontSize: "17px",
+                                titleFontSize: "18px"
                             }
                         );
 

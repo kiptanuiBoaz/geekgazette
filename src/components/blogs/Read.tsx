@@ -7,14 +7,14 @@ import { HiTrendingUp } from 'react-icons/hi';
 import { FiClock } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { PostInterface } from '../../api/reduxTypes';
-import { Zoom} from "react-awesome-reveal";
+import { Zoom } from "react-awesome-reveal";
 import { Spinner } from '../../components/index';
-import { PostsState } from '../../types/read-types/readTypes';
+import { selectPosts } from '../../api/postsSlice';
 
 
 
 export const Read = () => {
-  const blogs = useSelector((state: PostsState) => state?.posts.posts);
+  const blogs = useSelector(selectPosts);
   const [trendingBlogs, setTredingBlogs] = useState<PostInterface[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [filterdBlogs, setFilterdBlogs] = useState<PostInterface[]>([]);
@@ -51,13 +51,8 @@ export const Read = () => {
 
 
   //fn to change the caegory
-  const handleCategoryChange = (e: string) => {
-    setSelectedCategory(e);
-  };
-
-  const shuffleArray= (array:PostInterface[])=> {
-    return array.sort(() => Math.random() - 0.5);
-  }
+  const handleCategoryChange = (e: string) =>  setSelectedCategory(e);
+  const shuffleArray = (array: PostInterface[]) => array.sort(() => Math.random() - 0.5);
 
   //filter the blogs 
   useEffect(() => {
@@ -67,7 +62,8 @@ export const Read = () => {
     )
 
   }, [blogs, selectedCategory]);
-  if (blogs.length < 1) return <Spinner/>
+  
+  if (blogs.length < 1) return <Spinner />
   return (
     <section className='read'>
 
