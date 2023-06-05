@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect,useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Layout } from "./Layout";
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -18,23 +18,28 @@ import { setPosts } from "./api/postsSlice";
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { POSTS_URL } from "./utils/apiroutes";
 import { Notify } from "notiflix";
+import { Spinner } from "./components";
 
 
 
 export const App = () => {
   const dispatch = useDispatch();
+  const [loading,setLoading]  = useState<boolean>(false);
 
   Notify.init({
     success: {
-        background: " #4d7e3e",
-        notiflixIconColor: " #eeeee4",
-        textColor: " #eeeee4"
+      background: " #4d7e3e",
+      notiflixIconColor: " #eeeee4",
+      textColor: " #eeeee4"
     }
-});
+  });
+
+  
 
   useEffect(() => {
     const fetchPosts = async () => {
       Loading.dots();
+      setLoading(true)
       try {
         const response = await api.get(POSTS_URL);
         const postsWithoutAuthor = response.data;
@@ -60,6 +65,7 @@ export const App = () => {
         const postsWithAuthors = await Promise.all(authorRequests);
 
         dispatch(setPosts(postsWithAuthors)); Loading.remove();
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -71,7 +77,7 @@ export const App = () => {
 
 
   return (
-    <Suspense  fallback={<p>Loading...</p>}>
+    <Suspense fallback={<Spinner />}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

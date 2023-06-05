@@ -1,9 +1,10 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { selectUser } from "../api/authSlice";
 
 
 const RequireAuth = () => {
-    const user = useSelector((state: any) => state.auth.user);
+    const user = useSelector(selectUser);
     const location = useLocation();
 
     return (user.email

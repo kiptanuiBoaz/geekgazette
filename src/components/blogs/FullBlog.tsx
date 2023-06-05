@@ -22,6 +22,7 @@ import { POSTS_URL, LIKES_URL } from '../../utils/apiroutes';
 import { CommentInterface } from '../../types/blog-types/fullBlogProps';
 import { confirmOptions } from '../../utils/confirmOptions';
 import { selectUser } from '../../api/authSlice';
+import { Navigate } from 'react-router-dom';
 
 export const FullBlog = ({ author: { fname, lname }, comments, likes, date, authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
@@ -57,7 +58,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                 'To interract with this post, you are required to sign in or sign up if you  don not have an account on GeekGazete',
                 "Sign In",
                 'Cancel',
-                () => navigate("/auth/sign-in"),
+                () => <Navigate to="/auth/sign-in" state={{ from: location }} replace />,
                 () => { },
             );
             return;
