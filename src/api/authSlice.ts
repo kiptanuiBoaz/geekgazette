@@ -1,13 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User, AuthState, PostsState } from "./reduxTypes";
-import { PostsStateInterface } from '../types/blog-types/fullBlogPageTypes';
+  import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { User} from "./reduxTypes";
+import { initialState } from './authInitState';
 
-const storedUser = localStorage.getItem("user");
-const initialState: AuthState = storedUser ? JSON.parse(storedUser) : {
-  user: {
-    email: null, fname: '', lname: '', headTag: '', dob: '', accessToken: '', avatarUrl: null, roles: { User: 2001 },
-  },
-};
 
 const authSlice = createSlice({
   name: 'auth',

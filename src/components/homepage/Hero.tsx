@@ -3,12 +3,15 @@ import "./hero.scss";
 import { NavLink } from "react-router-dom";
 import blogImg from "../../assets/hero/illustrator.png";
 import { categoryList as categories } from "../../assets/read/categories";
+import { setReading } from '../../api/navSlice';
+import { useDispatch } from 'react-redux';
 
 
 
 export const Hero = () => {
-  const [displayHero, setDisplayHero] = useState<boolean>(true);
   const [categoryIndex, setCategoryIndex] = useState(0);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -18,9 +21,6 @@ export const Hero = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-
-
-  return displayHero ? (
     <div className='hero-container'>
       <hr />
       <section className='hero'>
@@ -35,7 +35,7 @@ export const Hero = () => {
             Get to share with like-minded geeks.
           </p>
 
-          <button onClick={() => setDisplayHero(false)}>
+          <button onClick={() =>dispatch(setReading(true))}>
             <NavLink to="/" className="sign-up">
               Start Reading
             </NavLink>
@@ -47,6 +47,4 @@ export const Hero = () => {
         </div>
       </section>
     </div>
-  ) :
-    <></>
 }

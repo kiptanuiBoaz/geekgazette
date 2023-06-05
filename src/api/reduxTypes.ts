@@ -68,3 +68,8 @@ export interface PostInterface {
     headTag: string;
   }
 }
+
+export interface SliceState {
+  reading: boolean;
+  openProfile: boolean;
+}

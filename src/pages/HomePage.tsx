@@ -1,6 +1,10 @@
 import { Hero, Read } from "../components/index";
+import { useSelector } from "react-redux";
+import { selectReading } from "../api/navSlice";
 
 const HomePage = () => {
+  const reading = useSelector(selectReading);
+
   return (
     <main
       style={{
@@ -8,7 +12,8 @@ const HomePage = () => {
         padding: 0,
         width: "100%",
       }}>
-      <Hero />
+      {!reading && <Hero />}
+
       <Read />
     </main>
 
