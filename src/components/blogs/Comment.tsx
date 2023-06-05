@@ -8,9 +8,10 @@ import { deleteComment } from '../../api/postsSlice';
 import usePrivateApi from '../../hooks/usePrivateApi';
 const COMMENTS_URL = "/comments"
 import { useParams } from 'react-router-dom';
-import { Fade, Zoom } from "react-awesome-reveal";
+import { Fade } from "react-awesome-reveal";
 import { Confirm } from 'notiflix';
 import { CommentProps } from '../../types/comment-types/commentTypes';
+import { selectUser } from '../../api/authSlice';
 
 
 
@@ -20,7 +21,7 @@ export const BlogComment = ({ userEmail, text, date, _id }: CommentProps) => {
     const [loading, setLoading] = useState<boolean>(false);
 
     //currently signed in  user from redux store
-    const { email } = useSelector((state: any) => state.auth.user);
+    const { email } = useSelector(selectUser);
     const formattedDate = <TimeAgo timestamp={date} />;
 
     //currrent post

@@ -6,7 +6,7 @@ import { ref, uploadBytesResumable, getDownloadURL, } from "firebase/storage";
 import { v4 } from "uuid";
 import usePrivateApi from "../hooks/usePrivateApi";
 import { categoryList } from '../assets/read/categories';
-import { addPost, updatePost } from '../api/postsSlice';
+import { addPost, selectPosts, updatePost } from '../api/postsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { PostInterface } from '../api/reduxTypes';
 import { useNavigate } from 'react-router-dom';
@@ -19,8 +19,8 @@ import {POSTS_URL} from "../utils/apiroutes";
 
 const NewBlogForm = ({ postId }: PostFormPros) => {
   //posts from state and filter blog curently editing
-  const blogs = useSelector((state: any) => state?.posts.posts);
-  const blog: PostInterface = postId ? blogs.find((b: PostInterface) => b._id === postId) : null;
+  const blogs = useSelector(selectPosts);
+  const blog: any = postId ? blogs?.find((b: PostInterface) => b?._id === postId) : null;
 
   const [title, setTitle] = useState(blog ? blog.title : null);
   const [body, setBody] = useState(blog ? blog.body : "");

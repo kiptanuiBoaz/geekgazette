@@ -21,12 +21,13 @@ import { Loading, Confirm } from 'notiflix';
 import { POSTS_URL, LIKES_URL } from '../../utils/apiroutes';
 import { CommentInterface } from '../../types/blog-types/fullBlogProps';
 import { confirmOptions } from '../../utils/confirmOptions';
+import { selectUser } from '../../api/authSlice';
 
 export const FullBlog = ({ author: { fname, lname }, comments, likes, date, authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
     const [commenting, setCommenting] = useState<boolean>(false);
     const [dispComments, setComments] = useState<CommentInterface[]>([]);
-    const { email } = useSelector((state: any) => state.auth.user);
+    const { email } = useSelector(selectUser);
     const [deleting, setDeleting] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
 

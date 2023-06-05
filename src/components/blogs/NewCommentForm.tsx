@@ -6,6 +6,7 @@ import { addComment } from '../../api/postsSlice';
 import { useDispatch } from 'react-redux';
 import { CommentFormProps } from '../../types/comment-types/commentTypes';
 import { COMMENTS_URL, COMMENT_MAX_LENGTH } from "../../utils/apiroutes";
+import { selectUser } from '../../api/authSlice';
 
 
 
@@ -20,7 +21,7 @@ export const NewCommentForm = ({ handleCommenting, postId }: CommentFormProps) =
   const privateApi = usePrivateApi();
 
   // currently signed in user from redux store
-  const { email: userEmail } = useSelector((state: any) => state.auth.user);
+  const { email: userEmail } = useSelector(selectUser);
 
   useEffect(() => {
     if (chars > 190) {
