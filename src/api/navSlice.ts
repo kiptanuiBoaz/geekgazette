@@ -17,6 +17,6 @@ const navSlice = createSlice({
 export const { setReading,setOpenProfile } = navSlice.actions;
 
 export const selectReading = (state:any) => state.navState.reading;
-export const selectOpenProfile = (state:any) => state.navSlice.open;
+export const selectOpenProfile = (state:any) => state.navState.openProfile;
 
 export default navSlice.reducer;

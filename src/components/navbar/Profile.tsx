@@ -1,7 +1,7 @@
 import "./profile.scss";
 import { FiEdit } from "react-icons/fi";
 import { RiLogoutCircleRLine } from "react-icons/ri"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import useLogOut from "../../hooks/useLogout";
 import { PostInterface } from "../../api/reduxTypes";
@@ -10,19 +10,18 @@ import { Confirm } from "notiflix";
 import { ProfileProps } from "../../types/navbar-types/profileTypes";
 import { selectUser } from "../../api/authSlice";
 import { selectPosts } from "../../api/postsSlice";
+import { setOpenProfile } from "../../api/navSlice";
 
 
 export const Profile = ({ scrollPos }: ProfileProps) => {
     const { fname, avatarUrl, email, headTag, lname } = useSelector(selectUser);
 
-
     //logout fn from useLogout hook
     const logOut = useLogOut();
-    const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const username = email.substring(0, email.indexOf('@'));
-    let hasTestRoute = location.pathname.includes("/edit/");
 
     //current user's blog posts
     const currentUserBlogs = useSelector(selectPosts).filter(
@@ -30,7 +29,6 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
     );
 
     //closet the profile during profile edit
-    if (hasTestRoute) return <></>;
     return (
         <article style={{
             backgroundColor: scrollPos < 20 ? "#d1d2d2" : "#4d7e3e",
@@ -62,7 +60,10 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                             <p
                                 style={{ color: scrollPos < 20 ? " rgb(40, 97, 34)" : " #a09d9d", }}
                                 className="title"
-                                onClick={() => navigate(`/blog/read/${postId}`)}
+                                onClick={() => {
+                                    dispatch(setOpenProfile(false));
+                                    navigate(`/blog/read/${postId}`);
+                                }}
 
                             >
                                 {title.substring(0, 30)}...
@@ -80,7 +81,10 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                         borderColor: scrollPos > 20 ? "#9b9999" : "#4d7e3e"
                     }}
                     className="edit-btn"
-                    onClick={() => navigate(`/edit/${username}`)}
+                    onClick={() => {
+                        dispatch(setOpenProfile(false));
+                        navigate(`/edit/${username}`);
+                    }}
                 >
                     Edit Profile   <FiEdit style={{ paddingLeft: "4px" }} />
                 </button>

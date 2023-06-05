@@ -32,7 +32,7 @@ const UserProfileForm = () => {
     const fnameRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
 
-    Notify.init({
+    Notify.merge({
         success: {
             background: " #4d7e3e",
             notiflixIconColor: " #eeeee4",
@@ -101,9 +101,7 @@ const UserProfileForm = () => {
         setLoading(false);
     }
 
-    console.log(email);
     return (
-
         <form className='profile-form'>
             <p className='instruction'>Please fill in your info before proceeding</p>
             <label htmlFor="file-upload" className='custom-file-upload'>

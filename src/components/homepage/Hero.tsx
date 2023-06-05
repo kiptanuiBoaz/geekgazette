@@ -21,6 +21,8 @@ export const Hero = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  return (
+
     <div className='hero-container'>
       <hr />
       <section className='hero'>
@@ -35,7 +37,7 @@ export const Hero = () => {
             Get to share with like-minded geeks.
           </p>
 
-          <button onClick={() =>dispatch(setReading(true))}>
+          <button onClick={() => dispatch(setReading(true))}>
             <NavLink to="/" className="sign-up">
               Start Reading
             </NavLink>
@@ -47,4 +49,5 @@ export const Hero = () => {
         </div>
       </section>
     </div>
+  )
 }

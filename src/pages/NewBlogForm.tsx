@@ -117,7 +117,6 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
       //to the full blog page
       navigate(`/blog/read/${postId}`);
 
-
     } catch (error) {
       console.log(error);
     }

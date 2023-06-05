@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
-import { Profile } from "./Profile";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-interface MiniProfileProps {
-    scrollPos: number;
-    showProfile: boolean;
-}
+import { selectOpenProfile } from "../../api/navSlice";
+import { selectUser } from "../../api/authSlice";
 
-export const MiniProfile = ({ scrollPos,showProfile }: MiniProfileProps) => {
-    const { fname, avatarUrl } = useSelector((state: any) => state.auth.user);
+
+export const MiniProfile = () => {
+    const { fname, avatarUrl } = useSelector(selectUser);
+    const openProfile = useSelector(selectOpenProfile);
 
     return (
         <>
@@ -19,10 +16,10 @@ export const MiniProfile = ({ scrollPos,showProfile }: MiniProfileProps) => {
             />
             <p className="username">{fname} </p>
             <div className="expand-icon">
-                {showProfile ? <MdExpandLess /> : <MdExpandMore />}
+                {openProfile ? <MdExpandLess /> : <MdExpandMore />}
             </div>
 
-            
+
         </>
     )
 }

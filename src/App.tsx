@@ -17,11 +17,20 @@ import { api } from "./axios/axios";
 import { setPosts } from "./api/postsSlice";
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { POSTS_URL } from "./utils/apiroutes";
+import { Notify } from "notiflix";
 
 
 
 export const App = () => {
   const dispatch = useDispatch();
+
+  Notify.init({
+    success: {
+        background: " #4d7e3e",
+        notiflixIconColor: " #eeeee4",
+        textColor: " #eeeee4"
+    }
+});
 
   useEffect(() => {
     const fetchPosts = async () => {

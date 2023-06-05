@@ -4,12 +4,14 @@ import logoGreen from "../assets/navbar/logo-no-bg-green.png";
 import logoWhite from "../assets/navbar/logo-no-bg-white.png";
 import { navList } from "../utils/navItems";
 import { navListTypes } from "../types";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { MiniProfile } from "../components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { VscChromeClose } from "react-icons/vsc";
 import { Profile } from "../components";
+import { selectOpenProfile } from "../api/navSlice";
+import { setOpenProfile } from "../api/navSlice";
 
 
 const Navbar = () => {
@@ -17,7 +19,11 @@ const Navbar = () => {
   const [scrollPos, setScrollPos] = useState<number>(0);
   const { email } = useSelector((state: any) => state?.auth?.user);
   const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
-  const [showProfile, setShowProfile] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const openProfile = useSelector(selectOpenProfile);
+  const setShowProfile = (state:boolean) => dispatch(setOpenProfile(state));
+
 
   useEffect(() => {
     const handleEvent = () => {
@@ -60,7 +66,7 @@ const Navbar = () => {
         <div
           onClick={() => {
             setShowMobileNav(!showMobileNav);
-            showProfile && setShowProfile(false);
+          openProfile && setShowProfile(false);
           }}
           className="hamburger"
           style={{
@@ -68,7 +74,7 @@ const Navbar = () => {
             display: deviceWidth > 640 ? "none" : ""
           }}
         >
-          {!showMobileNav && !showProfile ? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
+          {!showMobileNav && !openProfile ? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
 
         </div>
 
@@ -79,7 +85,7 @@ const Navbar = () => {
           <div
             onClick={() => {
               setShowMobileNav(!showMobileNav);
-              showProfile && setShowProfile(false);
+              openProfile && setShowProfile(false);
             }}
             className="hamburger"
             style={{
@@ -87,7 +93,7 @@ const Navbar = () => {
               display: deviceWidth > 640 ? "none" : ""
             }}
           >
-            {!showMobileNav && !showProfile ? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
+            {!showMobileNav && !openProfile ? <HiOutlineMenuAlt3 /> : <VscChromeClose />}
 
           </div>
 
@@ -99,11 +105,11 @@ const Navbar = () => {
               className="mini-profile"
               onClick={() => {
                 if (deviceWidth < 640) setShowMobileNav(!showMobileNav);
-                setShowProfile(!showProfile);
+                setShowProfile(!openProfile);
 
               }}
             >
-              <MiniProfile showProfile={showProfile} scrollPos={scrollPos} />
+              <MiniProfile />
             </li>
             :
 
@@ -140,7 +146,7 @@ const Navbar = () => {
             marginTop:"-35px",
           }}>
         </div>}
-        {showProfile && <Profile scrollPos={scrollPos} />}
+        {openProfile && <Profile scrollPos={scrollPos} />}
       </nav>
 
     </>
