@@ -24,12 +24,12 @@ const FullBlogPage = () => {
         };
         // Scroll to top after rendering is complete
         window.requestAnimationFrame(scrollToTop);
-    }, [postId]);
 
+    }, [postId]);
     // or render some other loading indicator
     if (!blog) return <div>Loading...</div>;
 
-    const { authorEmail, category, author: {  fname } } = blog;
+    const { authorEmail, category, author: { fname } } = blog;
     const authorBlogs = blogs?.filter((b: PostInterface) => b.authorEmail === authorEmail)?.filter((p: PostInterface) => p._id !== postId)?.slice(0, 3);
     const categoryBlogs = blogs?.filter((b: PostInterface) => b.category === category)?.filter((p: PostInterface) => p._id !== postId)?.slice(0, 3);
 
@@ -54,19 +54,24 @@ const FullBlogPage = () => {
                         <AuthorProfile {...blog.author} />
                     </Fade>
                 </div>
-                {authorBlogs.length > 1 && <div className='trending'>
-                    <h3 className='header-trending'>{`More by ${fname}`} </h3>
-                    <Zoom cascade>
-                        {authorBlogs.map((blog: PostInterface) => <AuthorBlog key={blog._id}  {...blog} />)}
-                    </Zoom>
-                </div>}
 
-                {categoryBlogs.length > 0 && <div className='trending'>
-                    <h3 className='header-trending'>{`More on ${category}`} </h3>
-                    <Zoom cascade>
-                        {categoryBlogs.map((blog: PostInterface) => <CategoryBlog key={blog._id}  {...blog} />)}
-                    </Zoom>
-                </div>}
+                {authorBlogs.length > 0 && (
+                    <div className='trending'>
+                        <h3 className='header-trending'>{`More by ${fname}`} </h3>
+                        <Zoom cascade>
+                            {authorBlogs.map((blog: PostInterface) => <AuthorBlog key={blog._id}  {...blog} />)}
+                        </Zoom>
+                    </div>
+                )}
+
+                {categoryBlogs.length > 0 && (
+                    <div className='trending'>
+                        <h3 className='header-trending'>{`More on ${category}`} </h3>
+                        <Zoom cascade>
+                            {categoryBlogs.map((blog: PostInterface) => <CategoryBlog key={blog._id}  {...blog} />)}
+                        </Zoom>
+                    </div>
+                )}
 
             </div>
         </section>
