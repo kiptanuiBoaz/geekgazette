@@ -19,6 +19,7 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { POSTS_URL } from "./utils/apiroutes";
 import { Notify } from "notiflix";
 import { Spinner } from "./components";
+import SpinnerContainer from "./components/spinner/SpinnerContainer";
 
 
 
@@ -77,7 +78,7 @@ export const App = () => {
 
 
   return (
-    <Suspense fallback={<Spinner />}>
+    <Suspense fallback={<SpinnerContainer><Spinner /></SpinnerContainer>}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

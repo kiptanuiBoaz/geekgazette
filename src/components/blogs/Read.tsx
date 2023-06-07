@@ -10,6 +10,7 @@ import { PostInterface } from '../../api/reduxTypes';
 import { Zoom } from "react-awesome-reveal";
 import { Spinner } from '../../components/index';
 import { selectPosts } from '../../api/postsSlice';
+import SpinnerContainer from '../spinner/SpinnerContainer';
 
 
 
@@ -63,7 +64,7 @@ export const Read = () => {
 
   }, [blogs, selectedCategory]);
   
-  if (blogs.length < 1) return <Spinner />
+  // if (blogs.length < 1) return <SpinnerContainer><Spinner /></SpinnerContainer> 
   return (
     <section className='read'>
 
