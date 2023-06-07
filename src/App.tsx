@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect,useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Layout } from "./Layout";
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -22,10 +22,11 @@ import { Spinner } from "./components";
 
 
 
+
 export const App = () => {
   const dispatch = useDispatch();
-  const [loading,setLoading]  = useState<boolean>(false);
-
+  const [loading, setLoading] = useState<boolean>(false);
+ 
   Notify.init({
     success: {
       background: " #4d7e3e",
@@ -34,7 +35,7 @@ export const App = () => {
     }
   });
 
-  
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -45,7 +46,6 @@ export const App = () => {
         const postsWithoutAuthor = response.data;
 
         const authorRequests = postsWithoutAuthor.map(async (post: any) => {
-          // or handle the missing email property in some other way
           if (!post.authorEmail) return post;
           //get author info from users
           try {

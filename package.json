@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": " vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -14,8 +14,11 @@
     "@types/axios": "^0.14.0",
     "@types/redux": "^3.6.0",
     "date-fns": "^2.29.3",
+    "dotenv": "^16.1.4",
+    "env-cmd": "^10.1.0",
     "firebase": "^9.19.1",
     "notiflix": "^3.2.6",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.3",
     "react-dom": "^18.2.0",
@@ -39,6 +42,6 @@
     "@types/uuid": "^9.0.1",
     "@vitejs/plugin-react": "^2.2.0",
     "typescript": "^4.6.4",
-    "vite": "^3.2.3"
+    "vite": "^3.2.7"
   }
 }
