@@ -5,13 +5,11 @@ import logoWhite from "../assets/navbar/logo-no-bg-white.png";
 import { navList } from "../utils/navItems";
 import { navListTypes } from "../types";
 import { NavLink } from "react-router-dom";
-import { MiniProfile } from "../components";
+import { MiniProfile, Profile } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { VscChromeClose } from "react-icons/vsc";
-import { Profile } from "../components";
-import { selectOpenProfile } from "../api/navSlice";
-import { setOpenProfile } from "../api/navSlice";
+import { selectOpenProfile, setOpenProfile } from "../api/navSlice";
 
 
 const Navbar = () => {
@@ -22,7 +20,7 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const openProfile = useSelector(selectOpenProfile);
-  const setShowProfile = (state:boolean) => dispatch(setOpenProfile(state));
+  const setShowProfile = (state: boolean) => dispatch(setOpenProfile(state));
 
 
   useEffect(() => {
@@ -66,7 +64,7 @@ const Navbar = () => {
         <div
           onClick={() => {
             setShowMobileNav(!showMobileNav);
-          openProfile && setShowProfile(false);
+            openProfile && setShowProfile(false);
           }}
           className="hamburger"
           style={{
@@ -141,10 +139,12 @@ const Navbar = () => {
             width: "100vw",
             zIndex: 3,
             position: "fixed",
-            marginLeft:-20,
-           marginBottom:-700,
-            marginTop:"-35px",
-          }}>
+            marginLeft: -20,
+            marginBottom: -700,
+            marginTop: "-35px",
+          }}
+          onClick={()=>setShowMobileNav(false)}
+          >
         </div>}
         {openProfile && <Profile scrollPos={scrollPos} />}
       </nav>
