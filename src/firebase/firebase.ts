@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import {getStorage} from "firebase/storage";
 
 console.log(import.meta.env)
-// console.log(process.env)
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
