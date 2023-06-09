@@ -40,7 +40,9 @@ export const App = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      Loading.dots();
+      Loading.dots({
+        svgColor: "#4d7e3e",
+      backgroundColor:"rgba(0,0,0,0.6)"});
       setLoading(true)
       try {
         const response = await api.get(POSTS_URL);
