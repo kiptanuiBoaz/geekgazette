@@ -42,7 +42,6 @@ const LoginForm = () => {
         }
     })
 
-    console.log(from)
 
     const handleSubmit = async () => {
         setLoading(true);
