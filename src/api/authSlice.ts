@@ -1,6 +1,13 @@
   import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User} from "./reduxTypes";
-import { initialState } from './authInitState';
+import { AuthState, User} from "./reduxTypes";
+
+// import { initialState } from './authInitState';
+const storedUser = localStorage.getItem("user");
+const initialState: AuthState = storedUser ? JSON.parse(storedUser) : {
+  user: {
+    email: null, fname: '', lname: '', headTag: '', dob: '', accessToken: '', avatarUrl: null, roles: { User: 2001 },
+  },
+};
 
 
 const authSlice = createSlice({
@@ -20,11 +27,9 @@ const authSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(state)); // store updated state in the local storage
     },
     resetAuth: (state) => { 
-      // remove the user from the local storage
-      localStorage.removeItem("user");
-      state.user = initialState.user;
-     
+      state.user = { email: null, fname: '', lname: '', headTag: '', dob: '', accessToken: '', avatarUrl: null, roles: { User: 2001 },}; // Create a deep copy of initialState.user
     },
+    
   },
 });
 

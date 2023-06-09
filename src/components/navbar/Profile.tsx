@@ -2,7 +2,7 @@ import "./profile.scss";
 import { FiEdit } from "react-icons/fi";
 import { RiLogoutCircleRLine } from "react-icons/ri"
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import useLogOut from "../../hooks/useLogout";
 import { PostInterface } from "../../api/reduxTypes";
 import TimeAgo from "../../utils/Timeago";
@@ -100,8 +100,8 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
                             'You will be Signed Out of your account',
                             'Yes',
                             'No',
-                            () => { logOut() },
-                            () => navigate("/"),
+                            () => logOut() ,
+                            () => dispatch(setOpenProfile(false)),
                             {
                                 okButtonBackground: " #4d7e3e",
                                 titleColor: "#4d7e3e",
