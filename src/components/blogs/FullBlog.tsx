@@ -1,28 +1,25 @@
 import { useState, useRef, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import TimeAgo from "../../utils/Timeago";
 import "./full-blog.scss";
 import { FaComment, FaRegComment } from "react-icons/fa";
 import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
-import { RiEditFill } from "react-icons/ri";
-import { useNavigate } from 'react-router-dom';
+import { RiEditFill, RiDeleteBinLine} from "react-icons/ri";
 import { BlogComment, NewCommentForm } from '../../components';
 import { BlogProps } from '../../types/blog-types/blogPropTypes';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import usePrivateApi from '../../hooks/usePrivateApi';
 import { updateLikes, deletePost } from '../../api/postsSlice';
-import { RiDeleteBinLine } from "react-icons/ri";
 import { MdDeleteForever } from "react-icons/md"
 import { Fade, Zoom } from "react-awesome-reveal";
-import { Params } from 'react-router-dom';
+import { Params, useNavigate, Navigate} from 'react-router-dom';
 import { Loading, Confirm } from 'notiflix';
 import { POSTS_URL, LIKES_URL } from '../../utils/apiroutes';
 import { CommentInterface } from '../../types/blog-types/fullBlogProps';
-import { confirmOptions } from '../../utils/confirmOptions';
 import { selectUser } from '../../api/authSlice';
-import { Navigate } from 'react-router-dom';
+import { setPrevUrl } from '../../api/navSlice';
 
 export const FullBlog = ({ author: { fname, lname }, comments, likes, date, authorEmail, body, title, imgUrl }: BlogProps) => {
     const [hovered, setHovered] = useState<string | null>(null);
@@ -41,6 +38,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
     const navigate = useNavigate();
     const privateApi = usePrivateApi();
     const dispatch = useDispatch();
+    const location = useLocation();
 
 
     useEffect(() => { window.scroll(0, 0) }, []);
@@ -52,13 +50,16 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
 
     //check if user is signed in
     const checkAuth = () => {
-        if (email === null) {
+        if (!email) {
             Confirm.show(
                 'Please Sign In!',
                 'To interract with this post, you are required to sign in or sign up if you  don not have an account on GeekGazete',
                 "Sign In",
                 'Cancel',
-                () => <Navigate to="/auth/sign-in" state={{ from: location }} replace />,
+                () =>{
+                    dispatch(setPrevUrl(location.pathname));
+                    navigate("/auth/sign-in");
+                },
                 () => { },
             );
             return;

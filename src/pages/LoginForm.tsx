@@ -1,17 +1,16 @@
 import { useState, useEffect, useRef, ChangeEvent } from "react";
 import logo from "../assets/navbar/logo-no-bg-green.png";
 import "./login-form.scss";
-import { Link } from "react-router-dom";
 import { TogglePwdShow } from "../components";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link} from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { api } from "../axios/axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { updateAuth } from "../api/authSlice";
 import { Zoom } from "react-awesome-reveal";
 import { Notify } from "notiflix";
 import { FaHome, FaAngleLeft } from "react-icons/fa"
-import { BsArrowBarLeft } from "react-icons/bs";
+import { selectPrevUrl } from "../api/navSlice";
 
 const LOGIN_URL = "/login";
 
@@ -21,11 +20,10 @@ const LoginForm = () => {
     const emailRef = useRef<HTMLInputElement>(null);
 
     const navigate = useNavigate();
-    const location = useLocation();
     const dispatch = useDispatch();
-
+     
     // Get the previous location or set it as the root path "/"
-    const from = location?.state?.from || "/";
+    const from = useSelector(selectPrevUrl);
     const errRef = useRef<HTMLElement>();
 
 
@@ -43,6 +41,8 @@ const LoginForm = () => {
             textColor: " #eeeee4"
         }
     })
+
+    console.log(from)
 
     const handleSubmit = async () => {
         setLoading(true);

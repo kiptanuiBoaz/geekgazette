@@ -72,4 +72,5 @@ export interface PostInterface {
 export interface SliceState {
   reading: boolean;
   openProfile: boolean;
+  prevUrl:string;
 }
