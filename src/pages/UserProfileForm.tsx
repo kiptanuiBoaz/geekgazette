@@ -151,7 +151,7 @@ const UserProfileForm = () => {
                 }}
                 style={{
                     backgroundColor: loading ? " #d1d2d2" : "",
-                    color: loading ? " #fff" : ""
+                    color: loading ? " #4d7e3e" : ""
                 }}
                 className='submit-button'
                 disabled={!avatarUrl || !formData.dob || !formData.gender || !formData.headTag || !formData.fname || !formData.lname}

@@ -179,7 +179,7 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
         disabled={!title || !body || !category || !imgUrl}
         style={{
           backgroundColor: loading ? " #d1d2d2" : "",
-          color: loading ? " #fff" : ""
+          color: loading ? " #4d7e3e" : ""
         }}
         className='submit-button'
         type="submit"

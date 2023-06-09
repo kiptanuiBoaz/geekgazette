@@ -214,7 +214,7 @@ const SignUpForm = () => {
           disabled={!validEmail || !validMatch || !passwordValid}
           style={{
             backgroundColor: loading ? " #d1d2d2" : "",
-            color: loading ? " #fff" : ""
+            color: loading ? " #4d7e3e" : ""
           }}
         >
           {loading ? "Signing Up..." : "Sign Up"}
