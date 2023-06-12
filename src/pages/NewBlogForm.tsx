@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import "./new-blog-form.scss";
 import { RiImageAddFill } from "react-icons/ri";
 import { storage } from "../firebase/firebase";
-import { ref, uploadBytesResumable, getDownloadURL, } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL, deleteObject, } from "firebase/storage";
 import { v4 } from "uuid";
 import usePrivateApi from "../hooks/usePrivateApi";
 import { categoryList } from '../assets/read/categories';
@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { api } from "../axios/axios";
 import { Report } from 'notiflix';
 import { PostFormPros, options } from '../types/new-blog/newBlogTypes';
-import {POSTS_URL} from "../utils/apiroutes";
+import { POSTS_URL } from "../utils/apiroutes";
 
 
 
@@ -39,11 +39,19 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
   const postData = { title, date, body, authorEmail, category, imgUrl, postId }
   const titleRef = useRef<HTMLInputElement>(null);
 
-
   useEffect(() => {
+    setImageUploading(true);
     const uploadImage = async () => {
+      if (imgUrl) try {
+        await deleteObject(ref(storage, imgUrl))
+        console.log("deleted")
+      } catch (error: any) {
+        console.log("Error deleting image:", error);
+      }
       try {
-        setImageUploading(true);
+
+        //when editing the imge
+
         if (image == null) return;
         const imageRef = ref(storage, `/blogImgs/${image.name + v4()} `);
         const snapshot = await uploadBytesResumable(imageRef, image);
@@ -69,6 +77,7 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
     try {
       setLoading(true);
       const response = await privateApi({

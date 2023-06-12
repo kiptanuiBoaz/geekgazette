@@ -1,16 +1,21 @@
-import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useLocation, Outlet, useNavigate, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../api/authSlice";
+import { setPrevUrl } from "../api/navSlice";
 
 
 const RequireAuth = () => {
     const user = useSelector(selectUser);
     const location = useLocation();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    return (user.email
-        ? <Outlet /> //render children
-        : <Navigate to="/auth/sign-in" state={{ from: location }} replace /> //navigate to login
-    );
+    const reroute = () => {
+        dispatch(setPrevUrl(location.pathname));
+        return <Navigate to="/auth/sign-in"/>
+    }
+
+    return (user.email ? <Outlet /> : reroute());
 
 }
 

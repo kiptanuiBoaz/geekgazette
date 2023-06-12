@@ -27,6 +27,9 @@
     align-items: center;
     cursor: pointer;
     border-collapse: collapse;
+    &:hover{
+      background-color: var(--primary-backround);
+    }
 
     @media only screen and (max-width: 500px) {
       min-width:2rem;
@@ -36,7 +39,7 @@
   }
   p {
     margin-left: 1rem;
-
+    color: #494a49;
     @media only screen and (max-width: 500px) {
         margin-left: .6rem;
     }
@@ -50,4 +53,8 @@
   color: #fff;
   border: 1px solid var(--primary-color);
   border-collapse: collapse;
+
+  &:hover{
+    background-color: var(--hover-color)!important;
+  }
 }

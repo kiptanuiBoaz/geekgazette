@@ -80,7 +80,9 @@ export const Read = () => {
           <Row handleCategoryChange={handleCategoryChange} />
         </div>
 
-        {shuffleArray(filterdBlogs.slice(indexOfFirstPost, indexOfLastPost)).map(blog => <Blog key={blog._id} {...blog} />)}
+        {shuffleArray(filterdBlogs).slice(indexOfFirstPost, indexOfLastPost).map(blog =>
+          <Blog key={blog._id} {...blog} />
+        )}
 
         <Pagination
           currentPage={currentPage}
