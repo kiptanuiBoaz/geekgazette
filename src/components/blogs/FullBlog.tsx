@@ -2,19 +2,19 @@ import { useState, useRef, useEffect } from 'react';
 import { useLocation, useParams } from "react-router-dom";
 import TimeAgo from "../../utils/Timeago";
 import "./full-blog.scss";
-import { FaComment, FaRegComment } from "react-icons/fa";
+import { FaAngleLeft, FaComment, FaHome, FaRegComment } from "react-icons/fa";
 import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
-import { RiEditFill, RiDeleteBinLine} from "react-icons/ri";
+import { RiEditFill, RiDeleteBinLine } from "react-icons/ri";
 import { BlogComment, NewCommentForm } from '../../components';
 import { BlogProps } from '../../types/blog-types/blogPropTypes';
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import usePrivateApi from '../../hooks/usePrivateApi';
 import { updateLikes, deletePost } from '../../api/postsSlice';
 import { MdDeleteForever } from "react-icons/md"
 import { Fade, Zoom } from "react-awesome-reveal";
-import { Params, useNavigate, Navigate} from 'react-router-dom';
+import { Params, useNavigate, Navigate } from 'react-router-dom';
 import { Loading, Confirm } from 'notiflix';
 import { POSTS_URL, LIKES_URL } from '../../utils/apiroutes';
 import { CommentInterface } from '../../types/blog-types/fullBlogProps';
@@ -56,7 +56,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                 'To interract with this post, you are required to sign in or sign up if you  don not have an account on GeekGazete',
                 "Sign In",
                 'Cancel',
-                () =>{
+                () => {
                     dispatch(setPrevUrl(location.pathname));
                     navigate("/auth/sign-in");
                 },
@@ -129,6 +129,12 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
         <article className='blog-article'>
 
             <div className='blog-container'>
+                <p onClick={() => { navigate("/"); }} className="home">
+                    <FaAngleLeft />
+                    {/* <FaHome />  */}
+                    <span className="back">back home</span>
+                </p>
+
                 <Zoom triggerOnce={true}>
                     <img src={imgUrl} alt={title} className='blog-image' />
                 </Zoom>

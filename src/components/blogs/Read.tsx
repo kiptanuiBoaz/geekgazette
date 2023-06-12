@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
 import "./read.scss";
 import { Row } from "./Row";
-import { Blog } from "../../components/index";
+import { Blog, Pagination } from "../../components";
 import { Trend } from '../sidebar/Trend';
 import { HiTrendingUp } from 'react-icons/hi';
 import { FiClock } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { PostInterface } from '../../api/reduxTypes';
 import { Zoom } from "react-awesome-reveal";
-import { Spinner } from '../../components/index';
 import { selectPosts } from '../../api/postsSlice';
-import SpinnerContainer from '../spinner/SpinnerContainer';
 
 
 
@@ -19,6 +17,14 @@ export const Read = () => {
   const [trendingBlogs, setTredingBlogs] = useState<PostInterface[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [filterdBlogs, setFilterdBlogs] = useState<PostInterface[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [postsPerPage, setPostsPerPage] = useState<number>(5);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+
+  const currentPosts = filterdBlogs;
 
   //algorithm to calculate trending props
   useEffect(() => {
@@ -52,7 +58,7 @@ export const Read = () => {
 
 
   //fn to change the caegory
-  const handleCategoryChange = (e: string) =>  setSelectedCategory(e);
+  const handleCategoryChange = (e: string) => setSelectedCategory(e);
   const shuffleArray = (array: PostInterface[]) => array.sort(() => Math.random() - 0.5);
 
   //filter the blogs 
@@ -63,7 +69,7 @@ export const Read = () => {
     )
 
   }, [blogs, selectedCategory]);
-  
+
   // if (blogs.length < 1) return <SpinnerContainer><Spinner /></SpinnerContainer> 
   return (
     <section className='read'>
@@ -74,23 +80,26 @@ export const Read = () => {
           <Row handleCategoryChange={handleCategoryChange} />
         </div>
 
-        {shuffleArray(filterdBlogs).map(blog => <Blog key={blog._id} {...blog} />)}
+        {shuffleArray(filterdBlogs.slice(indexOfFirstPost, indexOfLastPost)).map(blog => <Blog key={blog._id} {...blog} />)}
+
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          postsPerPage={postsPerPage}
+          totalPosts={filterdBlogs.length}
+        />
 
       </div>
       <hr className='line' />
 
 
       <div className='blogs-trends-container'>
-
-
         <div className='trending'>
           <h3 className='header-trending'>Trending <HiTrendingUp /></h3>
           <Zoom cascade>
             {trendingBlogs?.slice(0, 3)?.map(blog => <Trend key={blog._id} {...blog} />)}
           </Zoom>
         </div>
-
-
 
         <div className='trending'>
           <h3 className='header-trending'>Latest<FiClock /></h3>

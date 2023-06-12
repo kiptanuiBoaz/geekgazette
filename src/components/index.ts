@@ -12,3 +12,4 @@ export {MiniProfile} from "./navbar/MiniProfile";
 export {BlogComment} from "./blogs/Comment";
 export {NewCommentForm} from "./blogs/NewCommentForm";
 export {Spinner } from "./spinner/Spinner"
+export {Pagination} from "./pagination/Pagination"

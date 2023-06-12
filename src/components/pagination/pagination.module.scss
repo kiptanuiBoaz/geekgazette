@@ -1,0 +1,53 @@
+.pagination {
+  list-style: none;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #ccc;
+  font-family: var(--blog-text-font);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem;
+    justify-content: left;
+  }
+  .hidden {
+    display: none;
+  }
+
+  li {
+    border: 1px solid #ccc;
+    min-width: 3rem;
+    height: 2rem;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-collapse: collapse;
+
+    @media only screen and (max-width: 500px) {
+      min-width:2rem;
+      padding: 2px;
+      height: 1.7rem;
+    }
+  }
+  p {
+    margin-left: 1rem;
+
+    @media only screen and (max-width: 500px) {
+        margin-left: .6rem;
+    }
+    .page {
+      color: var(--primary-color);
+    }
+  }
+}
+.active {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: 1px solid var(--primary-color);
+  border-collapse: collapse;
+}

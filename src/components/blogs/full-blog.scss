@@ -5,11 +5,30 @@
     padding: 0px 0 0 0;
   }
   min-height: 400px;
+
   .blog-container {
     text-align: left;
     width: 90%;
     margin: auto;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    .home {
+      color: var(--primary-color);
+      font-size: large;
+      display: flex;
+      align-items: center;
+    
+      .back {
+          cursor: pointer;
+        color: var(--accent-backround);
+        &:hover {
+          color: black;
+        }
+      }
+      &:hover {
+        color: var(--hover-color);
+      }
+    }
 
     .blog-image {
       width: 100%;
