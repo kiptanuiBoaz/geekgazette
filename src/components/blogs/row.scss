@@ -20,6 +20,7 @@
       min-width: 80px;
       color: var(--primary-backround);
       white-space: nowrap;
+      cursor: pointer;
 
       @media only screen and (max-width: 800px) {
         font-size: 0.8rem;

@@ -16,7 +16,7 @@ export const Row: React.FC<ChildProps> = ({ handleCategoryChange }) => {
             </div>
 
             <select className="dropdown" onChange={(e) => handleCategoryChange(e.target.value)}>
-                <option value="all">Select a category</option>
+                <option value="all">Filter by category</option>
                 {categoryList.map((item) => (
                     <option value={item} key={item} className="row-item">
                         {item}

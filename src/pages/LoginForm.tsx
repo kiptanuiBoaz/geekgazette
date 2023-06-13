@@ -2,10 +2,10 @@ import { useState, useEffect, useRef, ChangeEvent } from "react";
 import logo from "../assets/navbar/logo-no-bg-green.png";
 import "./login-form.scss";
 import { TogglePwdShow } from "../components";
-import { useNavigate, useLocation, Link} from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { api } from "../axios/axios";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateAuth } from "../api/authSlice";
 import { Zoom } from "react-awesome-reveal";
 import { Notify } from "notiflix";
@@ -21,7 +21,7 @@ const LoginForm = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-     
+
     // Get the previous location or set it as the root path "/"
     const from = useSelector(selectPrevUrl);
     const errRef = useRef<HTMLElement>();
@@ -100,7 +100,10 @@ const LoginForm = () => {
 
             <form className="login-form">
                 <input
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                        setEmail(e.target.value);
+                        setErrMsg("");
+                    }}
                     className="email"
                     type="text"
                     placeholder="Enter email address"
@@ -111,7 +114,10 @@ const LoginForm = () => {
 
                 <br />
                 <input
-                    onChange={(e) => setPwd(e.target.value)}
+                    onChange={(e) => {
+                        setPwd(e.target.value);
+                        setErrMsg("");
+                    }}
                     className="password"
                     value={pwd}
                     type={passwordVisibility ? "text" : "password"}
