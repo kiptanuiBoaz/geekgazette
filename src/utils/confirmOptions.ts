@@ -7,3 +7,5 @@ export const confirmOptions = {
     buttonsFontSize: "17px",
     titleFontSize: "18px"
 }
+
+export const firebaseBaseUrl = "https://firebasestorage.googleapis.com/v0/b/geek-gazette.appspot.com/o";

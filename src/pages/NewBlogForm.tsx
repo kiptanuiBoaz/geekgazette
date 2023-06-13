@@ -14,6 +14,7 @@ import { api } from "../axios/axios";
 import { Report } from 'notiflix';
 import { PostFormPros, options } from '../types/new-blog/newBlogTypes';
 import { POSTS_URL } from "../utils/apiroutes";
+import { firebaseBaseUrl } from '../utils/confirmOptions';
 
 
 
@@ -42,21 +43,17 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
   useEffect(() => {
     setImageUploading(true);
     const uploadImage = async () => {
-      if (imgUrl) try {
-        await deleteObject(ref(storage, imgUrl))
-        console.log("deleted")
-      } catch (error: any) {
-        console.log("Error deleting image:", error);
-      }
       try {
-
-        //when editing the imge
-
         if (image == null) return;
+        //when editing
+        if (imgUrl) await deleteObject(ref(storage, imgUrl));
+
+        //when creating
         const imageRef = ref(storage, `/blogImgs/${image.name + v4()} `);
         const snapshot = await uploadBytesResumable(imageRef, image);
         const url = await getDownloadURL(snapshot.ref);
         setImgUrl(url);
+
       } catch (error) {
         console.log(error);
       } finally {
@@ -128,8 +125,10 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
 
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
+
   };
 
   return (
@@ -158,7 +157,7 @@ const NewBlogForm = ({ postId }: PostFormPros) => {
 
       <select onChange={(e) => setCategory(e.target.value)} className='category-select' value={category ?? ""} required>
         <option value="">Select a category</option>
-        {categoryList.map(category => <option value={category}>{category}</option>)}
+        {categoryList.map(category => <option key={category} value={category}>{category}</option>)}
 
       </select>
       <br />

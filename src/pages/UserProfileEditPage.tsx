@@ -6,18 +6,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import usePrivateApi from "../hooks/usePrivateApi";
 import { updateAuth } from "../api/authSlice";
-import { ref, uploadBytes, getDownloadURL, } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, deleteObject, uploadBytesResumable, } from "firebase/storage";
 import { v4 } from "uuid";
 import { storage } from "../firebase/firebase";
 import { Notify } from 'notiflix';
 import { USER_URL } from '../utils/apiroutes';
+import { setOpenProfile } from '../api/navSlice';
 
 
 
 const UserProfileForm = () => {
     const [formData, setFormData] = useState({ ...useSelector((state: any) => state.auth.user) });
 
-    const { fname, lname, dob,gender, headTag } = formData;
+    const { fname, lname, dob, gender, headTag } = formData;
     const [image, setImage] = useState<File | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [errMsg, setErrMsg] = useState<string | null>(null);
@@ -34,7 +35,7 @@ const UserProfileForm = () => {
     const dispatch = useDispatch();
 
     const from = location?.state?.from?.pathname || "/";
-   
+
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files && e.target.files[0];
@@ -52,21 +53,29 @@ const UserProfileForm = () => {
 
     useEffect(() => {
         setUploadingImage(true);
-        const uploadImage = () => {
-            if (image == null) return;
-            const imageRef = ref(storage, `/userProfiles/${image.name + v4()} `);
-            uploadBytes(imageRef, image).then((snapshot) => {
-                getDownloadURL(snapshot.ref).then((url) => {
-                    setNewAvatarUrl(url);
-                });
+        const uploadImage = async () => {
+            try {
+
+                if (image == null) return;
+                if (formData.avatarUrl) await deleteObject(ref(storage, formData.avatarUrl));
+
+                const imageRef = ref(storage, `/userProfiles/${image.name + v4()} `);
+                const snapshot = await uploadBytesResumable(imageRef, image);
+                const url = await getDownloadURL(snapshot.ref);
+                setNewAvatarUrl(url);
+
                 Notify.success(
                     "Image uploaded successfully",
                     { timeout: 1000, cssAnimationStyle: "from-right" }
                 );
-            })
-        };
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setUploadingImage(false);
+            }
+        }
         uploadImage();
-        setUploadingImage(false);
+
     }, [image]);
 
     useEffect(() => { fnameRef.current?.focus(); }, []);
@@ -77,7 +86,8 @@ const UserProfileForm = () => {
         try {
             const res = await privateApi.put(USER_URL, JSON.stringify({ ...formData }),);
             if (res.status === 200) {
-                dispatch(updateAuth({ ...res.data }))
+                dispatch(updateAuth({ ...res.data }));
+                dispatch(setOpenProfile(true));
                 navigate(from, { replace: true });
             }
 
@@ -149,9 +159,9 @@ const UserProfileForm = () => {
                     }}
                     className='submit-button'
                     style={{
-                        backgroundColor: loading ? " #d1d2d2":"",
+                        backgroundColor: loading ? " #d1d2d2" : "",
                         color: loading ? " #4d7e3e" : ""
-                      }} 
+                    }}
                 >
                     {loading ? "Submitting..." : "Submit"}
                 </button>
