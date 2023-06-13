@@ -16,15 +16,13 @@
     margin: 3px 0 0 5%;
     justify-self: flex-start;
     img {
-      // @media only screen and (min-width: 640px) {
 
-      // }
       @media only screen and (min-width: 400px) {
         width: 120px;
       }
 
       @media only screen and (max-width: 400px) {
-        width: 70px;
+        width: 60px;
       }
     }
   }
