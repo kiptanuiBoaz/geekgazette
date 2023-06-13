@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import "./user-profile-form.scss";
 import { FiEdit } from "react-icons/fi";
 import { storage } from "../firebase/firebase";
-import { ref, uploadBytes, getDownloadURL, } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, uploadBytesResumable, deleteObject, } from "firebase/storage";
 import { v4 } from "uuid";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { updateAuth } from '../api/authSlice';
@@ -17,6 +17,7 @@ const UserProfileForm = () => {
     const [image, setImage] = useState<File | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [formData, setFormData] = useState<any>({});
+    const [uploadingImage, setUploadingImage] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const [errMsg, setErrMsg] = useState<string | null>(null);
 
@@ -43,18 +44,28 @@ const UserProfileForm = () => {
     useEffect(() => { fnameRef.current?.focus(); }, []);
 
     useEffect(() => {
-        const uploadImage = () => {
-            if (image == null) return;
-            const imageRef = ref(storage, `/userProfiles/${image.name + v4()} `);
-            uploadBytes(imageRef, image).then((snapshot) => {
-                getDownloadURL(snapshot.ref).then((url) => {
-                    setAvatarUrl(url);
-                });
+        setUploadingImage(true);
+        const uploadImage = async () => {
+            try {
+
+                if (image == null) return;
+                if (avatarUrl) await deleteObject(ref(storage,avatarUrl));
+
+                const imageRef = ref(storage, `/userProfiles/${image.name + v4()} `);
+                const snapshot = await uploadBytesResumable(imageRef, image);
+                const url = await getDownloadURL(snapshot.ref);
+                setAvatarUrl(url);
+
                 Notify.success(
                     "Image uploaded successfully",
                     { timeout: 1000, cssAnimationStyle: "from-right" }
                 );
-            })
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setUploadingImage(false);
+            }
+
         };
         uploadImage();
     }, [image]);
@@ -110,7 +121,7 @@ const UserProfileForm = () => {
                     className='file-upload-image'
                     src={avatarUrl ?? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}
                 />
-                <span className='prompt'> <FiEdit /> {' '}{" "}Upload Image </span>
+                <span className='prompt'> <FiEdit /> {' '}{" "} {uploadingImage ? "Uploading..." : "Upload Image"} </span>
             </label>
 
             <input
