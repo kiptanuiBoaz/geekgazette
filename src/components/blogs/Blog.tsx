@@ -26,7 +26,7 @@ export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author:
 
     //truncate the blog content
     useEffect(() => {
-        setShortBody(body.substring(0, deviceWidth < 500 ? 70 :
+        setShortBody(body.substring(0, deviceWidth < 500 ? 55 :
             deviceWidth < 640
                 ? 50
                 : 90
@@ -35,7 +35,7 @@ export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author:
 
     //truncate the title length
     useEffect(() => {
-        setShortTitle(title.substring(0, deviceWidth < 500 ? 40 :
+        setShortTitle(title.substring(0, deviceWidth < 500 ? 37 :
             deviceWidth < 640
                 ? 55
                 : 70
