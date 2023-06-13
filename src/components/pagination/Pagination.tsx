@@ -8,8 +8,8 @@ export const Pagination = ({ currentPage, setCurrentPage, postsPerPage, totalPos
     const pageNumbers = [];
     const totalPages = totalPosts / postsPerPage;
     // Limit the page Numbers shown
-    const [pageNumberLimit, setpageNumberLimit] = useState(5);
-    const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
+    const [pageNumberLimit, setpageNumberLimit] = useState(2);
+    const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(3);
     const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
 
     // Paginate

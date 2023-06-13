@@ -23,9 +23,6 @@ export const Read = () => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-
-  const currentPosts = filterdBlogs;
-
   //algorithm to calculate trending props
   useEffect(() => {
 
