@@ -67,7 +67,6 @@ export const Read = () => {
 
   }, [blogs, selectedCategory]);
 
-  // if (blogs.length < 1) return <SpinnerContainer><Spinner /></SpinnerContainer> 
   return (
     <section className='read'>
 
@@ -81,15 +80,20 @@ export const Read = () => {
           ? shuffleArray(filterdBlogs).slice(indexOfFirstPost, indexOfLastPost).map(blog =>
             <Blog key={blog._id} {...blog} />
           )
-          : <p className='no-posts'>No posts found!</p>
+          : <p className='no-posts'>
+            <span  className='indicator'>--No posts found!</span>
+             <span className='view-all' onClick={()=>handleCategoryChange("all")}>View all posts</span>
+             </p>
         }
 
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          postsPerPage={postsPerPage}
-          totalPosts={filterdBlogs.length}
-        />
+        {filterdBlogs.length > 0 &&
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            postsPerPage={postsPerPage}
+            totalPosts={filterdBlogs.length}
+          />
+        }
 
       </div>
       <hr className='line' />
