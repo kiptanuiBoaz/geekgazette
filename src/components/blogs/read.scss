@@ -3,13 +3,37 @@
   flex-wrap: wrap-reverse;
   margin: 60px 0;
   width: 100vw;
-  align-items: flex-start; /* align children at the top */
+  align-items: start; /* align children at the top */
+  justify-content: flex-start;
 
   .blogs {
     width: 900px;
     overflow-x: auto;
     max-height: 28cm;
     scrollbar-width: none; /* for Firefox */
+
+    .no-posts {
+      color: var(--hover-color);
+      width: 90%;
+      padding: 15px 20px;
+      background-color: var(--primary-backround);
+      font-family: var(--subheadings-font);
+      margin: auto;
+
+      @media only screen and (max-width: 400px) {
+        width: 90%;
+      }
+
+      @media only screen and (max-width: 800px) {
+        font-size: 16px;
+        padding: 11px 17px;
+      }
+
+      &::before {
+        content: "-- ";
+        color: var(--hover-color);
+      }
+    }
     @media only screen and (min-width: 1150px) {
       width: 70%;
     }

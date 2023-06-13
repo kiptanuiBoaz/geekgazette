@@ -77,9 +77,12 @@ export const Read = () => {
           <Row handleCategoryChange={handleCategoryChange} />
         </div>
 
-        {shuffleArray(filterdBlogs).slice(indexOfFirstPost, indexOfLastPost).map(blog =>
-          <Blog key={blog._id} {...blog} />
-        )}
+        {filterdBlogs.length > 0
+          ? shuffleArray(filterdBlogs).slice(indexOfFirstPost, indexOfLastPost).map(blog =>
+            <Blog key={blog._id} {...blog} />
+          )
+          : <p className='no-posts'>No posts found!</p>
+        }
 
         <Pagination
           currentPage={currentPage}
