@@ -52,7 +52,7 @@ export const Blog = ({ body, title, imgUrl, date, category, _id: postId, author:
     }, [deviceWidth]);
 
     return (
-        <Fade damping={1.5}>
+        <Fade triggerOnce={true} damping={1.5}>
             <article
                 key={fname}
                 onMouseEnter={() => setBrightness("brightness(50%)")}

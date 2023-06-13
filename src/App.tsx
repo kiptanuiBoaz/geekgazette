@@ -27,7 +27,7 @@ import SpinnerContainer from "./components/spinner/SpinnerContainer";
 export const App = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
- 
+
   Notify.init({
     success: {
       background: " #4d7e3e",
@@ -42,7 +42,8 @@ export const App = () => {
     const fetchPosts = async () => {
       Loading.dots({
         svgColor: "#4d7e3e",
-      backgroundColor:"rgba(0,0,0,0.6)"});
+        backgroundColor: "rgba(0,0,0,0.4)"
+      });
       setLoading(true)
       try {
         const response = await api.get(POSTS_URL);
