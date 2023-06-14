@@ -131,7 +131,6 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
             <div className='blog-container'>
                 <p onClick={() => { navigate("/"); }} className="home">
                     <FaAngleLeft />
-                    {/* <FaHome />  */}
                     <span className="back">back home</span>
                 </p>
 
@@ -220,6 +219,11 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                     </div>}
 
                 </div>
+
+                <p onClick={() => { navigate("/"); }} className="home">
+                    <FaAngleLeft />
+                    <span className="back">back home</span>
+                </p>
             </div>
 
             <div className='comments-container'>

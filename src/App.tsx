@@ -20,6 +20,8 @@ import { POSTS_URL } from "./utils/apiroutes";
 import { Notify } from "notiflix";
 import { Spinner } from "./components";
 import SpinnerContainer from "./components/spinner/SpinnerContainer";
+import ScrollToTop from "react-scroll-to-top";
+import { BiUpArrowAlt } from "react-icons/bi";
 
 
 
@@ -81,37 +83,42 @@ export const App = () => {
 
 
   return (
-    <Suspense fallback={<SpinnerContainer><Spinner /></SpinnerContainer>}>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
+    <>
+      <ScrollToTop style={{backgroundColor:"#4d7e3e",zIndex:7}} smooth color="#eeeee4"/>
 
-          <Route path="blog">
-            <Route element={<RequireAuth />} >
-              <Route path="write" element={<NewBlogForm postId={undefined} />} />
-              <Route path="edit/:postId" element={<EditBlog />} />
+      <Suspense fallback={<SpinnerContainer><Spinner /></SpinnerContainer>}>
+        <Routes>
+
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+
+            <Route path="blog">
+              <Route element={<RequireAuth />} >
+                <Route path="write" element={<NewBlogForm postId={undefined} />} />
+                <Route path="edit/:postId" element={<EditBlog />} />
+              </Route>
+              <Route path="read/:postId" element={<FullBlogPage />} />
             </Route>
-            <Route path="read/:postId" element={<FullBlogPage />} />
+
+            <Route element={<RequireAuth />} >
+              <Route path="edit/:username" element={<UserProfileEditPage />} />
+            </Route>
+
+            <Route path="about" element={<About />} />
           </Route>
 
-          <Route element={<RequireAuth />} >
-            <Route path="edit/:username" element={<UserProfileEditPage />} />
+          <Route path="auth" element={<AuthHome />}>
+            <Route path="sign-in" element={<LoginForm />} />
+            <Route path="sign-up" element={<SignUpForm />} />
+            <Route element={<RequireAuth />} >
+              <Route path="new-profile" element={<UserProfileForm />} />
+            </Route>
           </Route>
 
-          <Route path="about" element={<About />} />
-        </Route>
-
-        <Route path="auth" element={<AuthHome />}>
-          <Route path="sign-in" element={<LoginForm />} />
-          <Route path="sign-up" element={<SignUpForm />} />
-          <Route element={<RequireAuth />} >
-            <Route path="new-profile" element={<UserProfileForm />} />
-          </Route>
-        </Route>
-
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Suspense>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
+    </>
   )
 }
 
