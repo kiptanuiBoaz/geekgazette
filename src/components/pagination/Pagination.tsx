@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import React, { useState } from "react";
 import styles from "./pagination.module.scss";
 import { PaginationProps } from "../../types/paginationTypes";
 
@@ -7,10 +7,24 @@ import { PaginationProps } from "../../types/paginationTypes";
 export const Pagination = ({ currentPage, setCurrentPage, postsPerPage, totalPosts, }: PaginationProps) => {
     const pageNumbers = [];
     const totalPages = totalPosts / postsPerPage;
-    // Limit the page Numbers shown
-    const [pageNumberLimit, setpageNumberLimit] = useState(2);
-    const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(3);
+    // Limit the page Numbers 
+    const [deviceWidth, setDeviceWidth] = useState<number>(0);
+    const [pageNumberLimit, setpageNumberLimit] = useState(deviceWidth < 500 ? 2 : 5);
+    const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(deviceWidth < 500 ? 3 : 5);
     const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
+
+    React.useEffect(() => {
+        const handleEvent = () => {
+            setDeviceWidth(window.innerWidth);
+
+        }
+        window.addEventListener('resize', handleEvent);
+        window.addEventListener('scroll', handleEvent);
+        //clean up fns
+        return () => {
+            window.removeEventListener('resize', handleEvent);
+        };
+    }, [deviceWidth]);
 
     // Paginate
     const paginate = (pageNumber: number) => {

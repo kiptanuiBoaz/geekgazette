@@ -54,7 +54,7 @@ export const Profile = ({ scrollPos }: ProfileProps) => {
             {currentUserBlogs.length > 0 && <p style={{ color: scrollPos > 20 ? " #eeeee4 " : "rgb(40, 97, 34)" }} className="blogs-title">My blog post(s) on geeek gazette</p>}
 
             <main className="my-blogs">
-                {currentUserBlogs?.map(({ title, date, _id: postId }) => {
+                {currentUserBlogs?.slice().reverse().map(({ title, date, _id: postId }) => {
                     return (
                         <div key={title} style={{ backgroundColor: scrollPos < 20 ? "#eeeee4" : " rgb(40, 97, 34)" }} className="my-blog">
                             <p

@@ -108,7 +108,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
 
     //delete post from DB
     const handleDelete = async () => {
-        setLoading(true);
+     setLoading(true);
         try {
             const res = await privateApi.delete(POSTS_URL, { data: { postId } });
             // delete from redux strore
@@ -148,7 +148,7 @@ export const FullBlog = ({ author: { fname, lname }, comments, likes, date, auth
                     <span className='author-names'> {`${fname} ${lname}`}</span>
                 </p>
 
-                <Fade cascade><p className='body-content'>{body}</p></Fade>
+                <Fade cascade ={true}><p className='body-content'>{body}</p></Fade>
 
                 <div className='post-engagements'>
 
