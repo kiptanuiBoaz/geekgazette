@@ -9,6 +9,8 @@ The "geekgazette" project is a blog site built with React and TypeScript using R
 Client-Side (Frontend)
 The client-side of the project is responsible for rendering the user interface and handling user interactions.
 
+Server code [here](https://github.com/kiptanuiBoaz/geekgazette-server)
+
 Technologies Used
 React
 Redux Toolkit
